@@ -102,7 +102,7 @@ module ietf-detnet-config {
     type leafref {
       path "/ietf-detnet:detnet"
          + "/ietf-detnet:service-aggregation-group"
-         + "/ietf-detnet:group-index";
+         + "/ietf-detnet:group-name";
     }
   }
 
@@ -255,6 +255,11 @@ module ietf-detnet-config {
         value 28;
       }
     }
+  }
+
+  typedef aggregation-group {
+    type string; 
+      description "The name of the aggregation group";
   }
   
   identity status {
@@ -770,6 +775,43 @@ module ietf-detnet-config {
     }
   }
   container detnet {
+    list traffic-profile {
+      key "profile-number";
+        description "A traffic profile";
+      leaf profile-number {
+        type uint16;
+        description
+          "An Aggregation group ID. Zero means the service is not
+          part of a group"; 
+      }
+      uses traffic-requirements;
+      uses traffic-specification;
+      leaf-list member-applications{ 
+        type app-flow-ref;
+	config false;
+        description
+        "Applicaions attached to this profile";
+      }
+      leaf-list member-services{ 
+        type service-sub-layer-ref;
+	config false;
+        description
+        "Services attached to this profile";
+      }
+      leaf-list member-groups{ 
+        type aggregation-grp-ref;
+	config false;
+        description
+        "Groups attached to this profile";
+      }
+      leaf-list member-forwarding-sublayers{ 
+        type forwarding-sub-layer-ref;
+	config false;
+        description
+        "Forwarding sub-layer attached to this profile";
+      }
+    }
+
     container app-flows {
       description
       "The DetNet app-flow configuration";
@@ -779,12 +821,6 @@ module ietf-detnet-config {
         leaf name {
           type "string";
           description "The name to identify the DetNet app-flow";
-        }
-        leaf app-id {
-          type uint16;
-          config false;
-          description
-            "The DetNet Application ID";
         }
         leaf app-flow-bidir-congruent {
           type boolean;
@@ -855,51 +891,14 @@ module ietf-detnet-config {
       }
     }
 
-    list traffic-profile {
-      key "profile-number";
-        description "A traffic profile";
-      leaf profile-number {
-        type uint16;
-        description
-          "An Aggregation group ID. Zero means the service is not
-          part of a group"; 
-      }
-      uses traffic-requirements;
-      uses traffic-specification;
-      leaf-list member-applications{ 
-        type app-flow-ref;
-	config false;
-        description
-        "Applicaions attached to this profile";
-      }
-      leaf-list member-services{ 
-        type service-sub-layer-ref;
-	config false;
-        description
-        "Services attached to this profile";
-      }
-      leaf-list member-groups{ 
-        type aggregation-grp-ref;
-	config false;
-        description
-        "Groups attached to this profile";
-      }
-      leaf-list member-forwarding-sublayers{ 
-        type forwarding-sub-layer-ref;
-	config false;
-        description
-        "Forwarding sub-layer attached to this profile";
-      }
-    }
-
     list service-aggregation-group {
-      key "group-index";
+      key "group-name";
       description
           "A group of services";
-      leaf group-index {
-        type uint16;
+      leaf group-name {
+        type aggregation-group;
         description
-            "An Aggregation group ID. Zero means the service is not
+            "An Aggregation group name. Empty means the service is not
             part of a group"; 
       }
       container outgoing {
@@ -949,12 +948,6 @@ module ietf-detnet-config {
           type string;
           description "The name of the DetNet service sub-layer";
         }
-        leaf service-id {
-          type uint16;
-          config false;
-          description
-            "The DetNet service ID";
-        }
         leaf service-rank {
           type uint8;
           description
@@ -962,7 +955,7 @@ module ietf-detnet-config {
         }
         choice service-type {
           mandatory true;
-          container standalone {
+          container non-grouped {
             leaf traffic-profile {
             type traffic-profile-ref;
             description
@@ -972,7 +965,7 @@ module ietf-detnet-config {
               type service-operation-type;
             }
           }
-          container aggregated {
+          container grouped {
             leaf group-ref {
             type aggregation-grp-ref;
             description
@@ -990,11 +983,14 @@ module ietf-detnet-config {
           leaf sequence-number-length {
             type sequence-number-field;
             description
-              "Sequence number filed can choice 0 bit, 16bit, 28 bit
+              "Sequence number field can choice 0 bit, 16bit, 28 bit
               filed"; 
-            }
+          }
         }
-         container incoming {
+        leaf service-operation-type {
+          type service-operation-type;
+        }
+        container incoming {
           description
           "The DetNet service sub-layer incoming configuration.";
           choice incoming-options {
@@ -1005,7 +1001,13 @@ module ietf-detnet-config {
               uses app-flows-ref;
             }
             case detnet-service-identification {
-              uses detnet-flow-spec;
+              uses detnet-flow-spec; 
+            }
+            case aggregated-service {
+              uses service-sub-layer-ref;
+            }
+            case aggregated-forwarding {
+              uses forwarding-sub-layer-ref;
             }
           }
         }
@@ -1016,9 +1018,6 @@ module ietf-detnet-config {
             mandatory true;
             description
              "";
-            case egress-application {
-              uses app-flows-ref;
-            }
             case detnet-service-outgoing {
               //uses detnet-service-next-hop-content;
               list service-outgoing-list {
@@ -1039,6 +1038,23 @@ module ietf-detnet-config {
                 }
               }
             }
+            case detnet-service-aggregation {
+              leaf aggregation-service-sub-layer {
+                type service-sub-layer-ref;
+              }
+                container service-label {
+                    uses rt-types:mpls-label-stack;
+                }
+            }
+            case egress-proxy {
+              uses app-flows-ref;
+            }
+            case detnet-service-operation {
+              uses service-sub-layer-ref;
+            }
+            case detnet-forwarding-operation {
+              uses forwarding-sub-layer-ref;
+            }
           }
         }
       }
@@ -1051,12 +1067,6 @@ module ietf-detnet-config {
         leaf name {
           type string;
           description "The name of the DetNet forwarding sub-layer";
-        }
-        leaf forwarding-id {
-          type uint16;
-          config false;
-          description
-            "The DetNet forwarding ID";
         }
         leaf traffic-profile {
           type traffic-profile-ref;
@@ -1089,9 +1099,9 @@ module ietf-detnet-config {
               }
               uses detnet-flow-spec;
             }
-              case aggregated-forwarding {
-                  uses forwarding-sub-layer-ref;
-              }
+            case aggregated-forwarding {
+                uses forwarding-sub-layer-ref;
+            }
           }
         }
         container outgoing {
@@ -1101,43 +1111,34 @@ module ietf-detnet-config {
             mandatory true;
             description
              "";
-            case detnet-service-operation {
-	      leaf-list service-sub-layer {
-                type service-sub-layer-ref;
-	        config false;
-	        description
-	        "";
-              }
-            }
             case detnet-forwarding-outgoing {
               uses detnet-forwarding-next-hop-content;
             }
-              case detnet-forwarding-aggregation {
-                  leaf aggregation-forwarding-sub-layer {
-                      type forwarding-sub-layer-ref;
-                  }
-                  container forwarding-label {
-                      uses rt-types:mpls-label-stack;
-                  }
+            case detnet-service-aggregation {
+              leaf aggregation-service-sub-layer {
+                type service-sub-layer-ref;
               }
-              case detnet-forwarding-disaggregation {
-                  uses forwarding-sub-layer-ref;
+                container optional-forwarding-label {
+                    uses rt-types:mpls-label-stack;
+                }
+            }
+            case detnet-forwarding-aggregation {
+              leaf aggregation-forwarding-sub-layer {
+                type forwarding-sub-layer-ref;
               }
+              container forwarding-label {
+                uses rt-types:mpls-label-stack;
+              }
+            }
+            case detnet-service-operation {
+              uses service-sub-layer-ref;
+            }
+            case detnet-forwarding-operation {
+              uses forwarding-sub-layer-ref;
+            }
           }
-        }
-      }
-    }
-    container sub-network {
-      description "";
-      list sub-network-list {
-        key "name";
-        description "";
-        leaf name {
-          type string;
-          description "";
         }
       }
     }
   }
 }
-
