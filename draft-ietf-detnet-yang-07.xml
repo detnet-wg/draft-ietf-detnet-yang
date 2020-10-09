@@ -285,379 +285,405 @@
       <t><figure>
           <artwork><![CDATA[module: ietf-detnet-config
 module: ietf-detnet-config
-  +--rw app-flows
-  |  +--rw app-flow* [name]
-  |     +--rw name                        string
-  |     +--ro app-id?                     uint16
-  |     +--rw app-flow-bidir-congruent?   boolean
-  |     +--rw traffic-requirements
-  |     |  +--rw min-bandwidth?                    uint64
-  |     |  +--rw max-latency?                      uint32
-  |     |  +--rw max-latency-variation?            uint32
-  |     |  +--rw max-loss?                         uint8
-  |     |  +--rw max-consecutive-loss-tolerance?   uint32
-  |     |  +--rw max-misordering?                  uint32
-  |     +--rw traffic-specification
-  |     |  +--rw interval?                       uint32
-  |     |  +--rw max-packets-per-interval?       uint32
-  |     |  +--rw max-payload-size?               uint32
-  |     |  +--rw average-packets-per-interval?   uint32
-  |     |  +--rw average-payload-size?           uint32
-  |     +--rw in-segment
-  |     |  +--rw interface?          ietf-interfaces:interface-ref
-  |     |  +--rw (data-flow-type)?
-  |     |     +--:(tsn-app-flow)
-  |     |     |  +--rw source-mac-address?
-  |     |     |  |       ietf-yang-types:mac-address
-  |     |     |  +--rw destination-mac-address?
-  |     |     |  |       ietf-yang-types:mac-address
-  |     |     |  +--rw ethertype?
-  |     |     |  |       ietf-ethertypes:ethertype
-  |     |     |  +--rw vlan-id?                   uint16
-  |     |     |  +--rw pcp?                       uint8
-  |     |     +--:(ip-app-flow)
-  |     |     |  +--rw src-ip-prefix?      ietf-inet-types:ip-prefix
-  |     |     |  +--rw dest-ip-prefix?     ietf-inet-types:ip-prefix
-  |     |     |  +--rw next-header?        uint8
-  |     |     |  +--rw traffic-class?      uint8
-  |     |     |  +--rw flow-label?
-  |     |     |  |       ietf-inet-types:ipv6-flow-label
-  |     |     |  +--rw source-port
-  |     |     |  |  +--rw (port-range-or-operator)?
-  |     |     |  |     +--:(range)
-  |     |     |  |     |  +--rw lower-port
-  |     |     |  |     |  |       ietf-inet-types:port-number
-  |     |     |  |     |  +--rw upper-port
-  |     |     |  |     |          ietf-inet-types:port-number
-  |     |     |  |     +--:(operator)
-  |     |     |  |        +--rw operator?
-  |     |     |  |        |       ietf-packet-fields:operator <eq>
-  |     |     |  |        +--rw port
-  |     |     |  |                ietf-inet-types:port-number
-  |     |     |  +--rw destination-port
-  |     |     |  |  +--rw (port-range-or-operator)?
-  |     |     |  |     +--:(range)
-  |     |     |  |     |  +--rw lower-port
-  |     |     |  |     |  |       ietf-inet-types:port-number
-  |     |     |  |     |  +--rw upper-port
-  |     |     |  |     |          ietf-inet-types:port-number
-  |     |     |  |     +--:(operator)
-  |     |     |  |        +--rw operator?
-  |     |     |  |        |       ietf-packet-fields:operator <eq>
-  |     |     |  |        +--rw port
-  |     |     |  |                ietf-inet-types:port-number
-  |     |     |  +--rw ipsec-spi?          ipsec-spi
-  |     |     +--:(mpls-app-flow)
-  |     |        +--rw (label-space)?
-  |     |           +--:(context-label-space)
-  |     |           |  +--rw mpls-label-stack
-  |     |           |     +--rw entry* [id]
-  |     |           |        +--rw id               uint8
-  |     |           |        +--rw label?
-  |     |           |        |       ietf-routing-types:mpls-label
-  |     |           |        +--rw ttl?             uint8
-  |     |           |        +--rw traffic-class?   uint8
-  |     |           +--:(platform-label-space)
-  |     |              +--rw label?   ietf-routing-types:mpls-label
-  |     +--rw out-segment
-  |        +--rw (outgoing-options)
-  |           +--:(ingress-proxy)
-  |           |  +--rw service-sub-layer?   service-sub-layer-ref
-  |           +--:(egress)
-  |              +--rw (next-hop-options)
-  |                 +--:(simple-next-hop)
-  |                 |  +--rw mpls-header
-  |                 |  |  +--rw mpls-label-stack
-  |                 |  |     +--rw entry* [id]
-  |                 |  |        +--rw id               uint8
-  |                 |  |        +--rw label?
-  |                 |  |        |       ietf-routing-types:mpls-label
-  |                 |  |        +--rw ttl?             uint8
-  |                 |  |        +--rw traffic-class?   uint8
-  |                 |  +--rw outgoing-interface?
-  |                 |          ietf-interfaces:interface-ref
-  |                 +--:(next-hop-list)
-  |                    +--rw next-hop-list
-  |                       +--rw next-hop* [hop-index]
-  |                          +--rw hop-index             uint8
-  |                          +--rw mpls-header
-  |                          |  +--rw mpls-label-stack
-  |                          |     +--rw entry* [id]
-  |                          |        +--rw id               uint8
-  |                          |        +--rw label?
-  |                          |        |       ietf-routing-types:
-  |                          |        |       mpls-label
-  |                          |        +--rw ttl?             uint8
-  |                          |        +--rw traffic-class?   uint8
-  |                          +--rw outgoing-interface?
-  |                                  ietf-interfaces:interface-ref
-  +--rw service-sub-layer
-  |  +--rw service-sub-layer-list* [name aggregation-group]
-  |     +--rw name                      string
-  |     +--rw aggregation-group         uint16
-  |     +--ro service-id?               uint16
-  |     +--rw service-rank?             uint8
-  |     +--rw traffic-requirements
-  |     |  +--rw min-bandwidth?                    uint64
-  |     |  +--rw max-latency?                      uint32
-  |     |  +--rw max-latency-variation?            uint32
-  |     |  +--rw max-loss?                         uint8
-  |     |  +--rw max-consecutive-loss-tolerance?   uint32
-  |     |  +--rw max-misordering?                  uint32
-  |     +--rw traffic-specification
-  |     |  +--rw interval?                       uint32
-  |     |  +--rw max-packets-per-interval?       uint32
-  |     |  +--rw max-payload-size?               uint32
-  |     |  +--rw average-packets-per-interval?   uint32
-  |     |  +--rw average-payload-size?           uint32
-  |     +--rw service-protection
-  |     |  +--rw service-protection-type?   service-protection-type
-  |     |  +--rw sequence-number-length?    sequence-number-field
-  |     +--rw service-operation-type?   service-operation-type
-  |     +--rw in-segment
-  |     |  +--rw (incoming-options)
-  |     |     +--:(ingress-proxy)
-  |     |     |  +--rw app-flow*   app-flow-ref
-  |     |     +--:(detnet-service-identification)
-  |     |        +--rw (detnet-flow-type)?
-  |     |           +--:(ip-detnet-flow)
-  |     |           |  +--rw src-ip-prefix?
-  |     |           |  |       ietf-inet-types:ip-prefix
-  |     |           |  +--rw dest-ip-prefix?
-  |     |           |  |       ietf-inet-types:ip-prefix
-  |     |           |  +--rw next-header?        uint8
-  |     |           |  +--rw traffic-class?      uint8
-  |     |           |  +--rw flow-label?
-  |     |           |  |       ietf-inet-types:ipv6-flow-label
-  |     |           |  +--rw source-port
-  |     |           |  |  +--rw (port-range-or-operator)?
-  |     |           |  |     +--:(range)
-  |     |           |  |     |  +--rw lower-port
-  |     |           |  |     |  |       ietf-inet-types:port-number
-  |     |           |  |     |  +--rw upper-port
-  |     |           |  |     |          ietf-inet-types:port-number
-  |     |           |  |     +--:(operator)
-  |     |           |  |        +--rw operator?
-  |     |           |  |        |       ietf-packet-fields:operator
-  |     |           |  |        |       <eq>
-  |     |           |  |        +--rw port
-  |     |           |  |                ietf-inet-types:port-number
-  |     |           |  +--rw destination-port
-  |     |           |  |  +--rw (port-range-or-operator)?
-  |     |           |  |     +--:(range)
-  |     |           |  |     |  +--rw lower-port
-  |     |           |  |     |  |       ietf-inet-types:port-number
-  |     |           |  |     |  +--rw upper-port
-  |     |           |  |     |          ietf-inet-types:port-number
-  |     |           |  |     +--:(operator)
-  |     |           |  |        +--rw operator?
-  |     |           |  |        |       ietf-packet-fields:operator
-  |     |           |  |        |       <eq>
-  |     |           |  |        +--rw port
-  |     |           |  |                ietf-inet-types:port-number
-  |     |           |  +--rw ipsec-spi?          ipsec-spi
-  |     |           +--:(mpls-detnet-flow)
-  |     |              +--rw (label-space)?
-  |     |                 +--:(context-label-space)
-  |     |                 |  +--rw mpls-label-stack
-  |     |                 |     +--rw entry* [id]
-  |     |                 |        +--rw id               uint8
-  |     |                 |        +--rw label?
-  |     |                 |        |       ietf-routing-types:
-  |     |                 |        |       mpls-label
-  |     |                 |        +--rw ttl?             uint8
-  |     |                 |        +--rw traffic-class?   uint8
-  |     |                 +--:(platform-label-space)
-  |     |                    +--rw label?
-  |     |                            ietf-routing-types:mpls-label
-  |     +--rw out-segment
-  |        +--rw (outgoing-options)
-  |           +--:(egress-proxy)
-  |           |  +--rw app-flow*   app-flow-ref
-  |           +--:(detnet-service-output)
-  |              +--rw service-output-list* [service-output-index]
-  |                 +--rw service-output-index    uint8
-  |                 +--rw (header-type)?
-  |                 |  +--:(detnet-mpls-header)
-  |                 |  |  +--rw mpls-label-stack
-  |                 |  |     +--rw entry* [id]
-  |                 |  |        +--rw id               uint8
-  |                 |  |        +--rw label?
-  |                 |  |        |       ietf-routing-types:mpls-label
-  |                 |  |        +--rw ttl?             uint8
-  |                 |  |        +--rw traffic-class?   uint8
-  |                 |  +--:(detnet-ip-header)
-  |                 |     +--rw src-ip-address?
-  |                 |     |       ietf-inet-types:ip-address
-  |                 |     +--rw dest-ip-address?
-  |                 |     |       ietf-inet-types:ip-address
-  |                 |     +--rw next-header?        uint8
-  |                 |     +--rw traffic-class?      uint8
-  |                 |     +--rw flow-label?
-  |                 |     |       ietf-inet-types:ipv6-flow-label
-  |                 |     +--rw source-port?
-  |                 |     |       ietf-inet-types:port-number
-  |                 |     +--rw destination-port?
-  |                 |             ietf-inet-types:port-number
-  |                 +--rw aggreagation-header
-  |                 |  +--rw mpls-label-stack
-  |                 |     +--rw entry* [id]
-  |                 |        +--rw id               uint8
-  |                 |        +--rw label?
-  |                 |        |       ietf-routing-types:mpls-label
-  |                 |        +--rw ttl?             uint8
-  |                 |        +--rw traffic-class?   uint8
-  |                 +--rw next-layer* [index]
-  |                    +--rw index                   uint8
-  |                    +--rw forwarding-sub-layer?
-  |                            forwarding-sub-layer-ref
-  +--rw forwarding-sub-layer
-  |  +--rw forwarding-sub-layer-list* [name]
-  |     +--rw name                         string
-  |     +--ro forwarding-id?               uint16
-  |     +--rw traffic-requirements
-  |     |  +--rw min-bandwidth?                    uint64
-  |     |  +--rw max-latency?                      uint32
-  |     |  +--rw max-latency-variation?            uint32
-  |     |  +--rw max-loss?                         uint8
-  |     |  +--rw max-consecutive-loss-tolerance?   uint32
-  |     |  +--rw max-misordering?                  uint32
-  |     +--rw traffic-specification
-  |     |  +--rw interval?                       uint32
-  |     |  +--rw max-packets-per-interval?       uint32
-  |     |  +--rw max-payload-size?               uint32
-  |     |  +--rw average-packets-per-interval?   uint32
-  |     |  +--rw average-payload-size?           uint32
-  |     +--rw forwarding-operation-type?
-  |     |       forwarding-operations-type
-  |     +--rw in-segment
-  |     |  +--rw (incoming-options)
-  |     |     +--:(detnet-service-forwarding)
-  |     |     |  +--rw service-sub-layer*   service-sub-layer-ref
-  |     |     +--:(detnet-forwarding-identification)
-  |     |        +--rw interface?
-  |     |        |       ietf-interfaces:interface-ref
-  |     |        +--rw (detnet-flow-type)?
-  |     |           +--:(ip-detnet-flow)
-  |     |           |  +--rw src-ip-prefix?
-  |     |           |  |       ietf-inet-types:ip-prefix
-  |     |           |  +--rw dest-ip-prefix?
-  |     |           |  |       ietf-inet-types:ip-prefix
-  |     |           |  +--rw next-header?        uint8
-  |     |           |  +--rw traffic-class?      uint8
-  |     |           |  +--rw flow-label?
-  |     |           |  |       ietf-inet-types:ipv6-flow-label
-  |     |           |  +--rw source-port
-  |     |           |  |  +--rw (port-range-or-operator)?
-  |     |           |  |     +--:(range)
-  |     |           |  |     |  +--rw lower-port
-  |     |           |  |     |  |       ietf-inet-types:port-number
-  |     |           |  |     |  +--rw upper-port
-  |     |           |  |     |          ietf-inet-types:port-number
-  |     |           |  |     +--:(operator)
-  |     |           |  |        +--rw operator?
-  |     |           |  |        |       ietf-packet-fields:operator
-  |     |           |  |        |       <eq>
-  |     |           |  |        +--rw port
-  |     |           |  |                ietf-inet-types:port-number
-  |     |           |  +--rw destination-port
-  |     |           |  |  +--rw (port-range-or-operator)?
-  |     |           |  |     +--:(range)
-  |     |           |  |     |  +--rw lower-port
-  |     |           |  |     |  |       ietf-inet-types:port-number
-  |     |           |  |     |  +--rw upper-port
-  |     |           |  |     |          ietf-inet-types:port-number
-  |     |           |  |     +--:(operator)
-  |     |           |  |        +--rw operator?
-  |     |           |  |        |       ietf-packet-fields:operator
-  |     |           |  |        |       <eq>
-  |     |           |  |        +--rw port
-  |     |           |  |                ietf-inet-types:port-number
-  |     |           |  +--rw ipsec-spi?          ipsec-spi
-  |     |           +--:(mpls-detnet-flow)
-  |     |              +--rw (label-space)?
-  |     |                 +--:(context-label-space)
-  |     |                 |  +--rw mpls-label-stack
-  |     |                 |     +--rw entry* [id]
-  |     |                 |        +--rw id               uint8
-  |     |                 |        +--rw label?
-  |     |                 |        |       ietf-routing-types:
-  |     |                 |        |       mpls-label
-  |     |                 |        +--rw ttl?             uint8
-  |     |                 |        +--rw traffic-class?   uint8
-  |     |                 +--:(platform-label-space)
-  |     |                    +--rw label?
-  |     |                            ietf-routing-types:mpls-label
-  |     +--rw out-segment
-  |        +--rw (outgoing-options)
-  |           +--:(service-operation)
-  |           |  +--rw service-sub-layer*   service-sub-layer-ref
-  |           +--:(detnet-forwarding-output)
-  |              +--rw (next-hop-options)
-  |                 +--:(simple-next-hop)
-  |                 |  +--rw (header-type)?
-  |                 |  |  +--:(detnet-mpls-header)
-  |                 |  |  |  +--rw mpls-label-stack
-  |                 |  |  |     +--rw entry* [id]
-  |                 |  |  |        +--rw id               uint8
-  |                 |  |  |        +--rw label?
-  |                 |  |  |        |       ietf-routing-types:
-  |                 |  |  |        |       mpls-label
-  |                 |  |  |        +--rw ttl?             uint8
-  |                 |  |  |        +--rw traffic-class?   uint8
-  |                 |  |  +--:(detnet-ip-header)
-  |                 |  |     +--rw src-ip-address?
-  |                 |  |     |       ietf-inet-types:ip-address
-  |                 |  |     +--rw dest-ip-address?
-  |                 |  |     |       ietf-inet-types:ip-address
-  |                 |  |     +--rw next-header?        uint8
-  |                 |  |     +--rw traffic-class?      uint8
-  |                 |  |     +--rw flow-label?
-  |                 |  |     |       ietf-inet-types:ipv6-flow-label
-  |                 |  |     +--rw source-port?
-  |                 |  |     |       ietf-inet-types:port-number
-  |                 |  |     +--rw destination-port?
-  |                 |  |             ietf-inet-types:port-number
-  |                 |  +--rw outgoing-interface?
-  |                 |          ietf-interfaces:interface-ref
-  |                 +--:(next-hop-list)
-  |                    +--rw next-hop-list
-  |                       +--rw next-hop* [hop-index]
-  |                          +--rw hop-index             uint8
-  |                          +--rw (header-type)?
-  |                          |  +--:(detnet-mpls-header)
-  |                          |  |  +--rw mpls-label-stack
-  |                          |  |     +--rw entry* [id]
-  |                          |  |        +--rw id
-  |                          |  |        |       uint8
-  |                          |  |        +--rw label?
-  |                          |  |        |       ietf-routing-types:
-  |                          |  |        |       mpls-label
-  |                          |  |        +--rw ttl?
-  |                          |  |        |       uint8
-  |                          |  |        +--rw traffic-class?
-  |                          |  |                uint8
-  |                          |  +--:(detnet-ip-header)
-  |                          |     +--rw src-ip-address?
-  |                          |     |       ietf-inet-types:ip-address
-  |                          |     +--rw dest-ip-address?
-  |                          |     |       ietf-inet-types:ip-address
-  |                          |     +--rw next-header?        uint8
-  |                          |     +--rw traffic-class?      uint8
-  |                          |     +--rw flow-label?
-  |                          |     |       ietf-inet-types:
-  |                          |     |       ipv6-flow-label
-  |                          |     +--rw source-port?
-  |                          |     |       ietf-inet-types:
-  |                          |     |       port-number
-  |                          |     +--rw destination-port?
-  |                          |             ietf-inet-types:
-  |                          |             port-number
-  |                          +--rw outgoing-interface?
-  |                                  ietf-interfaces:interface-ref
-  +--rw sub-network
-     +--rw sub-network-list* [name]
-        +--rw name    string
+  +--rw detnet
+     +--rw traffic-profile* [profile-number]
+     |  +--rw profile-number                 uint16
+     |  +--rw traffic-requirements
+     |  |  +--rw min-bandwidth?                    uint64
+     |  |  +--rw max-latency?                      uint32
+     |  |  +--rw max-latency-variation?            uint32
+     |  |  +--rw max-loss?                         uint8
+     |  |  +--rw max-consecutive-loss-tolerance?   uint32
+     |  |  +--rw max-misordering?                  uint32
+     |  +--rw traffic-specification
+     |  |  +--rw interval?                       uint32
+     |  |  +--rw max-packets-per-interval?       uint32
+     |  |  +--rw max-payload-size?               uint32
+     |  |  +--rw average-packets-per-interval?   uint32
+     |  |  +--rw average-payload-size?           uint32
+     |  +--ro member-applications*           app-flow-ref
+     |  +--ro member-services*               service-sub-layer-ref
+     |  +--ro member-groups*                 aggregation-grp-ref
+     |  +--ro member-forwarding-sublayers*   forwarding-sub-layer-ref
+     +--rw app-flows
+     |  +--rw app-flow* [name]
+     |     +--rw name                        string
+     |     +--rw app-flow-bidir-congruent?   boolean
+     |     +--ro outgoing-service?           service-sub-layer-ref
+     |     +--ro incoming-service?           service-sub-layer-ref
+     |     +--rw traffic-profile?            traffic-profile-ref
+     |     +--rw ingress
+     |     |  +--rw name?               string
+     |     |  +--ro app-flow-status?    identityref
+     |     |  +--rw interface?          if:interface-ref
+     |     |  +--rw (data-flow-type)?
+     |     |     +--:(tsn-app-flow)
+     |     |     |  +--rw source-mac-address?        yang:mac-address
+     |     |     |  +--rw destination-mac-address?   yang:mac-address
+     |     |     |  +--rw ethertype?                 eth:ethertype
+     |     |     |  +--rw vlan-id?                   uint16
+     |     |     |  +--rw pcp?                       uint8
+     |     |     +--:(ip-app-flow)
+     |     |     |  +--rw src-ip-prefix?      inet:ip-prefix
+     |     |     |  +--rw dest-ip-prefix?     inet:ip-prefix
+     |     |     |  +--rw next-header?        uint8
+     |     |     |  +--rw traffic-class?      uint8
+     |     |     |  +--rw flow-label?         inet:ipv6-flow-label
+     |     |     |  +--rw source-port
+     |     |     |  |  +--rw (port-range-or-operator)?
+     |     |     |  |     +--:(range)
+     |     |     |  |     |  +--rw lower-port    inet:port-number
+     |     |     |  |     |  +--rw upper-port    inet:port-number
+     |     |     |  |     +--:(operator)
+     |     |     |  |        +--rw operator?   packet-fields:operator
+     |     |     |  |        +--rw port        inet:port-number
+     |     |     |  +--rw destination-port
+     |     |     |  |  +--rw (port-range-or-operator)?
+     |     |     |  |     +--:(range)
+     |     |     |  |     |  +--rw lower-port    inet:port-number
+     |     |     |  |     |  +--rw upper-port    inet:port-number
+     |     |     |  |     +--:(operator)
+     |     |     |  |        +--rw operator?   packet-fields:operator
+     |     |     |  |        +--rw port        inet:port-number
+     |     |     |  +--rw ipsec-spi?          ipsec-spi
+     |     |     +--:(mpls-app-flow)
+     |     |        +--rw (label-space)?
+     |     |           +--:(context-label-space)
+     |     |           |  +--rw mpls-label-stack
+     |     |           |     +--rw entry* [id]
+     |     |           |        +--rw id               uint8
+     |     |           |        +--rw label?
+     |     |           |        |       rt-types:mpls-label
+     |     |           |        +--rw ttl?             uint8
+     |     |           |        +--rw traffic-class?   uint8
+     |     |           +--:(platform-label-space)
+     |     |              +--rw label?   rt-types:mpls-label
+     |     +--rw egress
+     |        +--rw name?                 string
+     |        +--rw (application-type)?
+     |           +--:(ethernet)
+     |           |  +--rw ethernet
+     |           |     +--rw ethernet-place-holder?   string
+     |           +--:(ip-mpls)
+     |              +--rw ip-mpls
+     |                 +--rw (next-hop-options)
+     |                    +--:(simple-next-hop)
+     |                    |  +--rw outgoing-interface?
+     |                    |  |       if:interface-ref
+     |                    |  +--rw (flow-type)?
+     |                    |     +--:(ip)
+     |                    |     |  +--rw next-hop-address?
+     |                    |     |          inet:ip-address
+     |                    |     +--:(mpls)
+     |                    |        +--rw mpls-label-stack
+     |                    |           +--rw entry* [id]
+     |                    |              +--rw id               uint8
+     |                    |              +--rw label?
+     |                    |              |       rt-types:mpls-label
+     |                    |              +--rw ttl?             uint8
+     |                    |              +--rw traffic-class?   uint8
+     |                    +--:(next-hop-list)
+     |                       +--rw next-hop-list
+     |                          +--rw next-hop* [hop-index]
+     |                             +--rw hop-index             uint8
+     |                             +--rw outgoing-interface?
+     |                             |       if:interface-ref
+     |                             +--rw (flow-type)?
+     |                                +--:(ip)
+     |                                |  +--rw next-hop-address?
+     |                                |          inet:ip-address
+     |                                +--:(mpls)
+     |                                   +--rw mpls-label-stack
+     |                                      +--rw entry* [id]
+     |                                         +--rw id
+     |                                         |       uint8
+     |                                         +--rw label?
+     |                                         |       rt-types:
+     |                                         |       mpls-label
+     |                                         +--rw ttl?
+     |                                         |       uint8
+     |                                         +--rw traffic-class?
+     |                                                 uint8
+     +--rw service-aggregation-group* [group-name]
+     |  +--rw group-name    aggregation-group
+     |  +--rw outgoing
+     |  |  +--rw traffic-profile?      traffic-profile-ref
+     |  |  +--rw service-protection
+     |  |  |  +--rw service-protection-type?   service-protection-type
+     |  |  |  +--rw sequence-number-length?    sequence-number-field
+     |  |  +--rw aggregation-header
+     |  |  |  +--rw mpls-label-stack
+     |  |  |     +--rw entry* [id]
+     |  |  |        +--rw id               uint8
+     |  |  |        +--rw label?           rt-types:mpls-label
+     |  |  |        +--rw ttl?             uint8
+     |  |  |        +--rw traffic-class?   uint8
+     |  |  +--ro services*             service-sub-layer-ref
+     |  +--rw incoming
+     |     +--rw aggregation-header
+     |     |  +--rw mpls-label-stack
+     |     |     +--rw entry* [id]
+     |     |        +--rw id               uint8
+     |     |        +--rw label?           rt-types:mpls-label
+     |     |        +--rw ttl?             uint8
+     |     |        +--rw traffic-class?   uint8
+     |     +--ro services*             service-sub-layer-ref
+     +--rw service-sub-layer
+     |  +--rw service-sub-layer-list* [name]
+     |     +--rw name                      string
+     |     +--rw service-rank?             uint8
+     |     +--rw (service-type)
+     |     |  +--:(non-grouped)
+     |     |  |  +--rw non-grouped
+     |     |  |     +--rw traffic-profile?          traffic-profile-ref
+     |     |  |     +--rw service-operation-type?
+     |     |  |             service-operation-type
+     |     |  +--:(grouped)
+     |     |     +--rw grouped
+     |     |        +--rw group-ref?   aggregation-grp-ref
+     |     +--rw service-protection
+     |     |  +--rw service-protection-type?   service-protection-type
+     |     |  +--rw sequence-number-length?    sequence-number-field
+     |     +--rw service-operation-type?   service-operation-type
+     |     +--rw incoming
+     |     |  +--rw (incoming-options)
+     |     |     +--:(ingress-application)
+     |     |     |  +--rw app-flow*   app-flow-ref
+     |     |     +--:(detnet-service-identification)
+     |     |     |  +--rw (detnet-flow-type)?
+     |     |     |     +--:(ip-detnet-flow)
+     |     |     |     |  +--rw src-ip-prefix?      inet:ip-prefix
+     |     |     |     |  +--rw dest-ip-prefix?     inet:ip-prefix
+     |     |     |     |  +--rw next-header?        uint8
+     |     |     |     |  +--rw traffic-class?      uint8
+     |     |     |     |  +--rw flow-label?         inet:ipv6-flow-label
+     |     |     |     |  +--rw source-port
+     |     |     |     |  |  +--rw (port-range-or-operator)?
+     |     |     |     |  |     +--:(range)
+     |     |     |     |  |     |  +--rw lower-port    inet:port-number
+     |     |     |     |  |     |  +--rw upper-port    inet:port-number
+     |     |     |     |  |     +--:(operator)
+     |     |     |     |  |        +--rw operator?
+     |     |     |     |  |        |       packet-fields:operator
+     |     |     |     |  |        +--rw port        inet:port-number
+     |     |     |     |  +--rw destination-port
+     |     |     |     |  |  +--rw (port-range-or-operator)?
+     |     |     |     |  |     +--:(range)
+     |     |     |     |  |     |  +--rw lower-port    inet:port-number
+     |     |     |     |  |     |  +--rw upper-port    inet:port-number
+     |     |     |     |  |     +--:(operator)
+     |     |     |     |  |        +--rw operator?
+     |     |     |     |  |        |       packet-fields:operator
+     |     |     |     |  |        +--rw port        inet:port-number
+     |     |     |     |  +--rw ipsec-spi?          ipsec-spi
+     |     |     |     +--:(mpls-detnet-flow)
+     |     |     |        +--rw (label-space)?
+     |     |     |           +--:(context-label-space)
+     |     |     |           |  +--rw mpls-label-stack
+     |     |     |           |     +--rw entry* [id]
+     |     |     |           |        +--rw id               uint8
+     |     |     |           |        +--rw label?
+     |     |     |           |        |       rt-types:mpls-label
+     |     |     |           |        +--rw ttl?             uint8
+     |     |     |           |        +--rw traffic-class?   uint8
+     |     |     |           +--:(platform-label-space)
+     |     |     |              +--rw label?   rt-types:mpls-label
+     |     |     +--:(aggregated-service)
+     |     |     |  +--rw service-sub-layer*   service-sub-layer-ref
+     |     |     +--:(aggregated-forwarding)
+     |     |        +--rw forwarding-sub-layer*
+     |     |                forwarding-sub-layer-ref
+     |     +--rw outgoing
+     |        +--rw (outgoing-options)
+     |           +--:(detnet-service-outgoing)
+     |           |  +--rw service-outgoing-list*
+     |           |          [service-outgoing-index]
+     |           |     +--rw service-outgoing-index    uint8
+     |           |     +--rw (header-type)?
+     |           |     |  +--:(detnet-mpls-header)
+     |           |     |  |  +--rw mpls-label-stack
+     |           |     |  |     +--rw entry* [id]
+     |           |     |  |        +--rw id               uint8
+     |           |     |  |        +--rw label?
+     |           |     |  |        |       rt-types:mpls-label
+     |           |     |  |        +--rw ttl?             uint8
+     |           |     |  |        +--rw traffic-class?   uint8
+     |           |     |  +--:(detnet-ip-header)
+     |           |     |     +--rw src-ip-address?     inet:ip-address
+     |           |     |     +--rw dest-ip-address?    inet:ip-address
+     |           |     |     +--rw next-header?        uint8
+     |           |     |     +--rw traffic-class?      uint8
+     |           |     |     +--rw flow-label?
+     |           |     |     |       inet:ipv6-flow-label
+     |           |     |     +--rw source-port?        inet:port-number
+     |           |     |     +--rw destination-port?   inet:port-number
+     |           |     +--rw next-layer* [index]
+     |           |        +--rw index                   uint8
+     |           |        +--rw forwarding-sub-layer?
+     |           |                forwarding-sub-layer-ref
+     |           +--:(detnet-service-aggregation)
+     |           |  +--rw aggregation-service-sub-layer?
+     |           |  |       service-sub-layer-ref
+     |           |  +--rw service-label
+     |           |     +--rw mpls-label-stack
+     |           |        +--rw entry* [id]
+     |           |           +--rw id               uint8
+     |           |           +--rw label?           rt-types:mpls-label
+     |           |           +--rw ttl?             uint8
+     |           |           +--rw traffic-class?   uint8
+     |           +--:(egress-proxy)
+     |           |  +--rw app-flow*   app-flow-ref
+     |           +--:(detnet-service-operation)
+     |           |  +--rw service-sub-layer*   service-sub-layer-ref
+     |           +--:(detnet-forwarding-operation)
+     |              +--rw forwarding-sub-layer*
+     |                      forwarding-sub-layer-ref
+     +--rw forwarding-sub-layer
+        +--rw forwarding-sub-layer-list* [name]
+           +--rw name                         string
+           +--rw traffic-profile?             traffic-profile-ref
+           +--rw forwarding-operation-type?   forwarding-operations-type
+           +--rw incoming
+           |  +--rw (incoming-options)
+           |     +--:(detnet-service-forwarding)
+           |     |  +--ro service-sub-layer*   service-sub-layer-ref
+           |     +--:(detnet-forwarding-identification)
+           |     |  +--rw interface?            if:interface-ref
+           |     |  +--rw (detnet-flow-type)?
+           |     |     +--:(ip-detnet-flow)
+           |     |     |  +--rw src-ip-prefix?      inet:ip-prefix
+           |     |     |  +--rw dest-ip-prefix?     inet:ip-prefix
+           |     |     |  +--rw next-header?        uint8
+           |     |     |  +--rw traffic-class?      uint8
+           |     |     |  +--rw flow-label?         inet:ipv6-flow-label
+           |     |     |  +--rw source-port
+           |     |     |  |  +--rw (port-range-or-operator)?
+           |     |     |  |     +--:(range)
+           |     |     |  |     |  +--rw lower-port    inet:port-number
+           |     |     |  |     |  +--rw upper-port    inet:port-number
+           |     |     |  |     +--:(operator)
+           |     |     |  |        +--rw operator?
+           |     |     |  |        |       packet-fields:operator
+           |     |     |  |        +--rw port        inet:port-number
+           |     |     |  +--rw destination-port
+           |     |     |  |  +--rw (port-range-or-operator)?
+           |     |     |  |     +--:(range)
+           |     |     |  |     |  +--rw lower-port    inet:port-number
+           |     |     |  |     |  +--rw upper-port    inet:port-number
+           |     |     |  |     +--:(operator)
+           |     |     |  |        +--rw operator?
+           |     |     |  |        |       packet-fields:operator
+           |     |     |  |        +--rw port        inet:port-number
+           |     |     |  +--rw ipsec-spi?          ipsec-spi
+           |     |     +--:(mpls-detnet-flow)
+           |     |        +--rw (label-space)?
+           |     |           +--:(context-label-space)
+           |     |           |  +--rw mpls-label-stack
+           |     |           |     +--rw entry* [id]
+           |     |           |        +--rw id               uint8
+           |     |           |        +--rw label?
+           |     |           |        |       rt-types:mpls-label
+           |     |           |        +--rw ttl?             uint8
+           |     |           |        +--rw traffic-class?   uint8
+           |     |           +--:(platform-label-space)
+           |     |              +--rw label?   rt-types:mpls-label
+           |     +--:(aggregated-forwarding)
+           |        +--rw forwarding-sub-layer*
+           |                forwarding-sub-layer-ref
+           +--rw outgoing
+              +--rw (outgoing-options)
+                 +--:(detnet-forwarding-outgoing)
+                 |  +--rw (next-hop-options)
+                 |     +--:(simple-next-hop)
+                 |     |  +--rw outgoing-interface?   if:interface-ref
+                 |     |  +--rw (flow-type)?
+                 |     |     +--:(ip)
+                 |     |     |  +--rw (operation-type)?
+                 |     |     |     +--:(ip-forwarding)
+                 |     |     |     |  +--rw next-hop-address?
+                 |     |     |     |          inet:ip-address
+                 |     |     |     +--:(mpls-over-ip-encapsulation)
+                 |     |     |        +--rw src-ip-address?
+                 |     |     |        |       inet:ip-address
+                 |     |     |        +--rw dest-ip-address?
+                 |     |     |        |       inet:ip-address
+                 |     |     |        +--rw next-header?        uint8
+                 |     |     |        +--rw traffic-class?      uint8
+                 |     |     |        +--rw flow-label?
+                 |     |     |        |       inet:ipv6-flow-label
+                 |     |     |        +--rw source-port?
+                 |     |     |        |       inet:port-number
+                 |     |     |        +--rw destination-port?
+                 |     |     |                inet:port-number
+                 |     |     +--:(mpls)
+                 |     |        +--rw mpls-label-stack
+                 |     |           +--rw entry* [id]
+                 |     |              +--rw id               uint8
+                 |     |              +--rw label?
+                 |     |              |       rt-types:mpls-label
+                 |     |              +--rw ttl?             uint8
+                 |     |              +--rw traffic-class?   uint8
+                 |     +--:(next-hop-list)
+                 |        +--rw next-hop-list
+                 |           +--rw next-hop* [hop-index]
+                 |              +--rw hop-index             uint8
+                 |              +--rw outgoing-interface?
+                 |              |       if:interface-ref
+                 |              +--rw (flow-type)?
+                 |                 +--:(ip)
+                 |                 |  +--rw (operation-type)?
+                 |                 |     +--:(ip-forwarding)
+                 |                 |     |  +--rw next-hop-address?
+                 |                 |     |          inet:ip-address
+                 |                 |     +--:(mpls-over-ip-
+                 |                 |        | encapsulation)
+                 |                 |        +--rw src-ip-address?
+                 |                 |        |       inet:ip-address
+                 |                 |        +--rw dest-ip-address?
+                 |                 |        |       inet:ip-address
+                 |                 |        +--rw next-header?
+                 |                 |        |       uint8
+                 |                 |        +--rw traffic-class?
+                 |                 |        |       uint8
+                 |                 |        +--rw flow-label?
+                 |                 |        |       inet:ipv6-flow-label
+                 |                 |        +--rw source-port?
+                 |                 |        |       inet:port-number
+                 |                 |        +--rw destination-port?
+                 |                 |                inet:port-number
+                 |                 +--:(mpls)
+                 |                    +--rw mpls-label-stack
+                 |                       +--rw entry* [id]
+                 |                          +--rw id               uint8
+                 |                          +--rw label?
+                 |                          |       rt-types:mpls-label
+                 |                          +--rw ttl?             uint8
+                 |                          +--rw traffic-class?   uint8
+                 +--:(detnet-service-aggregation)
+                 |  +--rw aggregation-service-sub-layer?
+                 |  |       service-sub-layer-ref
+                 |  +--rw optional-forwarding-label
+                 |     +--rw mpls-label-stack
+                 |        +--rw entry* [id]
+                 |           +--rw id               uint8
+                 |           +--rw label?           rt-types:mpls-label
+                 |           +--rw ttl?             uint8
+                 |           +--rw traffic-class?   uint8
+                 +--:(detnet-forwarding-aggregation)
+                 |  +--rw aggregation-forwarding-sub-layer?
+                 |  |       forwarding-sub-layer-ref
+                 |  +--rw forwarding-label
+                 |     +--rw mpls-label-stack
+                 |        +--rw entry* [id]
+                 |           +--rw id               uint8
+                 |           +--rw label?           rt-types:mpls-label
+                 |           +--rw ttl?             uint8
+                 |           +--rw traffic-class?   uint8
+                 +--:(detnet-service-operation)
+                 |  +--rw service-sub-layer*   service-sub-layer-ref
+                 +--:(detnet-forwarding-operation)
+                    +--rw forwarding-sub-layer*
+                            forwarding-sub-layer-ref
 ]]></artwork>
         </figure></t>
     </section>
@@ -665,34 +691,36 @@ module: ietf-detnet-config
     <section title="DetNet Configuration YANG Model">
       <t><figure>
           <artwork><![CDATA[<CODE BEGINS>
-module ietf-detnet-config{
+module ietf-detnet-config {
   namespace "urn:ietf:params:xml:ns:yang:ietf-detnet-config";
-  prefix ietf-detnet;
+  prefix "ietf-detnet";
 
   import ietf-yang-types {
-    prefix yang;
+    prefix "yang";
   }
-  import ietf-inet-types {
-    prefix inet;
+
+  import ietf-inet-types{
+    prefix "inet";
   }
+
   import ietf-ethertypes {
-    prefix eth;
+    prefix "eth";
   }
+
   import ietf-routing-types {
-    prefix rt-types;
+    prefix "rt-types";
   }
-  //import ietf-routing {
-    //prefix rt;
-  //}
+
   import ietf-packet-fields {
-    prefix packet-fields;
+    prefix "packet-fields";
   }
   import ietf-interfaces {
-    prefix if;
+    prefix "if";
   }
 
   organization
     "IETF DetNet Working Group";
+
   contact
     "WG Web:   <http://tools.ietf.org/wg/detnet/>
      WG List:  <mailto: detnet@ietf.org>
@@ -715,7 +743,11 @@ module ietf-detnet-config{
                 <mailto:rrahman@cisco.com>
 
      Editor:   Yeoncheol Ryoo
-                <mailto:dbduscjf@etri.re.kr>";
+                <mailto:dbduscjf@etri.re.kr>
+
+     Editor:   Don Fedyk
+                <mailto:dfedyk@labn.net>";
+
   description
     "This YANG module describes the parameters needed
      for DetNet flow configuration and flow status
@@ -728,9 +760,58 @@ module ietf-detnet-config{
       "RFC XXXX: draft-ietf-detnet-yang-02";
   }
 
+  identity status {
+    description
+      "Base identity from which all application-status
+       actions are derived";
+  }
+
+  identity none {
+    base status;
+    description
+      "Application no ingress/egress";
+    reference
+      "draft-ietf-detnet-flow-information-model-06 Section 5.8";
+  }
+
+  identity ready {
+    base status;
+    description
+      "Application ingress/egress ready";
+    reference
+      "draft-ietf-detnet-flow-information-model-06 Section 5.8";
+  }
+
+  identity failed {
+    base status;
+    description
+      "Application ingres/egresss failed";
+    reference
+      "draft-ietf-detnet-flow-information-model-06 Section 5.8";
+  }
+
+  identity out-of-service {
+    base status;
+    description
+      "Application Administratively blocked";
+    reference
+      "draft-ietf-detnet-flow-information-model-06 Section 5.8";
+  }
+
+  identity partial-failed {
+    base status;
+    description
+      "Application One or more Egress ready, and one or more Egress
+       failed.  The DetNet flow can be used if the Ingress is
+       Ready.";
+    reference
+      "draft-ietf-detnet-flow-information-model-06 Section 5.8";
+  }
+
   typedef app-flow-ref {
     type leafref {
-      path "/ietf-detnet:app-flows"
+      path "/ietf-detnet:detnet"
+         + "/ietf-detnet:app-flows"
          + "/ietf-detnet:app-flow"
          + "/ietf-detnet:name";
     }
@@ -738,7 +819,8 @@ module ietf-detnet-config{
 
   typedef service-sub-layer-ref {
     type leafref {
-      path "/ietf-detnet:service-sub-layer"
+      path "/ietf-detnet:detnet"
+         + "/ietf-detnet:service-sub-layer"
          + "/ietf-detnet:service-sub-layer-list"
          + "/ietf-detnet:name";
     }
@@ -746,17 +828,26 @@ module ietf-detnet-config{
 
   typedef forwarding-sub-layer-ref {
     type leafref {
-      path "/ietf-detnet:forwarding-sub-layer"
+      path "/ietf-detnet:detnet"
+         + "/ietf-detnet:forwarding-sub-layer"
          + "/ietf-detnet:forwarding-sub-layer-list"
          + "/ietf-detnet:name";
     }
   }
 
-  typedef sub-network-ref {
+  typedef aggregation-grp-ref {
     type leafref {
-      path "/ietf-detnet:sub-network"
-         + "/ietf-detnet:sub-network-list"
-         + "/ietf-detnet:name";
+      path "/ietf-detnet:detnet"
+         + "/ietf-detnet:service-aggregation-group"
+         + "/ietf-detnet:group-name";
+    }
+  }
+
+  typedef traffic-profile-ref {
+    type leafref {
+      path "/ietf-detnet:detnet"
+         + "/ietf-detnet:traffic-profile"
+         + "/ietf-detnet:profile-number";
     }
   }
 
@@ -798,7 +889,7 @@ module ietf-detnet-config{
       enum impose-and-forward {
         description
           "Operation impose outgoing label(s) and forward to
-          next-hop";
+           next-hop";
       }
       enum pop-and-forward {
         description
@@ -806,13 +897,13 @@ module ietf-detnet-config{
       }
       enum pop-impose-and-forward {
         description
-          "Operation pop incoming label, impose one or more outgoing
-          label(s) and forward to next-hop";
+          "Operation pop incoming label, impose one or more
+           outgoing label(s) and forward to next-hop";
       }
       enum swap-and-forward {
         description
           "Operation swap incoming label, with outgoing label and
-          forward to next-hop";
+           forward to next-hop";
       }
       enum pop-and-lookup {
         description
@@ -831,42 +922,47 @@ module ietf-detnet-config{
       }
       enum replication {
         description
-          "A Packet Replication Function (PRF) replicates DetNet
-          flow packets and forwards them to one or more next hops in
-          the DetNet domain.  The number of packet copies sent to
-          each next hop is a DetNet flow specific parameter at the
-          node doing the replication.  PRF can be implemented by an
-          edge node, a relay node, or an end system";
+          "A Packet Replication Function (PRF) replicates
+           DetNet flow packets and forwards them to one or
+           more next hops in the DetNet domain.  The number
+           of packet copies sent to each next hop is a
+           DetNet flow specific parameter at the node doing
+           the replication.  PRF can be implemented by an
+           edge node, a relay node, or an end system";
       }
       enum elimination {
         description
-          "A Packet Elimination Function (PEF) eliminates duplicate
-          copies of packets to prevent excess packets flooding the
-          network or duplicate packets being sent out of the DetNet
-          domain.  PEF can be implemented by an edge node, a relay
-          node, or an end system.";
+          "A Packet Elimination Function (PEF) eliminates
+           duplicate copies of packets to prevent excess
+           packets flooding the network or duplicate
+           packets being sent out of the DetNet domain.
+           PEF can be implemented by an edge node, a relay
+           node, or an end system.";
       }
       enum ordering {
         description
-          "A Packet Ordering Function (POF) re-orders packets within
-          a DetNet flow that are received out of order.  This
-          function can be implemented by an edge node, a relay node,
-          or an end system.";
+          "A Packet Ordering Function (POF) re-orders
+           packets within a DetNet flow that are received
+           out of order.  This function can be implemented
+           by an edge node, a relay node, or an end system.";
       }
       enum elimination-ordering {
         description
-          "A combination of PEF and POF that can be implemented by
-          an edge node, a relay node, or an end system.";
+          "A combination of PEF and POF that can be
+           implemented by an edge node, a relay node, or
+           an end system.";
       }
       enum elimination-replication {
         description
-          "A combination of PEF and PRF that can be implemented by
-          an edge node, a relay node, or an end system";
+          "A combination of PEF and PRF that can be
+           implemented by an edge node, a relay node, or
+           an end system";
       }
       enum elimination-ordering-replicaiton {
         description
-          "A combination of PEF, POF and PRF that can be implemented
-          by an edge node, a relay node, or an end system";
+          "A combination of PEF, POF and PRF that can be
+           implemented by an edge node, a relay node, or
+           an end system";
       }
     }
   }
@@ -891,16 +987,22 @@ module ietf-detnet-config{
           "there is no DetNet sequence number field.";
       }
       enum short-sn {
-        description
-          "there is 16bit DetNet sequence number field";
         value 16;
+        description 
+          "there is 16bit DetNet sequence number field";
       }
       enum long-sn {
+        value 28;
         description
           "there is 28bit DetNet sequence number field";
-        value 28;
       }
     }
+  }
+
+  typedef aggregation-group {
+    type string;
+    description
+      "The name of the aggregation group";
   }
 
   grouping ip-header {
@@ -911,31 +1013,37 @@ module ietf-detnet-config{
       description
         "The source IP address of the header";
     }
+
     leaf dest-ip-address {
       type inet:ip-address;
       description
         "The destination IP address of the header";
     }
+
     leaf next-header {
       type uint8;
       description
         "The next header of the IPv6 header";
     }
+
     leaf traffic-class {
       type uint8;
       description
         "The traffic class value of the header";
     }
+
     leaf flow-label {
       type inet:ipv6-flow-label;
       description
         "The flow label value of the header";
     }
+
     leaf source-port {
       type inet:port-number;
       description
         "The source port number";
     }
+
     leaf destination-port {
       type inet:port-number;
       description
@@ -951,21 +1059,25 @@ module ietf-detnet-config{
       description
         "The source MAC address value of the ethernet header";
     }
+
     leaf destination-mac-address {
       type yang:mac-address;
       description
         "The destination MAC address value of the ethernet header";
-        }
+    }
+
     leaf ethertype {
       type eth:ethertype;
       description
         "The ethernet packet type value of the ethernet header";
     }
+
     leaf vlan-id {
       type uint16;
       description
         "The Vlan value of the ethernet header";
     }
+
     leaf pcp {
       type uint8;
       description
@@ -975,8 +1087,7 @@ module ietf-detnet-config{
 
   grouping destination-ip-port-identification {
     description
-      "The TCP/UDP port(source/destination) identification
-      information"; 
+      "The TCP/UDP port(source/destination) identification information";
     container destination-port {
       uses packet-fields:port-range-or-operator;
     }
@@ -984,8 +1095,7 @@ module ietf-detnet-config{
 
   grouping source-ip-port-identification {
     description
-      "The TCP/UDP port(source/destination) identification
-      information"; 
+      "The TCP/UDP port(source/destination) identification information";
     container source-port {
       uses packet-fields:port-range-or-operator;
     }
@@ -999,28 +1109,35 @@ module ietf-detnet-config{
       description
         "The source IP address of the header";
     }
+
     leaf dest-ip-prefix {
       type inet:ip-prefix;
       description
         "The destination IP address of the header";
     }
+
     leaf next-header {
       type uint8;
       description
         "The next header of the IPv6 header";
     }
+
     leaf traffic-class {
       type uint8;
       description
         "The traffic class value of the header";
     }
+
     leaf flow-label {
       type inet:ipv6-flow-label;
       description
         "The flow label value of the header";
     }
+
     uses source-ip-port-identification;
+
     uses destination-ip-port-identification;
+
     leaf ipsec-spi {
       type ipsec-spi;
       description
@@ -1037,6 +1154,7 @@ module ietf-detnet-config{
       case context-label-space {
         uses rt-types:mpls-label-stack;
       }
+
       case platform-label-space {
         leaf label {
           type rt-types:mpls-label;
@@ -1048,40 +1166,47 @@ module ietf-detnet-config{
   grouping traffic-specification {
     container traffic-specification {
       description
-        "traffic-specification specifies how the Source transmits
-        packets for the flow.  This is the promise/request of the
-        Source to the network.  The network uses this traffic
-        specification to allocate resources and adjust queue
-        parameters in network nodes.";
+        "traffic-specification specifies how the Source
+         transmits packets for the flow.  This is the
+         promise/request of the Source to the network.
+         The network uses this traffic specification
+         to allocate resources and adjust queue
+         parameters in network nodes.";
       reference
         "draft-ietf-detnet-flow-information-model";
       leaf interval {
         type uint32;
         description
-          "The period of time in which the traffic specification
-          cannot be exceeded";
+          "The period of time in which the traffic
+           specification cannot be exceeded";
       }
+
       leaf max-packets-per-interval {
         type uint32;
         description
-          "The maximum number of packets that the source will
-          transmit in one Interval.";
+          "The maximum number of packets that the
+           source will transmit in one Interval.";
       }
+
       leaf max-payload-size {
         type uint32;
         description
-          "The maximum payload size that the source will transmit.";
+          "The maximum payload size that the source
+           will transmit.";
       }
+
       leaf average-packets-per-interval {
         type uint32;
         description
-          "The average number of packets that the source will
-          transmit in one Interval";
+          "The average number of packets that the
+           source will transmit in one Interval";
       }
+
       leaf average-payload-size {
         type uint32;
         description
-          "The average payload size that the source will transmit.";
+          "The average payload size that the
+           source will transmit.";
       }
     }
   }
@@ -1090,57 +1215,60 @@ module ietf-detnet-config{
     container traffic-requirements {
       description
         "FlowRequirements: defines the attributes of the App-flow
-        regarding bandwidth, latency, latency variation, loss, and
-        misordering tolerance.";
+         regarding bandwidth, latency, latency variation, loss, and
+         misordering tolerance.";
       leaf min-bandwidth {
         type uint64;
         description
           "MinBandwidth is the minimum bandwidth that has to be
-          guaranteed for the DetNet service.  MinBandwidth is
-          specified in octets per second.";
+           guaranteed for the DetNet service.  MinBandwidth is
+           specified in octets per second.";
       }
+
       leaf max-latency {
         type uint32;
         description
-          "MaxLatency is the maximum latency from Ingress to
-          Egress(es) for a single packet of the DetNet flow.
-          MaxLatency is specified as an integer number of
-          nanoseconds";
+          "MaxLatency is the maximum latency from Ingress to Egress(es)
+           for a single packet of the DetNet flow.  MaxLatency is
+           specified as an integer number of nanoseconds";
       }
+
       leaf max-latency-variation {
         type uint32;
         description
-          "MaxLatencyVariation is the difference between the minimum
-          and the maximum end-to-end one-way latency.
-          MaxLatencyVariation is specified as an integer number of
-          nanoseconds.";
+          "MaxLatencyVariation is the difference between the minimum and
+           the maximum end-to-end one-way latency.  MaxLatencyVariation
+           is specified as an integer number of nanoseconds.";
       }
+
       leaf max-loss {
         type uint8;
         description
-          "MaxLoss defines the maximum Packet Loss Ratio (PLR)
-          parameter for the DetNet service between the Ingress and
-          Egress(es) of the DetNet domain.";
+          "MaxLoss defines the maximum Packet Loss Ratio (PLR) parameter
+           for the DetNet service between the Ingress and Egress(es) of
+           the DetNet domain.";
       }
+
       leaf max-consecutive-loss-tolerance {
         type uint32;
         description
           "Some applications have special loss requirement, such as
-          MaxConsecutiveLossTolerance.  The maximum consecutive loss
-          tolerance parameter describes the maximum number of
-          consecutive packets whose loss can be tolerated.  The
-          maximum consecutive loss tolerance can be measured for
-          example based on sequence number";
+           MaxConsecutiveLossTolerance.  The maximum consecutive loss
+           tolerance parameter describes the maximum number of
+           consecutive packets whose loss can be tolerated.  The maximum
+           consecutive loss tolerance can be measured for example based
+           on sequence number";
       }
+
       leaf max-misordering {
         type uint32;
         description
           "MaxMisordering describes the tolerable maximum number of
-          packets that can be received out of order.  The maximum
-          allowed misordering can be measured for example based on
-          sequence number.  The value zero for the maximum allowed
-          misordering indicates that in order delivery is required,
-          misordering cannot be tolerated.";
+           packets that can be received out of order.  The maximum
+           allowed misordering can be measured for example based on
+           sequence number.  The value zero for the maximum allowed
+           misordering indicates that in order delivery is required,
+           misordering cannot be tolerated.";
       }
     }
   }
@@ -1152,9 +1280,11 @@ module ietf-detnet-config{
       case tsn-app-flow {
         uses l2-header;
       }
+
       case ip-app-flow {
         uses ip-flow-identification;
       }
+
       case mpls-app-flow {
         uses mpls-flow-identification;
       }
@@ -1162,12 +1292,13 @@ module ietf-detnet-config{
   }
 
   grouping detnet-flow-spec {
-    description
-      "detnet-flow identificatioin";
+    description 
+      "detnet-flow identification";
     choice detnet-flow-type {
       case ip-detnet-flow {
         uses ip-flow-identification;
       }
+
       case mpls-detnet-flow {
         uses mpls-flow-identification;
       }
@@ -1190,8 +1321,8 @@ module ietf-detnet-config{
     leaf-list service-sub-layer {
       type service-sub-layer-ref;
       description
-        "List of incoming or outgoing service sub-layer that has to
-        aggregate or disaggregate";
+        "List of incoming or outgoing service sub-layer
+         that has to aggregate or disaggregate";
     }
   }
 
@@ -1201,21 +1332,22 @@ module ietf-detnet-config{
     leaf-list forwarding-sub-layer {
       type forwarding-sub-layer-ref;
       description
-        "List of incoming or outgoing forwarding sub-layer that has
-        to aggregate or disaggregate";
+        "List of incoming or outgoing forwarding sub-layer
+         that has to aggregate or disaggregate";
     }
   }
 
   grouping detnet-header {
     description
       "DetNet header info for DetNet encapsulation or swap";
-    choice header-type {
+    choice header-type {:
       case detnet-mpls-header {
         description
-       "MPLS label stack for DetNet MPLS encapsulation or
-         forwarding"; 
+        "MPLS label stack for DetNet MPLS encapsulation 
+         for forwarding";
         uses rt-types:mpls-label-stack;
       }
+
       case detnet-ip-header {
         description
           "IPv4/IPv6 packet header for DetNet IP encapsulation";
@@ -1227,11 +1359,11 @@ module ietf-detnet-config{
   grouping aggregation-header {
     description
       "DetNet aggregation header  DetNet encapsulation";
-    container aggreagation-header {
+    container aggregation-header {
       description
-       "MPLS label stack for DetNet MPLS encapsulation or
-         forwarding"; 
-    uses rt-types:mpls-label-stack;
+        "MPLS label stack for DetNet MPLS encapsulation or
+         forwarding";
+      uses rt-types:mpls-label-stack;
     }
   }
 
@@ -1241,25 +1373,34 @@ module ietf-detnet-config{
     choice next-hop-options {
       mandatory true;
       description
-        "Options for next hops.  It is expected that further cases
-        will be added through augments from other modules, e.g., for
-        recursive next hops.";
+        "Options for next hops.
+         It is expected that further cases will be added through
+         augments from other modules, e.g., for recursive
+         next hops.";
       case simple-next-hop {
         description
           "This case represents a simple next hop consisting of the
-          next-hop address and/or outgoing interface.  Modules for
-          address families MUST augment this case with a leaf
-          containing a next-hop address of that address family.";
-        container mpls-header {
-          description
-            "MPLS label stack for DetNet MPLS encapsulation or
-            forwarding"; 
-          uses rt-types:mpls-label-stack;
-        }
+           next-hop address and/or outgoing interface.
+           Modules for address families MUST augment this case with a
+           leaf containing a next-hop address of that address
+           family.";
         leaf outgoing-interface {
           type if:interface-ref;
         }
+
+        choice flow-type {
+          case ip {
+            leaf next-hop-address {
+              type inet:ip-address;
+            }
+          }
+
+          case mpls {
+            uses rt-types:mpls-label-stack;
+          }
+        }
       }
+
       case next-hop-list {
         container next-hop-list {
           description
@@ -1267,22 +1408,30 @@ module ietf-detnet-config{
           list next-hop {
             key "hop-index";
             description
-              "An entry in a next-hop list.  Modules for address
-              families MUST augment this list with a leaf containing
-              a next-hop address of that address family.";
+              "An entry in a next-hop list.
+               Modules for address families MUST augment this list
+               with a leaf containing a next-hop address of that
+               address family.";
             leaf hop-index {
               type uint8;
               description
                 "";
             }
-            container mpls-header {
-              description
-                "MPLS label stack for DetNet MPLS encapsulation or
-                forwarding"; 
-              uses rt-types:mpls-label-stack;
-            }
+
             leaf outgoing-interface {
               type if:interface-ref;
+            }
+
+            choice flow-type {
+              case ip {
+                leaf next-hop-address {
+                  type inet:ip-address;
+                }
+              }
+
+              case mpls {
+                uses rt-types:mpls-label-stack;
+              }
             }
           }
         }
@@ -1296,20 +1445,42 @@ module ietf-detnet-config{
     choice next-hop-options {
       mandatory true;
       description
-        "Options for next hops.  It is expected that further cases
-        will be added through augments from other modules, e.g., for
-        recursive next hops.";
+        "Options for next hops.
+         It is expected that further cases will be added through
+         augments from other modules, e.g., for recursive
+         next hops.";
       case simple-next-hop {
         description
           "This case represents a simple next hop consisting of the
-          next-hop address and/or outgoing interface.  Modules for
-          address families MUST augment this case with a leaf
-          containing a next-hop address of that address family.";
-        uses detnet-header;
+           next-hop address and/or outgoing interface.
+           Modules for address families MUST augment this case with a
+           leaf containing a next-hop address of that address
+           family.";
         leaf outgoing-interface {
           type if:interface-ref;
         }
+
+        choice flow-type {
+          case ip {
+            choice operation-type {
+              case ip-forwarding {
+                leaf next-hop-address {
+                  type inet:ip-address;
+                }
+              }
+
+              case mpls-over-ip-encapsulation {
+                uses ip-header;
+              }
+            }
+          }
+
+          case mpls {
+            uses rt-types:mpls-label-stack;
+          }
+        }
       }
+
       case next-hop-list {
         container next-hop-list {
           description
@@ -1317,17 +1488,39 @@ module ietf-detnet-config{
           list next-hop {
             key "hop-index";
             description
-              "An entry in a next-hop list.  Modules for address
-              families MUST augment this list with a leaf containing
-              a next-hop address of that address family.";
+              "An entry in a next-hop list.
+
+               Modules for address families MUST augment this list
+               with a leaf containing a next-hop address of that
+               address family.";
             leaf hop-index {
               type uint8;
               description
                 "";
             }
-            uses detnet-header;
+
             leaf outgoing-interface {
               type if:interface-ref;
+            }
+
+            choice flow-type {
+              case ip {
+                choice operation-type {
+                  case ip-forwarding {
+                    leaf next-hop-address {
+                      type inet:ip-address;
+                    }
+                  }
+
+                  case mpls-over-ip-encapsulation {
+                    uses ip-header;
+                  }
+                }
+              }
+
+              case mpls {
+                uses rt-types:mpls-label-stack;
+              }
             }
           }
         }
@@ -1335,241 +1528,444 @@ module ietf-detnet-config{
     }
   }
 
-  container app-flows {
-    description
-      "The DetNet app-flow configuration";
-    list app-flow {
-      key "name";
+  container detnet {
+    list traffic-profile {
+      key "profile-number";
       description
-        "";
-      leaf name {
-        type string;
-        description
-          "The name to identify the DetNet app-flow";
-      }
-      leaf app-id {
-        type uint16;
-        config false;
-        description
-          "The DetNet Application ID";
-      }
-      leaf app-flow-bidir-congruent {
-        type boolean;
-        description
-          "Defines the data path requirement of the App-flow whether
-          it must share the same data path and physical path for
-          both directions through the network, e.g., to provide
-          congruent paths in the two directions.";
-      }
-      uses traffic-requirements;
-      uses traffic-specification;
-      container in-segment {
-        description
-          "app-flow identification";
-        leaf interface {
-          type if:interface-ref;
-          description
-            "";
-        }
-        uses data-flow-spec;
-      }
-      container out-segment {
-        description
-          "ingress proxy that incoming app-flow map to detnet-flow
-           and egress proxy that next-hop for outging app-flow";
-        choice outgoing-options {
-          mandatory true;
-          description
-            "";
-          case ingress-proxy {
-            leaf service-sub-layer {
-              type service-sub-layer-ref;
-            }
-          }
-          case egress {
-            uses detnet-app-next-hop-content;
-          }
-        }
-      }
-    }
-  }
-  container service-sub-layer {
-    description
-      "The DetNet service sub-layer configuration";
-    list service-sub-layer-list {
-      key "name aggregation-group";
-      description
-        "";
-      leaf name {
-        type string;
-        description
-          "The name of the DetNet service sub-layer";
-      }
-      leaf aggregation-group {
+        "A traffic profile";
+      leaf profile-number {
         type uint16;
         description
           "An Aggregation group ID. Zero means the service is not
-          part of a group"; 
-        }
-      leaf service-id {
-        type uint16;
+           part of a group";
+      }
+
+      uses traffic-requirements;
+
+      uses traffic-specification;
+
+      leaf-list member-applications {
+        type app-flow-ref;
         config false;
         description
-          "The DetNet service ID";
+          "Applicaions attached to this profile";
       }
-      leaf service-rank {
-        type uint8;
-        description
-          "The DetNet rank for this service";
-      }
-      uses traffic-requirements;
-      uses traffic-specification;
-      container service-protection {
-        leaf service-protection-type {
-          type service-protection-type;
-          description
-            "The DetNet service protection type such as PRF, PEF,
-            PEOF,PERF, and PEORF";
-        }
-        leaf sequence-number-length {
-          type sequence-number-field;
-          description
-            "Sequence number filed can choice 0 bit, 16bit, 28 bit
-            filed"; }
-      }
-      leaf service-operation-type {
-        type service-operation-type;
-      }
-      container in-segment {
-        description
-          "The DetNet service sub-layer inbound configuration.  This
-          should not be used if this service operation is
-          initiation";
-        choice incoming-options {
-          mandatory true;
-          description
-            "";
-          case ingress-proxy {
-            uses app-flows-ref;
-          }
-          case detnet-service-identification {
-            uses detnet-flow-spec;
-          }
-        }
-      }
-      container out-segment {
-        description
-          "The DetNet service sub-layer outbound configuration.
-          This should not be used if this service operation is
-          termination";
-        choice outgoing-options {
-          mandatory true;
-          description
-            "";
-          case egress-proxy {
-            uses app-flows-ref;
-          }
-          case detnet-service-output {
-            //uses detnet-service-next-hop-content;
-            list service-output-list {
-              key "service-output-index";
-              leaf service-output-index {
-                type uint8;
-              }
-              uses detnet-header;
-              uses aggregation-header;
-              list next-layer {
-                key "index";
-                description
-                  "lower-layer info";
-                leaf index {
-                  type uint8;
-                }
-                leaf forwarding-sub-layer {
-                  type forwarding-sub-layer-ref;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  container forwarding-sub-layer {
-    description
-      "The DetNet forwarding sub-layer configuration";
-    list forwarding-sub-layer-list {
-      key "name";
-      description
-        "";
-      leaf name {
-        type string;
-        description
-          "The name of the DetNet forwarding sub-layer";
-      }
-      leaf forwarding-id {
-        type uint16;
+
+      leaf-list member-services {
+        type service-sub-layer-ref;
         config false;
         description
-          "The DetNet forwarding ID";
+          "Services attached to this profile";
       }
-      uses traffic-requirements;
-      uses traffic-specification;
-      leaf forwarding-operation-type {
-        type forwarding-operations-type;
-      }
-      container in-segment {
+
+      leaf-list member-groups {
+        type aggregation-grp-ref;
+        config false;
         description
-          "The DetNet forwarding sub-layer inbound configuration.
-          This should not be used if this forwarding operation is
-          impose-and-forward";
-        choice incoming-options {
-          mandatory true;
-          description
-            "";
-          case detnet-service-forwarding {
-            uses service-sub-layer-ref;
-          }
-          case detnet-forwarding-identification {
-            leaf interface {
-              type if:interface-ref;
-              description
-                "";
-            }
-            uses detnet-flow-spec;
-          }
-        }
+          "Groups attached to this profile";
       }
-      container out-segment {
+
+      leaf-list member-forwarding-sublayers {
+        type forwarding-sub-layer-ref;
+        config false;
         description
-          "The DetNet forwarding sub-layer outbound configuration.
-          This should not be used if this forwarding operation is
-          pop-and-lookup";
-        choice outgoing-options {
-          mandatory true;
-          description
-            "";
-          case service-operation {
-            uses service-sub-layer-ref;
-          }
-          case detnet-forwarding-output {
-            uses detnet-forwarding-next-hop-content;
-          }
-        }
+          "Forwarding sub-layer attached to this profile";
       }
     }
-  }
-  container sub-network {
-    description
-      "";
-    list sub-network-list {
-      key "name";
+
+    container app-flows {
       description
-        "";
-      leaf name {
-        type string;
+        "The DetNet app-flow configuration";
+      list app-flow {
+        key "name";
         description
           "";
+        leaf name {
+          type "string";
+          description
+            "The name to identify the DetNet app-flow";
+        }
+
+        leaf app-flow-bidir-congruent {
+          type boolean;
+          description
+            "Defines the data path requirement of the App-flow whether
+             it must share the same data path and physical path
+             for both directions through the network,
+             e.g., to provide congruent paths in the two directions.";
+        }
+
+        leaf outgoing-service {
+          type service-sub-layer-ref;
+          config false;
+          description
+            "Binding to this applications outgoing
+             service";
+        }
+
+        leaf incoming-service {
+          type service-sub-layer-ref;
+          config false;
+          description
+            "Binding to this applications incoming
+             service";
+        }
+
+        leaf traffic-profile {
+          type traffic-profile-ref;
+          description
+            "The Traffic Profile for this group";
+        }
+
+        container ingress {
+          // key "name";  This should be a list for aggregation
+          description
+            "Ingress DetNet application flows or a compound flow";
+          leaf name {
+            type string;
+            description
+              "Ingress DetNet application";
+          }
+
+          leaf app-flow-status {
+            type identityref {
+              base status;
+            }
+            config false;
+            description
+              "Status of ingress application flow";
+          }
+
+          leaf interface {
+            type if:interface-ref;
+          }
+
+          uses data-flow-spec;
+        } //End of app-ingress
+
+        container egress {
+          description
+            "Route's next-hop attribute.";
+          // key "name";  This should be a list for aggregation
+          leaf name {
+            type string;
+            description
+              "Egress DetNet application";
+          }
+
+          choice application-type {
+            container ethernet {
+              leaf ethernet-place-holder {
+                type string;
+                description
+                  "Place holder for matching ethernet";
+              }
+            }
+
+            container ip-mpls {
+              uses detnet-app-next-hop-content;
+            }
+          }
+        }
+      }
+    }
+
+    list service-aggregation-group {
+      key "group-name";
+      description
+        "A group of services";
+      leaf group-name {
+        type aggregation-group;
+        description
+          "An Aggregation group name. Empty means the service is not
+           part of a group";
+      }
+
+      container outgoing {
+        leaf traffic-profile {
+          type traffic-profile-ref;
+          description
+            "The Traffic Profile for this group";
+        }
+
+        container service-protection {
+          leaf service-protection-type {
+            type service-protection-type;
+            description
+              "The DetNet service protection type such as PRF, PEF,
+               PEOF,PERF, and PEORF";
+          }
+
+          leaf sequence-number-length {
+            type sequence-number-field;
+            description
+              "Sequence number filed can choice 0 bit, 16bit, 28 bit
+               filed";
+            }
+          }
+
+        uses aggregation-header;
+
+        leaf-list services {
+          type service-sub-layer-ref;
+          config false;
+          description
+            "List of registered services";
+        }
+      }
+
+      container incoming {
+        uses aggregation-header;
+
+        leaf-list services {
+          type service-sub-layer-ref;
+          config false;
+          description
+            "List of registered services";
+        }
+      }
+    }
+
+    container service-sub-layer {
+      description
+        "The DetNet service sub-layer configuration";
+      list service-sub-layer-list {
+        key "name";
+        description
+          "";
+        leaf name {
+          type string;
+          description
+            "The name of the DetNet service sub-layer";
+        }
+
+        leaf service-rank {
+          type uint8;
+          description
+            "The DetNet rank for this service";
+        }
+
+        choice service-type {
+          mandatory true;
+          container non-grouped {
+            leaf traffic-profile {
+              type traffic-profile-ref;
+              description
+                "The Traffic Profile for this service";
+            }
+
+            leaf service-operation-type {
+              type service-operation-type;
+            }
+          }
+
+          container grouped {
+            leaf group-ref {
+              type aggregation-grp-ref;
+              description
+                "The aggregation group this service belongs to";
+            }
+          }
+        }
+
+        container service-protection {
+          leaf service-protection-type {
+            type service-protection-type;
+            description
+              "The DetNet service protection type such as PRF, PEF,
+               PEOF,PERF, and PEORF";
+          }
+
+          leaf sequence-number-length {
+            type sequence-number-field;
+            description
+              "Sequence number field can choice 0 bit, 16bit, 28 bit
+               filed";
+          }
+        }
+
+        leaf service-operation-type {
+          type service-operation-type;
+        }
+
+        container incoming {
+          description
+            "The DetNet service sub-layer incoming configuration.";
+          choice incoming-options {
+            mandatory true;
+            description
+              "";
+            case ingress-application {
+              uses app-flows-ref;
+            }
+
+            case detnet-service-identification {
+              uses detnet-flow-spec;
+            }
+
+            case aggregated-service {
+              uses service-sub-layer-ref;
+            }
+
+            case aggregated-forwarding {
+              uses forwarding-sub-layer-ref;
+            }
+          }
+        }
+
+        container outgoing {
+          description
+            "The DetNet service sub-layer outgoing configuration.";
+          choice outgoing-options {
+            mandatory true;
+            description
+              "";
+            case detnet-service-outgoing {
+              //uses detnet-service-next-hop-content;
+              list service-outgoing-list {
+                key "service-outgoing-index";
+                leaf service-outgoing-index {
+                  type uint8;
+                }
+
+                uses detnet-header;
+
+                list next-layer {
+                  key "index";
+                  description
+                    "lower-layer info";
+                  leaf index {
+                    type uint8;
+                  }
+
+                  leaf forwarding-sub-layer {
+                    type forwarding-sub-layer-ref;
+                  }
+                }
+              }
+            }
+
+            case detnet-service-aggregation {
+              leaf aggregation-service-sub-layer {
+                type service-sub-layer-ref;
+              }
+
+              container service-label {
+                uses rt-types:mpls-label-stack;
+              }
+            }
+
+            case egress-proxy {
+              uses app-flows-ref;
+            }
+
+            case detnet-service-operation {
+              uses service-sub-layer-ref;
+            }
+
+            case detnet-forwarding-operation {
+              uses forwarding-sub-layer-ref;
+            }
+          }
+        }
+      }
+    }
+
+    container forwarding-sub-layer {
+      description
+        "The DetNet forwarding sub-layer configuration";
+      list forwarding-sub-layer-list {
+        key "name";
+        description
+          "";
+        leaf name {
+          type string;
+          description
+            "The name of the DetNet forwarding sub-layer";
+        }
+
+        leaf traffic-profile {
+          type traffic-profile-ref;
+          description
+            "The Traffic Profile for this group";
+        }
+
+        leaf forwarding-operation-type {
+          type forwarding-operations-type;
+        }
+
+        container incoming {
+          description
+            "The DetNet forwarding sub-layer incoming configuration.";
+          choice incoming-options {
+            mandatory true;
+            description
+              "";
+            case detnet-service-forwarding {
+              leaf-list service-sub-layer {
+                type service-sub-layer-ref;
+                config false;
+                description
+                  "";
+              }
+            }
+
+            case detnet-forwarding-identification {
+              leaf interface {
+                type if:interface-ref;
+                description
+                  "";
+              }
+
+              uses detnet-flow-spec;
+            }
+
+            case aggregated-forwarding {
+              uses forwarding-sub-layer-ref;
+            }
+          }
+        }
+
+        container outgoing {
+          description
+            "The DetNet forwarding sub-layer outbound configuration.";
+          choice outgoing-options {
+            mandatory true;
+            description
+              "";
+            case detnet-forwarding-outgoing {
+              uses detnet-forwarding-next-hop-content;
+            }
+
+            case detnet-service-aggregation {
+              leaf aggregation-service-sub-layer {
+                type service-sub-layer-ref;
+              }
+
+              container optional-forwarding-label {
+                uses rt-types:mpls-label-stack;
+              }
+            }
+
+            case detnet-forwarding-aggregation {
+              leaf aggregation-forwarding-sub-layer {
+                type forwarding-sub-layer-ref;
+              }
+
+              container forwarding-label {
+                uses rt-types:mpls-label-stack;
+              }
+            }
+
+            case detnet-service-operation {
+              uses service-sub-layer-ref;
+            }
+
+            case detnet-forwarding-operation {
+              uses forwarding-sub-layer-ref;
+            }
+          }
+        }
       }
     }
   }
