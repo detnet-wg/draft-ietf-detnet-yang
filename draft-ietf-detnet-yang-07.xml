@@ -255,6 +255,71 @@
           </list></t>
       </section>
     </section>
+    <section title="DetNet Flow Aggregation">
+      <t>
+      DetNet provides the capability of flow aggregation to improve
+      scaleability of DetNet data, management and control planes.  Aggregated
+      flows can be viewed by the some DetNet nodes as individual DetNet flows.
+      When aggregating DetNet flows, the flows should be compatible: if
+      bandwidth reservations are used, the reservation should be a reasonable
+      representation of  the individual reservations; if maximum delay bounds
+      are used, the system should ensure that the aggregate does not exceed the
+      delay bounds of the individual flows.
+       </t>
+       <t>
+       The DetNet YANG model defined in this document supports DetNet flow
+       aggregation with the following functions:
+       </t>
+        <t><list style="symbols">
+       <t>
+      Aggregation flow encapsulation/decapsulation/identification
+       </t>
+       <t>
+      Mapping individual DetNet flows to an aggregated flow
+       </t>
+       <t>
+      Changing traffic specification parameters for aggregated flow
+       </t>
+       </list></t>
+       <t>
+         The following cases of DetNet aggregation are supported:
+       </t>
+        <t><list style="symbols">
+       <t>
+       aggregate data flows into an application which is then mapped to a
+       service sub-layer at the ingress node. Note the data flows may be other
+       DetNet flows.  
+       </t>
+       <t>
+       map each DetNet application to a single service sub-layer and allowing
+       the aggregation of multiple applications at the ingress node, and vice
+       versa for de-aggregation. A classifier may be required to de-aggregate
+       the respective applications.  
+       </t>
+       <t>
+       map each DetNet application uniquely to a single service sub-layer where
+       those sub-layers may be encapsulated as a single service sub-layer and
+       hence aggregating the applications at the ingress node, and vice versa
+       for de-aggregation. A classifier may be required to de-aggregate the
+       service sub-layers. 
+       </t>
+       <t>
+       aggregate DetNet service sub-layers into an aggregated flow by using the
+       same forwarding sub-layer at ingress node or relay node, and vice versa
+       for de-aggregation.
+       </t>
+       <t>
+       aggregate DetNet flows with different forwarding sub-layer into an
+       aggregated flow by using the  same forwarding sub-layer at transit node,
+       and vice versa for de-aggregation.
+       </t>
+       </list></t>
+       <t>
+       Traffic requirements and traffic specification may be tracked for
+       individual or aggregate flows but reserving resources and tracking the
+       services in the aggregated flow is out of scope.
+       </t>
+    </section>
 
     <section title="DetNet YANG Structure Considerations">
       <t/>
