@@ -43,17 +43,17 @@ module ietf-detnet-config {
      Editor:   Mach Chen
                 <mailto:mach.chen@huawei.com>
 
-     Editor:   Zhenqiang Li
-                <mailto:lizhenqiang@chinamobile.com>
-
-     Editor:   Reshad Rahman
-                <mailto:rrahman@cisco.com>
-
      Editor:   Yeoncheol Ryoo
                 <mailto:dbduscjf@etri.re.kr>
 
      Editor:   Don Fedyk
-                <mailto:dfedyk@labn.net>";
+                <mailto:dfedyk@labn.net>;
+
+     Editor:   Reshad Rahman
+                <mailto:rrahman@cisco.com>
+
+     Editor:   Zhenqiang Li
+                <mailto:lizhenqiang@chinamobile.com>";
 
   description
     "This YANG module describes the parameters needed
