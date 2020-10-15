@@ -1,0 +1,366 @@
+module: ietf-detnet-config
+  +--rw detnet
+     +--rw traffic-profile* [profile-number]
+     |  +--rw profile-number                 uint16
+     |  +--rw traffic-requirements
+     |  |  +--rw min-bandwidth?                    uint64
+     |  |  +--rw max-latency?                      uint32
+     |  |  +--rw max-latency-variation?            uint32
+     |  |  +--rw max-loss?                         uint8
+     |  |  +--rw max-consecutive-loss-tolerance?   uint32
+     |  |  +--rw max-misordering?                  uint32
+     |  +--rw traffic-specification
+     |  |  +--rw interval?                       uint32
+     |  |  +--rw max-packets-per-interval?       uint32
+     |  |  +--rw max-payload-size?               uint32
+     |  |  +--rw average-packets-per-interval?   uint32
+     |  |  +--rw average-payload-size?           uint32
+     |  +--ro member-applications*           app-flow-ref
+     |  +--ro member-services*               service-sub-layer-ref
+     |  +--ro member-forwarding-sublayers*   forwarding-sub-layer-ref
+     +--rw app-flows
+     |  +--rw app-flow* [name]
+     |     +--rw name                        string
+     |     +--rw app-flow-bidir-congruent?   boolean
+     |     +--ro outgoing-service?           service-sub-layer-ref
+     |     +--ro incoming-service?           service-sub-layer-ref
+     |     +--rw traffic-profile?            traffic-profile-ref
+     |     +--rw ingress
+     |     |  +--rw name?               string
+     |     |  +--ro app-flow-status?    identityref
+     |     |  +--rw interface?          if:interface-ref
+     |     |  +--rw (data-flow-type)?
+     |     |     +--:(tsn-app-flow)
+     |     |     |  +--rw source-mac-address?        yang:mac-address
+     |     |     |  +--rw destination-mac-address?   yang:mac-address
+     |     |     |  +--rw ethertype?                 eth:ethertype
+     |     |     |  +--rw vlan-id?                   uint16
+     |     |     |  +--rw pcp?                       uint8
+     |     |     +--:(ip-app-flow)
+     |     |     |  +--rw src-ip-prefix?      inet:ip-prefix
+     |     |     |  +--rw dest-ip-prefix?     inet:ip-prefix
+     |     |     |  +--rw next-header?        uint8
+     |     |     |  +--rw traffic-class?      uint8
+     |     |     |  +--rw flow-label?         inet:ipv6-flow-label
+     |     |     |  +--rw source-port
+     |     |     |  |  +--rw (port-range-or-operator)?
+     |     |     |  |     +--:(range)
+     |     |     |  |     |  +--rw lower-port    inet:port-number
+     |     |     |  |     |  +--rw upper-port    inet:port-number
+     |     |     |  |     +--:(operator)
+     |     |     |  |        +--rw operator?   packet-fields:operator
+     |     |     |  |        +--rw port        inet:port-number
+     |     |     |  +--rw destination-port
+     |     |     |  |  +--rw (port-range-or-operator)?
+     |     |     |  |     +--:(range)
+     |     |     |  |     |  +--rw lower-port    inet:port-number
+     |     |     |  |     |  +--rw upper-port    inet:port-number
+     |     |     |  |     +--:(operator)
+     |     |     |  |        +--rw operator?   packet-fields:operator
+     |     |     |  |        +--rw port        inet:port-number
+     |     |     |  +--rw ipsec-spi?          ipsec-spi
+     |     |     +--:(mpls-app-flow)
+     |     |        +--rw (label-space)?
+     |     |           +--:(context-label-space)
+     |     |           |  +--rw mpls-label-stack
+     |     |           |     +--rw entry* [id]
+     |     |           |        +--rw id               uint8
+     |     |           |        +--rw label?
+     |     |           |        |       rt-types:mpls-label
+     |     |           |        +--rw ttl?             uint8
+     |     |           |        +--rw traffic-class?   uint8
+     |     |           +--:(platform-label-space)
+     |     |              +--rw label?   rt-types:mpls-label
+     |     +--rw egress
+     |        +--rw name?                 string
+     |        +--rw (application-type)?
+     |           +--:(ethernet)
+     |           |  +--rw ethernet
+     |           |     +--rw ethernet-place-holder?   string
+     |           +--:(ip-mpls)
+     |              +--rw ip-mpls
+     |                 +--rw (next-hop-options)
+     |                    +--:(simple-next-hop)
+     |                    |  +--rw outgoing-interface?
+     |                    |  |       if:interface-ref
+     |                    |  +--rw (flow-type)?
+     |                    |     +--:(ip)
+     |                    |     |  +--rw next-hop-address?
+     |                    |     |          inet:ip-address
+     |                    |     +--:(mpls)
+     |                    |        +--rw mpls-label-stack
+     |                    |           +--rw entry* [id]
+     |                    |              +--rw id               uint8
+     |                    |              +--rw label?
+     |                    |              |       rt-types:mpls-label
+     |                    |              +--rw ttl?             uint8
+     |                    |              +--rw traffic-class?   uint8
+     |                    +--:(next-hop-list)
+     |                       +--rw next-hop-list
+     |                          +--rw next-hop* [hop-index]
+     |                             +--rw hop-index             uint8
+     |                             +--rw outgoing-interface?
+     |                             |       if:interface-ref
+     |                             +--rw (flow-type)?
+     |                                +--:(ip)
+     |                                |  +--rw next-hop-address?
+     |                                |          inet:ip-address
+     |                                +--:(mpls)
+     |                                   +--rw mpls-label-stack
+     |                                      +--rw entry* [id]
+     |                                         +--rw id
+     |                                         |       uint8
+     |                                         +--rw label?
+     |                                         |       rt-types:
+     |                                         |       mpls-label
+     |                                         +--rw ttl?
+     |                                         |       uint8
+     |                                         +--rw traffic-class?
+     |                                                 uint8
+     +--rw service-sub-layer
+     |  +--rw service-sub-layer-list* [name]
+     |     +--rw name                      string
+     |     +--rw service-rank?             uint8
+     |     +--rw traffic-profile?          traffic-profile-ref
+     |     +--rw service-protection
+     |     |  +--rw service-protection-type?   service-protection-type
+     |     |  +--rw sequence-number-length?    sequence-number-field
+     |     +--rw service-operation-type?   service-operation-type
+     |     +--rw incoming
+     |     |  +--rw (incoming-options)
+     |     |     +--:(ingress-application)
+     |     |     |  +--rw app-flow*   app-flow-ref
+     |     |     +--:(detnet-service-identification)
+     |     |     |  +--rw (detnet-flow-type)?
+     |     |     |     +--:(ip-detnet-flow)
+     |     |     |     |  +--rw src-ip-prefix?      inet:ip-prefix
+     |     |     |     |  +--rw dest-ip-prefix?     inet:ip-prefix
+     |     |     |     |  +--rw next-header?        uint8
+     |     |     |     |  +--rw traffic-class?      uint8
+     |     |     |     |  +--rw flow-label?         inet:ipv6-flow-label
+     |     |     |     |  +--rw source-port
+     |     |     |     |  |  +--rw (port-range-or-operator)?
+     |     |     |     |  |     +--:(range)
+     |     |     |     |  |     |  +--rw lower-port    inet:port-number
+     |     |     |     |  |     |  +--rw upper-port    inet:port-number
+     |     |     |     |  |     +--:(operator)
+     |     |     |     |  |        +--rw operator?
+     |     |     |     |  |        |       packet-fields:operator
+     |     |     |     |  |        +--rw port        inet:port-number
+     |     |     |     |  +--rw destination-port
+     |     |     |     |  |  +--rw (port-range-or-operator)?
+     |     |     |     |  |     +--:(range)
+     |     |     |     |  |     |  +--rw lower-port    inet:port-number
+     |     |     |     |  |     |  +--rw upper-port    inet:port-number
+     |     |     |     |  |     +--:(operator)
+     |     |     |     |  |        +--rw operator?
+     |     |     |     |  |        |       packet-fields:operator
+     |     |     |     |  |        +--rw port        inet:port-number
+     |     |     |     |  +--rw ipsec-spi?          ipsec-spi
+     |     |     |     +--:(mpls-detnet-flow)
+     |     |     |        +--rw (label-space)?
+     |     |     |           +--:(context-label-space)
+     |     |     |           |  +--rw mpls-label-stack
+     |     |     |           |     +--rw entry* [id]
+     |     |     |           |        +--rw id               uint8
+     |     |     |           |        +--rw label?
+     |     |     |           |        |       rt-types:mpls-label
+     |     |     |           |        +--rw ttl?             uint8
+     |     |     |           |        +--rw traffic-class?   uint8
+     |     |     |           +--:(platform-label-space)
+     |     |     |              +--rw label?   rt-types:mpls-label
+     |     |     +--:(aggregated-service)
+     |     |     |  +--rw service-sub-layer*   service-sub-layer-ref
+     |     |     +--:(aggregated-forwarding)
+     |     |        +--rw forwarding-sub-layer*
+     |     |                forwarding-sub-layer-ref
+     |     +--rw outgoing
+     |        +--rw (outgoing-options)
+     |           +--:(detnet-service-outgoing)
+     |           |  +--rw service-outgoing-list*
+     |           |          [service-outgoing-index]
+     |           |     +--rw service-outgoing-index    uint8
+     |           |     +--rw (header-type)?
+     |           |     |  +--:(detnet-mpls-header)
+     |           |     |  |  +--rw mpls-label-stack
+     |           |     |  |     +--rw entry* [id]
+     |           |     |  |        +--rw id               uint8
+     |           |     |  |        +--rw label?
+     |           |     |  |        |       rt-types:mpls-label
+     |           |     |  |        +--rw ttl?             uint8
+     |           |     |  |        +--rw traffic-class?   uint8
+     |           |     |  +--:(detnet-ip-header)
+     |           |     |     +--rw src-ip-address?     inet:ip-address
+     |           |     |     +--rw dest-ip-address?    inet:ip-address
+     |           |     |     +--rw next-header?        uint8
+     |           |     |     +--rw traffic-class?      uint8
+     |           |     |     +--rw flow-label?
+     |           |     |     |       inet:ipv6-flow-label
+     |           |     |     +--rw source-port?        inet:port-number
+     |           |     |     +--rw destination-port?   inet:port-number
+     |           |     +--rw next-layer* [index]
+     |           |        +--rw index                   uint8
+     |           |        +--rw forwarding-sub-layer?
+     |           |                forwarding-sub-layer-ref
+     |           +--:(detnet-service-aggregation)
+     |           |  +--rw aggregation-service-sub-layer?
+     |           |  |       service-sub-layer-ref
+     |           |  +--rw service-label
+     |           |     +--rw mpls-label-stack
+     |           |        +--rw entry* [id]
+     |           |           +--rw id               uint8
+     |           |           +--rw label?           rt-types:mpls-label
+     |           |           +--rw ttl?             uint8
+     |           |           +--rw traffic-class?   uint8
+     |           +--:(egress-proxy)
+     |           |  +--rw app-flow*   app-flow-ref
+     |           +--:(detnet-service-operation)
+     |           |  +--rw service-sub-layer*   service-sub-layer-ref
+     |           +--:(detnet-forwarding-operation)
+     |              +--rw forwarding-sub-layer*
+     |                      forwarding-sub-layer-ref
+     +--rw forwarding-sub-layer
+        +--rw forwarding-sub-layer-list* [name]
+           +--rw name                         string
+           +--rw traffic-profile?             traffic-profile-ref
+           +--rw forwarding-operation-type?   forwarding-operations-type
+           +--rw incoming
+           |  +--rw (incoming-options)
+           |     +--:(detnet-service-forwarding)
+           |     |  +--ro service-sub-layer*   service-sub-layer-ref
+           |     +--:(detnet-forwarding-identification)
+           |     |  +--rw interface?            if:interface-ref
+           |     |  +--rw (detnet-flow-type)?
+           |     |     +--:(ip-detnet-flow)
+           |     |     |  +--rw src-ip-prefix?      inet:ip-prefix
+           |     |     |  +--rw dest-ip-prefix?     inet:ip-prefix
+           |     |     |  +--rw next-header?        uint8
+           |     |     |  +--rw traffic-class?      uint8
+           |     |     |  +--rw flow-label?         inet:ipv6-flow-label
+           |     |     |  +--rw source-port
+           |     |     |  |  +--rw (port-range-or-operator)?
+           |     |     |  |     +--:(range)
+           |     |     |  |     |  +--rw lower-port    inet:port-number
+           |     |     |  |     |  +--rw upper-port    inet:port-number
+           |     |     |  |     +--:(operator)
+           |     |     |  |        +--rw operator?
+           |     |     |  |        |       packet-fields:operator
+           |     |     |  |        +--rw port        inet:port-number
+           |     |     |  +--rw destination-port
+           |     |     |  |  +--rw (port-range-or-operator)?
+           |     |     |  |     +--:(range)
+           |     |     |  |     |  +--rw lower-port    inet:port-number
+           |     |     |  |     |  +--rw upper-port    inet:port-number
+           |     |     |  |     +--:(operator)
+           |     |     |  |        +--rw operator?
+           |     |     |  |        |       packet-fields:operator
+           |     |     |  |        +--rw port        inet:port-number
+           |     |     |  +--rw ipsec-spi?          ipsec-spi
+           |     |     +--:(mpls-detnet-flow)
+           |     |        +--rw (label-space)?
+           |     |           +--:(context-label-space)
+           |     |           |  +--rw mpls-label-stack
+           |     |           |     +--rw entry* [id]
+           |     |           |        +--rw id               uint8
+           |     |           |        +--rw label?
+           |     |           |        |       rt-types:mpls-label
+           |     |           |        +--rw ttl?             uint8
+           |     |           |        +--rw traffic-class?   uint8
+           |     |           +--:(platform-label-space)
+           |     |              +--rw label?   rt-types:mpls-label
+           |     +--:(aggregated-forwarding)
+           |        +--rw forwarding-sub-layer*
+           |                forwarding-sub-layer-ref
+           +--rw outgoing
+              +--rw (outgoing-options)
+                 +--:(detnet-forwarding-outgoing)
+                 |  +--rw (next-hop-options)
+                 |     +--:(simple-next-hop)
+                 |     |  +--rw outgoing-interface?   if:interface-ref
+                 |     |  +--rw (flow-type)?
+                 |     |     +--:(ip)
+                 |     |     |  +--rw (operation-type)?
+                 |     |     |     +--:(ip-forwarding)
+                 |     |     |     |  +--rw next-hop-address?
+                 |     |     |     |          inet:ip-address
+                 |     |     |     +--:(mpls-over-ip-encapsulation)
+                 |     |     |        +--rw src-ip-address?
+                 |     |     |        |       inet:ip-address
+                 |     |     |        +--rw dest-ip-address?
+                 |     |     |        |       inet:ip-address
+                 |     |     |        +--rw next-header?        uint8
+                 |     |     |        +--rw traffic-class?      uint8
+                 |     |     |        +--rw flow-label?
+                 |     |     |        |       inet:ipv6-flow-label
+                 |     |     |        +--rw source-port?
+                 |     |     |        |       inet:port-number
+                 |     |     |        +--rw destination-port?
+                 |     |     |                inet:port-number
+                 |     |     +--:(mpls)
+                 |     |        +--rw mpls-label-stack
+                 |     |           +--rw entry* [id]
+                 |     |              +--rw id               uint8
+                 |     |              +--rw label?
+                 |     |              |       rt-types:mpls-label
+                 |     |              +--rw ttl?             uint8
+                 |     |              +--rw traffic-class?   uint8
+                 |     +--:(next-hop-list)
+                 |        +--rw next-hop-list
+                 |           +--rw next-hop* [hop-index]
+                 |              +--rw hop-index             uint8
+                 |              +--rw outgoing-interface?
+                 |              |       if:interface-ref
+                 |              +--rw (flow-type)?
+                 |                 +--:(ip)
+                 |                 |  +--rw (operation-type)?
+                 |                 |     +--:(ip-forwarding)
+                 |                 |     |  +--rw next-hop-address?
+                 |                 |     |          inet:ip-address
+                 |                 |     +--:(mpls-over-ip-encapsulation)
+                 |                 |        +--rw src-ip-address?
+                 |                 |        |       inet:ip-address
+                 |                 |        +--rw dest-ip-address?
+                 |                 |        |       inet:ip-address
+                 |                 |        +--rw next-header?
+                 |                 |        |       uint8
+                 |                 |        +--rw traffic-class?
+                 |                 |        |       uint8
+                 |                 |        +--rw flow-label?
+                 |                 |        |       inet:ipv6-flow-label
+                 |                 |        +--rw source-port?
+                 |                 |        |       inet:port-number
+                 |                 |        +--rw destination-port?
+                 |                 |                inet:port-number
+                 |                 +--:(mpls)
+                 |                    +--rw mpls-label-stack
+                 |                       +--rw entry* [id]
+                 |                          +--rw id               uint8
+                 |                          +--rw label?
+                 |                          |       rt-types:mpls-label
+                 |                          +--rw ttl?             uint8
+                 |                          +--rw traffic-class?   uint8
+                 +--:(detnet-service-aggregation)
+                 |  +--rw aggregation-service-sub-layer?
+                 |  |       service-sub-layer-ref
+                 |  +--rw optional-forwarding-label
+                 |     +--rw mpls-label-stack
+                 |        +--rw entry* [id]
+                 |           +--rw id               uint8
+                 |           +--rw label?           rt-types:mpls-label
+                 |           +--rw ttl?             uint8
+                 |           +--rw traffic-class?   uint8
+                 +--:(detnet-forwarding-aggregation)
+                 |  +--rw aggregation-forwarding-sub-layer?
+                 |  |       forwarding-sub-layer-ref
+                 |  +--rw forwarding-label
+                 |     +--rw mpls-label-stack
+                 |        +--rw entry* [id]
+                 |           +--rw id               uint8
+                 |           +--rw label?           rt-types:mpls-label
+                 |           +--rw ttl?             uint8
+                 |           +--rw traffic-class?   uint8
+                 +--:(detnet-service-operation)
+                 |  +--rw service-sub-layer*   service-sub-layer-ref
+                 +--:(detnet-forwarding-operation)
+                    +--rw forwarding-sub-layer*
+                            forwarding-sub-layer-ref
