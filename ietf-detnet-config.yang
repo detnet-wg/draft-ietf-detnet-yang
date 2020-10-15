@@ -142,14 +142,6 @@ module ietf-detnet-config {
     }
   }
 
-  typedef aggregation-grp-ref {
-    type leafref {
-      path "/ietf-detnet:detnet"
-         + "/ietf-detnet:service-aggregation-group"
-         + "/ietf-detnet:group-name";
-    }
-  }
-
   typedef traffic-profile-ref {
     type leafref {
       path "/ietf-detnet:detnet"
@@ -662,17 +654,6 @@ module ietf-detnet-config {
     }
   }
 
-  grouping aggregation-header {
-    description
-      "DetNet aggregation header  DetNet encapsulation";
-    container aggregation-header {
-      description
-        "MPLS label stack for DetNet MPLS encapsulation or
-         forwarding";
-      uses rt-types:mpls-label-stack;
-    }
-  }
-
   grouping detnet-app-next-hop-content {
     description
       "Generic parameters of DetNet next hops.";
@@ -864,13 +845,6 @@ module ietf-detnet-config {
           "Services attached to this profile";
       }
 
-      leaf-list member-groups {
-        type aggregation-grp-ref;
-        config false;
-        description
-          "Groups attached to this profile";
-      }
-
       leaf-list member-forwarding-sublayers {
         type forwarding-sub-layer-ref;
         config false;
@@ -976,62 +950,6 @@ module ietf-detnet-config {
       }
     }
 
-    list service-aggregation-group {
-      key "group-name";
-      description
-        "A group of services";
-      leaf group-name {
-        type aggregation-group;
-        description
-          "An Aggregation group name. Empty means the service is not
-           part of a group";
-      }
-
-      container outgoing {
-        leaf traffic-profile {
-          type traffic-profile-ref;
-          description
-            "The Traffic Profile for this group";
-        }
-
-        container service-protection {
-          leaf service-protection-type {
-            type service-protection-type;
-            description
-              "The DetNet service protection type such as PRF, PEF,
-               PEOF,PERF, and PEORF";
-          }
-
-          leaf sequence-number-length {
-            type sequence-number-field;
-            description
-              "Sequence number filed can choice 0 bit, 16bit, 28 bit
-               filed";
-            }
-          }
-
-        uses aggregation-header;
-
-        leaf-list services {
-          type service-sub-layer-ref;
-          config false;
-          description
-            "List of registered services";
-        }
-      }
-
-      container incoming {
-        uses aggregation-header;
-
-        leaf-list services {
-          type service-sub-layer-ref;
-          config false;
-          description
-            "List of registered services";
-        }
-      }
-    }
-
     container service-sub-layer {
       description
         "The DetNet service sub-layer configuration";
@@ -1051,27 +969,10 @@ module ietf-detnet-config {
             "The DetNet rank for this service";
         }
 
-        choice service-type {
-          mandatory true;
-          container non-grouped {
-            leaf traffic-profile {
-              type traffic-profile-ref;
-              description
-                "The Traffic Profile for this service";
-            }
-
-            leaf service-operation-type {
-              type service-operation-type;
-            }
-          }
-
-          container grouped {
-            leaf group-ref {
-              type aggregation-grp-ref;
-              description
-                "The aggregation group this service belongs to";
-            }
-          }
+        leaf traffic-profile {
+          type traffic-profile-ref;
+          description
+            "The Traffic Profile for this service";
         }
 
         container service-protection {
