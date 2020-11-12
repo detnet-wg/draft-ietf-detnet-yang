@@ -1,33 +1,28 @@
 module ietf-detnet-config {
   namespace "urn:ietf:params:xml:ns:yang:ietf-detnet-config";
-  prefix "ietf-detnet";
+  prefix ietf-detnet;
 
   import ietf-yang-types {
-    prefix "yang";
+    prefix yang;
   }
-
-  import ietf-inet-types{
-    prefix "inet";
+  import ietf-inet-types {
+    prefix inet;
   }
-
   import ietf-ethertypes {
-    prefix "eth";
+    prefix eth;
   }
-
   import ietf-routing-types {
-    prefix "rt-types";
+    prefix rt-types;
   }
-
   import ietf-packet-fields {
-    prefix "packet-fields";
+    prefix packet-fields;
   }
   import ietf-interfaces {
-    prefix "if";
+    prefix if;
   }
 
   organization
     "IETF DetNet Working Group";
-
   contact
     "WG Web:   <http://tools.ietf.org/wg/detnet/>
      WG List:  <mailto: detnet@ietf.org>
@@ -54,17 +49,16 @@ module ietf-detnet-config {
 
      Editor:   Zhenqiang Li
                 <mailto:lizhenqiang@chinamobile.com>";
-
   description
     "This YANG module describes the parameters needed
      for DetNet flow configuration and flow status
      reporting";
 
-  revision 2020-03-04 {
+  revision 2020-11-12 {
     description
       "initial revision";
     reference
-      "RFC XXXX: draft-ietf-detnet-yang-02";
+      "RFC XXXX: draft-ietf-detnet-yang-08";
   }
 
   identity status {
@@ -287,7 +281,7 @@ module ietf-detnet-config {
       }
       enum short-sn {
         value 16;
-        description 
+        description
           "there is 16bit DetNet sequence number field";
       }
       enum long-sn {
@@ -306,37 +300,31 @@ module ietf-detnet-config {
       description
         "The source IP address of the header";
     }
-
     leaf dest-ip-address {
       type inet:ip-address;
       description
         "The destination IP address of the header";
     }
-
     leaf next-header {
       type uint8;
       description
         "The next header of the IPv6 header";
     }
-
     leaf traffic-class {
       type uint8;
       description
         "The traffic class value of the header";
     }
-
     leaf flow-label {
       type inet:ipv6-flow-label;
       description
         "The flow label value of the header";
     }
-
     leaf source-port {
       type inet:port-number;
       description
         "The source port number";
     }
-
     leaf destination-port {
       type inet:port-number;
       description
@@ -350,31 +338,27 @@ module ietf-detnet-config {
     leaf source-mac-address {
       type yang:mac-address;
       description
-        "The source MAC address value of the ethernet header";
+        "The source MAC address value of the Ethernet header";
     }
-
     leaf destination-mac-address {
       type yang:mac-address;
       description
-        "The destination MAC address value of the ethernet header";
+        "The destination MAC address value of the Ethernet header";
     }
-
     leaf ethertype {
       type eth:ethertype;
       description
-        "The ethernet packet type value of the ethernet header";
+        "The Ethernet packet type value of the Ethernet header";
     }
-
     leaf vlan-id {
       type uint16;
       description
-        "The Vlan value of the ethernet header";
+        "The VLAN value of the Ethernet header";
     }
-
     leaf pcp {
       type uint8;
       description
-        "The priority value of the ethernet header";
+        "The priority value of the Ethernet header";
     }
   }
 
@@ -402,35 +386,28 @@ module ietf-detnet-config {
       description
         "The source IP address of the header";
     }
-
     leaf dest-ip-prefix {
       type inet:ip-prefix;
       description
         "The destination IP address of the header";
     }
-
     leaf next-header {
       type uint8;
       description
         "The next header of the IPv6 header";
     }
-
     leaf traffic-class {
       type uint8;
       description
         "The traffic class value of the header";
     }
-
     leaf flow-label {
       type inet:ipv6-flow-label;
       description
         "The flow label value of the header";
     }
-
     uses source-ip-port-identification;
-
     uses destination-ip-port-identification;
-
     leaf ipsec-spi {
       type ipsec-spi;
       description
@@ -447,7 +424,6 @@ module ietf-detnet-config {
       case context-label-space {
         uses rt-types:mpls-label-stack;
       }
-
       case platform-label-space {
         leaf label {
           type rt-types:mpls-label;
@@ -473,28 +449,24 @@ module ietf-detnet-config {
           "The period of time in which the traffic
            specification cannot be exceeded";
       }
-
       leaf max-packets-per-interval {
         type uint32;
         description
           "The maximum number of packets that the
            source will transmit in one Interval.";
       }
-
       leaf max-payload-size {
         type uint32;
         description
           "The maximum payload size that the source
            will transmit.";
       }
-
       leaf average-packets-per-interval {
         type uint32;
         description
           "The average number of packets that the
            source will transmit in one Interval";
       }
-
       leaf average-payload-size {
         type uint32;
         description
@@ -519,7 +491,6 @@ module ietf-detnet-config {
            guaranteed for the DetNet service.  MinBandwidth is
            specified in octets per second.";
       }
-
       leaf max-latency {
         type uint32;
         description
@@ -527,7 +498,6 @@ module ietf-detnet-config {
            for a single packet of the DetNet flow.  MaxLatency is
            specified as an integer number of nanoseconds";
       }
-
       leaf max-latency-variation {
         type uint32;
         description
@@ -535,7 +505,6 @@ module ietf-detnet-config {
            the maximum end-to-end one-way latency.  MaxLatencyVariation
            is specified as an integer number of nanoseconds.";
       }
-
       leaf max-loss {
         type uint8;
         description
@@ -543,7 +512,6 @@ module ietf-detnet-config {
            for the DetNet service between the Ingress and Egress(es) of
            the DetNet domain.";
       }
-
       leaf max-consecutive-loss-tolerance {
         type uint32;
         description
@@ -554,7 +522,6 @@ module ietf-detnet-config {
            consecutive loss tolerance can be measured for example based
            on sequence number";
       }
-
       leaf max-misordering {
         type uint32;
         description
@@ -575,11 +542,9 @@ module ietf-detnet-config {
       case tsn-app-flow {
         uses l2-header;
       }
-
       case ip-app-flow {
         uses ip-flow-identification;
       }
-
       case mpls-app-flow {
         uses mpls-flow-identification;
       }
@@ -587,13 +552,12 @@ module ietf-detnet-config {
   }
 
   grouping detnet-flow-spec {
-    description 
+    description
       "detnet-flow identification";
     choice detnet-flow-type {
       case ip-detnet-flow {
         uses ip-flow-identification;
       }
-
       case mpls-detnet-flow {
         uses mpls-flow-identification;
       }
@@ -603,7 +567,7 @@ module ietf-detnet-config {
   grouping app-flows-ref {
     description
       "incoming or outgoing app-flow reference group";
-    leaf-list app-flow {
+    leaf-list flow-list{
       type app-flow-ref;
       description
         "List of ingress or egress app-flows";
@@ -641,7 +605,6 @@ module ietf-detnet-config {
           "MPLS label stack for DetNet MPLS encapsulation or forwarding";
         uses rt-types:mpls-label-stack;
       }
-
       case detnet-ip-header {
         description
           "IPv4/IPv6 packet header for DetNet IP encapsulation";
@@ -670,20 +633,17 @@ module ietf-detnet-config {
         leaf outgoing-interface {
           type if:interface-ref;
         }
-
         choice flow-type {
           case ip {
             leaf next-hop-address {
               type inet:ip-address;
             }
           }
-
           case mpls {
             uses rt-types:mpls-label-stack;
           }
         }
       }
-
       case next-hop-list {
         container next-hop-list {
           description
@@ -700,18 +660,15 @@ module ietf-detnet-config {
               description
                 "";
             }
-
             leaf outgoing-interface {
               type if:interface-ref;
             }
-
             choice flow-type {
               case ip {
                 leaf next-hop-address {
                   type inet:ip-address;
                 }
               }
-
               case mpls {
                 uses rt-types:mpls-label-stack;
               }
@@ -742,7 +699,6 @@ module ietf-detnet-config {
         leaf outgoing-interface {
           type if:interface-ref;
         }
-
         choice flow-type {
           case ip {
             choice operation-type {
@@ -751,19 +707,16 @@ module ietf-detnet-config {
                   type inet:ip-address;
                 }
               }
-
               case mpls-over-ip-encapsulation {
                 uses ip-header;
               }
             }
           }
-
           case mpls {
             uses rt-types:mpls-label-stack;
           }
         }
       }
-
       case next-hop-list {
         container next-hop-list {
           description
@@ -781,11 +734,9 @@ module ietf-detnet-config {
               description
                 "";
             }
-
             leaf outgoing-interface {
               type if:interface-ref;
             }
-
             choice flow-type {
               case ip {
                 choice operation-type {
@@ -794,13 +745,11 @@ module ietf-detnet-config {
                       type inet:ip-address;
                     }
                   }
-
                   case mpls-over-ip-encapsulation {
                     uses ip-header;
                   }
                 }
               }
-
               case mpls {
                 uses rt-types:mpls-label-stack;
               }
@@ -822,25 +771,20 @@ module ietf-detnet-config {
           "An Aggregation group ID. Zero means the service is not
            part of a group";
       }
-
       uses traffic-requirements;
-
       uses traffic-specification;
-
       leaf-list member-applications {
-        type app-flow-ref;
+        type app-flow-ref; 
         config false;
         description
-          "Applicaions attached to this profile";
+          "Applications attached to this profile";
       }
-
       leaf-list member-services {
         type service-sub-layer-ref;
         config false;
         description
           "Services attached to this profile";
       }
-
       leaf-list member-forwarding-sublayers {
         type forwarding-sub-layer-ref;
         config false;
@@ -848,7 +792,6 @@ module ietf-detnet-config {
           "Forwarding sub-layer attached to this profile";
       }
     }
-
     container app-flows {
       description
         "The DetNet app-flow configuration";
@@ -859,13 +802,13 @@ module ietf-detnet-config {
         description
           "A unique (management) identifier of the App-flow.";
         leaf name {
-          type "string";
+          type string;
           description
             "A unique (management) identifier of the App-flow.";
           reference
-            "draft-ietf-detnet-flow-information-model Sections 4.1, 5.1";
+            "draft-ietf-detnet-flow-information-model 
+             Sections 4.1, 5.1";
         }
-
         leaf app-flow-bidir-congruent {
           type boolean;
           description
@@ -876,7 +819,6 @@ module ietf-detnet-config {
           reference
             "draft-ietf-detnet-flow-information-model Section 4.2";
         }
-
         leaf outgoing-service {
           type service-sub-layer-ref;
           config false;
@@ -884,7 +826,6 @@ module ietf-detnet-config {
             "Binding to this applications outgoing
              service";
         }
-
         leaf incoming-service {
           type service-sub-layer-ref;
           config false;
@@ -892,14 +833,13 @@ module ietf-detnet-config {
             "Binding to this applications incoming
              service";
         }
-
         leaf traffic-profile {
           type traffic-profile-ref;
           description
             "The Traffic Profile for this group";
         }
-
         container ingress {
+          // key "name";  This should be a list for aggregation
           description
             "Ingress DetNet application flows or a compound flow";
           leaf name {
@@ -907,7 +847,6 @@ module ietf-detnet-config {
             description
               "Ingress DetNet application";
           }
-
           leaf app-flow-status {
             type identityref {
               base status;
@@ -916,16 +855,14 @@ module ietf-detnet-config {
             description
               "Status of ingress application flow";
             reference
-              "draft-ietf-detnet-flow-information-model Sections 4.1, 5.8";
+              "draft-ietf-detnet-flow-information-model 
+               Sections 4.1, 5.8";
           }
-
           leaf interface {
             type if:interface-ref;
           }
-
           uses data-flow-spec;
         } //End of app-ingress
-
         container egress {
           description
             "Route's next-hop attribute.";
@@ -935,16 +872,14 @@ module ietf-detnet-config {
             description
               "Egress DetNet application";
           }
-
           choice application-type {
-            container ethernet {
-              leaf ethernet-place-holder {
+            container Ethernet {
+              leaf Ethernet-place-holder {
                 type string;
                 description
-                  "Place holder for matching ethernet";
+                  "Place holder for matching Ethernet";
               }
             }
-
             container ip-mpls {
               uses detnet-app-next-hop-content;
             }
@@ -952,7 +887,6 @@ module ietf-detnet-config {
         }
       }
     }
-
     container service-sub-layer {
       description
         "The DetNet service sub-layer configuration";
@@ -965,7 +899,6 @@ module ietf-detnet-config {
           description
             "The name of the DetNet service sub-layer";
         }
-
         leaf service-rank {
           type uint8;
           description
@@ -973,13 +906,11 @@ module ietf-detnet-config {
           reference
             "draft-ietf-detnet-flow-information-model Section 5.7";
         }
-
         leaf traffic-profile {
           type traffic-profile-ref;
           description
             "The Traffic Profile for this service";
         }
-
         container service-protection {
           leaf service-protection-type {
             type service-protection-type;
@@ -987,7 +918,6 @@ module ietf-detnet-config {
               "The DetNet service protection type such as PRF, PEF,
                PEOF,PERF, and PEORF";
           }
-
           leaf sequence-number-length {
             type sequence-number-field;
             description
@@ -995,94 +925,152 @@ module ietf-detnet-config {
                filed";
           }
         }
-
         leaf service-operation-type {
           type service-operation-type;
         }
-
-        container incoming {
+        container incoming-type {
           description
             "The DetNet service sub-layer incoming configuration.";
-          choice incoming-options {
+          choice incoming-type {
             mandatory true;
             description
               "";
-            case ingress-application {
+            container app-flow {
+              description
+                "This service sub-layer is related to
+                 the app-flows of the upper layer
+                 and provide ingress proxy or ingress aggregation
+                 at the ingress node.";
               uses app-flows-ref;
             }
-
-            case detnet-service-identification {
-              uses detnet-flow-spec;
-            }
-
-            case aggregated-service {
+            container service {
+              description
+                "This service sub-layer is related to
+                 the service sub-layer of the upper layer
+                 and provide service-to-service aggregation
+                 at the ingress node or relay node.";
               uses service-sub-layer-ref;
             }
-
-            case aggregated-forwarding {
+            container forwarding {
+              description
+                "This service sub-layer is related to
+                 the forwarding sub-layer of the upper layer
+                 and provide forwarding-to-service aggregation
+                 at the ingress node or relay node.";
               uses forwarding-sub-layer-ref;
+            }
+            container service-identification {
+              description
+                "This service sub-layer is related to
+                 the service or forwarding sub-layer of the lower layer
+                 and provide DetNet service relay or termination
+                 at the relay node or egress node.";
+              uses detnet-flow-spec;
             }
           }
         }
-
-        container outgoing {
+        container outgoing-type {
           description
             "The DetNet service sub-layer outgoing configuration.";
-          choice outgoing-options {
+          choice outgoing-type {
             mandatory true;
             description
               "";
-            case detnet-service-outgoing {
-              //uses detnet-service-next-hop-content;
+            container forwarding-sub-layer {
+              description
+                "This service sub-layer is sent to the forwarding
+                 sub-layers of the lower layer for DetNet service
+                 forwarding or service-to-forwarding aggregation at
+                 the ingress node or relay node.  When the operation
+                 type is service-initiation, The service sub-layer
+                 encapsulates the DetNet Control-Word and services
+                 label, which are for individual DetNet flow when the
+                 incoming type is app-flow and for aggregated DetNet
+                 flow when the incoming type is service or
+                 forwarding.  The service sub-layer swaps the service
+                 label when the operation type is service-relay.";
+              uses detnet-flow-spec;
               list service-outgoing-list {
                 key "service-outgoing-index";
+                description
+                  "list of the outgoing service
+                   that separately for each node
+                   where services will be eliminated";
                 leaf service-outgoing-index {
                   type uint8;
                 }
-
                 uses detnet-header;
-
-                list next-layer {
+                list forwarding-sub-layer {
                   key "index";
                   description
-                    "lower-layer info";
+                    "list of the forwarding-sub-layer
+                     for replicate to multiple paths";
                   leaf index {
                     type uint8;
                   }
-
                   leaf forwarding-sub-layer {
                     type forwarding-sub-layer-ref;
+                    description
+                      "forwarding-sub-layer reference point";
                   }
                 }
               }
             }
-
-            case detnet-service-aggregation {
+            container service-sub-layer {
+              description
+                "This service sub-layer is sent to the service
+                 sub-layers of the lower layer for service-to-service
+                 aggregation at the ingress node or relay node.  The
+                 service sub-layer encapsulates the DetNet
+                 Control-Word and S-label when the operation type is
+                 service-initiation, and swaps the S-label when the
+                 operation type is service-relay.";
               leaf aggregation-service-sub-layer {
                 type service-sub-layer-ref;
+                description
+                  "reference point of the service-sub-layer
+                   at which this service will be aggregated";
               }
-
               container service-label {
                 uses rt-types:mpls-label-stack;
               }
             }
-
-            case egress-proxy {
+            container upper-app-flow {
+              description
+                "This service sub-layer is sent to the app-flow of
+                 the upper layer for egress proxy at the egress node,
+                 and decapsulates the DetNet Control-Word and S-label
+                 for individual DetNet service.  This outgoing type
+                 only can be chosen when the operation type is
+                 service-termination.";
               uses app-flows-ref;
             }
-
-            case detnet-service-operation {
+            container upper-service-sub-layer {
+              description
+                "This service sub-layer is sent to the service
+                 sub-layer of the upper layer for service-to-service
+                 disaggregation at the relay node or egress node, and
+                 decapsulates the DetNet Control-Word and A-label for
+                 aggregated DetNet service.  This outgoing type only
+                 can be chosen when the operation type is
+                 service-termination.";
               uses service-sub-layer-ref;
             }
-
-            case detnet-forwarding-operation {
+            container upper-forwarding-sub-layer {
+              description
+                "This service sub-layer is sent to the forwarding
+                 sub-layer of the upper layer for
+                 forwarding-to-service disaggregation at the relay
+                 node or egress node, and decapsulates the DetNet
+                 Control-Word and A-label for aggregated DetNet
+                 service.  This outgoing type only can be chosen when
+                 the operation type is service-termination";
               uses forwarding-sub-layer-ref;
             }
           }
         }
       }
     }
-
     container forwarding-sub-layer {
       description
         "The DetNet forwarding sub-layer configuration";
@@ -1095,85 +1083,117 @@ module ietf-detnet-config {
           description
             "The name of the DetNet forwarding sub-layer";
         }
-
         leaf traffic-profile {
           type traffic-profile-ref;
           description
             "The Traffic Profile for this group";
         }
-
         leaf forwarding-operation-type {
           type forwarding-operations-type;
         }
-
-        container incoming {
+        container incoming-type {
           description
             "The DetNet forwarding sub-layer incoming configuration.";
-          choice incoming-options {
+          choice incoming-type {
             mandatory true;
             description
-              "";
-            case detnet-service-forwarding {
-              leaf-list service-sub-layer {
+              "Cases of incoming types";
+            container service-sub-layer {
+              description
+                "This forwarding sub-layer is related to the service
+                 sub-layers of the upper layer and provide DetNet
+                 forwarding or service-to-forwarding aggregation at
+                 the ingress node or relay node.";
+              leaf-list sub-layer-list {
                 type service-sub-layer-ref;
                 config false;
                 description
                   "";
               }
             }
-
-            case detnet-forwarding-identification {
+            case upper-forwarding-sub-layer {
+              description
+                "This forwarding sub-layer is related to the
+                 forwarding sub-layer of the upper layer and provide
+                 forwarding-to-forwarding aggregation at the ingress
+                 node or relay node or transit node.";
+              uses forwarding-sub-layer-ref;
+            }
+            case lower-forwarding-sub-layer {
+            //case forwarding-identification {
+              description
+                "This forwarding sub-layer is related to all of the
+                 lower layer and provide DetNet forwarding swap or
+                 termination at the transit node or relay node or
+                 egress node.";
               leaf interface {
                 type if:interface-ref;
                 description
-                  "";
+                  "This is the interface associated with the forwarding
+                   sub-layer";
               }
-
               uses detnet-flow-spec;
-            }
-
-            case aggregated-forwarding {
-              uses forwarding-sub-layer-ref;
             }
           }
         }
-
-        container outgoing {
+        container outgoing-type {
           description
             "The DetNet forwarding sub-layer outbound configuration.";
-          choice outgoing-options {
+          choice outgoing-type {
             mandatory true;
             description
               "";
-            case detnet-forwarding-outgoing {
+            container interface {
+              description
+                "This forwarding sub-layer is sent to the interface
+                 for send to next-hop at the ingress node or relay
+                 node or transit node.";
               uses detnet-forwarding-next-hop-content;
             }
-
-            case detnet-service-aggregation {
+            case service {
+              description
+                "This forwarding sub-layer is sent to the service
+                 sub-layers of the lower layer for
+                 forwarding-to-service aggregation at the ingress
+                 node or relay node.";
               leaf aggregation-service-sub-layer {
                 type service-sub-layer-ref;
               }
-
               container optional-forwarding-label {
                 uses rt-types:mpls-label-stack;
               }
             }
-
-            case detnet-forwarding-aggregation {
+            case forwarding {
+              description
+                "This forwarding sub-layer is sent to the forwarding
+                 sub-layers of the lower layer for
+                 forwarding-to-forwarding aggregation at the ingress
+                 node or relay node or transit node.";
               leaf aggregation-forwarding-sub-layer {
                 type forwarding-sub-layer-ref;
               }
-
               container forwarding-label {
                 uses rt-types:mpls-label-stack;
               }
             }
-
-            case detnet-service-operation {
+            case upper-service {
+              description
+                "This forwarding sub-layer is sent to the service
+                 sub-layer of the upper layer and decapsulate the
+                 F-label for DetNet service or service-to-forwarding
+                 disaggregation at the relay node or egress node.
+                 This outgoing type only can be chosen when the
+                 operation type is pop-and-lookup";
               uses service-sub-layer-ref;
             }
-
-            case detnet-forwarding-operation {
+            case upper-forwarding {
+              description
+                "This forwarding sub-layer is sent to the forwarding
+                 sub-layer of the upper layer and decapsulate the
+                 F-label for forwarding-to-forwarding disaggregation
+                 at the transit node or relay node or egress node.
+                 This outgoing type only can be chosen when the
+                 operation type is pop-and-lookup";
               uses forwarding-sub-layer-ref;
             }
           }
