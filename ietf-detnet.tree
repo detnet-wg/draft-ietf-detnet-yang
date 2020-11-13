@@ -1,12 +1,12 @@
-module: ietf-detnet-config
+module: ietf-detnet
   +--rw detnet
-     +--rw traffic-profile* [profile-number]
-     |  +--rw profile-number                 uint16
+     +--rw traffic-profile* [profile-name]
+     |  +--rw profile-name                   string
      |  +--rw traffic-requirements
      |  |  +--rw min-bandwidth?                    uint64
      |  |  +--rw max-latency?                      uint32
      |  |  +--rw max-latency-variation?            uint32
-     |  |  +--rw max-loss?                         uint8
+     |  |  +--rw max-loss?                         uint32
      |  |  +--rw max-consecutive-loss-tolerance?   uint32
      |  |  +--rw max-misordering?                  uint32
      |  +--rw traffic-specification
@@ -33,8 +33,10 @@ module: ietf-detnet-config
      |     |     +--:(tsn-app-flow)
      |     |     |  +--rw source-mac-address?        yang:mac-address
      |     |     |  +--rw destination-mac-address?   yang:mac-address
-     |     |     |  +--rw ethertype?                 eth:ethertype
-     |     |     |  +--rw vlan-id?                   uint16
+     |     |     |  +--rw ethertype?
+     |     |     |  |       ethertypes:ethertype
+     |     |     |  +--rw vlan-id?
+     |     |     |  |       dot1q-types:vlanid
      |     |     |  +--rw pcp?                       uint8
      |     |     +--:(ip-app-flow)
      |     |     |  +--rw src-ip-prefix?             inet:ip-prefix
@@ -114,7 +116,8 @@ module: ietf-detnet-config
      |                                         +--rw id
      |                                         |       uint8
      |                                         +--rw label?
-     |                                         |       rt-types:mpls-label
+     |                                         |       rt-types:
+     |                                         |       mpls-label
      |                                         +--rw ttl?
      |                                         |       uint8
      |                                         +--rw traffic-class?
@@ -404,7 +407,8 @@ module: ietf-detnet-config
                  |                    |     +--:(ip-forwarding)
                  |                    |     |  +--rw next-hop-address?
                  |                    |     |          inet:ip-address
-                 |                    |     +--:(mpls-over-ip-encapsulation)
+                 |                    |     +--:(mpls-over-ip-
+                 |                    |        |encapsulation)
                  |                    |        +--rw src-ip-address?
                  |                    |        |       inet:ip-address
                  |                    |        +--rw dest-ip-address?
@@ -414,7 +418,8 @@ module: ietf-detnet-config
                  |                    |        +--rw traffic-class?
                  |                    |        |       uint8
                  |                    |        +--rw flow-label?
-                 |                    |        |       inet:ipv6-flow-label
+                 |                    |        |       inet:
+                 |                    |        |       ipv6-flow-label
                  |                    |        +--rw source-port?
                  |                    |        |       inet:port-number
                  |                    |        +--rw destination-port?
@@ -425,7 +430,8 @@ module: ietf-detnet-config
                  |                             +--rw id
                  |                             |       uint8
                  |                             +--rw label?
-                 |                             |       rt-types:mpls-label
+                 |                             |       rt-types:
+                 |                             |       mpls-label
                  |                             +--rw ttl?
                  |                             |       uint8
                  |                             +--rw traffic-class?
