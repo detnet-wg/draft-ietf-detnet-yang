@@ -2233,27 +2233,6 @@ module ietf-detnet{
           }
         }
       ]
-    },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
-        {
-          "name": "fsl-1",
-          "traffic-profile": "pf-3",
-          "forwarding-operation-type": "impose-and-forward",
-          "incoming-type": {
-            "service-sub-layer": {
-              "sub-layer-list": [
-                "ssl-1"
-              ]
-            }
-          },
-          "outgoing-type": {
-            "interface": {
-              "outgoing-interface": "eth2"
-            }
-          }
-        }
-      ]
     }
   }
 }
@@ -2372,9 +2351,8 @@ anchor="example-detnet-xml-fwd-aggrgation"><artwork><![CDATA[
       <name>ssl-1</name>
       <service-rank>10</service-rank>
       <traffic-profile>2</traffic-profile>
-      <service-operation-type>
-        service-initiation
-      </service-operation-type>
+      <service-operation-type>service-initiation</service-
+operation-type>
       <service-protection>
         <service-protection-type>none</service-protection-type>
         <sequence-number-length>long-sn</sequence-number-length>
@@ -2406,9 +2384,8 @@ anchor="example-detnet-xml-fwd-aggrgation"><artwork><![CDATA[
       <name>ssl-2</name>
       <service-rank>10</service-rank>
       <traffic-profile>2</traffic-profile>
-      <service-operation-type>
-        service-initiation
-      </service-operation-type>
+      <service-operation-type>service-initiation</service-
+operation-type>
       <service-protection>
         <service-protection-type>none</service-protection-type>
         <sequence-number-length>long-sn</sequence-number-length>
@@ -2428,7 +2405,7 @@ anchor="example-detnet-xml-fwd-aggrgation"><artwork><![CDATA[
                 <label>103</label>
               </entry>
             </mpls-label-stack>
-            <next-layer>:
+            <next-layer>
               <index>0</index>
               <forwarding-sub-layer>afl-1</forwarding-sub-layer>
             </next-layer>
@@ -2441,9 +2418,8 @@ anchor="example-detnet-xml-fwd-aggrgation"><artwork><![CDATA[
     <forwarding-sub-layer-list>
       <name>afl-1</name>
       <traffic-profile>3</traffic-profile>
-      <forwarding-operation-type>
-        impose-and-forward
-      </forwarding-operation-type>
+      <forwarding-operation-type>impose-and-forward</forwarding-
+operation-type>
       <incoming-type>
         <service-sub-layer>
           <sub-layer-list>ssl-1</sub-layer-list>
@@ -2452,14 +2428,14 @@ anchor="example-detnet-xml-fwd-aggrgation"><artwork><![CDATA[
       </incoming-type>
       <outgoing-type>
         <interface>
-          <outgoing-interface>eth2</outgoing-interface>
-        </interface>
         <mpls-label-stack>
           <entry>
             <id>0</id>
             <label>10000</label>
           </entry>
         </mpls-label-stack>
+          <outgoing-interface>eth2</outgoing-interface>
+        </interface>
       </outgoing-type>
     </forwarding-sub-layer-list>
     </forwarding-sub-layer>
@@ -2700,7 +2676,15 @@ anchor="example-detnet-xml-service-aggregation"><artwork><![CDATA[
           "forwarding-operation-type": "impose-and-forward",
           "outgoing-type": {
             "interface": {
-              "outgoing-interface": "eth2"
+              "outgoing-interface": "eth2",
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": 20000
+                  }
+                ]
+              }
             }
           }
         }
