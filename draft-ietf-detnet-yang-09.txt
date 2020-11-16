@@ -5,15 +5,15 @@
 Network Working Group                                            X. Geng
 Internet-Draft                                                   M. Chen
 Intended status: Standards Track                     Huawei Technologies
-Expires: May 16, 2021                                            Y. Ryoo
+Expires: May 20, 2021                                            Y. Ryoo
                                                                     ETRI
                                                                 D. Fedyk
                                                  LabN Consulting, L.L.C.
                                                                R. Rahman
-                                                           Cisco Systems
+                                                              Individual
                                                                    Z. Li
                                                             China Mobile
-                                                       November 12, 2020
+                                                       November 16, 2020
 
 
        Deterministic Networking (DetNet) Configuration YANG Model
@@ -53,12 +53,12 @@ Status of This Memo
 
 
 
-Geng, et al.              Expires May 16, 2021                  [Page 1]
+Geng, et al.              Expires May 20, 2021                  [Page 1]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
-   This Internet-Draft will expire on May 16, 2021.
+   This Internet-Draft will expire on May 20, 2021.
 
 Copyright Notice
 
@@ -86,20 +86,20 @@ Table of Contents
    4.  DetNet Flow Aggregation . . . . . . . . . . . . . . . . . . .   4
    5.  DetNet YANG Structure Considerations  . . . . . . . . . . . .   5
    6.  DetNet Configuration YANG Structures  . . . . . . . . . . . .   6
-   7.  DetNet Configuration YANG Model . . . . . . . . . . . . . . .  15
-   8.  Open Issues . . . . . . . . . . . . . . . . . . . . . . . . .  41
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  41
-   10. Security Considerations . . . . . . . . . . . . . . . . . . .  41
-   11. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  41
-   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  41
-     12.1.  Normative References . . . . . . . . . . . . . . . . . .  41
-     12.2.  Informative References . . . . . . . . . . . . . . . . .  42
-   Appendix A.  Examples . . . . . . . . . . . . . . . . . . . . . .  42
-     A.1.  Example JSON Configuration  . . . . . . . . . . . . . . .  42
+   7.  DetNet Configuration YANG Model . . . . . . . . . . . . . . .  14
+   8.  Open Issues . . . . . . . . . . . . . . . . . . . . . . . . .  40
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  40
+   10. Security Considerations . . . . . . . . . . . . . . . . . . .  40
+   11. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  40
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  40
+     12.1.  Normative References . . . . . . . . . . . . . . . . . .  40
+     12.2.  Informative References . . . . . . . . . . . . . . . . .  41
+   Appendix A.  Examples . . . . . . . . . . . . . . . . . . . . . .  41
+     A.1.  Example JSON Configuration  . . . . . . . . . . . . . . .  41
      A.2.  Example XML Config: Aggregation using a Forwarding
-           Sublayer  . . . . . . . . . . . . . . . . . . . . . . . .  46
-     A.3.  Example JSON Service Aggregation Configuration  . . . . .  51
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  56
+           Sublayer  . . . . . . . . . . . . . . . . . . . . . . . .  45
+     A.3.  Example JSON Service Aggregation Configuration  . . . . .  50
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  55
 
 1.  Introduction
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Geng, et al.              Expires May 16, 2021                  [Page 2]
+Geng, et al.              Expires May 20, 2021                  [Page 2]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -165,7 +165,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                  [Page 3]
+Geng, et al.              Expires May 20, 2021                  [Page 3]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -221,7 +221,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                  [Page 4]
+Geng, et al.              Expires May 20, 2021                  [Page 4]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -277,7 +277,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                  [Page 5]
+Geng, et al.              Expires May 20, 2021                  [Page 5]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -333,7 +333,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                  [Page 6]
+Geng, et al.              Expires May 20, 2021                  [Page 6]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -389,7 +389,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                  [Page 7]
+Geng, et al.              Expires May 20, 2021                  [Page 7]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -445,7 +445,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                  [Page 8]
+Geng, et al.              Expires May 20, 2021                  [Page 8]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -501,7 +501,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                  [Page 9]
+Geng, et al.              Expires May 20, 2021                  [Page 9]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -514,60 +514,6 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
       |        +--rw (outgoing-type)
       |           +--:(forwarding-sub-layer)
       |           |  +--rw forwarding-sub-layer
-      |           |     +--rw (detnet-flow-type)?
-      |           |     |  +--:(ip-detnet-flow)
-      |           |     |  |  +--rw src-ip-prefix?
-      |           |     |  |  |       inet:ip-prefix
-      |           |     |  |  +--rw dest-ip-prefix?
-      |           |     |  |  |       inet:ip-prefix
-      |           |     |  |  +--rw next-header?              uint8
-      |           |     |  |  +--rw traffic-class?            uint8
-      |           |     |  |  +--rw flow-label?
-      |           |     |  |  |       inet:ipv6-flow-label
-      |           |     |  |  +--rw source-port
-      |           |     |  |  |  +--rw (port-range-or-operator)?
-      |           |     |  |  |     +--:(range)
-      |           |     |  |  |     |  +--rw lower-port
-      |           |     |  |  |     |  |       inet:port-number
-      |           |     |  |  |     |  +--rw upper-port
-      |           |     |  |  |     |          inet:port-number
-      |           |     |  |  |     +--:(operator)
-      |           |     |  |  |        +--rw operator?     operator
-      |           |     |  |  |        +--rw port
-      |           |     |  |  |                inet:port-number
-      |           |     |  |  +--rw destination-port
-      |           |     |  |  |  +--rw (port-range-or-operator)?
-      |           |     |  |  |     +--:(range)
-      |           |     |  |  |     |  +--rw lower-port
-      |           |     |  |  |     |  |       inet:port-number
-      |           |     |  |  |     |  +--rw upper-port
-      |           |     |  |  |     |          inet:port-number
-      |           |     |  |  |     +--:(operator)
-      |           |     |  |  |        +--rw operator?     operator
-      |           |     |  |  |        +--rw port
-      |           |     |  |  |                inet:port-number
-      |           |     |  |  +--rw ipsec-spi?                ipsec-spi
-      |           |     |  +--:(mpls-detnet-flow)
-      |           |     |     +--rw (label-space)?
-      |           |     |        +--:(context-label-space)
-      |           |     |        |  +--rw mpls-label-stack
-      |           |     |        |     +--rw entry* [id]
-      |           |     |        |        +--rw id               uint8
-      |           |     |        |        +--rw label?
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 10]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
-
-      |           |     |        |        |       rt-types:mpls-label
-      |           |     |        |        +--rw ttl?             uint8
-      |           |     |        |        +--rw traffic-class?   uint8
-      |           |     |        +--:(platform-label-space)
-      |           |     |           +--rw label?
-      |           |     |                   rt-types:mpls-label
       |           |     +--rw service-outgoing-list*
       |           |             [service-outgoing-index]
       |           |        +--rw service-outgoing-index    uint8
@@ -593,7 +539,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
       |           |        |     |       inet:port-number
       |           |        |     +--rw destination-port?
       |           |        |             inet:port-number
-      |           |        +--rw forwarding-sub-layer* [index]
+      |           |        +--rw next-layer* [index]
       |           |           +--rw index                   uint8
       |           |           +--rw forwarding-sub-layer?
       |           |                   forwarding-sub-layer-ref
@@ -608,16 +554,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
       |           |              +--rw label?
       |           |              |       rt-types:mpls-label
       |           |              +--rw ttl?             uint8
-      |           |              +--rw traffic-class?   uint8
-      |           +--:(upper-app-flow)
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 11]
+Geng, et al.              Expires May 20, 2021                 [Page 10]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+      |           |              +--rw traffic-class?   uint8
+      |           +--:(upper-app-flow)
       |           |  +--rw upper-app-flow
       |           |     +--rw flow-list*   app-flow-ref
       |           +--:(upper-service-sub-layer)
@@ -664,16 +610,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
             |           |  |     |          inet:port-number
             |           |  |     +--:(operator)
             |           |  |        +--rw operator?     operator
-            |           |  |        +--rw port
-            |           |  |                inet:port-number
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 12]
+Geng, et al.              Expires May 20, 2021                 [Page 11]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+            |           |  |        +--rw port
+            |           |  |                inet:port-number
             |           |  +--rw destination-port
             |           |  |  +--rw (port-range-or-operator)?
             |           |  |     +--:(range)
@@ -720,16 +666,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                   |        |     |        |       inet:ip-address
                   |        |     |        +--rw next-header?
                   |        |     |        |       uint8
-                  |        |     |        +--rw traffic-class?
-                  |        |     |        |       uint8
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 13]
+Geng, et al.              Expires May 20, 2021                 [Page 12]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+                  |        |     |        +--rw traffic-class?
+                  |        |     |        |       uint8
                   |        |     |        +--rw flow-label?
                   |        |     |        |       inet:ipv6-flow-label
                   |        |     |        +--rw source-port?
@@ -758,7 +704,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                   |                    |     |  +--rw next-hop-address?
                   |                    |     |          inet:ip-address
                   |                    |     +--:(mpls-over-ip-
-                  |                    |        |encapsulation)
+                  |                    |        | encapsulation)
                   |                    |        +--rw src-ip-address?
                   |                    |        |       inet:ip-address
                   |                    |        +--rw dest-ip-address?
@@ -776,16 +722,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                   |                    |                inet:port-number
                   |                    +--:(mpls)
                   |                       +--rw mpls-label-stack
-                  |                          +--rw entry* [id]
-                  |                             +--rw id
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 14]
+Geng, et al.              Expires May 20, 2021                 [Page 13]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+                  |                          +--rw entry* [id]
+                  |                             +--rw id
                   |                             |       uint8
                   |                             +--rw label?
                   |                             |       rt-types:
@@ -832,16 +778,16 @@ module ietf-detnet{
 
   import ietf-yang-types {
     prefix yang;
-  }
-  import ietf-inet-types {
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 15]
+Geng, et al.              Expires May 20, 2021                 [Page 14]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+  }
+  import ietf-inet-types {
     prefix inet;
   }
   import ietf-ethertypes {
@@ -888,16 +834,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
      Editor:   Zhenqiang Li
                 <mailto:lizhenqiang@chinamobile.com>";
-  description
-    "This YANG module describes the parameters needed
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 16]
+Geng, et al.              Expires May 20, 2021                 [Page 15]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+  description
+    "This YANG module describes the parameters needed
      for DetNet flow configuration and flow status
      reporting";
 
@@ -944,15 +890,15 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
       "Application Administratively blocked";
     reference
       "draft-ietf-detnet-flow-information-model Section 5.8";
-  }
 
 
 
-
-Geng, et al.              Expires May 16, 2021                 [Page 17]
+Geng, et al.              Expires May 20, 2021                 [Page 16]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
+
+  }
 
   identity partial-failed {
     base app-status;
@@ -1000,16 +946,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
   }
 
   typedef ipsec-spi {
-    type uint32 {
-      range "1..max";
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 18]
+Geng, et al.              Expires May 20, 2021                 [Page 17]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+    type uint32 {
+      range "1..max";
     }
     description
       "IPsec Security Parameters Index";
@@ -1056,16 +1002,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
       enum pop-impose-and-forward {
         description
           "Operation pop incoming label, impose one or more
-           outgoing label(s) and forward to next-hop";
-      }
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 19]
+Geng, et al.              Expires May 20, 2021                 [Page 18]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+           outgoing label(s) and forward to next-hop";
+      }
       enum swap-and-forward {
         description
           "Operation swap incoming label, with outgoing label and
@@ -1112,16 +1058,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
            out of order.  This function can be implemented
            by an edge node, a relay node, or an end system.";
       }
-      enum elimination-ordering {
-        description
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 20]
+Geng, et al.              Expires May 20, 2021                 [Page 19]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+      enum elimination-ordering {
+        description
           "A combination of PEF and POF that can be
            implemented by an edge node, a relay node, or
            an end system.";
@@ -1168,16 +1114,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
       enum long-sn {
         value 28;
         description
-          "There is 28bit DetNet sequence number field";
-      }
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 21]
+Geng, et al.              Expires May 20, 2021                 [Page 20]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+          "There is 28bit DetNet sequence number field";
+      }
     }
   }
 
@@ -1224,16 +1170,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
   grouping l2-header {
     description
       "The Ethernet or TSN packet header information";
-    leaf source-mac-address {
-      type yang:mac-address;
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 22]
+Geng, et al.              Expires May 20, 2021                 [Page 21]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+    leaf source-mac-address {
+      type yang:mac-address;
       description
         "The source MAC address value of the Ethernet header";
     }
@@ -1280,16 +1226,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
       "The IPv4/IPv6 packet header identification information";
     leaf src-ip-prefix {
       type inet:ip-prefix;
-      description
-        "The source IP address of the header";
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 23]
+Geng, et al.              Expires May 20, 2021                 [Page 22]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+      description
+        "The source IP address of the header";
     }
     leaf dest-ip-prefix {
       type inet:ip-prefix;
@@ -1336,15 +1282,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
           type rt-types:mpls-label;
         }
       }
-    }
-  }
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 24]
+Geng, et al.              Expires May 20, 2021                 [Page 23]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
+
+    }
+  }
 
   grouping traffic-specification {
     container traffic-specification {
@@ -1392,16 +1339,15 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
     }
   }
 
-  grouping traffic-requirements {
-    container traffic-requirements {
 
 
-
-Geng, et al.              Expires May 16, 2021                 [Page 25]
+Geng, et al.              Expires May 20, 2021                 [Page 24]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+  grouping traffic-requirements {
+    container traffic-requirements {
       description
         "FlowRequirements: defines the attributes of the App-flow
          regarding bandwidth, latency, latency variation, loss, and
@@ -1448,16 +1394,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
            consecutive packets whose loss can be tolerated.  The maximum
            consecutive loss tolerance can be measured for example based
            on sequence number";
-      }
-      leaf max-misordering {
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 26]
+Geng, et al.              Expires May 20, 2021                 [Page 25]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+      }
+      leaf max-misordering {
         type uint32;
         units packets;
         description
@@ -1504,16 +1450,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
     description
       "incoming or outgoing app-flow reference group";
     leaf-list flow-list{
-      type app-flow-ref;
-      description
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 27]
+Geng, et al.              Expires May 20, 2021                 [Page 26]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+      type app-flow-ref;
+      description
         "List of ingress or egress app-flows";
     }
   }
@@ -1532,7 +1478,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
   grouping forwarding-sub-layer-ref {
     description
       "incoming or outgoing forwarding sub-layer reference group";
-    leaf-list fo:rwarding-sub-layer {
+    leaf-list forwarding-sub-layer {
       type forwarding-sub-layer-ref;
       description
         "List of incoming or outgoing forwarding sub-layers
@@ -1546,8 +1492,8 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
     choice header-type {
       case detnet-mpls-header {
         description
-          "MPLS label stack for DetNet MPLS encapsulation or
-           forwarding";
+        "MPLS label stack for DetNet MPLS encapsulation or
+         forwarding";
         uses rt-types:mpls-label-stack;
       }
       case detnet-ip-header {
@@ -1560,16 +1506,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
   grouping detnet-app-next-hop-content {
     description
-      "Generic parameters of DetNet next hops.";
-    choice next-hop-options {
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 28]
+Geng, et al.              Expires May 20, 2021                 [Page 27]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+      "Generic parameters of DetNet next hops.";
+    choice next-hop-options {
       mandatory true;
       description
         "Options for next hops.
@@ -1616,16 +1562,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
             leaf outgoing-interface {
               type if:interface-ref;
             }
-            choice flow-type {
-              case ip {
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 29]
+Geng, et al.              Expires May 20, 2021                 [Page 28]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+            choice flow-type {
+              case ip {
                 leaf next-hop-address {
                   type inet:ip-address;
                 }
@@ -1672,16 +1618,16 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                 uses ip-header;
               }
             }
-          }
-          case mpls {
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 30]
+Geng, et al.              Expires May 20, 2021                 [Page 29]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+          }
+          case mpls {
             uses rt-types:mpls-label-stack;
           }
         }
@@ -1729,15 +1675,14 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
     }
   }
 
-  container detnet {
 
 
-
-Geng, et al.              Expires May 16, 2021                 [Page 31]
+Geng, et al.              Expires May 20, 2021                 [Page 30]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+  container detnet {
     list traffic-profile {
       key "profile-name";
       description
@@ -1785,15 +1730,15 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
           reference
             "draft-ietf-detnet-flow-information-model
              Sections 4.1, 5.1";
-        }
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 32]
+Geng, et al.              Expires May 20, 2021                 [Page 31]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+        }
         leaf app-flow-bidir-congruent {
           type boolean;
           description
@@ -1841,15 +1786,15 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
               "Status of ingress application flow";
             reference
               "draft-ietf-detnet-flow-information-model
-               Sections 4.1, 5.8";
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 33]
+Geng, et al.              Expires May 20, 2021                 [Page 32]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+               Sections 4.1, 5.8";
           }
           leaf interface {
             type if:interface-ref;
@@ -1897,15 +1842,15 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
           description
             "The DetNet rank for this service";
           reference
-            "draft-ietf-detnet-flow-information-model Section 5.7";
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 34]
+Geng, et al.              Expires May 20, 2021                 [Page 33]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+            "draft-ietf-detnet-flow-information-model Section 5.7";
         }
         leaf traffic-profile {
           type traffic-profile-ref;
@@ -1953,15 +1898,15 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                  and provide service-to-service aggregation
                  at the ingress node or relay node.";
               uses service-sub-layer-ref;
-            }
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 35]
+Geng, et al.              Expires May 20, 2021                 [Page 34]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
+            }
             container forwarding {
               description
                 "This service sub-layer is related to
@@ -2000,7 +1945,6 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                  flow when the incoming type is service or
                  forwarding.  The service sub-layer swaps the service
                  label when the operation type is service-relay.";
-              uses detnet-flow-spec;
               list service-outgoing-list {
                 key "service-outgoing-index";
                 description
@@ -2013,13 +1957,13 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 36]
+Geng, et al.              Expires May 20, 2021                 [Page 35]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
                 uses detnet-header;
-                list forwarding-sub-layer {
+                list next-layer {
                   key "index";
                   description
                     "list of the forwarding-sub-layer
@@ -2069,7 +2013,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 37]
+Geng, et al.              Expires May 20, 2021                 [Page 36]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -2125,7 +2069,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 38]
+Geng, et al.              Expires May 20, 2021                 [Page 37]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -2181,7 +2125,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 39]
+Geng, et al.              Expires May 20, 2021                 [Page 38]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -2237,7 +2181,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 40]
+Geng, et al.              Expires May 20, 2021                 [Page 39]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -2293,7 +2237,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 41]
+Geng, et al.              Expires May 20, 2021                 [Page 40]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -2349,7 +2293,7 @@ A.1.  Example JSON Configuration
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 42]
+Geng, et al.              Expires May 20, 2021                 [Page 41]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -2405,7 +2349,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 43]
+Geng, et al.              Expires May 20, 2021                 [Page 42]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -2461,7 +2405,7 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 44]
+Geng, et al.              Expires May 20, 2021                 [Page 43]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
@@ -2517,14 +2461,20 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
 
-Geng, et al.              Expires May 16, 2021                 [Page 45]
+Geng, et al.              Expires May 20, 2021                 [Page 44]
 
 Internet-Draft          draft-ietf-detnet-yang-09          November 2020
 
 
                          }
                        ]
-                     }
+                     },
+                     "next-layer": [
+                       {
+                         "index": 0,
+                         "forwarding-sub-layer": "fsl-1"
+                       }
+                     ]
                    }
                  ]
                }
@@ -2564,20 +2514,20 @@ A.2.  Example XML Config: Aggregation using a Forwarding Sublayer
   xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"
   xmlns:ia="urn:ietf:params:xml:ns:yang:iana-if-type">
     <interface>
+
+
+
+Geng, et al.              Expires May 20, 2021                 [Page 45]
+
+Internet-Draft          draft-ietf-detnet-yang-09          November 2020
+
+
       <name>eth0</name>
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
          <discontinuity-time>2020-10-02T23:59:00Z</discontinuity-time>
       </statistics>
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 46]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
-
     </interface>
     <interface>
       <name>eth1</name>
@@ -2620,20 +2570,20 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
       <app-flow-bidir-congruent>false</app-flow-bidir-congruent>
       <outgoing-service>ssl-1</outgoing-service>
        <traffic-profile>1</traffic-profile>
+
+
+
+Geng, et al.              Expires May 20, 2021                 [Page 46]
+
+Internet-Draft          draft-ietf-detnet-yang-09          November 2020
+
+
       <ingress>
         <interface>eth0</interface>
         <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
         <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
       </ingress>
     </app-flow>
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 47]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
-
     <app-flow>
       <name>app-2</name>
       <app-flow-bidir-congruent>false</app-flow-bidir-congruent>
@@ -2676,20 +2626,20 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
     <profile-name>3</profile-name>
     <traffic-specification>
       <interval>5</interval>
+
+
+
+Geng, et al.              Expires May 20, 2021                 [Page 47]
+
+Internet-Draft          draft-ietf-detnet-yang-09          November 2020
+
+
       <max-packets-per-interval>10</max-packets-per-interval>
       <max-payload-size>1500</max-payload-size>
     </traffic-specification>
     <member-forwarding-sublayers>afl-1</member-forwarding-sublayers>
   </traffic-profile>
   <service-sub-layer>
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 48]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
-
     <service-sub-layer-list>
       <name>ssl-1</name>
       <service-rank>10</service-rank>
@@ -2732,20 +2682,20 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
         service-initiation
       </service-operation-type>
       <service-protection>
+
+
+
+Geng, et al.              Expires May 20, 2021                 [Page 48]
+
+Internet-Draft          draft-ietf-detnet-yang-09          November 2020
+
+
         <service-protection-type>none</service-protection-type>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming-type>
         <app-flow>
           <flow-list>app-2</flow-list>
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 49]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
-
         </app-flow>
       </incoming-type>
       <outgoing-type>
@@ -2788,19 +2738,20 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
           <entry>
             <id>0</id>
             <label>10000</label>
+
+
+
+Geng, et al.              Expires May 20, 2021                 [Page 49]
+
+Internet-Draft          draft-ietf-detnet-yang-09          November 2020
+
+
           </entry>
         </mpls-label-stack>
       </outgoing-type>
     </forwarding-sub-layer-list>
     </forwarding-sub-layer>
 </detnet>
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 50]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
 
                 Figure 2: Example DetNet XML configuration
 
@@ -2843,6 +2794,14 @@ A.3.  Example JSON Service Aggregation Configuration
          },
          {
            "name": "eth4",
+
+
+
+Geng, et al.              Expires May 20, 2021                 [Page 50]
+
+Internet-Draft          draft-ietf-detnet-yang-09          November 2020
+
+
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
            "statistics": {
@@ -2850,14 +2809,6 @@ A.3.  Example JSON Service Aggregation Configuration
            }
          }
        ]
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 51]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
-
      },
      "ietf-detnet:detnet": {
        "app-flows": {
@@ -2899,6 +2850,14 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
            },
            "member-applications": [
              "app-1",
+
+
+
+Geng, et al.              Expires May 20, 2021                 [Page 51]
+
+Internet-Draft          draft-ietf-detnet-yang-09          November 2020
+
+
              "app-2"
            ]
          },
@@ -2906,14 +2865,6 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
            "profile-name": "2",
            "traffic-requirements": {
              "min-bandwidth": "100000000",
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 52]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
-
              "max-latency": 100000000,
              "max-latency-variation": 200000000,
              "max-loss": 2,
@@ -2955,6 +2906,14 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                  ]
                }
              },
+
+
+
+Geng, et al.              Expires May 20, 2021                 [Page 52]
+
+Internet-Draft          draft-ietf-detnet-yang-09          November 2020
+
+
              "outgoing-type": {
                "service-sub-layer": {
                  "aggregation-service-sub-layer": "asl-1",
@@ -2962,14 +2921,6 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                    "mpls-label-stack": {
                      "entry": [
                        {
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 53]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
-
                          "id": 0,
                          "label": 102
                        }
@@ -3011,6 +2962,14 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                }
              }
            },
+
+
+
+Geng, et al.              Expires May 20, 2021                 [Page 53]
+
+Internet-Draft          draft-ietf-detnet-yang-09          November 2020
+
+
            {
              "name": "asl-1",
              "service-rank": 10,
@@ -3018,14 +2977,6 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                "service-protection-type": "none",
                "sequence-number-length": "long-sn"
              },
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 54]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
-
              "incoming-type": {
                "service": {
                  "service-sub-layer": [
@@ -3046,7 +2997,13 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
                            "label": 1000
                          }
                        ]
-                     }
+                     },
+                     "next-layer": [
+                       {
+                         "index": 0,
+                         "forwarding-sub-layer": "afl-1"
+                       }
+                     ]
                    }
                  ]
                }
@@ -3061,6 +3018,14 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
              "traffic-profile": "3",
              "forwarding-operation-type": "impose-and-forward",
              "outgoing-type": {
+
+
+
+Geng, et al.              Expires May 20, 2021                 [Page 54]
+
+Internet-Draft          draft-ietf-detnet-yang-09          November 2020
+
+
                "interface": {
                  "outgoing-interface": "eth2"
                }
@@ -3072,15 +3037,6 @@ Internet-Draft          draft-ietf-detnet-yang-09          November 2020
    }
 
              Figure 3: Example DetNet JSON Service Aggregation
-
-
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 55]
-
-Internet-Draft          draft-ietf-detnet-yang-09          November 2020
-
 
 Authors' Addresses
 
@@ -3109,9 +3065,9 @@ Authors' Addresses
 
 
    Reshad Rahman
-   Cisco Systems
+   Individual
 
-   Email: rrahman@cisco.com
+   Email: reshad@yahoo.com
 
 
    Zhenqiang Li
@@ -3121,16 +3077,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-Geng, et al.              Expires May 16, 2021                 [Page 56]
+Geng, et al.              Expires May 20, 2021                 [Page 55]

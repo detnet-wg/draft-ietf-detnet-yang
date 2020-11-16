@@ -452,7 +452,7 @@ module ietf-detnet{
         "draft-ietf-detnet-flow-information-model Section 4.1";
       leaf interval {
         type uint32;
-	units microseconds;
+        units microseconds;
         description
           "The period of time in which the traffic
            specification cannot be exceeded.";
@@ -495,7 +495,7 @@ module ietf-detnet{
         "draft-ietf-detnet-flow-information-model Section 4.2";
       leaf min-bandwidth {
         type uint64;
-	units bytes-per-second;
+        units bytes-per-second;
         description
           "MinBandwidth is the minimum bandwidth that has to be
            guaranteed for the DetNet service.  MinBandwidth is
@@ -503,7 +503,7 @@ module ietf-detnet{
       }
       leaf max-latency {
         type uint32;
-	units microseconds;
+        units microseconds;
         description
           "MaxLatency is the maximum latency from Ingress to Egress(es)
            for a single packet of the DetNet flow.  MaxLatency is
@@ -525,7 +525,7 @@ module ietf-detnet{
       }
       leaf max-consecutive-loss-tolerance {
         type uint32;
-	units packets;
+        units packets;
         description
           "Some applications have special loss requirement, such as
            MaxConsecutiveLossTolerance.  The maximum consecutive loss
@@ -536,7 +536,7 @@ module ietf-detnet{
       }
       leaf max-misordering {
         type uint32;
-	units packets; 
+        units packets; 
         description
           "MaxMisordering describes the tolerable maximum number of
            packets that can be received out of order.  The maximum
@@ -615,7 +615,8 @@ module ietf-detnet{
     choice header-type {
       case detnet-mpls-header {
         description
-          "MPLS label stack for DetNet MPLS encapsulation or forwarding";
+          "MPLS label stack for DetNet MPLS encapsulation or 
+           forwarding";
         uses rt-types:mpls-label-stack;
       }
       case detnet-ip-header {
@@ -937,7 +938,7 @@ module ietf-detnet{
             type sequence-number-field;
             description
               "Sequence number field length can be one of 0 (none), 
-	       16 bits or 28 bits.";
+               16 bits or 28 bits.";
           }
         }
         leaf service-operation-type {
@@ -1004,7 +1005,6 @@ module ietf-detnet{
                  flow when the incoming type is service or
                  forwarding.  The service sub-layer swaps the service
                  label when the operation type is service-relay.";
-              uses detnet-flow-spec;
               list service-outgoing-list {
                 key "service-outgoing-index";
                 description
@@ -1015,7 +1015,7 @@ module ietf-detnet{
                   type uint8;
                 }
                 uses detnet-header;
-                list forwarding-sub-layer {
+                list next-layer {
                   key "index";
                   description
                     "list of the forwarding-sub-layer
