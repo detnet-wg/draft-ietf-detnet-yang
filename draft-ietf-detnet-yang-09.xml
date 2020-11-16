@@ -107,7 +107,7 @@
     </author>
 
     <author fullname="Reshad Rahman" initials="R." surname="Rahman">
-      <organization>Cisco Systems</organization>
+      <organization>Individual</organization>
 
       <address>
         <postal>
@@ -126,7 +126,7 @@
 
         <facsimile/>
 
-        <email>rrahman@cisco.com</email>
+        <email>reshad@yahoo.com</email>
 
         <uri/>
       </address>
@@ -546,52 +546,6 @@ module: ietf-detnet
      |        +--rw (outgoing-type)
      |           +--:(forwarding-sub-layer)
      |           |  +--rw forwarding-sub-layer
-     |           |     +--rw (detnet-flow-type)?
-     |           |     |  +--:(ip-detnet-flow)
-     |           |     |  |  +--rw src-ip-prefix?
-     |           |     |  |  |       inet:ip-prefix
-     |           |     |  |  +--rw dest-ip-prefix?
-     |           |     |  |  |       inet:ip-prefix
-     |           |     |  |  +--rw next-header?              uint8
-     |           |     |  |  +--rw traffic-class?            uint8
-     |           |     |  |  +--rw flow-label?
-     |           |     |  |  |       inet:ipv6-flow-label
-     |           |     |  |  +--rw source-port
-     |           |     |  |  |  +--rw (port-range-or-operator)?
-     |           |     |  |  |     +--:(range)
-     |           |     |  |  |     |  +--rw lower-port
-     |           |     |  |  |     |  |       inet:port-number
-     |           |     |  |  |     |  +--rw upper-port
-     |           |     |  |  |     |          inet:port-number
-     |           |     |  |  |     +--:(operator)
-     |           |     |  |  |        +--rw operator?     operator
-     |           |     |  |  |        +--rw port
-     |           |     |  |  |                inet:port-number
-     |           |     |  |  +--rw destination-port
-     |           |     |  |  |  +--rw (port-range-or-operator)?
-     |           |     |  |  |     +--:(range)
-     |           |     |  |  |     |  +--rw lower-port
-     |           |     |  |  |     |  |       inet:port-number
-     |           |     |  |  |     |  +--rw upper-port
-     |           |     |  |  |     |          inet:port-number
-     |           |     |  |  |     +--:(operator)
-     |           |     |  |  |        +--rw operator?     operator
-     |           |     |  |  |        +--rw port
-     |           |     |  |  |                inet:port-number
-     |           |     |  |  +--rw ipsec-spi?                ipsec-spi
-     |           |     |  +--:(mpls-detnet-flow)
-     |           |     |     +--rw (label-space)?
-     |           |     |        +--:(context-label-space)
-     |           |     |        |  +--rw mpls-label-stack
-     |           |     |        |     +--rw entry* [id]
-     |           |     |        |        +--rw id               uint8
-     |           |     |        |        +--rw label?
-     |           |     |        |        |       rt-types:mpls-label
-     |           |     |        |        +--rw ttl?             uint8
-     |           |     |        |        +--rw traffic-class?   uint8
-     |           |     |        +--:(platform-label-space)
-     |           |     |           +--rw label?
-     |           |     |                   rt-types:mpls-label
      |           |     +--rw service-outgoing-list*
      |           |             [service-outgoing-index]
      |           |        +--rw service-outgoing-index    uint8
@@ -617,7 +571,7 @@ module: ietf-detnet
      |           |        |     |       inet:port-number
      |           |        |     +--rw destination-port?
      |           |        |             inet:port-number
-     |           |        +--rw forwarding-sub-layer* [index]
+     |           |        +--rw next-layer* [index]
      |           |           +--rw index                   uint8
      |           |           +--rw forwarding-sub-layer?
      |           |                   forwarding-sub-layer-ref
@@ -758,7 +712,7 @@ module: ietf-detnet
                  |                    |     |  +--rw next-hop-address?
                  |                    |     |          inet:ip-address
                  |                    |     +--:(mpls-over-ip-
-                 |                    |        |encapsulation)
+                 |                    |        | encapsulation)
                  |                    |        +--rw src-ip-address?
                  |                    |        |       inet:ip-address
                  |                    |        +--rw dest-ip-address?
@@ -1424,7 +1378,7 @@ module ietf-detnet{
   grouping forwarding-sub-layer-ref {
     description
       "incoming or outgoing forwarding sub-layer reference group";
-    leaf-list fo:rwarding-sub-layer {
+    leaf-list forwarding-sub-layer {
       type forwarding-sub-layer-ref;
       description
         "List of incoming or outgoing forwarding sub-layers
@@ -1438,8 +1392,8 @@ module ietf-detnet{
     choice header-type {
       case detnet-mpls-header {
         description
-          "MPLS label stack for DetNet MPLS encapsulation or 
-           forwarding";
+        "MPLS label stack for DetNet MPLS encapsulation or 
+         forwarding";
         uses rt-types:mpls-label-stack;
       }
       case detnet-ip-header {
@@ -1828,7 +1782,6 @@ module ietf-detnet{
                  flow when the incoming type is service or
                  forwarding.  The service sub-layer swaps the service
                  label when the operation type is service-relay.";
-              uses detnet-flow-spec;
               list service-outgoing-list {
                 key "service-outgoing-index";
                 description
@@ -1839,7 +1792,7 @@ module ietf-detnet{
                   type uint8;
                 }
                 uses detnet-header;
-                list forwarding-sub-layer {
+                list next-layer {
                   key "index";
                   description
                     "list of the forwarding-sub-layer
@@ -2267,7 +2220,13 @@ module ietf-detnet{
                         "label": 100
                       }
                     ]
-                  }
+                  },
+                  "next-layer": [
+                    {
+                      "index": 0,
+                      "forwarding-sub-layer": "fsl-1"
+                    }
+                  ]
                 }
               ]
             }
@@ -2719,7 +2678,13 @@ anchor="example-detnet-xml-service-aggregation"><artwork><![CDATA[
                         "label": 1000
                       }
                     ]
-                  }
+                  },
+                  "next-layer": [
+                    {
+                      "index": 0,
+                      "forwarding-sub-layer": "afl-1"
+                    }
+                  ]
                 }
               ]
             }
