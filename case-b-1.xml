@@ -6,7 +6,7 @@
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-         <discontinuity-time>2020-10-02T23:59:00Z</discontinuity-time>
+         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
     <interface>
@@ -14,7 +14,7 @@
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-         <discontinuity-time>2020-10-02T23:59:00Z</discontinuity-time>
+         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
     <interface>
@@ -22,7 +22,7 @@
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-         <discontinuity-time>2020-10-02T23:59:00Z</discontinuity-time>
+         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
     <interface>
@@ -30,7 +30,7 @@
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-         <discontinuity-time>2020-10-02T23:59:00Z</discontinuity-time>
+         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
     <interface>
@@ -38,7 +38,7 @@
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-         <discontinuity-time>2020-10-02T23:59:00Z</discontinuity-time>
+         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
   </interfaces>
@@ -54,6 +54,7 @@
         <interface>eth0</interface>
         <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
         <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
+        <dscp>6</dscp>
       </ingress>
     </app-flow>
     <app-flow>
@@ -65,6 +66,7 @@
         <interface>eth1</interface>
         <src-ip-prefix>1.1.1.2/32</src-ip-prefix>
         <dest-ip-prefix>8.8.8.9/32</dest-ip-prefix>
+        <dscp>7</dscp>
       </ingress>
     </app-flow>
   </app-flows>
@@ -114,12 +116,9 @@
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming-type>
-        <app-flow>
-          <flow-list>app-1</flow-list>
-	</app-flow>
+          <app-flow-list>app-1</app-flow-list>
       </incoming-type>
       <outgoing-type>
-        <forwarding-sub-layer>
           <service-outgoing-list>
             <service-outgoing-index>0</service-outgoing-index>
             <mpls-label-stack>
@@ -133,7 +132,6 @@
               <forwarding-sub-layer>afl-1</forwarding-sub-layer>
             </next-layer>
           </service-outgoing-list>
-	</forwarding-sub-layer>
       </outgoing-type>
     </service-sub-layer-list>
     <service-sub-layer-list>
@@ -146,12 +144,9 @@
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming-type>
-        <app-flow>
-          <flow-list>app-2</flow-list>
-	</app-flow>
+          <app-flow-list>app-2</app-flow-list>
       </incoming-type>
       <outgoing-type>
-        <forwarding-sub-layer>
           <service-outgoing-list>
             <service-outgoing-index>0</service-outgoing-index>
             <mpls-label-stack>
@@ -165,7 +160,6 @@
               <forwarding-sub-layer>afl-1</forwarding-sub-layer>
             </next-layer>
           </service-outgoing-list>
-	</forwarding-sub-layer>
       </outgoing-type>
     </service-sub-layer-list>
     </service-sub-layer>  
@@ -175,21 +169,17 @@
       <traffic-profile>3</traffic-profile>
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
       <incoming-type>
-	<service-sub-layer>
           <sub-layer-list>ssl-1</sub-layer-list>
           <sub-layer-list>ssl-2</sub-layer-list>
-	</service-sub-layer>
       </incoming-type>
       <outgoing-type>
-	<interface>
-        <mpls-label-stack>
-          <entry>
-            <id>0</id>
-            <label>10000</label>
-          </entry>
-        </mpls-label-stack>
           <outgoing-interface>eth2</outgoing-interface>
-	</interface>
+          <mpls-label-stack>
+            <entry>
+              <id>0</id>
+              <label>10000</label>
+            </entry>
+          </mpls-label-stack>
       </outgoing-type>
     </forwarding-sub-layer-list>
     </forwarding-sub-layer>
