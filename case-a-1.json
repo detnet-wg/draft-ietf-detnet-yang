@@ -1,0 +1,201 @@
+{
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T23:59:00Z"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T23:59:00Z"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T23:59:00Z"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T23:59:00Z"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T23:59:00Z"
+        }
+      }
+    ]
+  },
+  "ietf-detnet:detnet": {
+    "app-flows": {
+      "app-flow": [
+        {
+          "name": "app-0",
+          "app-flow-bidir-congruent": false,
+          "outgoing-service": "ssl-1",
+          "traffic-profile": "pf-1",
+          "ingress": {
+            "app-flow-status": "ready",
+            "interface": "eth0",
+            "src-ip-prefix": "1.1.1.1/32",
+            "dest-ip-prefix": "8.8.8.8/32",
+            "dscp": 6
+          }
+        },
+        {
+          "name": "app-1",
+          "app-flow-bidir-congruent": false,
+          "outgoing-service": "ssl-1",
+          "traffic-profile": "pf-1",
+          "ingress": {
+            "app-flow-status": "ready",
+            "interface": "eth0",
+            "src-ip-prefix": "1.1.1.1/32",
+            "dest-ip-prefix": "8.8.8.8/32",
+            "dscp": 7
+          }
+        }
+      ]
+    },
+    "traffic-profile": [
+      {
+        "profile-name": "pf-1",
+        "traffic-requirements": {
+          "min-bandwidth": "100000000",
+          "max-latency": 100000000,
+          "max-latency-variation": 200000000,
+          "max-loss": 2,
+          "max-consecutive-loss-tolerance": 5,
+          "max-misordering": 0
+        },
+        "traffic-specification": {
+          "interval": 5,
+          "max-packets-per-interval": 10,
+          "max-payload-size": 1500,
+          "average-packets-per-interval": 5,
+          "average-payload-size": 1000
+        },
+        "member-applications": [
+          "app-0",
+          "app-1"
+        ]
+      },
+      {
+        "profile-name": "pf-2",
+        "traffic-requirements": {
+          "min-bandwidth": "200000000",
+          "max-latency": 100000000,
+          "max-latency-variation": 200000000,
+          "max-loss": 2,
+          "max-consecutive-loss-tolerance": 5,
+          "max-misordering": 0
+        },
+        "traffic-specification": {
+          "interval": 5,
+          "max-packets-per-interval": 10,
+          "max-payload-size": 1500,
+          "average-packets-per-interval": 5,
+          "average-payload-size": 1000
+        },
+        "member-services": [
+          "ssl-1"
+        ]
+      },
+      {
+        "profile-name": "pf-3",
+        "traffic-specification": {
+          "interval": 5,
+          "max-packets-per-interval": 10,
+          "max-payload-size": 1500
+        },
+        "member-forwarding-sublayers": [
+          "fsl-1"
+        ]
+      }
+    ],
+    "service-sub-layer": {
+      "service-sub-layer-list": [
+        {
+          "name": "ssl-1",
+          "service-rank": 10,
+          "traffic-profile": "pf-2",
+          "service-operation-type": "service-initiation",
+          "service-protection": {
+            "service-protection-type": "none",
+            "sequence-number-length": "long-sn"
+          },
+          "incoming-type": {
+            "app-flow-list": [
+              "app-0",
+              "app-1"
+            ]
+          },
+          "outgoing-type": {
+            "service-outgoing-list": [
+              {
+                "service-outgoing-index": 0,
+                "mpls-label-stack": {
+                  "entry": [
+                    {
+                      "id": 0,
+                      "label": 100
+                    }
+                  ]
+                },
+                "next-layer": [
+                  {
+                    "index": 0,
+                    "forwarding-sub-layer": "fsl-1"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "forwarding-sub-layer": {
+      "forwarding-sub-layer-list": [
+        {
+          "name": "fsl-1",
+          "traffic-profile": "pf-3",
+          "forwarding-operation-type": "impose-and-forward",
+          "incoming-type": {
+            "sub-layer-list": [
+              "ssl-1"
+            ]
+          },
+          "outgoing-type": {
+            "outgoing-interface": "eth2",
+            "mpls-label-stack": {
+              "entry": [
+                {
+                  "id": 0,
+                  "label": 10000
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
