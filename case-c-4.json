@@ -1,0 +1,321 @@
+{
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0"
+      },
+      {
+        "name": "eth1"
+      },
+      {
+        "name": "eth2"
+      },
+      {
+        "name": "eth3"
+      },
+      {
+        "name": "eth4"
+      }
+    ]
+  },
+  "ietf-detnet:detnet": {
+    "traffic-profile": [
+      {
+        "profile-name": "pf-1",
+        "traffic-requirements": {
+          "min-bandwidth": "100000000",
+          "max-latency": 100000000,
+          "max-latency-variation": 100000000,
+          "max-loss": 2,
+          "max-consecutive-loss-tolerance": 5,
+          "max-misordering": 0
+        },
+        "member-services": [
+          "ssl-1",
+          "ssl-2"
+        ]
+      },
+      {
+        "profile-name": "pf-2",
+        "traffic-requirements": {
+          "min-bandwidth": "200000000",
+          "max-latency": 100000000,
+          "max-latency-variation": 100000000,
+          "max-loss": 2,
+          "max-consecutive-loss-tolerance": 5,
+          "max-misordering": 0
+        },
+        "member-services": [
+          "asl-1"
+        ]
+      },
+      {
+        "profile-name": "pf-3",
+        "traffic-specification": {
+          "interval": 125,
+          "max-packets-per-interval": 1,
+          "max-payload-size": 1518
+        },
+        "member-forwarding-sublayers": [
+          "fsl-1",
+          "fsl-2",
+          "fsl-3",
+          "fsl-4"
+        ]
+      },
+      {
+        "profile-name": "pf-4",
+        "traffic-specification": {
+          "interval": 125,
+          "max-packets-per-interval": 2,
+          "max-payload-size": 1518
+        },
+        "member-forwarding-sublayers": [
+          "fsl-5",
+          "fsl-6"
+        ]
+      }
+    ],
+    "service-sub-layer": {
+      "service-sub-layer-list": [
+        {
+          "name": "ssl-1",
+          "service-rank": 10,
+          "traffic-profile": "pf-1",
+          "service-protection": {
+            "service-protection-type": "none",
+            "sequence-number-length": "long-sn"
+          },
+          "service-operation-type": "service-relay",
+          "incoming-type": {
+            "mpls-label-stack": {
+              "entry": [
+                {
+                  "id": 0,
+                  "label": 100
+                }
+              ]
+            }
+          },
+          "outgoing-type": {
+            "service-outgoing-list": [
+              {
+                "service-outgoing-index": 0,
+                "mpls-label-stack": {
+                  "entry": [
+                    {
+                      "id": 0,
+                      "label": 101
+                    }
+                  ]
+                },
+                "next-layer": [
+                  {
+                    "index": 0,
+                    "forwarding-sub-layer": "fsl-3"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "ssl-2",
+          "service-rank": 10,
+          "traffic-profile": "pf-1",
+          "service-protection": {
+            "service-protection-type": "none",
+            "sequence-number-length": "long-sn"
+          },
+          "service-operation-type": "service-relay",
+          "incoming-type": {
+            "mpls-label-stack": {
+              "entry": [
+                {
+                  "id": 0,
+                  "label": 103
+                }
+              ]
+            }
+          },
+          "outgoing-type": {
+            "service-outgoing-list": [
+              {
+                "service-outgoing-index": 0,
+                "mpls-label-stack": {
+                  "entry": [
+                    {
+                      "id": 0,
+                      "label": 104
+                    }
+                  ]
+                },
+                "next-layer": [
+                  {
+                    "index": 0,
+                    "forwarding-sub-layer": "fsl-4"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "asl-1",
+          "service-rank": 10,
+          "traffic-profile": "pf-2",
+          "service-protection": {
+            "service-protection-type": "replication",
+            "sequence-number-length": "long-sn"
+          },
+          "service-operation-type": "service-initiation",
+          "incoming-type": {
+            "forwarding-sub-layer": [
+              "fsl-3",
+              "fsl-4"
+            ]
+          },
+          "outgoing-type": {
+            "service-outgoing-list": [
+              {
+                "service-outgoing-index": 0,
+                "mpls-label-stack": {
+                  "entry": [
+                    {
+                      "id": 0,
+                      "label": 1000
+                    }
+                  ]
+                },
+                "next-layer": [
+                  {
+                    "index": 0,
+                    "forwarding-sub-layer": "fsl-5"
+                  },
+                  {
+                    "index": 1,
+                    "forwarding-sub-layer": "fsl-6"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "forwarding-sub-layer": {
+      "forwarding-sub-layer-list": [
+        {
+          "name": "fsl-1",
+          "traffic-profile": "pf-2",
+          "forwarding-operation-type": "pop-and-lookup",
+          "incoming-type": {
+            "interface": "eth0",
+            "mpls-label-stack": {
+              "entry": [
+                {
+                  "id": 0,
+                  "label": 10000
+                }
+              ]
+            }
+          },
+          "outgoing-type": {
+            "service-sub-layer": [
+              "ssl-1"
+            ]
+          }
+        },
+        {
+          "name": "fsl-2",
+          "traffic-profile": "pf-2",
+          "forwarding-operation-type": "pop-and-lookup",
+          "incoming-type": {
+            "interface": "eth1",
+            "mpls-label-stack": {
+              "entry": [
+                {
+                  "id": 0,
+                  "label": 10006
+                }
+              ]
+            }
+          },
+          "outgoing-type": {
+            "service-sub-layer": [
+              "ssl-2"
+            ]
+          }
+        },
+        {
+          "name": "fsl-3",
+          "traffic-profile": "pf-2",
+          "forwarding-operation-type": "impose-and-forward",
+          "incoming-type": {
+            "sub-layer-list": [
+              "ssl-1"
+            ]
+          },
+          "outgoing-type": {
+            "aggregation-service-sub-layer": "asl-1"
+          }
+        },
+        {
+          "name": "fsl-4",
+          "traffic-profile": "pf-2",
+          "forwarding-operation-type": "impose-and-forward",
+          "incoming-type": {
+            "sub-layer-list": [
+              "ssl-2"
+            ]
+          },
+          "outgoing-type": {
+            "aggregation-service-sub-layer": "asl-1"
+          }
+        },
+        {
+          "name": "fsl-5",
+          "traffic-profile": "pf-3",
+          "forwarding-operation-type": "impose-and-forward",
+          "incoming-type": {
+            "sub-layer-list": [
+              "asl-1"
+            ]
+          },
+          "outgoing-type": {
+            "outgoing-interface": "eth2",
+            "mpls-label-stack": {
+              "entry": [
+                {
+                  "id": 0,
+                  "label": 20000
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "fsl-6",
+          "traffic-profile": "pf-3",
+          "forwarding-operation-type": "impose-and-forward",
+          "incoming-type": {
+            "sub-layer-list": [
+              "asl-1"
+            ]
+          },
+          "outgoing-type": {
+            "outgoing-interface": "eth3",
+            "mpls-label-stack": {
+              "entry": [
+                {
+                  "id": 0,
+                  "label": 20001
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
