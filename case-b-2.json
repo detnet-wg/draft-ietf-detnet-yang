@@ -52,9 +52,7 @@
           "outgoing-service": "ssl-1",
           "traffic-profile": "1",
           "ingress": {
-            "interface": "eth0",
-            "src-ip-prefix": "1.1.1.1/32",
-            "dest-ip-prefix": "8.8.8.8/32"
+            "interface": "eth0"
           }
         },
         {
@@ -63,9 +61,7 @@
           "outgoing-service": "ssl-2",
           "traffic-profile": "1",
           "ingress": {
-            "interface": "eth1",
-            "src-ip-prefix": "1.1.1.2/32",
-            "dest-ip-prefix": "8.8.8.9/32"
+            "interface": "eth1"
           }
         }
       ]
@@ -125,20 +121,24 @@
           },
           "service-operation-type": "service-initiation",
           "incoming-type": {
-            "app-flow-list": [
-              "app-1"
-            ]
+            "app-flow": {
+              "app-flow-list": [
+                "app-1"
+              ]
+            }
           },
           "outgoing-type": {
-            "aggregation-service-sub-layer": "asl-1",
-            "service-label": {
-              "mpls-label-stack": {
-                "entry": [
-                  {
-                    "id": 0,
-                    "label": 102
-                  }
-                ]
+            "service-sub-layer": {
+              "aggregation-service-sub-layer": "asl-1",
+              "service-label": {
+                "mpls-label-stack": {
+                  "entry": [
+                    {
+                      "id": 0,
+                      "label": 102
+                    }
+                  ]
+                }
               }
             }
           }
@@ -153,20 +153,24 @@
             "sequence-number-length": "long-sn"
           },
           "incoming-type": {
-            "app-flow-list": [
-              "app-2"
-            ]
+            "app-flow": {
+              "app-flow-list": [
+                "app-2"
+              ]
+            }
           },
           "outgoing-type": {
-            "aggregation-service-sub-layer": "asl-1",
-            "service-label": {
-              "mpls-label-stack": {
-                "entry": [
-                  {
-                    "id": 0,
-                    "label": 105
-                  }
-                ]
+            "service-sub-layer": {
+              "aggregation-service-sub-layer": "asl-1",
+              "service-label": {
+                "mpls-label-stack": {
+                  "entry": [
+                    {
+                      "id": 0,
+                      "label": 105
+                    }
+                  ]
+                }
               }
             }
           }
@@ -179,31 +183,35 @@
             "sequence-number-length": "long-sn"
           },
           "incoming-type": {
-            "service-sub-layer": [
-              "ssl-1",
-              "ssl-2"
-            ]
+            "service-sub-layer-service": {
+              "service-sub-layer": [
+                "ssl-1",
+                "ssl-2"
+              ]
+            }
           },
           "outgoing-type": {
-            "service-outgoing-list": [
-              {
-                "service-outgoing-index": 0,
-                "mpls-label-stack": {
-                  "entry": [
+            "forwarding-sub-layer": {
+              "service-outgoing-list": [
+                {
+                  "service-outgoing-index": 0,
+                  "mpls-label-stack": {
+                    "entry": [
+                      {
+                        "id": 0,
+                        "label": 1000
+                      }
+                    ]
+                  },
+                  "next-layer": [
                     {
-                      "id": 0,
-                      "label": 1000
+                      "index": 0,
+                      "forwarding-sub-layer": "afl-1"
                     }
                   ]
-                },
-                "next-layer": [
-                  {
-                    "index": 0,
-                    "forwarding-sub-layer": "afl-1"
-                  }
-                ]
-              }
-            ]
+                }
+              ]
+            }
           }
         }
       ]
@@ -215,23 +223,231 @@
           "traffic-profile": "3",
           "forwarding-operation-type": "impose-and-forward",
           "incoming-type": {
-            "sub-layer-list": [
-              "asl-1"
-            ]
+            "service-sub-layer": {
+              "sub-layer-list": [
+                "asl-1"
+              ]
+            }
           },
           "outgoing-type": {
-            "outgoing-interface": "eth2",
-            "mpls-label-stack": {
-              "entry": [
-                {
-                  "id": 0,
-                  "label": 20000
-                }
-              ]
+            "interface": {
+              "outgoing-interface": "eth2",
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": 20000
+                  }
+                ]
+              }
             }
           }
         }
       ]
     }
+  },
+  "ietf-yang-library:yang-library": {
+    "module-set": [
+      {
+        "name": "complete",
+        "import-only-module": [
+          {
+            "name": "ietf-yang-metadata",
+            "revision": "2016-08-05",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-metadata"
+          },
+          {
+            "name": "ietf-inet-types",
+            "revision": "2013-07-15",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+            "location": [
+              "file:///home/don/yangRepo/ietf-inet-types@2013-07-15.yang"
+            ]
+          },
+          {
+            "name": "ietf-yang-types",
+            "revision": "2013-07-15",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+            "location": [
+              "file:///home/don/yangRepo/ietf-yang-types@2013-07-15.yang"
+            ]
+          },
+          {
+            "name": "ietf-datastores",
+            "revision": "2018-02-14",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-datastores"
+          },
+          {
+            "name": "ietf-ethertypes",
+            "revision": "2019-03-04",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-ethertypes",
+            "location": [
+              "file:///home/don/yangRepo/ietf-ethertypes@2019-03-04.yang"
+            ]
+          },
+          {
+            "name": "ietf-routing-types",
+            "revision": "2017-12-04",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-types",
+            "location": [
+              "file:///home/don/yangRepo/ietf-routing-types@2017-12-04.yang"
+            ]
+          },
+          {
+            "name": "ietf-packet-fields",
+            "revision": "2019-03-04",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
+            "location": [
+              "file:///home/don/yangRepo/ietf-packet-fields@2019-03-04.yang"
+            ]
+          },
+          {
+            "name": "ieee802-dot1q-types",
+            "revision": "2018-03-07",
+            "namespace": "urn:ieee:std:802.1Q:yang:ieee802-dot1q-types",
+            "location": [
+              "file:///home/don/yangRepo/ieee802-dot1q-types.yang"
+            ]
+          }
+        ],
+        "module": [
+          {
+            "name": "yang",
+            "revision": "2017-02-20",
+            "namespace": "urn:ietf:params:xml:ns:yang:1"
+          },
+          {
+            "name": "ietf-yang-library",
+            "revision": "2019-01-04",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library"
+          },
+          {
+            "name": "ietf-interfaces",
+            "revision": "2018-02-20",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+            "location": [
+              "file:///home/don/yangRepo/ietf-interfaces@2018-02-20.yang"
+            ]
+          },
+          {
+            "name": "iana-if-type",
+            "revision": "2017-01-19",
+            "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
+            "location": [
+              "file:///home/don/yangRepo/iana-if-type@2017-01-19.yang"
+            ]
+          },
+          {
+            "name": "ietf-detnet",
+            "revision": "2020-12-16",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-detnet",
+            "location": [
+              "file:///home/don/yangRepo/ietf-detnet.yang"
+            ]
+          }
+        ]
+      }
+    ],
+    "schema": [
+      {
+        "name": "complete",
+        "module-set": [
+          "complete"
+        ]
+      }
+    ],
+    "content-id": "14"
+  },
+  "ietf-yang-library:modules-state": {
+    "module": [
+      {
+        "name": "ietf-yang-metadata",
+        "revision": "2016-08-05",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-metadata",
+        "conformance-type": "import"
+      },
+      {
+        "name": "yang",
+        "revision": "2017-02-20",
+        "namespace": "urn:ietf:params:xml:ns:yang:1",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-inet-types",
+        "revision": "2013-07-15",
+        "schema": "file:///home/don/yangRepo/ietf-inet-types@2013-07-15.yang",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-yang-types",
+        "revision": "2013-07-15",
+        "schema": "file:///home/don/yangRepo/ietf-yang-types@2013-07-15.yang",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-datastores",
+        "revision": "2018-02-14",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-datastores",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-yang-library",
+        "revision": "2019-01-04",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-interfaces",
+        "revision": "2018-02-20",
+        "schema": "file:///home/don/yangRepo/ietf-interfaces@2018-02-20.yang",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "iana-if-type",
+        "revision": "2017-01-19",
+        "schema": "file:///home/don/yangRepo/iana-if-type@2017-01-19.yang",
+        "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-ethertypes",
+        "revision": "2019-03-04",
+        "schema": "file:///home/don/yangRepo/ietf-ethertypes@2019-03-04.yang",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-ethertypes",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-routing-types",
+        "revision": "2017-12-04",
+        "schema": "file:///home/don/yangRepo/ietf-routing-types@2017-12-04.yang",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-packet-fields",
+        "revision": "2019-03-04",
+        "schema": "file:///home/don/yangRepo/ietf-packet-fields@2019-03-04.yang",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ieee802-dot1q-types",
+        "revision": "2018-03-07",
+        "schema": "file:///home/don/yangRepo/ieee802-dot1q-types.yang",
+        "namespace": "urn:ieee:std:802.1Q:yang:ieee802-dot1q-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-detnet",
+        "revision": "2020-12-16",
+        "schema": "file:///home/don/yangRepo/ietf-detnet.yang",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-detnet",
+        "conformance-type": "implement"
+      }
+    ],
+    "module-set-id": "14"
   }
 }
