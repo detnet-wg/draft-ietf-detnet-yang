@@ -1027,7 +1027,7 @@ module ietf-detnet {
                  ingress aggregation at the ingress node.";
               uses app-flows-group;
             }
-            container service-sub-layer-service {
+            container service-sub-layer {
               description
                 "This service sub-layer is related to the service
                  sub-layer of the upper layer and provide
@@ -1035,7 +1035,7 @@ module ietf-detnet {
                  or relay node.";
               uses service-sub-layer-group;
             }
-            container forwarding-sub-layer-service {
+            container forwarding-sub-layer {
               description
                 "This service sub-layer is related to the forwarding
                  sub-layer of the upper layer and provide
@@ -1129,7 +1129,7 @@ module ietf-detnet {
                  service-termination.";
               uses app-flows-group;
             }
-            container service-sub-layer-service {
+            container service-disaggregation {
               description
                 "This service sub-layer is sent to the service
                  sub-layer of the upper layer for service-to-service
@@ -1140,7 +1140,7 @@ module ietf-detnet {
                  service-termination.";
               uses service-sub-layer-group;
             }
-            container forwarding-sub-layer-service {
+            container forwarding-disaggregation {
               description
                 "This service sub-layer is sent to the forwarding
                  sub-layer of the upper layer for
@@ -1195,7 +1195,7 @@ module ietf-detnet {
                   "List of the service-sublayers for aggregation.";
               }
             }
-            container service-sub-layer-service {
+            container forwarding-sub-layer {
               description
                 "This forwarding sub-layer is related to the
                  forwarding sub-layer of the upper layer and provide
@@ -1203,7 +1203,7 @@ module ietf-detnet {
                  node or relay node or transit node.";
               uses forwarding-sub-layer-group;
             }
-            container forwarding-sub-layer-service {
+            container forwarding-identification  {
               //case forwarding-identification {
               description
                 "This forwarding sub-layer is related to all of the
@@ -1237,7 +1237,7 @@ module ietf-detnet {
                  node or transit node.";
               uses detnet-forwarding-next-hop-content;
             }
-            container service-sub-layer {
+            container service-aggregation {
               description
                 "This forwarding sub-layer is sent to the service
                  sub-layers of the lower layer for
@@ -1250,7 +1250,7 @@ module ietf-detnet {
                 uses rt-types:mpls-label-stack;
               }
             }
-            container forwarding-sub-layer {
+            container forwarding-aggregation {
               description
                 "This forwarding sub-layer is sent to the forwarding
                  sub-layers of the lower layer for
@@ -1263,7 +1263,7 @@ module ietf-detnet {
                 uses rt-types:mpls-label-stack;
               }
             }
-            container service-sub-layer-service {
+            container service-sub-layer {
               description
                 "This forwarding sub-layer is sent to the service
                  sub-layer of the upper layer and decapsulate the
@@ -1273,7 +1273,7 @@ module ietf-detnet {
                  operation type is pop-and-lookup.";
               uses service-sub-layer-group;
             }
-            container forwarding-sub-layer-service {
+            container forwarding-sub-layer {
               description
                 "This forwarding sub-layer is sent to the forwarding
                  sub-layer of the upper layer and decapsulate the
