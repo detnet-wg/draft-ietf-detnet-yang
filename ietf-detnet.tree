@@ -139,12 +139,12 @@ module: ietf-detnet
      |     |     +--:(app-flow)
      |     |     |  +--rw app-flow
      |     |     |     +--rw app-flow-list*   app-flow-ref
-     |     |     +--:(service-sub-layer)
-     |     |     |  +--rw service-sub-layer
+     |     |     +--:(service-aggregation)
+     |     |     |  +--rw service-aggregation
      |     |     |     +--rw service-sub-layer*
      |     |     |             service-sub-layer-ref
-     |     |     +--:(forwarding-sub-layer)
-     |     |     |  +--rw forwarding-sub-layer
+     |     |     +--:(forwarding-aggregation)
+     |     |     |  +--rw forwarding-aggregation
      |     |     |     +--rw forwarding-sub-layer*
      |     |     |             forwarding-sub-layer-ref
      |     |     +--:(service-identification)
@@ -225,10 +225,8 @@ module: ietf-detnet
      |           |        |     |       inet:port-number
      |           |        |     +--rw destination-port?
      |           |        |             inet:port-number
-     |           |        +--rw next-layer* [index]
-     |           |           +--rw index                   uint8
-     |           |           +--rw forwarding-sub-layer?
-     |           |                   forwarding-sub-layer-ref
+     |           |        +--rw forwarding-sub-layer*
+     |           |                forwarding-sub-layer-ref
      |           +--:(service-sub-layer)
      |           |  +--rw service-sub-layer
      |           |     +--rw aggregation-service-sub-layer?
@@ -263,8 +261,8 @@ module: ietf-detnet
            |     +--:(service-sub-layer)
            |     |  +--rw service-sub-layer
            |     |     +--ro sub-layer-list*   service-sub-layer-ref
-           |     +--:(forwarding-sub-layer)
-           |     |  +--rw forwarding-sub-layer
+           |     +--:(forwarding-aggregation)
+           |     |  +--rw forwarding-aggregation
            |     |     +--rw forwarding-sub-layer*
            |     |             forwarding-sub-layer-ref
            |     +--:(forwarding-identification)
@@ -404,8 +402,8 @@ module: ietf-detnet
                  |              |       rt-types:mpls-label
                  |              +--rw ttl?             uint8
                  |              +--rw traffic-class?   uint8
-                 +--:(forwarding-aggregation)
-                 |  +--rw forwarding-aggregation
+                 +--:(forwarding-sub-layer)
+                 |  +--rw forwarding-sub-layer
                  |     +--rw aggregation-forwarding-sub-layer?
                  |     |       forwarding-sub-layer-ref
                  |     +--rw forwarding-label
@@ -420,7 +418,7 @@ module: ietf-detnet
                  |  +--rw service-sub-layer
                  |     +--rw service-sub-layer*
                  |             service-sub-layer-ref
-                 +--:(forwarding-sub-layer)
-                    +--rw forwarding-sub-layer
+                 +--:(forwarding-disaggregation)
+                    +--rw forwarding-disaggregation
                        +--rw forwarding-sub-layer*
                                forwarding-sub-layer-ref
