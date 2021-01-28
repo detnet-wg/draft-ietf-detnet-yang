@@ -43,13 +43,7 @@
     </interface>
   </interfaces>
 <detnet
-  xmlns="urn:ietf:params:xml:ns:yang:ietf-detnet-config"
-  xmlns:in="urn:ietf:params:xml:ns:yang:ietf-inet-types"
-  xmlns:rt="urn:ietf:params:xml:ns:yang:ietf-routing-types"
-  xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces"
-  xmlns:r="urn:ietf:params:xml:ns:yang:ietf-routing"
-  xmlns:mpls="urn:ietf:params:xml:ns:yang:ietf-mpls"
-  xmlns:pf="urn:ietf:params:xml:ns:yang:ietf-packet-fields">
+  xmlns="urn:ietf:params:xml:ns:yang:ietf-detnet">
   <app-flows>
     <app-flow>
       <name>app-1</name>
@@ -57,9 +51,13 @@
       <outgoing-service>ssl-1</outgoing-service>
        <traffic-profile>1</traffic-profile>
       <ingress>
+        <app-flow-status>ready</app-flow-status>
         <interface>eth0</interface>
-        <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
-        <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
+        <ip-app-flow>
+          <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
+          <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
+          <dscp>6</dscp>
+        </ip-app-flow>
       </ingress>
     </app-flow>
     <app-flow>
@@ -68,14 +66,18 @@
       <outgoing-service>ssl-2</outgoing-service>
        <traffic-profile>1</traffic-profile>
       <ingress>
+        <app-flow-status>ready</app-flow-status>
         <interface>eth1</interface>
-        <src-ip-prefix>1.1.1.2/32</src-ip-prefix>
-        <dest-ip-prefix>8.8.8.9/32</dest-ip-prefix>
+        <ip-app-flow>
+          <src-ip-prefix>2.1.1.1/32</src-ip-prefix>
+          <dest-ip-prefix>9.8.8.8/32</dest-ip-prefix>
+          <dscp>7</dscp>
+        </ip-app-flow>
       </ingress>
     </app-flow>
   </app-flows>
   <traffic-profile>  
-    <profile-number>1</profile-number>
+    <profile-name>1</profile-name>
     <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
@@ -90,7 +92,7 @@
     <!--<member-forwarding-sublayers></member-forwarding-sublayers>-->
   </traffic-profile>
   <traffic-profile>  
-    <profile-number>2</profile-number>
+    <profile-name>2</profile-name>
     <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
@@ -107,7 +109,7 @@
     <!--<member-groups></member-groups>-->
   </traffic-profile>
   <traffic-profile>  
-    <profile-number>3</profile-number>
+    <profile-name>3</profile-name>
     <traffic-specification>
       <interval>5</interval>
       <max-packets-per-interval>10</max-packets-per-interval>
@@ -143,10 +145,7 @@
                 <label>100</label>
               </entry>
             </mpls-label-stack>
-            <next-layer>
-              <index>0</index>
-              <forwarding-sub-layer>afl-1</forwarding-sub-layer>
-            </next-layer>
+            <forwarding-sub-layer>afl-1</forwarding-sub-layer>
           </service-outgoing-list>
 	</forwarding-sub-layer>
       </outgoing-type>
@@ -175,10 +174,7 @@
                 <label>103</label>
               </entry>
             </mpls-label-stack>
-            <next-layer>
-              <index>0</index>
-              <forwarding-sub-layer>afl-1</forwarding-sub-layer>
-            </next-layer>
+            <forwarding-sub-layer>afl-1</forwarding-sub-layer>
           </service-outgoing-list>
 	</forwarding-sub-layer>
       </outgoing-type>

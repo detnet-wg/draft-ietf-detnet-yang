@@ -53,9 +53,11 @@
       <ingress>
         <app-flow-status>ready</app-flow-status>
         <interface>eth0</interface>
-        <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
-        <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
-        <dscp>6</dscp>
+        <ip-app-flow>
+          <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
+          <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
+          <dscp>6</dscp>
+        </ip-app-flow>
       </ingress>
     </app-flow>
     <app-flow>
@@ -66,9 +68,11 @@
       <ingress>
         <app-flow-status>ready</app-flow-status>
         <interface>eth0</interface>
-        <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
-        <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
-        <dscp>7</dscp>
+        <ip-app-flow>
+          <src-ip-prefix>2.1.1.1/32</src-ip-prefix>
+          <dest-ip-prefix>9.8.8.8/32</dest-ip-prefix>
+          <dscp>7</dscp>
+        </ip-app-flow>
       </ingress>
     </app-flow>
   </app-flows>
@@ -139,13 +143,13 @@
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
       <incoming-type>
-	<app-flow>
+        <app-flow>
           <app-flow-list>app-0</app-flow-list>
           <app-flow-list>app-1</app-flow-list>
         </app-flow>
       </incoming-type>
       <outgoing-type>
-	<forwarding-sub-layer>
+        <forwarding-sub-layer>
           <service-outgoing-list>
             <service-outgoing-index>0</service-outgoing-index>
             <mpls-label-stack>
@@ -154,10 +158,7 @@
                 <label>100</label>
               </entry>
             </mpls-label-stack>
-            <next-layer>
-              <index>0</index>
-              <forwarding-sub-layer>fsl-1</forwarding-sub-layer>
-            </next-layer>
+            <forwarding-sub-layer>fsl-1</forwarding-sub-layer>
           </service-outgoing-list>
          </forwarding-sub-layer>
       </outgoing-type>
@@ -169,13 +170,13 @@
       <traffic-profile>pf-3</traffic-profile>
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
       <incoming-type>
-	<service-sub-layer>
+        <service-sub-layer>
           <sub-layer-list>ssl-1</sub-layer-list>
         </service-sub-layer>
       </incoming-type>
       <outgoing-type>
-	<interface>
-	  <outgoing-interface>eth2</outgoing-interface>
+        <interface>
+          <outgoing-interface>eth2</outgoing-interface>
           <mpls-label-stack>
             <entry>
               <id>0</id>

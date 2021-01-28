@@ -51,9 +51,13 @@
       <outgoing-service>ssl-1</outgoing-service>
        <traffic-profile>1</traffic-profile>
       <ingress>
+        <app-flow-status>ready</app-flow-status>
         <interface>eth0</interface>
-        <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
-        <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
+        <ip-app-flow>
+          <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
+          <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
+          <dscp>6</dscp>
+        </ip-app-flow>
       </ingress>
     </app-flow>
     <app-flow>
@@ -62,9 +66,13 @@
       <outgoing-service>ssl-2</outgoing-service>
        <traffic-profile>1</traffic-profile>
       <ingress>
-        <interface>eth1</interface>
-        <src-ip-prefix>1.1.1.2/32</src-ip-prefix>
-        <dest-ip-prefix>8.8.8.9/32</dest-ip-prefix>
+        <app-flow-status>ready</app-flow-status>
+        <interface>eth0</interface>
+        <ip-app-flow>
+          <src-ip-prefix>2.1.1.1/32</src-ip-prefix>
+          <dest-ip-prefix>9.8.8.8/32</dest-ip-prefix>
+          <dscp>7</dscp>
+        </ip-app-flow>
       </ingress>
     </app-flow>
   </app-flows>
@@ -181,10 +189,10 @@
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
       <incoming-type>
-	<service-sub-layer-service>
+	<service-aggregation>
           <service-sub-layer>ssl-1</service-sub-layer>
           <service-sub-layer>ssl-2</service-sub-layer>
-        </service-sub-layer-service>
+        </service-aggregation>
       </incoming-type>
       <outgoing-type>
 	<forwarding-sub-layer>
@@ -196,10 +204,7 @@
               <label>1000</label>
             </entry>
           </mpls-label-stack>
-          <next-layer>
-            <index>0</index>
-            <forwarding-sub-layer>afl-1</forwarding-sub-layer>
-          </next-layer>
+          <forwarding-sub-layer>afl-1</forwarding-sub-layer>
         </service-outgoing-list>
        </forwarding-sub-layer>
       </outgoing-type>

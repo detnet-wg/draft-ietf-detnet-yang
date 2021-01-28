@@ -68,7 +68,7 @@
           "traffic-profile": "1",
           "ingress": {
             "app-flow-status": "ready",
-            "interface": "eth0",
+            "interface": "eth1",
             "ip-app-flow": {
               "src-ip-prefix": "2.1.1.1/32",
               "dest-ip-prefix": "9.8.8.8/32",
@@ -127,31 +127,29 @@
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "2",
+          "service-operation-type": "service-initiation",
           "service-protection": {
             "service-protection-type": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation-type": "service-initiation",
-          "incoming-type": {
-            "app-flow": {
-              "app-flow-list": [
-                "app-1"
-              ]
-            }
-          },
           "outgoing-type": {
-            "service-sub-layer": {
-              "aggregation-service-sub-layer": "asl-1",
-              "service-label": {
-                "mpls-label-stack": {
-                  "entry": [
-                    {
-                      "id": 0,
-                      "label": 102
-                    }
+            "forwarding-sub-layer": {
+              "service-outgoing-list": [
+                {
+                  "service-outgoing-index": 0,
+                  "mpls-label-stack": {
+                    "entry": [
+                      {
+                        "id": 0,
+                        "label": 100
+                      }
+                    ]
+                  },
+                  "forwarding-sub-layer": [
+                    "afl-1"
                   ]
                 }
-              }
+              ]
             }
           }
         },
@@ -164,44 +162,6 @@
             "service-protection-type": "none",
             "sequence-number-length": "long-sn"
           },
-          "incoming-type": {
-            "app-flow": {
-              "app-flow-list": [
-                "app-2"
-              ]
-            }
-          },
-          "outgoing-type": {
-            "service-sub-layer": {
-              "aggregation-service-sub-layer": "asl-1",
-              "service-label": {
-                "mpls-label-stack": {
-                  "entry": [
-                    {
-                      "id": 0,
-                      "label": 105
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        {
-          "name": "asl-1",
-          "service-rank": 10,
-          "service-protection": {
-            "service-protection-type": "none",
-            "sequence-number-length": "long-sn"
-          },
-          "incoming-type": {
-            "service-aggregation": {
-              "service-sub-layer": [
-                "ssl-1",
-                "ssl-2"
-              ]
-            }
-          },
           "outgoing-type": {
             "forwarding-sub-layer": {
               "service-outgoing-list": [
@@ -211,7 +171,7 @@
                     "entry": [
                       {
                         "id": 0,
-                        "label": 1000
+                        "label": 103
                       }
                     ]
                   },
@@ -234,21 +194,14 @@
           "incoming-type": {
             "service-sub-layer": {
               "sub-layer-list": [
-                "asl-1"
+                "ssl-1",
+                "ssl-2"
               ]
             }
           },
           "outgoing-type": {
             "interface": {
-              "outgoing-interface": "eth2",
-              "mpls-label-stack": {
-                "entry": [
-                  {
-                    "id": 0,
-                    "label": 20000
-                  }
-                ]
-              }
+              "outgoing-interface": "eth2"
             }
           }
         }

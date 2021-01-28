@@ -53,7 +53,12 @@
           "traffic-profile": "pf-1",
           "ingress": {
             "app-flow-status": "ready",
-            "interface": "eth0"
+            "interface": "eth0",
+            "ip-app-flow": {
+              "src-ip-prefix": "1.1.1.1/32",
+              "dest-ip-prefix": "8.8.8.8/32",
+              "dscp": 6
+            }
           }
         },
         {
@@ -63,7 +68,12 @@
           "traffic-profile": "pf-1",
           "ingress": {
             "app-flow-status": "ready",
-            "interface": "eth0"
+            "interface": "eth0",
+            "ip-app-flow": {
+              "src-ip-prefix": "2.1.1.1/32",
+              "dest-ip-prefix": "9.8.8.8/32",
+              "dscp": 7
+            }
           }
         }
       ]
@@ -156,11 +166,8 @@
                       }
                     ]
                   },
-                  "next-layer": [
-                    {
-                      "index": 0,
-                      "forwarding-sub-layer": "fsl-1"
-                    }
+                  "forwarding-sub-layer": [
+                    "fsl-1"
                   ]
                 }
               ]
@@ -198,209 +205,5 @@
         }
       ]
     }
-  },
-  "ietf-yang-library:yang-library": {
-    "module-set": [
-      {
-        "name": "complete",
-        "import-only-module": [
-          {
-            "name": "ietf-yang-metadata",
-            "revision": "2016-08-05",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-metadata"
-          },
-          {
-            "name": "ietf-inet-types",
-            "revision": "2013-07-15",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
-            "location": [
-              "file:///home/don/yangRepo/ietf-inet-types@2013-07-15.yang"
-            ]
-          },
-          {
-            "name": "ietf-yang-types",
-            "revision": "2013-07-15",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
-            "location": [
-              "file:///home/don/yangRepo/ietf-yang-types@2013-07-15.yang"
-            ]
-          },
-          {
-            "name": "ietf-datastores",
-            "revision": "2018-02-14",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-datastores"
-          },
-          {
-            "name": "ietf-ethertypes",
-            "revision": "2019-03-04",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-ethertypes",
-            "location": [
-              "file:///home/don/yangRepo/ietf-ethertypes@2019-03-04.yang"
-            ]
-          },
-          {
-            "name": "ietf-routing-types",
-            "revision": "2017-12-04",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-types",
-            "location": [
-              "file:///home/don/yangRepo/ietf-routing-types@2017-12-04.yang"
-            ]
-          },
-          {
-            "name": "ietf-packet-fields",
-            "revision": "2019-03-04",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
-            "location": [
-              "file:///home/don/yangRepo/ietf-packet-fields@2019-03-04.yang"
-            ]
-          },
-          {
-            "name": "ieee802-dot1q-types",
-            "revision": "2018-03-07",
-            "namespace": "urn:ieee:std:802.1Q:yang:ieee802-dot1q-types",
-            "location": [
-              "file:///home/don/yangRepo/ieee802-dot1q-types.yang"
-            ]
-          }
-        ],
-        "module": [
-          {
-            "name": "yang",
-            "revision": "2017-02-20",
-            "namespace": "urn:ietf:params:xml:ns:yang:1"
-          },
-          {
-            "name": "ietf-yang-library",
-            "revision": "2019-01-04",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library"
-          },
-          {
-            "name": "ietf-interfaces",
-            "revision": "2018-02-20",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
-            "location": [
-              "file:///home/don/yangRepo/ietf-interfaces@2018-02-20.yang"
-            ]
-          },
-          {
-            "name": "iana-if-type",
-            "revision": "2017-01-19",
-            "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
-            "location": [
-              "file:///home/don/yangRepo/iana-if-type@2017-01-19.yang"
-            ]
-          },
-          {
-            "name": "ietf-detnet",
-            "revision": "2020-12-16",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-detnet",
-            "location": [
-              "file:///home/don/yangRepo/ietf-detnet.yang"
-            ]
-          }
-        ]
-      }
-    ],
-    "schema": [
-      {
-        "name": "complete",
-        "module-set": [
-          "complete"
-        ]
-      }
-    ],
-    "content-id": "14"
-  },
-  "ietf-yang-library:modules-state": {
-    "module": [
-      {
-        "name": "ietf-yang-metadata",
-        "revision": "2016-08-05",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-metadata",
-        "conformance-type": "import"
-      },
-      {
-        "name": "yang",
-        "revision": "2017-02-20",
-        "namespace": "urn:ietf:params:xml:ns:yang:1",
-        "conformance-type": "implement"
-      },
-      {
-        "name": "ietf-inet-types",
-        "revision": "2013-07-15",
-        "schema": "file:///home/don/yangRepo/ietf-inet-types@2013-07-15.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-yang-types",
-        "revision": "2013-07-15",
-        "schema": "file:///home/don/yangRepo/ietf-yang-types@2013-07-15.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-datastores",
-        "revision": "2018-02-14",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-datastores",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-yang-library",
-        "revision": "2019-01-04",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library",
-        "conformance-type": "implement"
-      },
-      {
-        "name": "ietf-interfaces",
-        "revision": "2018-02-20",
-        "schema": "file:///home/don/yangRepo/ietf-interfaces@2018-02-20.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
-        "conformance-type": "implement"
-      },
-      {
-        "name": "iana-if-type",
-        "revision": "2017-01-19",
-        "schema": "file:///home/don/yangRepo/iana-if-type@2017-01-19.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
-        "conformance-type": "implement"
-      },
-      {
-        "name": "ietf-ethertypes",
-        "revision": "2019-03-04",
-        "schema": "file:///home/don/yangRepo/ietf-ethertypes@2019-03-04.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-ethertypes",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-routing-types",
-        "revision": "2017-12-04",
-        "schema": "file:///home/don/yangRepo/ietf-routing-types@2017-12-04.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-types",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-packet-fields",
-        "revision": "2019-03-04",
-        "schema": "file:///home/don/yangRepo/ietf-packet-fields@2019-03-04.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ieee802-dot1q-types",
-        "revision": "2018-03-07",
-        "schema": "file:///home/don/yangRepo/ieee802-dot1q-types.yang",
-        "namespace": "urn:ieee:std:802.1Q:yang:ieee802-dot1q-types",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-detnet",
-        "revision": "2020-12-16",
-        "schema": "file:///home/don/yangRepo/ietf-detnet.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-detnet",
-        "conformance-type": "implement"
-      }
-    ],
-    "module-set-id": "14"
   }
 }
