@@ -1,45 +1,21 @@
+> data -t data -f json case-c-1-disaggregation.xml
 {
   "ietf-interfaces:interfaces": {
     "interface": [
       {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
+        "name": "eth0"
       },
       {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
+        "name": "eth1"
       },
       {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
+        "name": "eth2"
       },
       {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
+        "name": "eth3"
       },
       {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
+        "name": "eth4"
       }
     ]
   },
@@ -64,24 +40,28 @@
         "profile-name": "pf-2",
         "traffic-specification": {
           "interval": 125,
-          "max-packets-per-interval": 1,
-          "max-payload-size": 1518
-        },
-        "member-forwarding-sublayers": [
-          "fsl-1",
-          "fsl-2"
-        ]
-      },
-      {
-        "profile-name": "pf-3",
-        "traffic-specification": {
-          "interval": 125,
           "max-packets-per-interval": 2,
           "max-payload-size": 1518
         },
         "member-forwarding-sublayers": [
           "afl-1",
           "afl-2"
+        ]
+      },
+      {
+        "profile-name": "pf-3",
+        "traffic-specification": {
+          "interval": 125,
+          "max-packets-per-interval": 1,
+          "max-payload-size": 1518
+        },
+        "member-forwarding-sublayers": [
+          "fsl-1",
+          "fsl-2",
+          "fsl-3",
+          "fsl-4",
+          "fsl-5",
+          "fsl-6"
         ]
       }
     ],
@@ -92,7 +72,7 @@
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection-type": "replication",
+            "service-protection-type": "elimination",
             "sequence-number-length": "long-sn"
           },
           "service-operation-type": "service-relay",
@@ -102,7 +82,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 100
+                    "label": 101
                   }
                 ]
               }
@@ -117,19 +97,12 @@
                     "entry": [
                       {
                         "id": 0,
-                        "label": 101
+                        "label": 102
                       }
                     ]
                   },
-                  "next-layer": [
-                    {
-                      "index": 0,
-                      "forwarding-sub-layer": "afl-1"
-                    },
-                    {
-                      "index": 1,
-                      "forwarding-sub-layer": "afl-2"
-                    }
+                  "forwarding-sub-layer": [
+                    "fsl-3"
                   ]
                 }
               ]
@@ -141,7 +114,7 @@
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection-type": "replication",
+            "service-protection-type": "elimination",
             "sequence-number-length": "long-sn"
           },
           "service-operation-type": "service-relay",
@@ -151,7 +124,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 103
+                    "label": 104
                   }
                 ]
               }
@@ -166,19 +139,12 @@
                     "entry": [
                       {
                         "id": 0,
-                        "label": 104
+                        "label": 105
                       }
                     ]
                   },
-                  "next-layer": [
-                    {
-                      "index": 0,
-                      "forwarding-sub-layer": "afl-1"
-                    },
-                    {
-                      "index": 1,
-                      "forwarding-sub-layer": "afl-2"
-                    }
+                  "forwarding-sub-layer": [
+                    "fsl-6"
                   ]
                 }
               ]
@@ -190,24 +156,76 @@
     "forwarding-sub-layer": {
       "forwarding-sub-layer-list": [
         {
-          "name": "fsl-1",
+          "name": "afl-1",
           "traffic-profile": "pf-2",
           "forwarding-operation-type": "pop-and-lookup",
           "incoming-type": {
-            "forwarding-sub-layer-service": {
+            "forwarding-identification": {
               "interface": "eth0",
               "mpls-label-stack": {
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10000
+                    "label": 20002
                   }
                 ]
               }
             }
           },
           "outgoing-type": {
-            "service-sub-layer-service": {
+            "forwarding-disaggregation": {
+              "forwarding-sub-layer": [
+                "fsl-1",
+                "fsl-4"
+              ]
+            }
+          }
+        },
+        {
+          "name": "afl-2",
+          "traffic-profile": "pf-2",
+          "forwarding-operation-type": "pop-and-lookup",
+          "incoming-type": {
+            "forwarding-identification": {
+              "interface": "eth1",
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": 20003
+                  }
+                ]
+              }
+            }
+          },
+          "outgoing-type": {
+            "forwarding-disaggregation": {
+              "forwarding-sub-layer": [
+                "fsl-2",
+                "fsl-5"
+              ]
+            }
+          }
+        },
+        {
+          "name": "fsl-1",
+          "traffic-profile": "pf-3",
+          "forwarding-operation-type": "pop-and-lookup",
+          "incoming-type": {
+            "forwarding-identification": {
+              "interface": "eth0",
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": 10003
+                  }
+                ]
+              }
+            }
+          },
+          "outgoing-type": {
+            "service-sub-layer": {
               "service-sub-layer": [
                 "ssl-1"
               ]
@@ -216,38 +234,37 @@
         },
         {
           "name": "fsl-2",
-          "traffic-profile": "pf-2",
+          "traffic-profile": "pf-3",
           "forwarding-operation-type": "pop-and-lookup",
           "incoming-type": {
-            "forwarding-sub-layer-service": {
+            "forwarding-identification": {
               "interface": "eth1",
               "mpls-label-stack": {
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10006
+                    "label": 10004
                   }
                 ]
               }
             }
           },
           "outgoing-type": {
-            "service-sub-layer-service": {
+            "service-sub-layer": {
               "service-sub-layer": [
-                "ssl-2"
+                "ssl-1"
               ]
             }
           }
         },
         {
-          "name": "afl-1",
+          "name": "fsl-3",
           "traffic-profile": "pf-3",
           "forwarding-operation-type": "impose-and-forward",
           "incoming-type": {
             "service-sub-layer": {
-              "sub-layer-list": [
-                "ssl-1",
-                "ssl-2"
+              "service-sub-layer": [
+                "ssl-1"
               ]
             }
           },
@@ -258,7 +275,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20000
+                    "label": 10005
                   }
                 ]
               }
@@ -266,13 +283,62 @@
           }
         },
         {
-          "name": "afl-2",
+          "name": "fsl-4",
+          "traffic-profile": "pf-3",
+          "forwarding-operation-type": "pop-and-lookup",
+          "incoming-type": {
+            "forwarding-identification": {
+              "interface": "eth0",
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": 10009
+                  }
+                ]
+              }
+            }
+          },
+          "outgoing-type": {
+            "service-sub-layer": {
+              "service-sub-layer": [
+                "ssl-2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "fsl-5",
+          "traffic-profile": "pf-3",
+          "forwarding-operation-type": "pop-and-lookup",
+          "incoming-type": {
+            "forwarding-identification": {
+              "interface": "eth1",
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": 10010
+                  }
+                ]
+              }
+            }
+          },
+          "outgoing-type": {
+            "service-sub-layer": {
+              "service-sub-layer": [
+                "ssl-2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "fsl-6",
           "traffic-profile": "pf-3",
           "forwarding-operation-type": "impose-and-forward",
           "incoming-type": {
             "service-sub-layer": {
-              "sub-layer-list": [
-                "ssl-1",
+              "service-sub-layer": [
                 "ssl-2"
               ]
             }
@@ -284,7 +350,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20001
+                    "label": 10011
                   }
                 ]
               }
@@ -307,18 +373,12 @@
           {
             "name": "ietf-inet-types",
             "revision": "2013-07-15",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
-            "location": [
-              "file:///home/don/yangRepo/ietf-inet-types@2013-07-15.yang"
-            ]
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types"
           },
           {
             "name": "ietf-yang-types",
             "revision": "2013-07-15",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
-            "location": [
-              "file:///home/don/yangRepo/ietf-yang-types@2013-07-15.yang"
-            ]
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types"
           },
           {
             "name": "ietf-datastores",
@@ -330,7 +390,7 @@
             "revision": "2019-03-04",
             "namespace": "urn:ietf:params:xml:ns:yang:ietf-ethertypes",
             "location": [
-              "file:///home/don/yangRepo/ietf-ethertypes@2019-03-04.yang"
+              "file:///home/libyang/models/ietf-ethertypes.yang"
             ]
           },
           {
@@ -338,7 +398,7 @@
             "revision": "2017-12-04",
             "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-types",
             "location": [
-              "file:///home/don/yangRepo/ietf-routing-types@2017-12-04.yang"
+              "file:///home/libyang/models/ietf-routing-types.yang"
             ]
           },
           {
@@ -346,7 +406,15 @@
             "revision": "2019-03-04",
             "namespace": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
             "location": [
-              "file:///home/don/yangRepo/ietf-packet-fields@2019-03-04.yang"
+              "file:///home/libyang/models/ietf-packet-fields.yang"
+            ]
+          },
+          {
+            "name": "iana-if-type",
+            "revision": "2013-07-04",
+            "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
+            "location": [
+              "file:///home/libyang/models/iana-if-type.yang"
             ]
           },
           {
@@ -354,7 +422,7 @@
             "revision": "2018-03-07",
             "namespace": "urn:ieee:std:802.1Q:yang:ieee802-dot1q-types",
             "location": [
-              "file:///home/don/yangRepo/ieee802-dot1q-types.yang"
+              "file:///home/libyang/models/ieee802-dot1q-types.yang"
             ]
           }
         ],
@@ -371,18 +439,10 @@
           },
           {
             "name": "ietf-interfaces",
-            "revision": "2018-02-20",
+            "revision": "2013-12-23",
             "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
             "location": [
-              "file:///home/don/yangRepo/ietf-interfaces@2018-02-20.yang"
-            ]
-          },
-          {
-            "name": "iana-if-type",
-            "revision": "2017-01-19",
-            "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
-            "location": [
-              "file:///home/don/yangRepo/iana-if-type@2017-01-19.yang"
+              "file:///home/libyang/models/ietf-interfaces.yang"
             ]
           },
           {
@@ -390,7 +450,7 @@
             "revision": "2020-12-16",
             "namespace": "urn:ietf:params:xml:ns:yang:ietf-detnet",
             "location": [
-              "file:///home/don/yangRepo/ietf-detnet.yang"
+              "file:///home/libyang/models/ietf-detnet.yang"
             ]
           }
         ]
@@ -423,14 +483,12 @@
       {
         "name": "ietf-inet-types",
         "revision": "2013-07-15",
-        "schema": "file:///home/don/yangRepo/ietf-inet-types@2013-07-15.yang",
         "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
         "conformance-type": "import"
       },
       {
         "name": "ietf-yang-types",
         "revision": "2013-07-15",
-        "schema": "file:///home/don/yangRepo/ietf-yang-types@2013-07-15.yang",
         "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
         "conformance-type": "import"
       },
@@ -447,51 +505,51 @@
         "conformance-type": "implement"
       },
       {
-        "name": "ietf-interfaces",
-        "revision": "2018-02-20",
-        "schema": "file:///home/don/yangRepo/ietf-interfaces@2018-02-20.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
-        "conformance-type": "implement"
-      },
-      {
-        "name": "iana-if-type",
-        "revision": "2017-01-19",
-        "schema": "file:///home/don/yangRepo/iana-if-type@2017-01-19.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
-        "conformance-type": "implement"
-      },
-      {
         "name": "ietf-ethertypes",
         "revision": "2019-03-04",
-        "schema": "file:///home/don/yangRepo/ietf-ethertypes@2019-03-04.yang",
+        "schema": "file:///home/libyang/models/ietf-ethertypes.yang",
         "namespace": "urn:ietf:params:xml:ns:yang:ietf-ethertypes",
         "conformance-type": "import"
       },
       {
         "name": "ietf-routing-types",
         "revision": "2017-12-04",
-        "schema": "file:///home/don/yangRepo/ietf-routing-types@2017-12-04.yang",
+        "schema": "file:///home/libyang/models/ietf-routing-types.yang",
         "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-types",
         "conformance-type": "import"
       },
       {
         "name": "ietf-packet-fields",
         "revision": "2019-03-04",
-        "schema": "file:///home/don/yangRepo/ietf-packet-fields@2019-03-04.yang",
+        "schema": "file:///home/libyang/models/ietf-packet-fields.yang",
         "namespace": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
         "conformance-type": "import"
       },
       {
+        "name": "iana-if-type",
+        "revision": "2013-07-04",
+        "schema": "file:///home/libyang/models/iana-if-type.yang",
+        "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-interfaces",
+        "revision": "2013-12-23",
+        "schema": "file:///home/libyang/models/ietf-interfaces.yang",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+        "conformance-type": "implement"
+      },
+      {
         "name": "ieee802-dot1q-types",
         "revision": "2018-03-07",
-        "schema": "file:///home/don/yangRepo/ieee802-dot1q-types.yang",
+        "schema": "file:///home/libyang/models/ieee802-dot1q-types.yang",
         "namespace": "urn:ieee:std:802.1Q:yang:ieee802-dot1q-types",
         "conformance-type": "import"
       },
       {
         "name": "ietf-detnet",
         "revision": "2020-12-16",
-        "schema": "file:///home/don/yangRepo/ietf-detnet.yang",
+        "schema": "file:///home/libyang/models/ietf-detnet.yang",
         "namespace": "urn:ietf:params:xml:ns:yang:ietf-detnet",
         "conformance-type": "implement"
       }
@@ -499,3 +557,4 @@
     "module-set-id": "14"
   }
 }
+

@@ -117,14 +117,8 @@
               <label>101</label>
             </entry>
           </mpls-label-stack>
-          <next-layer>
-            <index>0</index>
-            <forwarding-sub-layer>fsl-2</forwarding-sub-layer>
-          </next-layer>
-          <next-layer>
-            <index>1</index>
-            <forwarding-sub-layer>fsl-3</forwarding-sub-layer>
-          </next-layer>
+	  <forwarding-sub-layer>fsl-2</forwarding-sub-layer>
+	  <forwarding-sub-layer>fsl-3</forwarding-sub-layer>
         </service-outgoing-list>
         </forwarding-sub-layer>
       </outgoing-type>
@@ -143,7 +137,7 @@
         <mpls-label-stack>
           <entry>
             <id>0</id>
-            <label>101</label>
+            <label>103</label>
           </entry>
         </mpls-label-stack>
        </service-identification>        
@@ -158,14 +152,8 @@
               <label>104</label>
             </entry>
           </mpls-label-stack>
-          <next-layer>
-            <index>0</index>
-            <forwarding-sub-layer>fsl-5</forwarding-sub-layer>
-          </next-layer>
-          <next-layer>
-            <index>1</index>
-            <forwarding-sub-layer>fsl-6</forwarding-sub-layer>
-          </next-layer>
+	  <forwarding-sub-layer>fsl-5</forwarding-sub-layer>
+	  <forwarding-sub-layer>fsl-6</forwarding-sub-layer>
         </service-outgoing-list>
         </forwarding-sub-layer>
       </outgoing-type>
@@ -177,20 +165,20 @@
       <traffic-profile>pf-3</traffic-profile>
       <forwarding-operation-type>pop-and-lookup</forwarding-operation-type>
       <incoming-type>
-	<forwarding-sub-layer-service>
-        <interface>eth0</interface>
-        <mpls-label-stack>
-          <entry>
-            <id>0</id>
-            <label>10000</label>
-          </entry>
-        </mpls-label-stack>
-        </forwarding-sub-layer-service>
+	<forwarding-identification>
+          <interface>eth0</interface>
+          <mpls-label-stack>
+            <entry>
+              <id>0</id>
+              <label>10000</label>
+            </entry>
+          </mpls-label-stack>
+        </forwarding-identification>
       </incoming-type>
       <outgoing-type>
-	<service-sub-layer-service>
-        <service-sub-layer>ssl-1</service-sub-layer>
-        </service-sub-layer-service>
+	<service-sub-layer>
+          <service-sub-layer>ssl-1</service-sub-layer>
+        </service-sub-layer>
       </outgoing-type>
     </forwarding-sub-layer-list>
     <forwarding-sub-layer-list>
@@ -199,20 +187,20 @@
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
       <incoming-type>
 	<service-sub-layer>
-	<sub-layer-list>ssl-1</sub-layer-list>
+	  <service-sub-layer>ssl-1</service-sub-layer>
         </service-sub-layer>
       </incoming-type>
       <outgoing-type>
 	<forwarding-sub-layer>
-        <aggregation-forwarding-sub-layer>afl-1</aggregation-forwarding-sub-layer>
-        <forwarding-label>
-          <mpls-label-stack>
-            <entry>
-              <id>0</id>
-              <label>10003</label>
-            </entry>
-          </mpls-label-stack>
-        </forwarding-label>
+          <aggregation-forwarding-sub-layer>afl-1</aggregation-forwarding-sub-layer>
+          <forwarding-label>
+            <mpls-label-stack>
+              <entry>
+                <id>0</id>
+                <label>10003</label>
+              </entry>
+            </mpls-label-stack>
+          </forwarding-label>
         </forwarding-sub-layer>
       </outgoing-type>
     </forwarding-sub-layer-list>
@@ -222,20 +210,20 @@
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
       <incoming-type>
 	<service-sub-layer>
-	<sub-layer-list>ssl-1</sub-layer-list>
+   	  <service-sub-layer>ssl-1</service-sub-layer>
         </service-sub-layer>
       </incoming-type>
       <outgoing-type>
 	<forwarding-sub-layer>
-        <aggregation-forwarding-sub-layer>afl-2</aggregation-forwarding-sub-layer>
-        <forwarding-label>
-          <mpls-label-stack>
-            <entry>
-              <id>0</id>
-              <label>10004</label>
-            </entry>
-          </mpls-label-stack>
-        </forwarding-label>
+          <aggregation-forwarding-sub-layer>afl-2</aggregation-forwarding-sub-layer>
+          <forwarding-label>
+            <mpls-label-stack>
+              <entry>
+                <id>0</id>
+                <label>10004</label>
+              </entry>
+            </mpls-label-stack>
+          </forwarding-label>
         </forwarding-sub-layer>
       </outgoing-type>
     </forwarding-sub-layer-list>
@@ -244,20 +232,20 @@
       <traffic-profile>pf-3</traffic-profile>
       <forwarding-operation-type>pop-and-lookup</forwarding-operation-type>
       <incoming-type>
-        <forwarding-sub-layer-service>
-        <interface>eth1</interface>
-        <mpls-label-stack>
-          <entry>
-            <id>0</id>
-            <label>10006</label>
-          </entry>
-        </mpls-label-stack>
-      </forwarding-sub-layer-service>
+        <forwarding-identification>
+          <interface>eth1</interface>
+          <mpls-label-stack>
+            <entry>
+              <id>0</id>
+              <label>10006</label>
+            </entry>
+          </mpls-label-stack>
+        </forwarding-identification>
       </incoming-type>
       <outgoing-type>
-	<service-sub-layer-service>
-        <service-sub-layer>ssl-2</service-sub-layer>
-        </service-sub-layer-service>
+	<service-sub-layer>
+          <service-sub-layer>ssl-2</service-sub-layer>
+        </service-sub-layer>
       </outgoing-type>
     </forwarding-sub-layer-list>
     <forwarding-sub-layer-list>
@@ -266,21 +254,21 @@
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
       <incoming-type>
 	<service-sub-layer>
-        <sub-layer-list>ssl-2</sub-layer-list>
+          <service-sub-layer>ssl-2</service-sub-layer>
 	</service-sub-layer>
       </incoming-type>
       <outgoing-type>
 	<forwarding-sub-layer>
-        <aggregation-forwarding-sub-layer>afl-1</aggregation-forwarding-sub-layer>
-        <forwarding-label>
-          <mpls-label-stack>
-            <entry>
-              <id>0</id>
-              <label>10009</label>
-            </entry>
-          </mpls-label-stack>
-        </forwarding-label>
-      </forwarding-sub-layer>
+          <aggregation-forwarding-sub-layer>afl-1</aggregation-forwarding-sub-layer>
+          <forwarding-label>
+            <mpls-label-stack>
+              <entry>
+                <id>0</id>
+                <label>10009</label>
+              </entry>
+            </mpls-label-stack>
+          </forwarding-label>
+        </forwarding-sub-layer>
       </outgoing-type>
     </forwarding-sub-layer-list>
     <forwarding-sub-layer-list>
@@ -289,20 +277,20 @@
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
       <incoming-type>
 	<service-sub-layer>
-        <sub-layer-list>ssl-2</sub-layer-list>
+          <service-sub-layer>ssl-2</service-sub-layer>
 	</service-sub-layer>
       </incoming-type>
       <outgoing-type>
 	<forwarding-sub-layer>
-        <aggregation-forwarding-sub-layer>afl-2</aggregation-forwarding-sub-layer>
-        <forwarding-label>
-          <mpls-label-stack>
-            <entry>
-              <id>0</id>
-              <label>10010</label>
-            </entry>
-          </mpls-label-stack>
-        </forwarding-label>
+          <aggregation-forwarding-sub-layer>afl-2</aggregation-forwarding-sub-layer>
+          <forwarding-label>
+            <mpls-label-stack>
+              <entry>
+                <id>0</id>
+                <label>10010</label>
+              </entry>
+            </mpls-label-stack>
+          </forwarding-label>
         </forwarding-sub-layer>
       </outgoing-type>
     </forwarding-sub-layer-list>
@@ -311,42 +299,42 @@
       <traffic-profile>pf-2</traffic-profile>
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
       <incoming-type>
-      <service-sub-layer-service>
-        <forwarding-sub-layer>fsl-2</forwarding-sub-layer>
-        <forwarding-sub-layer>fsl-5</forwarding-sub-layer>
-      </service-sub-layer-service>
+        <forwarding-aggregation>
+          <forwarding-sub-layer>fsl-2</forwarding-sub-layer>
+          <forwarding-sub-layer>fsl-5</forwarding-sub-layer>
+        </forwarding-aggregation>
       </incoming-type>
       <outgoing-type>
         <interface>
-        <outgoing-interface>eth2</outgoing-interface>
-        <mpls-label-stack>
-          <entry>
-            <id>0</id>
-            <label>20000</label>
-          </entry>
-        </mpls-label-stack>
+          <outgoing-interface>eth2</outgoing-interface>
+          <mpls-label-stack>
+            <entry>
+              <id>0</id>
+              <label>20000</label>
+            </entry>
+          </mpls-label-stack>
         </interface>
       </outgoing-type>
     </forwarding-sub-layer-list>
     <forwarding-sub-layer-list>
       <name>afl-2</name>
-      <traffic-profile>pf-3</traffic-profile>
+      <traffic-profile>pf-2</traffic-profile>
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
       <incoming-type>
-      <service-sub-layer-service>
-        <forwarding-sub-layer>fsl-3</forwarding-sub-layer>
-        <forwarding-sub-layer>fsl-6</forwarding-sub-layer>
-      </service-sub-layer-service>
+        <forwarding-aggregation>
+          <forwarding-sub-layer>fsl-3</forwarding-sub-layer>
+          <forwarding-sub-layer>fsl-6</forwarding-sub-layer>
+        </forwarding-aggregation>
       </incoming-type>
       <outgoing-type>
         <interface>
-        <outgoing-interface>eth3</outgoing-interface>
-        <mpls-label-stack>
-          <entry>
-            <id>0</id>
-            <label>20001</label>
-          </entry>
-        </mpls-label-stack>
+          <outgoing-interface>eth3</outgoing-interface>
+          <mpls-label-stack>
+            <entry>
+              <id>0</id>
+              <label>20001</label>
+            </entry>
+          </mpls-label-stack>
         </interface>
       </outgoing-type>
     </forwarding-sub-layer-list>

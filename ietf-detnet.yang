@@ -1175,12 +1175,7 @@ module ietf-detnet {
                  sub-layers of the upper layer and provide DetNet
                  forwarding or service-to-forwarding aggregation at
                  the ingress node or relay node.";
-              leaf-list sub-layer-list {
-                type service-sub-layer-ref;
-                config false;
-                description
-                  "List of the service-sublayers for aggregation.";
-              }
+              uses service-sub-layer-group;
             }
             container forwarding-aggregation {
               description
