@@ -1,23 +1,23 @@
 module: ietf-detnet
   +--rw detnet
      +--rw traffic-profile* [profile-name]
-     |  +--rw profile-name                   string
-     |  +--rw traffic-requirements
+     |  +--rw profile-name            string
+     |  +--rw traffic-reqmnts
      |  |  +--rw min-bandwidth?                    uint64
      |  |  +--rw max-latency?                      uint32
      |  |  +--rw max-latency-variation?            uint32
      |  |  +--rw max-loss?                         uint32
      |  |  +--rw max-consecutive-loss-tolerance?   uint32
      |  |  +--rw max-misordering?                  uint32
-     |  +--rw traffic-specification
-     |  |  +--rw interval?                       uint32
-     |  |  +--rw max-packets-per-interval?       uint32
-     |  |  +--rw max-payload-size?               uint32
-     |  |  +--rw average-packets-per-interval?   uint32
-     |  |  +--rw average-payload-size?           uint32
-     |  +--ro member-applications*           app-flow-ref
-     |  +--ro member-services*               service-sub-layer-ref
-     |  +--ro member-forwarding-sublayers*   forwarding-sub-layer-ref
+     |  +--rw flow-spec
+     |  |  +--rw interval?                uint32
+     |  |  +--rw max-pkts-per-interval?   uint32
+     |  |  +--rw max-payload-size?        uint32
+     |  |  +--rw min-payload-size?        uint32
+     |  |  +--rw min-pkts-per-interval?   uint32
+     |  +--ro member-apps*            app-flow-ref
+     |  +--ro member-svcs*            service-sub-layer-ref
+     |  +--ro member-fwd-sublayers*   forwarding-sub-layer-ref
      +--rw app-flows
      |  +--rw app-flow* [name]
      |     +--rw name                        string
@@ -147,8 +147,8 @@ module: ietf-detnet
      |     |     |  +--rw forwarding-aggregation
      |     |     |     +--rw forwarding-sub-layer*
      |     |     |             forwarding-sub-layer-ref
-     |     |     +--:(service-identification)
-     |     |        +--rw service-identification
+     |     |     +--:(service-id)
+     |     |        +--rw service-id
      |     |           +--rw (detnet-flow-type)?
      |     |              +--:(ip-detnet-flow)
      |     |              |  +--rw src-ip-prefix?
@@ -260,13 +260,14 @@ module: ietf-detnet
            |  +--rw (incoming-type)
            |     +--:(service-sub-layer)
            |     |  +--rw service-sub-layer
-           |     |     +--ro sub-layer-list*   service-sub-layer-ref
+           |     |     +--rw service-sub-layer*
+           |     |             service-sub-layer-ref
            |     +--:(forwarding-aggregation)
            |     |  +--rw forwarding-aggregation
            |     |     +--rw forwarding-sub-layer*
            |     |             forwarding-sub-layer-ref
-           |     +--:(forwarding-identification)
-           |        +--rw forwarding-identification
+           |     +--:(forwarding-id)
+           |        +--rw forwarding-id
            |           +--rw interface?
            |           |       if:interface-ref
            |           +--rw (detnet-flow-type)?

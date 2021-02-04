@@ -52,22 +52,22 @@
   xmlns:pf="urn:ietf:params:xml:ns:yang:ietf-packet-fields">
   <traffic-profile>  
     <profile-name>pf-1</profile-name>
-    <traffic-specification>
+    <flow-spec>
       <interval>125</interval>
-      <max-packets-per-interval>1</max-packets-per-interval>
+      <max-pkts-per-interval>1</max-pkts-per-interval>
       <max-payload-size>1518</max-payload-size>
-    </traffic-specification>
-    <member-forwarding-sublayers>fsl-1</member-forwarding-sublayers>
-    <member-forwarding-sublayers>fsl-2</member-forwarding-sublayers>
+    </flow-spec>
+    <member-fwd-sublayers>fsl-1</member-fwd-sublayers>
+    <member-fwd-sublayers>fsl-2</member-fwd-sublayers>
   </traffic-profile>  
   <traffic-profile>  
     <profile-name>pf-2</profile-name>
-    <traffic-specification>
+    <flow-spec>
       <interval>125</interval>
-      <max-packets-per-interval>2</max-packets-per-interval>
+      <max-pkts-per-interval>2</max-pkts-per-interval>
       <max-payload-size>1518</max-payload-size>
-    </traffic-specification>
-    <member-forwarding-sublayers>afl-1</member-forwarding-sublayers>
+    </flow-spec>
+    <member-fwd-sublayers>afl-1</member-fwd-sublayers>
   </traffic-profile>
   <forwarding-sub-layer>
     <forwarding-sub-layer-list>
@@ -75,7 +75,7 @@
       <traffic-profile>pf-1</traffic-profile>
       <forwarding-operation-type>swap-and-forward</forwarding-operation-type>
       <incoming-type>
-        <forwarding-identification>
+        <forwarding-id>
           <interface>eth1</interface>
           <mpls-label-stack>
             <entry>
@@ -83,7 +83,7 @@
               <label>10002</label>
             </entry>
           </mpls-label-stack>
-        </forwarding-identification>
+        </forwarding-id>
       </incoming-type>
       <outgoing-type>
         <interface>
@@ -102,7 +102,7 @@
       <traffic-profile>pf-1</traffic-profile>
       <forwarding-operation-type>swap-and-forward</forwarding-operation-type>
       <incoming-type>
-        <forwarding-identification>
+        <forwarding-id>
           <interface>eth1</interface>
           <mpls-label-stack>
             <entry>
@@ -110,7 +110,7 @@
               <label>10006</label>
             </entry>
           </mpls-label-stack>
-        </forwarding-identification>
+        </forwarding-id>
       </incoming-type>
       <outgoing-type>
         <interface>
@@ -129,7 +129,7 @@
       <traffic-profile>pf-2</traffic-profile>
       <forwarding-operation-type>pop-and-lookup</forwarding-operation-type>
       <incoming-type>
-        <forwarding-identification>
+        <forwarding-id>
           <interface>eth1</interface>
           <mpls-label-stack>
             <entry>
@@ -137,7 +137,7 @@
               <label>20001</label>
             </entry>
           </mpls-label-stack>
-        </forwarding-identification>
+        </forwarding-id>
       </incoming-type>
       <outgoing-type>
         <forwarding-disaggregation>

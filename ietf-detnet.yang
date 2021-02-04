@@ -71,11 +71,11 @@ module ietf-detnet {
      for DetNet flow configuration and flow status
      reporting.";
 
-  revision 2020-12-16 {
+  revision 2021-02-01 {
     description
       "initial revision";
     reference
-      "RFC XXXX: draft-ietf-detnet-yang-09";
+      "RFC XXXX: draft-ietf-detnet-yang-10";
   }
 
   identity app-status {
@@ -428,7 +428,7 @@ module ietf-detnet {
     }
   }
 
-  grouping destination-ip-port-identification {
+  grouping destination-ip-port-id {
     description
       "The TCP/UDP port(source/destination) identification
        information.";
@@ -437,7 +437,7 @@ module ietf-detnet {
     }
   }
 
-  grouping source-ip-port-identification {
+  grouping source-ip-port-id {
     description
       "The TCP/UDP port(source/destination) identification
        information.";
@@ -446,7 +446,7 @@ module ietf-detnet {
     }
   }
 
-  grouping ip-flow-identification {
+  grouping ip-flow-id {
     description
       "The IPv4/IPv6 packet header identification information.";
     leaf src-ip-prefix {
@@ -488,8 +488,8 @@ module ietf-detnet {
       reference
         "RFC 6021 Common YANG Data Types";
     }
-    uses source-ip-port-identification;
-    uses destination-ip-port-identification;
+    uses source-ip-port-id;
+    uses destination-ip-port-id;
     leaf ipsec-spi {
       type ipsec-spi;
       description
@@ -500,7 +500,7 @@ module ietf-detnet {
     }
   }
 
-  grouping mpls-flow-identification {
+  grouping mpls-flow-id {
     description
       "The MPLS packet header identification information.";
     choice label-space {
@@ -525,10 +525,10 @@ module ietf-detnet {
         uses l2-header;
       }
       container ip-app-flow {
-        uses ip-flow-identification;
+        uses ip-flow-id;
       }
       container mpls-app-flow {
-        uses mpls-flow-identification;
+        uses mpls-flow-id;
       }
     }
   }
@@ -538,10 +538,10 @@ module ietf-detnet {
       "detnet-flow identification.";
     choice detnet-flow-type {
       case ip-detnet-flow {
-        uses ip-flow-identification;
+        uses ip-flow-id;
       }
       case mpls-detnet-flow {
-        uses mpls-flow-identification;
+        uses mpls-flow-id;
       }
     }
   }
@@ -752,7 +752,7 @@ module ietf-detnet {
           "An Aggregation group ID. Zero means the service is not
            part of a group.";
       }
-      container traffic-requirements {
+      container traffic-reqmnts {
         description
           "FlowRequirements: defines the attributes of the App-flow
            regarding bandwidth, latency, latency variation, loss, and
@@ -815,15 +815,15 @@ module ietf-detnet {
              delivery is required, misordering cannot be tolerated.";
         }
       }
-      container traffic-specification {
+      container flow-spec {
         description
-          "traffic-specification specifies how the Source transmits
+          "Flow-specification specifies how the Source transmits
            packets for the flow.  This is the promise/request of the
-           Source to the network.  The network uses this traffic
+           Source to the network.  The network uses this flow
            specification to allocate resources and adjust queue
            parameters in network nodes.";
         reference
-          "draft-ietf-detnet-flow-information-model Section 4.1";
+          "draft-ietf-detnet-flow-information-model Section 5.5";
         leaf interval {
           type uint32;
           units "nanoseconds";
@@ -831,7 +831,7 @@ module ietf-detnet {
             "The period of time in which the traffic
              specification cannot be exceeded.";
         }
-        leaf max-packets-per-interval {
+        leaf max-pkts-per-interval {
           type uint32;
           description
             "The maximum number of packets that the
@@ -843,32 +843,32 @@ module ietf-detnet {
             "The maximum payload size that the source
              will transmit.";
         }
-        leaf average-packets-per-interval {
+        leaf min-payload-size {
           type uint32;
           description
-            "The average number of packets that the
+	    "The minimum payload size that the source
+	     will transmit.";
+        }
+        leaf min-pkts-per-interval {
+          type uint32;
+          description
+            "The minimum number of packets that the
              source will transmit in one interval.";
         }
-        leaf average-payload-size {
-          type uint32;
-          description
-            "The average payload size that the
-             source will transmit.";
-        }
       }
-      leaf-list member-applications {
+      leaf-list member-apps {
         type app-flow-ref;
         config false;
         description
           "Applications attached to this profile.";
       }
-      leaf-list member-services {
+      leaf-list member-svcs {
         type service-sub-layer-ref;
         config false;
         description
           "Services attached to this profile.";
       }
-      leaf-list member-forwarding-sublayers {
+      leaf-list member-fwd-sublayers {
         type forwarding-sub-layer-ref;
         config false;
         description
@@ -1043,7 +1043,7 @@ module ietf-detnet {
                  node or relay node.";
               uses forwarding-sub-layer-group;
             }
-            container service-identification {
+            container service-id {
               description
                 "This service sub-layer is related to the service or
                  forwarding sub-layer of the lower layer and provide
@@ -1185,7 +1185,7 @@ module ietf-detnet {
                  node or relay node or transit node.";
               uses forwarding-sub-layer-group;
             }
-            container forwarding-identification  {
+            container forwarding-id  {
               //case forwarding-identification {
               description
                 "This forwarding sub-layer is related to all of the

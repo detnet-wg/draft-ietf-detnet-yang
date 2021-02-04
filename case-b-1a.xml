@@ -78,47 +78,47 @@
   </app-flows>
   <traffic-profile>  
     <profile-name>1</profile-name>
-    <traffic-requirements>
+    <traffic-reqmnts>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-requirements>
-    <member-applications>app-1</member-applications>
-    <member-applications>app-2</member-applications>
+    </traffic-reqmnts>
+    <member-apps>app-1</member-apps>
+    <member-apps>app-2</member-apps>
     <!--<member-groups></member-groups>-->
-    <!--<member-forwarding-sublayers></member-forwarding-sublayers>-->
+    <!--<member-fwd-sublayers></member-fwd-sublayers>-->
   </traffic-profile>
   <traffic-profile>  
     <profile-name>2</profile-name>
-    <traffic-requirements>
+    <traffic-reqmnts>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-requirements>
-    <member-services>ssl-1</member-services>
-    <member-services>ssl-2</member-services>
-    <!--<member-applications></member-applications>-->
-    <!--<member-services></member-services>-->
-    <!--<member-forwarding-sublayers></member-forwarding-sublayers>-->
+    </traffic-reqmnts>
+    <member-svcs>ssl-1</member-svcs>
+    <member-svcs>ssl-2</member-svcs>
+    <!--<member-apps></member-apps>-->
+    <!--<member-svcs></member-svcs>-->
+    <!--<member-fwd-sublayers></member-fwd-sublayers>-->
     <!--<member-groups></member-groups>-->
   </traffic-profile>
   <traffic-profile>  
     <profile-name>3</profile-name>
-    <traffic-specification>
+    <flow-spec>
       <interval>5</interval>
-      <max-packets-per-interval>10</max-packets-per-interval>
+      <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
-    </traffic-specification>
-    <!--<member-applications></member-applications>-->
-    <!--<member-services></member-services>-->
+    </flow-spec>
+    <!--<member-apps></member-apps>-->
+    <!--<member-svcs></member-svcs>-->
     <!--<member-groups></member-groups>-->
-    <member-forwarding-sublayers>afl-1</member-forwarding-sublayers>
+    <member-fwd-sublayers>afl-1</member-fwd-sublayers>
   </traffic-profile>
   <service-sub-layer>
     <service-sub-layer-list>

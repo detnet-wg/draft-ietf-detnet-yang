@@ -52,50 +52,50 @@
   xmlns:pf="urn:ietf:params:xml:ns:yang:ietf-packet-fields">
    <traffic-profile>  
     <profile-name>pf-1</profile-name>
-    <traffic-requirements>
+    <traffic-reqmnts>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>100000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-requirements>
-    <member-services>ssl-1</member-services>
-    <member-services>ssl-2</member-services>
+    </traffic-reqmnts>
+    <member-svcs>ssl-1</member-svcs>
+    <member-svcs>ssl-2</member-svcs>
   </traffic-profile>
    <traffic-profile>  
     <profile-name>pf-2</profile-name>
-    <traffic-requirements>
+    <traffic-reqmnts>
       <min-bandwidth>200000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>100000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-requirements>
-    <member-services>asl-1</member-services>
+    </traffic-reqmnts>
+    <member-svcs>asl-1</member-svcs>
   </traffic-profile>
   <traffic-profile>  
     <profile-name>pf-3</profile-name>
-    <traffic-specification>
+    <flow-spec>
       <interval>125</interval>
-      <max-packets-per-interval>1</max-packets-per-interval>
+      <max-pkts-per-interval>1</max-pkts-per-interval>
       <max-payload-size>1518</max-payload-size>
-    </traffic-specification>
-    <member-forwarding-sublayers>fsl-3</member-forwarding-sublayers>
-    <member-forwarding-sublayers>fsl-4</member-forwarding-sublayers>
-    <member-forwarding-sublayers>fsl-5</member-forwarding-sublayers>
-    <member-forwarding-sublayers>fsl-6</member-forwarding-sublayers>
+    </flow-spec>
+    <member-fwd-sublayers>fsl-3</member-fwd-sublayers>
+    <member-fwd-sublayers>fsl-4</member-fwd-sublayers>
+    <member-fwd-sublayers>fsl-5</member-fwd-sublayers>
+    <member-fwd-sublayers>fsl-6</member-fwd-sublayers>
   </traffic-profile>
   <traffic-profile>  
     <profile-name>pf-4</profile-name>
-    <traffic-specification>
+    <flow-spec>
       <interval>125</interval>
-      <max-packets-per-interval>2</max-packets-per-interval>
+      <max-pkts-per-interval>2</max-pkts-per-interval>
       <max-payload-size>1518</max-payload-size>
-    </traffic-specification>
-    <member-forwarding-sublayers>fsl-1</member-forwarding-sublayers>
-    <member-forwarding-sublayers>fsl-2</member-forwarding-sublayers>
+    </flow-spec>
+    <member-fwd-sublayers>fsl-1</member-fwd-sublayers>
+    <member-fwd-sublayers>fsl-2</member-fwd-sublayers>
   </traffic-profile>
   <service-sub-layer>
     <service-sub-layer-list>
@@ -108,14 +108,14 @@
       </service-protection>
       <service-operation-type>service-relay</service-operation-type>
       <incoming-type>
-        <service-identification>        
+        <service-id>        
           <mpls-label-stack>
             <entry>
               <id>0</id>
               <label>101</label>
             </entry>
           </mpls-label-stack>
-        </service-identification>        
+        </service-id>        
       </incoming-type>
       <outgoing-type>
         <forwarding-sub-layer>
@@ -142,14 +142,14 @@
       </service-protection>
       <service-operation-type>service-relay</service-operation-type>
       <incoming-type>
-        <service-identification>        
+        <service-id>        
           <mpls-label-stack>
             <entry>
               <id>0</id>
               <label>104</label>
             </entry>
           </mpls-label-stack>
-        </service-identification>        
+        </service-id>        
       </incoming-type>
       <outgoing-type>
         <forwarding-sub-layer>
@@ -176,14 +176,14 @@
       </service-protection>
       <service-operation-type>service-termination</service-operation-type>
       <incoming-type>
-        <service-identification>        
+        <service-id>        
           <mpls-label-stack>
             <entry>
               <id>0</id>
               <label>1000</label>
             </entry>
           </mpls-label-stack>
-        </service-identification>        
+        </service-id>        
       </incoming-type>
       <outgoing-type>
         <forwarding-disaggregation>
@@ -199,7 +199,7 @@
       <traffic-profile>pf-4</traffic-profile>
       <forwarding-operation-type>pop-and-lookup</forwarding-operation-type>
       <incoming-type>
-	<forwarding-identification>
+	<forwarding-id>
           <interface>eth0</interface>
           <mpls-label-stack>
             <entry>
@@ -207,7 +207,7 @@
               <label>20002</label>
             </entry>
           </mpls-label-stack>
-        </forwarding-identification>
+        </forwarding-id>
       </incoming-type>
       <outgoing-type>
         <service-sub-layer>
@@ -220,7 +220,7 @@
       <traffic-profile>pf-4</traffic-profile>
       <forwarding-operation-type>pop-and-lookup</forwarding-operation-type>
       <incoming-type>
-        <forwarding-identification>
+        <forwarding-id>
           <interface>eth1</interface>
           <mpls-label-stack>
             <entry>
@@ -228,7 +228,7 @@
               <label>20003</label>
             </entry>
           </mpls-label-stack>
-        </forwarding-identification>
+        </forwarding-id>
       </incoming-type>
       <outgoing-type>
         <service-sub-layer>
@@ -241,7 +241,7 @@
       <traffic-profile>pf-3</traffic-profile>
       <forwarding-operation-type>pop-and-lookup</forwarding-operation-type>
       <incoming-type>
-        <forwarding-identification>
+        <forwarding-id>
           <interface>eth0</interface>
           <mpls-label-stack>
             <entry>
@@ -249,7 +249,7 @@
               <label>20004</label>
             </entry>
           </mpls-label-stack>
-        </forwarding-identification>
+        </forwarding-id>
       </incoming-type>
       <outgoing-type>
         <service-sub-layer>
@@ -262,7 +262,7 @@
       <traffic-profile>pf-3</traffic-profile>
       <forwarding-operation-type>pop-and-lookup</forwarding-operation-type>
       <incoming-type>
-        <forwarding-identification>
+        <forwarding-id>
           <interface>eth1</interface>
           <mpls-label-stack>
             <entry>
@@ -270,7 +270,7 @@
               <label>20005</label>
             </entry>
           </mpls-label-stack>
-        </forwarding-identification>
+        </forwarding-id>
       </incoming-type>
       <outgoing-type>
         <service-sub-layer>
