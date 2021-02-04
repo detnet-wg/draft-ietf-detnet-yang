@@ -81,7 +81,7 @@
     "traffic-profile": [
       {
         "profile-name": "pf-1",
-        "traffic-requirements": {
+        "traffic-reqmnts": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 200000000,
@@ -89,21 +89,21 @@
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
-        "traffic-specification": {
+        "flow-spec": {
           "interval": 5,
-          "max-packets-per-interval": 10,
+          "max-pkts-per-interval": 10,
           "max-payload-size": 1500,
-          "average-packets-per-interval": 5,
-          "average-payload-size": 1000
+          "min-payload-size": 100,
+          "min-pkts-per-interval": 1
         },
-        "member-applications": [
+        "member-apps": [
           "app-0",
           "app-1"
         ]
       },
       {
         "profile-name": "pf-2",
-        "traffic-requirements": {
+        "traffic-reqmnts": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
           "max-latency-variation": 200000000,
@@ -111,25 +111,25 @@
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
-        "traffic-specification": {
+        "flow-spec": {
           "interval": 5,
-          "max-packets-per-interval": 10,
+          "max-pkts-per-interval": 10,
           "max-payload-size": 1500,
-          "average-packets-per-interval": 5,
-          "average-payload-size": 1000
+          "min-payload-size": 100,
+          "min-pkts-per-interval": 1
         },
-        "member-services": [
+        "member-svcs": [
           "ssl-1"
         ]
       },
       {
         "profile-name": "pf-3",
-        "traffic-specification": {
+        "flow-spec": {
           "interval": 5,
-          "max-packets-per-interval": 10,
+          "max-pkts-per-interval": 10,
           "max-payload-size": 1500
         },
-        "member-forwarding-sublayers": [
+        "member-fwd-sublayers": [
           "fsl-1"
         ]
       }
@@ -184,7 +184,7 @@
           "forwarding-operation-type": "impose-and-forward",
           "incoming-type": {
             "service-sub-layer": {
-              "sub-layer-list": [
+              "service-sub-layer": [
                 "ssl-1"
               ]
             }

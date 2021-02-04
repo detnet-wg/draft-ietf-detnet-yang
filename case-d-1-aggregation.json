@@ -2,19 +2,44 @@
   "ietf-interfaces:interfaces": {
     "interface": [
       {
-        "name": "eth0"
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T23:59:00Z"
+        }
       },
       {
-        "name": "eth1"
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T23:59:00Z"
+        }
       },
       {
-        "name": "eth2"
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T23:59:00Z"
+        }
       },
       {
-        "name": "eth3"
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T23:59:00Z"
+        }
       },
       {
-        "name": "eth4"
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T23:59:00Z"
+        }
       }
     ]
   },
@@ -22,24 +47,24 @@
     "traffic-profile": [
       {
         "profile-name": "pf-1",
-        "traffic-specification": {
+        "flow-spec": {
           "interval": 125,
-          "max-packets-per-interval": 1,
+          "max-pkts-per-interval": 1,
           "max-payload-size": 1518
         },
-        "member-forwarding-sublayers": [
+        "member-fwd-sublayers": [
           "fsl-1",
           "fsl-2"
         ]
       },
       {
         "profile-name": "pf-2",
-        "traffic-specification": {
+        "flow-spec": {
           "interval": 125,
-          "max-packets-per-interval": 2,
+          "max-pkts-per-interval": 2,
           "max-payload-size": 1518
         },
-        "member-forwarding-sublayers": [
+        "member-fwd-sublayers": [
           "afl-1"
         ]
       }
@@ -51,7 +76,7 @@
           "traffic-profile": "pf-1",
           "forwarding-operation-type": "pop-impose-and-forward",
           "incoming-type": {
-            "forwarding-identification": {
+            "forwarding-id": {
               "interface": "eth0",
               "mpls-label-stack": {
                 "entry": [
@@ -84,7 +109,7 @@
           "traffic-profile": "pf-1",
           "forwarding-operation-type": "pop-impose-and-forward",
           "incoming-type": {
-            "forwarding-identification": {
+            "forwarding-id": {
               "interface": "eth1",
               "mpls-label-stack": {
                 "entry": [
@@ -140,202 +165,5 @@
         }
       ]
     }
-  },
-  "ietf-yang-library:yang-library": {
-    "module-set": [
-      {
-        "name": "complete",
-        "import-only-module": [
-          {
-            "name": "ietf-yang-metadata",
-            "revision": "2016-08-05",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-metadata"
-          },
-          {
-            "name": "ietf-inet-types",
-            "revision": "2013-07-15",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types"
-          },
-          {
-            "name": "ietf-yang-types",
-            "revision": "2013-07-15",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types"
-          },
-          {
-            "name": "ietf-datastores",
-            "revision": "2018-02-14",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-datastores"
-          },
-          {
-            "name": "ietf-ethertypes",
-            "revision": "2019-03-04",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-ethertypes",
-            "location": [
-              "file:///home/libyang/models/ietf-ethertypes.yang"
-            ]
-          },
-          {
-            "name": "ietf-routing-types",
-            "revision": "2017-12-04",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-types",
-            "location": [
-              "file:///home/libyang/models/ietf-routing-types.yang"
-            ]
-          },
-          {
-            "name": "ietf-packet-fields",
-            "revision": "2019-03-04",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
-            "location": [
-              "file:///home/libyang/models/ietf-packet-fields.yang"
-            ]
-          },
-          {
-            "name": "iana-if-type",
-            "revision": "2013-07-04",
-            "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
-            "location": [
-              "file:///home/libyang/models/iana-if-type.yang"
-            ]
-          },
-          {
-            "name": "ieee802-dot1q-types",
-            "revision": "2018-03-07",
-            "namespace": "urn:ieee:std:802.1Q:yang:ieee802-dot1q-types",
-            "location": [
-              "file:///home/libyang/models/ieee802-dot1q-types.yang"
-            ]
-          }
-        ],
-        "module": [
-          {
-            "name": "yang",
-            "revision": "2017-02-20",
-            "namespace": "urn:ietf:params:xml:ns:yang:1"
-          },
-          {
-            "name": "ietf-yang-library",
-            "revision": "2019-01-04",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library"
-          },
-          {
-            "name": "ietf-interfaces",
-            "revision": "2013-12-23",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
-            "location": [
-              "file:///home/libyang/models/ietf-interfaces.yang"
-            ]
-          },
-          {
-            "name": "ietf-detnet",
-            "revision": "2020-12-16",
-            "namespace": "urn:ietf:params:xml:ns:yang:ietf-detnet",
-            "location": [
-              "file:///home/libyang/models/ietf-detnet.yang"
-            ]
-          }
-        ]
-      }
-    ],
-    "schema": [
-      {
-        "name": "complete",
-        "module-set": [
-          "complete"
-        ]
-      }
-    ],
-    "content-id": "14"
-  },
-  "ietf-yang-library:modules-state": {
-    "module": [
-      {
-        "name": "ietf-yang-metadata",
-        "revision": "2016-08-05",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-metadata",
-        "conformance-type": "import"
-      },
-      {
-        "name": "yang",
-        "revision": "2017-02-20",
-        "namespace": "urn:ietf:params:xml:ns:yang:1",
-        "conformance-type": "implement"
-      },
-      {
-        "name": "ietf-inet-types",
-        "revision": "2013-07-15",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-yang-types",
-        "revision": "2013-07-15",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-datastores",
-        "revision": "2018-02-14",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-datastores",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-yang-library",
-        "revision": "2019-01-04",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library",
-        "conformance-type": "implement"
-      },
-      {
-        "name": "ietf-ethertypes",
-        "revision": "2019-03-04",
-        "schema": "file:///home/libyang/models/ietf-ethertypes.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-ethertypes",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-routing-types",
-        "revision": "2017-12-04",
-        "schema": "file:///home/libyang/models/ietf-routing-types.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-types",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-packet-fields",
-        "revision": "2019-03-04",
-        "schema": "file:///home/libyang/models/ietf-packet-fields.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
-        "conformance-type": "import"
-      },
-      {
-        "name": "iana-if-type",
-        "revision": "2013-07-04",
-        "schema": "file:///home/libyang/models/iana-if-type.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-interfaces",
-        "revision": "2013-12-23",
-        "schema": "file:///home/libyang/models/ietf-interfaces.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
-        "conformance-type": "implement"
-      },
-      {
-        "name": "ieee802-dot1q-types",
-        "revision": "2018-03-07",
-        "schema": "file:///home/libyang/models/ieee802-dot1q-types.yang",
-        "namespace": "urn:ieee:std:802.1Q:yang:ieee802-dot1q-types",
-        "conformance-type": "import"
-      },
-      {
-        "name": "ietf-detnet",
-        "revision": "2020-12-16",
-        "schema": "file:///home/libyang/models/ietf-detnet.yang",
-        "namespace": "urn:ietf:params:xml:ns:yang:ietf-detnet",
-        "conformance-type": "implement"
-      }
-    ],
-    "module-set-id": "14"
   }
 }
-
