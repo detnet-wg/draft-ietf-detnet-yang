@@ -283,34 +283,28 @@
        </t>
         <t><list style="symbols">
        <t>
-       aggregate data flows into an application which is then mapped to a
-       service sub-layer at the ingress node. Note the data flows may be other
-       DetNet flows.  
+       Ingress node aggregates App flows into a service sub-layer of DetNet flow  
        </t>
        <t>
-       map each DetNet application to a single service sub-layer and allowing
-       the aggregation of multiple applications at the ingress node, and vice
-       versa for de-aggregation. A classifier may be required to de-aggregate
-       the respective applications.  
+       In ingress node, the service sub-layers of DetNet flows are aggregated into a forwarding sub-layer  
        </t>
        <t>
-       map each DetNet application uniquely to a single service sub-layer where
-       those sub-layers may be encapsulated as a single service sub-layer and
-       hence aggregating the applications at the ingress node, and vice versa
-       for de-aggregation. In this case, the service sub-layer identifier may 
-       be sufficient to identify the application.  
-       A classifier may be required to de-aggregate the
-       service sub-layers. 
+       In ingress node, the service sub-layers of DetNet flows are aggregated into a service sub-layer of an aggregated DetNet flow 
        </t>
        <t>
-       aggregate DetNet service sub-layers into an aggregated flow by using the
-       same forwarding sub-layer at ingress node or relay node, and vice versa
-       for de-aggregation.
+       Relay node aggregates the forwarding sub-layers DetNet flows into a forwarding sub-layer
        </t>
        <t>
-       aggregate DetNet flows with different forwarding sub-layer into an
-       aggregated flow by using the  same forwarding sub-layer at transit node,
-       and vice versa for de-aggregation.
+       Relay node aggregates the service sub-layers of DetNet flows into a forwarding sub-layer
+       </t>
+       <t>
+       Relay node aggregates the service sub-layers of DetNet flows into a service sub-layer of Aggregated DetNet flow
+       </t>
+       <t>
+       Relay node aggregates the forwarding sub-layers of DetNet flow into a service sub-layer of Aggregated DetNet flow
+       </t>
+       <t>
+       Transit node aggregates the forwarding sub-layers of DetNet flows into a forwarding sub-layer
        </t>
        </list></t>
        <t>
@@ -327,15 +321,20 @@
       Model:</t>
 
       <t><figure>
-          <artwork><![CDATA[                  +-----------+
+          <artwork><![CDATA[                 
+                  +-----------+
                   |ietf-detnet|
                   +-----+-----+
                         |
-          +-------------+---------------+
-          |             |               |   
-    +-----+-----+ +-----+-----+ +-------+------+ 
-    | App Flows | |service s-l| |forwarding s-l| 
-    +-----------+ +-----------+ +--------------+ 
+          +-------------+---------------+-------------------+
+          |             |               |                   |  
+    +-----+-----+ +-----+-----+ +-------+------+            | 
+    | App Flows | |service s-l| |forwarding s-l|            |
+    +-----+-----+ +-----+-----+ +-------+------+            |
+          |             |               |                   |
+    +-----+-----+ +-----+-----+ +-------+------+   +--------+-------+        
+    | Ref to TR | | Ref to TR | |  Ref to TR   |   | Traffic Profile|
+    +-----------+ +-----------+ +--------------+   +----------------+
 ]]></artwork>
         </figure></t>
 
