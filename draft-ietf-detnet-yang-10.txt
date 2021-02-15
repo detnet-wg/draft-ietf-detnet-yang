@@ -216,8 +216,8 @@ Internet-Draft          draft-ietf-detnet-yang-10          February 2021
 
    The following cases of DetNet aggregation are supported:
 
-
-
+   o  Ingress node aggregates App flows into a service sub-layer of
+      DetNet flow
 
 
 
@@ -226,30 +226,26 @@ Geng, et al.             Expires August 19, 2021                [Page 4]
 Internet-Draft          draft-ietf-detnet-yang-10          February 2021
 
 
-   o  aggregate data flows into an application which is then mapped to a
-      service sub-layer at the ingress node.  Note the data flows may be
-      other DetNet flows.
+   o  In ingress node, the service sub-layers of DetNet flows are
+      aggregated into a forwarding sub-layer
 
-   o  map each DetNet application to a single service sub-layer and
-      allowing the aggregation of multiple applications at the ingress
-      node, and vice versa for de-aggregation.  A classifier may be
-      required to de-aggregate the respective applications.
+   o  In ingress node, the service sub-layers of DetNet flows are
+      aggregated into a service sub-layer of an aggregated DetNet flow
 
-   o  map each DetNet application uniquely to a single service sub-layer
-      where those sub-layers may be encapsulated as a single service
-      sub-layer and hence aggregating the applications at the ingress
-      node, and vice versa for de-aggregation.  In this case, the
-      service sub-layer identifier may be sufficient to identify the
-      application.  A classifier may be required to de-aggregate the
-      service sub-layers.
+   o  Relay node aggregates the forwarding sub-layers DetNet flows into
+      a forwarding sub-layer
 
-   o  aggregate DetNet service sub-layers into an aggregated flow by
-      using the same forwarding sub-layer at ingress node or relay node,
-      and vice versa for de-aggregation.
+   o  Relay node aggregates the service sub-layers of DetNet flows into
+      a forwarding sub-layer
 
-   o  aggregate DetNet flows with different forwarding sub-layer into an
-      aggregated flow by using the same forwarding sub-layer at transit
-      node, and vice versa for de-aggregation.
+   o  Relay node aggregates the service sub-layers of DetNet flows into
+      a service sub-layer of Aggregated DetNet flow
+
+   o  Relay node aggregates the forwarding sub-layers of DetNet flow
+      into a service sub-layer of Aggregated DetNet flow
+
+   o  Transit node aggregates the forwarding sub-layers of DetNet flows
+      into a forwarding sub-layer
 
    Traffic requirements and traffic specification may be tracked for
    individual or aggregate flows but reserving resources and tracking
@@ -264,11 +260,15 @@ Internet-Draft          draft-ietf-detnet-yang-10          February 2021
                      |ietf-detnet|
                      +-----+-----+
                            |
-             +-------------+---------------+
-             |             |               |
-       +-----+-----+ +-----+-----+ +-------+------+
-       | App Flows | |service s-l| |forwarding s-l|
-       +-----------+ +-----------+ +--------------+
+             +-------------+---------------+-------------------+
+             |             |               |                   |
+       +-----+-----+ +-----+-----+ +-------+------+            |
+       | App Flows | |service s-l| |forwarding s-l|            |
+       +-----+-----+ +-----+-----+ +-------+------+            |
+             |             |               |                   |
+       +-----+-----+ +-----+-----+ +-------+------+   +--------+-------+
+       | Ref to TR | | Ref to TR | |  Ref to TR   |   | Traffic Profile|
+       +-----------+ +-----------+ +--------------+   +----------------+
 
    There are three instances in DetNet YANG Model: App-flow instance,
    service sub-layer instance and forwarding sub-layer instance,
