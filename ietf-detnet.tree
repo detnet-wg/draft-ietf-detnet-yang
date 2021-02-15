@@ -84,9 +84,9 @@ module: ietf-detnet
      |     +--rw egress
      |        +--rw name?             string
      |        +--rw (application-type)?
-     |           +--:(Ethernet)
-     |           |  +--rw Ethernet
-     |           |     +--rw Ethernet-place-holder?   string
+     |           +--:(ethernet)
+     |           |  +--rw ethernet
+     |           |     +--rw interface?   if:interface-ref
      |           +--:(ip-mpls)
      |              +--rw ip-mpls
      |                 +--rw (next-hop-options)

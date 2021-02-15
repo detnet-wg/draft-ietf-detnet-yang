@@ -846,8 +846,8 @@ module ietf-detnet {
         leaf min-payload-size {
           type uint32;
           description
-	    "The minimum payload size that the source
-	     will transmit.";
+            "The minimum payload size that the source
+             will transmit.";
         }
         leaf min-pkts-per-interval {
           type uint32;
@@ -942,6 +942,10 @@ module ietf-detnet {
           }
           leaf interface {
             type if:interface-ref;
+            description
+            "Interface is used for any service type where a whole
+            interface is mapped to the applications. It may be 
+            further filtered by type";
           }
           uses data-flow-spec;
         } //End of app-ingress
@@ -955,12 +959,12 @@ module ietf-detnet {
               "Egress DetNet application.";
           }
           choice application-type {
-            container Ethernet {
-              leaf Ethernet-place-holder {
-                type string;
-                description
-                  "Place holder for matching Ethernet.";
+            container ethernet {
+              leaf interface {
+                type if:interface-ref;
               }
+              description
+                "TSN unaware maps to an interface.";
             }
             container ip-mpls {
               uses detnet-app-next-hop-content;
@@ -1074,7 +1078,7 @@ module ietf-detnet {
                  flow when the incoming type is service or
                  forwarding.  The service sub-layer swaps the service
                  label when the operation type is service-relay.";
-	      list service-outgoing-list {
+              list service-outgoing-list {
                 key "service-outgoing-index";
                 description
                   "List of the outgoing service
