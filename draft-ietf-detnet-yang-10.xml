@@ -11,11 +11,11 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 <rfc category="std" 
-       docName="draft-ietf-detnet-yang-10-working-version" 
+       docName="draft-ietf-detnet-yang-10" 
        ipr="trust200902"
         submissionType="IETF">
   <front>
-    <title abbrev="draft-ietf-detnet-yang-10-working-version">Deterministic Networking
+    <title abbrev="draft-ietf-detnet-yang-10">Deterministic Networking
     (DetNet) Configuration YANG Model</title>
 
     <author fullname="Xuesong Geng" initials="X." surname="Geng">
@@ -434,9 +434,9 @@ module: ietf-detnet
      |     +--rw egress
      |        +--rw name?             string
      |        +--rw (application-type)?
-     |           +--:(Ethernet)
-     |           |  +--rw Ethernet
-     |           |     +--rw Ethernet-place-holder?   string
+     |           +--:(ethernet)
+     |           |  +--rw ethernet
+     |           |     +--rw interface?   if:interface-ref
      |           +--:(ip-mpls)
      |              +--rw ip-mpls
      |                 +--rw (next-hop-options)
@@ -716,7 +716,7 @@ module: ietf-detnet
                  |                 |     |  +--rw next-hop-address?
                  |                 |     |          inet:ip-address
                  |                 |     +--:(mpls-over-ip-
-                 |                 |         encapsulation)
+                 |                 |          encapsulation)
                  |                 |        +--rw src-ip-address?
                  |                 |        |       inet:ip-address
                  |                 |        +--rw dest-ip-address?
@@ -779,7 +779,7 @@ module: ietf-detnet
     </section>
 
     <section title="DetNet Configuration YANG Model">
-      <t><figure>
+<t><figure>
 <artwork><![CDATA[<CODE BEGINS>
 module ietf-detnet {
   yang-version 1.1;
@@ -1725,6 +1725,10 @@ module ietf-detnet {
           }
           leaf interface {
             type if:interface-ref;
+            description
+            "Interface is used for any service type where a whole
+            interface is mapped to the applications. It may be 
+            further filtered by type";
           }
           uses data-flow-spec;
         } //End of app-ingress
@@ -1738,12 +1742,12 @@ module ietf-detnet {
               "Egress DetNet application.";
           }
           choice application-type {
-            container Ethernet {
-              leaf Ethernet-place-holder {
-                type string;
-                description
-                  "Place holder for matching Ethernet.";
+            container ethernet {
+              leaf interface {
+                type if:interface-ref;
               }
+              description
+                "TSN unaware maps to an interface.";
             }
             container ip-mpls {
               uses detnet-app-next-hop-content;
