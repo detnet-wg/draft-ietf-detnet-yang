@@ -81,7 +81,7 @@
     "traffic-profile": [
       {
         "profile-name": "1",
-        "traffic-reqmnts": {
+        "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 200000000,
@@ -96,7 +96,7 @@
       },
       {
         "profile-name": "2",
-        "traffic-reqmnts": {
+        "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 200000000,
@@ -104,7 +104,7 @@
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
-        "member-svcs": [
+        "member-services": [
           "ssl-1",
           "ssl-2"
         ]

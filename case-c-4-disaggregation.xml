@@ -52,28 +52,28 @@
   xmlns:pf="urn:ietf:params:xml:ns:yang:ietf-packet-fields">
    <traffic-profile>  
     <profile-name>pf-1</profile-name>
-    <traffic-reqmnts>
+    <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>100000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-reqmnts>
-    <member-svcs>ssl-1</member-svcs>
-    <member-svcs>ssl-2</member-svcs>
+    </traffic-requirements>
+    <member-services>ssl-1</member-services>
+    <member-services>ssl-2</member-services>
   </traffic-profile>
    <traffic-profile>  
     <profile-name>pf-2</profile-name>
-    <traffic-reqmnts>
+    <traffic-requirements>
       <min-bandwidth>200000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>100000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-reqmnts>
-    <member-svcs>asl-1</member-svcs>
+    </traffic-requirements>
+    <member-services>asl-1</member-services>
   </traffic-profile>
   <traffic-profile>  
     <profile-name>pf-3</profile-name>

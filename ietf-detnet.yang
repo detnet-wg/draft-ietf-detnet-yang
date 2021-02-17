@@ -71,7 +71,7 @@ module ietf-detnet {
      for DetNet flow configuration and flow status
      reporting.";
 
-  revision 2021-02-01 {
+  revision 2021-02-17 {
     description
       "initial revision";
     reference
@@ -752,9 +752,9 @@ module ietf-detnet {
           "An Aggregation group ID. Zero means the service is not
            part of a group.";
       }
-      container traffic-reqmnts {
+      container traffic-requirements {
         description
-          "FlowRequirements: defines the attributes of the App-flow
+          "This defines the attributes of the App-flow
            regarding bandwidth, latency, latency variation, loss, and
            misordering tolerance.";
         reference
@@ -763,7 +763,7 @@ module ietf-detnet {
           type uint64;
           units "bps";
           description
-            "MinBandwidth is the minimum bandwidth that has to be
+            "This is the minimum bandwidth that has to be
              guaranteed for the DetNet service.  MinBandwidth is
              specified in octets per second.";
         }
@@ -771,7 +771,7 @@ module ietf-detnet {
           type uint32;
           units "nanoseconds";
           description
-            "MaxLatency is the maximum latency from Ingress to
+            "This is the maximum latency from Ingress to
              Egress(es) for a single packet of the DetNet flow.
              MaxLatency is specified as an integer number of
              nanoseconds.";
@@ -780,7 +780,7 @@ module ietf-detnet {
           type uint32;
           units "nanoseconds";
           description
-            "MaxLatencyVariation is the difference between the
+            "This is the difference between the
              minimum and the maximum end-to-end one-way latency.
              MaxLatencyVariation is specified as an integer number of
              nanoseconds.";
@@ -788,7 +788,7 @@ module ietf-detnet {
         leaf max-loss {
           type uint32;
           description
-            "MaxLoss defines the maximum Packet Loss Ratio (PLR)
+            "This defines the maximum Packet Loss Ratio (PLR)
              parameter for the DetNet service between the Ingress and
              Egress(es) of the DetNet domain.";
         }
@@ -807,7 +807,7 @@ module ietf-detnet {
           type uint32;
           units "packets";
           description
-            "MaxMisordering describes the tolerable maximum number
+            "This describes the tolerable maximum number
              of packets that can be received out of order.  The
              maximum allowed misordering can be measured for example
              based on sequence number.  The value zero for the
@@ -862,7 +862,7 @@ module ietf-detnet {
         description
           "Applications attached to this profile.";
       }
-      leaf-list member-svcs {
+      leaf-list member-services {
         type service-sub-layer-ref;
         config false;
         description
@@ -894,6 +894,7 @@ module ietf-detnet {
         }
         leaf app-flow-bidir-congruent {
           type boolean;
+	  default false;
           description
             "Defines the data path requirement of the App-flow
              whether it must share the same data path and physical
@@ -921,7 +922,6 @@ module ietf-detnet {
             "The Traffic Profile for this group.";
         }
         container ingress {
-          // key "name";  This should be a list for aggregation
           description
             "Ingress DetNet application flows or a compound flow.";
           leaf name {
@@ -952,7 +952,6 @@ module ietf-detnet {
         container egress {
           description
             "Route's next-hop attribute.";
-          // key "name";  This should be a list for aggregation
           leaf name {
             type string;
             description
@@ -1190,7 +1189,6 @@ module ietf-detnet {
               uses forwarding-sub-layer-group;
             }
             container forwarding-id  {
-              //case forwarding-identification {
               description
                 "This forwarding sub-layer is related to all of the
                  lower layer and provide DetNet forwarding swap or

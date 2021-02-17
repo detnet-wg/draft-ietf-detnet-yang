@@ -78,14 +78,14 @@
   </app-flows>
   <traffic-profile>  
     <profile-name>1</profile-name>
-    <traffic-reqmnts>
+    <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-reqmnts>
+    </traffic-requirements>
     <member-apps>app-1</member-apps>
     <member-apps>app-2</member-apps>
     <!--<member-groups></member-groups>-->
@@ -93,18 +93,18 @@
   </traffic-profile>
   <traffic-profile>  
     <profile-name>2</profile-name>
-    <traffic-reqmnts>
+    <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-reqmnts>
-    <member-svcs>ssl-1</member-svcs>
-    <member-svcs>ssl-2</member-svcs>
+    </traffic-requirements>
+    <member-services>ssl-1</member-services>
+    <member-services>ssl-2</member-services>
     <!--<member-apps></member-apps>-->
-    <!--<member-svcs></member-svcs>-->
+    <!--<member-services></member-services>-->
     <!--<member-fwd-sublayers></member-fwd-sublayers>-->
     <!--<member-groups></member-groups>-->
   </traffic-profile>
@@ -116,7 +116,7 @@
       <max-payload-size>1500</max-payload-size>
     </flow-spec>
     <!--<member-apps></member-apps>-->
-    <!--<member-svcs></member-svcs>-->
+    <!--<member-services></member-services>-->
     <!--<member-groups></member-groups>-->
     <member-fwd-sublayers>afl-1</member-fwd-sublayers>
   </traffic-profile>
@@ -187,8 +187,8 @@
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
       <incoming-type>
 	<service-sub-layer>
-          <sub-layer-list>ssl-1</sub-layer-list>
-          <sub-layer-list>ssl-2</sub-layer-list>
+          <service-sub-layer>ssl-1</service-sub-layer>
+          <service-sub-layer>ssl-2</service-sub-layer>
 	</service-sub-layer>
       </incoming-type>
       <outgoing-type>
