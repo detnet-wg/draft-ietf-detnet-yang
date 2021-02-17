@@ -2,7 +2,7 @@ module: ietf-detnet
   +--rw detnet
      +--rw traffic-profile* [profile-name]
      |  +--rw profile-name            string
-     |  +--rw traffic-reqmnts
+     |  +--rw traffic-requirements
      |  |  +--rw min-bandwidth?                    uint64
      |  |  +--rw max-latency?                      uint32
      |  |  +--rw max-latency-variation?            uint32
@@ -16,7 +16,7 @@ module: ietf-detnet
      |  |  +--rw min-payload-size?        uint32
      |  |  +--rw min-pkts-per-interval?   uint32
      |  +--ro member-apps*            app-flow-ref
-     |  +--ro member-svcs*            service-sub-layer-ref
+     |  +--ro member-services*        service-sub-layer-ref
      |  +--ro member-fwd-sublayers*   forwarding-sub-layer-ref
      +--rw app-flows
      |  +--rw app-flow* [name]

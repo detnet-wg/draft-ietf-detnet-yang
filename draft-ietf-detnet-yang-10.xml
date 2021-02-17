@@ -16,7 +16,7 @@
         submissionType="IETF">
   <front>
     <title abbrev="draft-ietf-detnet-yang-10">Deterministic Networking
-    (DetNet) Configuration YANG Model</title>
+    (DetNet) YANG Model</title>
 
     <author fullname="Xuesong Geng" initials="X." surname="Geng">
       <organization>Huawei Technologies</organization>
@@ -152,10 +152,12 @@
     <date />
 
     <abstract>
-      <t>This document contains the specification for Deterministic Networking
-      flow configuration YANG Model. The model allows for provisioning of
+      <t>This document contains the specification for the Deterministic Networking
+     YANG Model for configuration and operational data for DetNet Flows. 
+      The model allows for provisioning of
       end-to-end DetNet service along the path without dependency on any
-      signaling protocol.</t>
+      signaling protocol. It also specifies operational status for
+      flows.</t>
 
       <t>The YANG module defined in this document conforms to the Network
       Management Datastore Architecture (NMDA).</t>
@@ -188,30 +190,31 @@
       document.</t>
     </section>
 
-    <section title="Terminologies">
-      <t>This documents uses the terminologies defined in <xref
+    <section title="Terminology">
+      <t>This document uses the terminology defined in <xref
       target="RFC8655"> </xref>.</t>
     </section>
 
-    <section title="DetNet Configuration Module">
-      <t>DetNet configuration module includes DetNet App-flow configuration,
-      DetNet Service Sub-layer configuration, and DetNet Forwarding Sub-layer
-      configuration. The corresponding attributes used in different sub-layers
+    <section title="DetNet YANG Module">
+      <t>The DetNet YANG module includes DetNet App-flow,
+      DetNet Service Sub-layer, and DetNet Forwarding Sub-layer
+      configuration and operational objects. 
+      The corresponding attributes used in different sub-layers
       are defined in Section 3.1, 3.2, 3.3 respectively.</t>
 
-      <section title="DetNet Appliction Flow Configuration Attributes">
+      <section title="DetNet Application Flow YANG Attributes">
         <t>DetNet application flow is responsible for mapping between
         application flows and DetNet flows at the edge node(egress/ingress
-        node). Where the application flows can be either layer 2 or layer 3
+        node). The the application flows can be either layer 2 or layer 3
         flows. To map a flow at the User Network Interface (UNI), the
         corresponding attributes are defined in <xref
         target="I-D.ietf-detnet-flow-information-model"/>.</t>
       </section>
 
-      <section title="DetNet Service Sub-layer Configuration Attributes">
+      <section title="DetNet Service Sub-layer YANG Attributes">
         <t>DetNet service functions, e.g., DetNet tunnel
         initialization/termination and service protection, are provided in
-        DetNet service sub-layer. To support these functions, the following
+        the DetNet service sub-layer. To support these functions, the following
         service attributes need to be configured:</t>
 
         <t><list style="symbols">
@@ -226,7 +229,7 @@
           </list></t>
       </section>
 
-      <section title="DetNet Forwarding Sub-layer Configuration Attributes">
+      <section title="DetNet Forwarding Sub-layer YANG Attributes">
         <t>As defined in <xref target="RFC8655"/>, DetNet forwarding sub-layer
         optionally provides congestion protection for DetNet flows over paths
         provided by the underlying network. Explicit route is another
@@ -238,17 +241,21 @@
         transport layer related attributes are necessary:</t>
 
         <t><list style="symbols">
-            <t>Traffic Specification, refers to Section 7.2 of <xref
-            target="I-D.ietf-detnet-flow-information-model"/>. It may used for
-            resource reservation, flow shaping, filtering and policing.</t>
+            <t>Flow Specification and Traffic Requirements, refers to <xref
+            target="I-D.ietf-detnet-flow-information-model"/>. These may used for
+            resource reservation, flow shaping, filtering and policing by 
+            a control plane or other network management and control mechanisms.
+            </t>
 
-            <t>Explicit path, existing explicit route mechanisms can be
-            reused. For example, if Segment Routing (SR) tunnel is used as the
-            transport tunnel, the configuration is mainly at the ingress node
-            of the transport layer; if the static MPLS tunnel is used as the
-            transport tunnel, the configurations need to be at every transit
-            node along the path; for pure IP based transport tunnel, it's
-            similar to the static MPLS case.</t>
+            <t>Since this model programs the data plane existing explicit route
+            mechanisms can be reused. If a static MPLS tunnel is used as the
+            transport tunnel, the configuration need to be at every transit
+            node along the path. For an IP based path, the static configuration
+            is similar to the static MPLS case.  This document provides
+            data-plane configuration of IP addresses or MPLS labels
+            but it does not provide control plane mapping mapping or other
+            aspects. 
+            </t>
           </list></t>
       </section>
     </section>
@@ -351,7 +358,7 @@ module: ietf-detnet
   +--rw detnet
      +--rw traffic-profile* [profile-name]
      |  +--rw profile-name            string
-     |  +--rw traffic-reqmnts
+     |  +--rw traffic-requirements
      |  |  +--rw min-bandwidth?                    uint64
      |  |  +--rw max-latency?                      uint32
      |  |  +--rw max-latency-variation?            uint32
@@ -365,7 +372,7 @@ module: ietf-detnet
      |  |  +--rw min-payload-size?        uint32
      |  |  +--rw min-pkts-per-interval?   uint32
      |  +--ro member-apps*            app-flow-ref
-     |  +--ro member-svcs*            service-sub-layer-ref
+     |  +--ro member-services*        service-sub-layer-ref
      |  +--ro member-fwd-sublayers*   forwarding-sub-layer-ref
      +--rw app-flows
      |  +--rw app-flow* [name]
@@ -779,7 +786,8 @@ module: ietf-detnet
 
     <section title="DetNet Configuration YANG Model">
 <t><figure>
-<artwork><![CDATA[<CODE BEGINS>
+<artwork><![CDATA[
+<CODE BEGINS>
 module ietf-detnet {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-detnet";
@@ -853,7 +861,7 @@ module ietf-detnet {
      for DetNet flow configuration and flow status
      reporting.";
 
-  revision 2021-02-01 {
+  revision 2021-02-17 {
     description
       "initial revision";
     reference
@@ -1534,9 +1542,9 @@ module ietf-detnet {
           "An Aggregation group ID. Zero means the service is not
            part of a group.";
       }
-      container traffic-reqmnts {
+      container traffic-requirements {
         description
-          "FlowRequirements: defines the attributes of the App-flow
+          "This defines the attributes of the App-flow
            regarding bandwidth, latency, latency variation, loss, and
            misordering tolerance.";
         reference
@@ -1545,7 +1553,7 @@ module ietf-detnet {
           type uint64;
           units "bps";
           description
-            "MinBandwidth is the minimum bandwidth that has to be
+            "This is the minimum bandwidth that has to be
              guaranteed for the DetNet service.  MinBandwidth is
              specified in octets per second.";
         }
@@ -1553,7 +1561,7 @@ module ietf-detnet {
           type uint32;
           units "nanoseconds";
           description
-            "MaxLatency is the maximum latency from Ingress to
+            "This is the maximum latency from Ingress to
              Egress(es) for a single packet of the DetNet flow.
              MaxLatency is specified as an integer number of
              nanoseconds.";
@@ -1562,7 +1570,7 @@ module ietf-detnet {
           type uint32;
           units "nanoseconds";
           description
-            "MaxLatencyVariation is the difference between the
+            "This is the difference between the
              minimum and the maximum end-to-end one-way latency.
              MaxLatencyVariation is specified as an integer number of
              nanoseconds.";
@@ -1570,7 +1578,7 @@ module ietf-detnet {
         leaf max-loss {
           type uint32;
           description
-            "MaxLoss defines the maximum Packet Loss Ratio (PLR)
+            "This defines the maximum Packet Loss Ratio (PLR)
              parameter for the DetNet service between the Ingress and
              Egress(es) of the DetNet domain.";
         }
@@ -1589,7 +1597,7 @@ module ietf-detnet {
           type uint32;
           units "packets";
           description
-            "MaxMisordering describes the tolerable maximum number
+            "This describes the tolerable maximum number
              of packets that can be received out of order.  The
              maximum allowed misordering can be measured for example
              based on sequence number.  The value zero for the
@@ -1644,7 +1652,7 @@ module ietf-detnet {
         description
           "Applications attached to this profile.";
       }
-      leaf-list member-svcs {
+      leaf-list member-services {
         type service-sub-layer-ref;
         config false;
         description
@@ -1676,6 +1684,7 @@ module ietf-detnet {
         }
         leaf app-flow-bidir-congruent {
           type boolean;
+          default false;
           description
             "Defines the data path requirement of the App-flow
              whether it must share the same data path and physical
@@ -1703,7 +1712,6 @@ module ietf-detnet {
             "The Traffic Profile for this group.";
         }
         container ingress {
-          // key "name";  This should be a list for aggregation
           description
             "Ingress DetNet application flows or a compound flow.";
           leaf name {
@@ -1734,7 +1742,6 @@ module ietf-detnet {
         container egress {
           description
             "Route's next-hop attribute.";
-          // key "name";  This should be a list for aggregation
           leaf name {
             type string;
             description
@@ -1972,7 +1979,6 @@ module ietf-detnet {
               uses forwarding-sub-layer-group;
             }
             container forwarding-id  {
-              //case forwarding-identification {
               description
                 "This forwarding sub-layer is related to all of the
                  lower layer and provide DetNet forwarding swap or
@@ -2108,7 +2114,7 @@ module ietf-detnet {
 
 <section title="Examples">
         <t> The following examples are provided.  These examples are tested with Yanglint
-            and use operational output to extercise both config true and config false objects
+            and use operational output to exercise both config true and config false objects
       </t>
       <t><list style="symbols">
           <t> A simple DetNet application illustrating multiplexing of Application Flows.</t>
@@ -2180,7 +2186,7 @@ module ietf-detnet {
             "interface": "eth0",
             "ip-app-flow": {
               "src-ip-prefix": "1.1.1.1/32",
-              "dest-ip-prefix": "8.8.8.8/32",
+              "dest-ip-prefix": "8.8.8.0/24",
               "dscp": 6
             }
           }
@@ -2195,7 +2201,7 @@ module ietf-detnet {
             "interface": "eth0",
             "ip-app-flow": {
               "src-ip-prefix": "2.1.1.1/32",
-              "dest-ip-prefix": "9.8.8.8/32",
+              "dest-ip-prefix": "9.8.8.0/24",
               "dscp": 7
             }
           }
@@ -2205,7 +2211,7 @@ module ietf-detnet {
     "traffic-profile": [
       {
         "profile-name": "pf-1",
-        "traffic-reqmnts": {
+        "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 200000000,
@@ -2227,7 +2233,7 @@ module ietf-detnet {
       },
       {
         "profile-name": "pf-2",
-        "traffic-reqmnts": {
+        "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
           "max-latency-variation": 200000000,
@@ -2242,7 +2248,7 @@ module ietf-detnet {
           "min-payload-size": 100,
           "min-pkts-per-interval": 1
         },
-        "member-svcs": [
+        "member-services": [
           "ssl-1"
         ]
       },
@@ -2417,30 +2423,29 @@ anchor="example-detnet-xml-fwd-aggrgation"><artwork><![CDATA[
   </app-flows>
   <traffic-profile>  
     <profile-name>1</profile-name>
-    <traffic-reqmnts>
+    <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-reqmnts>
+    </traffic-requirements>
     <member-apps>app-1</member-apps>
     <member-apps>app-2</member-apps>
   </traffic-profile>
   <traffic-profile>  
     <profile-name>2</profile-name>
-    <traffic-reqmnts>
+    <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
       <max-loss>2</max-loss>
-      <max-consecutive-loss-tolerance>5
-      </max-consecutive-loss-tolerance>
+      <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-reqmnts>
-    <member-svcs>ssl-1</member-svcs>
-    <member-svcs>ssl-2</member-svcs>
+    </traffic-requirements>
+    <member-services>ssl-1</member-services>
+    <member-services>ssl-2</member-services>
   </traffic-profile>
   <traffic-profile>  
     <profile-name>3</profile-name>
@@ -2628,7 +2633,7 @@ anchor="example-detnet-xml-service-aggregation"><artwork><![CDATA[
     "traffic-profile": [
       {
         "profile-name": "1",
-        "traffic-reqmnts": {
+        "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 200000000,
@@ -2643,7 +2648,7 @@ anchor="example-detnet-xml-service-aggregation"><artwork><![CDATA[
       },
       {
         "profile-name": "2",
-        "traffic-reqmnts": {
+        "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 200000000,
@@ -2651,7 +2656,7 @@ anchor="example-detnet-xml-service-aggregation"><artwork><![CDATA[
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
-        "member-svcs": [
+        "member-services": [
           "ssl-1",
           "ssl-2"
         ]

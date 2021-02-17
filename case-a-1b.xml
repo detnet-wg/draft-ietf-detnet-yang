@@ -76,14 +76,14 @@
   </app-flows>
   <traffic-profile>  
     <profile-name>pf-1</profile-name>
-    <traffic-reqmnts>
+    <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-reqmnts>
+    </traffic-requirements>
     <flow-spec>
       <interval>5</interval>
       <max-pkts-per-interval>10</max-pkts-per-interval>
@@ -98,14 +98,14 @@
   </traffic-profile>
   <traffic-profile>  
     <profile-name>pf-2</profile-name>
-    <traffic-reqmnts>
+    <traffic-requirements>
       <min-bandwidth>200000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
       <max-loss>2</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
-    </traffic-reqmnts>
+    </traffic-requirements>
     <flow-spec>
       <interval>5</interval>
       <max-pkts-per-interval>10</max-pkts-per-interval>
@@ -114,7 +114,7 @@
       <min-pkts-per-interval>1</min-pkts-per-interval>
     </flow-spec>
     <!--<member-apps></member-apps>-->
-    <member-svcs>ssl-1</member-svcs>
+    <member-services>ssl-1</member-services>
     <!--<member-fwd-sublayers></member-fwd-sublayers>-->
     <!--<member-groups></member-groups>-->
   </traffic-profile>
@@ -126,7 +126,7 @@
       <max-payload-size>1500</max-payload-size>
     </flow-spec>
     <!--<member-apps></member-apps>-->
-    <!--<member-svcs></member-svcs>-->
+    <!--<member-services></member-services>-->
     <!--<member-groups></member-groups>-->
     <member-fwd-sublayers>fsl-1</member-fwd-sublayers>
   </traffic-profile>
