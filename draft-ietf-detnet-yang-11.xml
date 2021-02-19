@@ -11,11 +11,11 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 <rfc category="std" 
-       docName="draft-ietf-detnet-yang-10" 
+       docName="draft-ietf-detnet-yang-11" 
        ipr="trust200902"
         submissionType="IETF">
   <front>
-    <title abbrev="draft-ietf-detnet-yang-10">Deterministic Networking
+    <title abbrev="draft-ietf-detnet-yang-11">Deterministic Networking
     (DetNet) YANG Model</title>
 
     <author fullname="Xuesong Geng" initials="X." surname="Geng">
