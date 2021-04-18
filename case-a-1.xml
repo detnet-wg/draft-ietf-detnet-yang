@@ -55,7 +55,7 @@
         <interface>eth0</interface>
         <ip-app-flow>
           <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
-          <dest-ip-prefix>8.8.8.0/24</dest-ip-prefix>
+          <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
           <dscp>6</dscp>
         </ip-app-flow>
       </ingress>
@@ -70,7 +70,7 @@
         <interface>eth0</interface>
         <ip-app-flow>
           <src-ip-prefix>2.1.1.1/32</src-ip-prefix>
-          <dest-ip-prefix>9.8.8.0/24</dest-ip-prefix>
+          <dest-ip-prefix>9.8.8.8/32</dest-ip-prefix>
           <dscp>7</dscp>
         </ip-app-flow>
       </ingress>
