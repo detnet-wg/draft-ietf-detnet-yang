@@ -69,8 +69,8 @@
         <app-flow-status>ready</app-flow-status>
         <interface>eth1</interface>
         <ip-app-flow>
-          <src-ip-prefix>2.1.1.1/32</src-ip-prefix>
-          <dest-ip-prefix>9.8.8.8/32</dest-ip-prefix>
+          <src-ip-prefix>1.1.1.2/32</src-ip-prefix>
+          <dest-ip-prefix>8.8.8.9/32</dest-ip-prefix>
           <dscp>7</dscp>
         </ip-app-flow>
         <dscp>7</dscp>
@@ -123,12 +123,12 @@
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming-type>
-	<app-flow>
+        <app-flow>
           <app-flow-list>app-1</app-flow-list>
         </app-flow>
       </incoming-type>
       <outgoing-type>
-	<forwarding-sub-layer>
+        <forwarding-sub-layer>
           <service-outgoing-list>
             <service-outgoing-index>0</service-outgoing-index>
             <mpls-label-stack>
@@ -152,12 +152,12 @@
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming-type>
-	<app-flow>
+        <app-flow>
           <app-flow-list>app-2</app-flow-list>
         </app-flow>
       </incoming-type>
       <outgoing-type>
-	<forwarding-sub-layer>
+        <forwarding-sub-layer>
           <service-outgoing-list>
             <service-outgoing-index>0</service-outgoing-index>
             <mpls-label-stack>
@@ -178,13 +178,13 @@
       <traffic-profile>3</traffic-profile>
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
       <incoming-type>
-	<service-sub-layer>
+        <service-sub-layer>
           <service-sub-layer>ssl-1</service-sub-layer>
           <service-sub-layer>ssl-2</service-sub-layer>
         </service-sub-layer>
       </incoming-type>
       <outgoing-type>
-	<interface>
+        <interface>
           <outgoing-interface>eth2</outgoing-interface>
           <mpls-label-stack>
             <entry>

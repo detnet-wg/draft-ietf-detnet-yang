@@ -55,7 +55,7 @@
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "1.1.1.0/24",
+              "src-ip-prefix": "1.1.1.1/32",
               "dest-ip-prefix": "8.8.8.8/32",
               "dscp": 6
             }
@@ -70,8 +70,8 @@
             "app-flow-status": "ready",
             "interface": "eth1",
             "ip-app-flow": {
-              "src-ip-prefix": "2.1.1.0/24",
-              "dest-ip-prefix": "9.8.8.8/32",
+              "src-ip-prefix": "1.1.1.2/32",
+              "dest-ip-prefix": "8.8.8.9/32",
               "dscp": 7
             }
           }
