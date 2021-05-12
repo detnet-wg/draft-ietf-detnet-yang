@@ -371,14 +371,14 @@ module ietf-detnet {
       "This grouping captures the IPv4/IPv6 packet header
        information. it is modeled after existing fields.";
     leaf src-ip-address {
-      type inet:ip-address;
+      type inet:ip-address-no-zone;
       description
         "The source IP address in the header.";
       reference
         "RFC 6021 Common YANG Data Types";
     }
     leaf dest-ip-address {
-      type inet:ip-address;
+      type inet:ip-address-no-zone;
       description
         "The destination IP address in the header.";
       reference
@@ -672,7 +672,7 @@ module ietf-detnet {
             "The flow type choices.";
           case ip {
             leaf next-hop-address {
-              type inet:ip-address;
+              type inet:ip-address-no-zone;
               description
                "The IP next hop case.";
             }
@@ -711,7 +711,7 @@ module ietf-detnet {
               "The flow types supported."; 
             case ip {
               leaf next-hop-address {
-                type inet:ip-address;
+                type inet:ip-address-no-zone;
                 description
                   "This is the IP flow type next hop.";
               }
@@ -756,7 +756,7 @@ module ietf-detnet {
                 "This is the IP forwarding operation choices.";
               case ip-forwarding {
                 leaf next-hop-address {
-                  type inet:ip-address;
+                  type inet:ip-address-no-zone;
                   description
                     "This is an IP address as a next hop.";
                 }
@@ -799,7 +799,7 @@ module ietf-detnet {
                   "These are the next hop choices.";
                 case ip-forwarding {
                   leaf next-hop-address {
-                    type inet:ip-address;
+                    type inet:ip-address-no-zone;
                     description
                       "This is an IP address as a next hop.";
                   }
@@ -1043,7 +1043,8 @@ module ietf-detnet {
               "This is the application type choices.";
             container ethernet {
               description
-                "This is TSN unaware traffic that maps to an interface.";
+                "This is TSN unaware traffic that maps to an 
+                 interface.";
               leaf interface {
                 type if:interface-ref;
                 description
@@ -1353,9 +1354,9 @@ module ietf-detnet {
                   "This is reference to the forwarding sub-layer.";
               }
               container forwarding-label {
-		description
+                description
                   "This is the forwarding label for forwarding
-		    sub-layer aggregation.";
+                   sub-layer aggregation.";
                 uses rt-types:mpls-label-stack;
               }
             }
