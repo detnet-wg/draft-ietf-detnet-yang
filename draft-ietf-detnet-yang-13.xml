@@ -148,7 +148,7 @@
         <name>DetNet Application Flow YANG Attributes</name>
         <t>DetNet application flow is responsible for mapping between
         application flows and DetNet flows at the edge node(egress/ingress
-        node). The the application flows can be either layer 2 or layer 3
+        node). The application flows can be either layer 2 or layer 3
         flows. To map a flow at the User Network Interface (UNI), the
         corresponding attributes are defined in <xref target="I-D.ietf-detnet-flow-information-model" format="default"/>.</t>
       </section>
@@ -1036,7 +1036,7 @@ module ietf-detnet {
           "A combination of PEF and PRF that can be implemented by
            an edge node, a relay node, or an end system.";
       }
-      enum elimination-ordering-replicaiton {
+      enum elimination-ordering-replication {
         description
           "A combination of PEF, POF and PRF that can be implemented
            by an edge node, a relay node, or an end system.";
