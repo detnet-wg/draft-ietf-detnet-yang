@@ -148,7 +148,7 @@
         <name>DetNet Application Flow YANG Attributes</name>
         <t>DetNet application flow is responsible for mapping between
         application flows and DetNet flows at the edge node(egress/ingress
-        node). The the application flows can be either layer 2 or layer 3
+        node). The application flows can be either layer 2 or layer 3
         flows. To map a flow at the User Network Interface (UNI), the
         corresponding attributes are defined in <xref target="I-D.ietf-detnet-flow-information-model" format="default"/>.</t>
       </section>
@@ -1036,7 +1036,7 @@ module ietf-detnet {
           "A combination of PEF and PRF that can be implemented by
            an edge node, a relay node, or an end system.";
       }
-      enum elimination-ordering-replicaiton {
+      enum elimination-ordering-replication {
         description
           "A combination of PEF, POF and PRF that can be implemented
            by an edge node, a relay node, or an end system.";
@@ -4112,8 +4112,8 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "1.1.1.2/32",
-              "dest-ip-prefix": "8.8.8.9/32",
+              "src-ip-prefix": "1.1.1.1/32",
+              "dest-ip-prefix": "8.8.8.8/32",
               "dscp": 7
             }
           }
@@ -15315,7 +15315,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
         <t>
                 This illustrates the Relay node 1 aggregating the 
                 service sub-layers of DetNet flows 1 and 2 into a service sub-layer of Aggregated DetNet flow 1.
-                It also illustrates the Relay node 1 disaggregating the aggregated 
+                It also illustrates the Relay node 2 disaggregating the aggregated 
                 DetNet flow 1 into the  DetNet flows 1 and 2 service sub-layers.
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
                 corresponding JSON operational data follows.
@@ -18353,7 +18353,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
         <t>
                 This illustrates the Relay node 1 aggregating the 
                 forwarding sub-layers of DetNet flow 1 and 2 into a service sub-layer of Aggregated DetNet flow 1.
-                This also illustrates the Relay node 1 disaggregating the service sub-layer of 
+                This also illustrates the Relay node 2 disaggregating the service sub-layer of 
                 Aggregated DetNet flow 1 to forwarding sub-layers of DetNet flow 1 and 2.
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
                 corresponding JSON operational data follows.
@@ -21776,7 +21776,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
         <t>
                 This illustrates the Transit node 1 aggregating the forwarding 
                 sub-layers of DetNet flow 1 and 2 into a forwarding sub-layer.
-                This also illustrates a Transit node 1 disaggregating a forwarding sub-layer
+                This also illustrates a Transit node 4 disaggregating a forwarding sub-layer
                 into DetNet flow 1 and 2 forwarding sub-layers.
         </t>
         <figure anchor="case-d1">
@@ -21787,2612 +21787,1755 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
 Please consult the PDF or HTML versions for the Case D-1 Diagram
 
 ]]></artwork>
-        <artwork type="svg">
+	<artwork type="svg">
 <svg
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    width="210mm"
-   height="155mm"
-   viewBox="0 0 210 155"
+   height="130mm"
+   viewBox="0 5 210 130"
    version="1.1"
-   >
+   id="svg8">
   <g
-     >
+     id="layer1">
     <text
-       font-size="3.49204px"
+       font-size="2.89029px"
        
-       x="234.2603"
-       y="121.01194"
+       x="48.587341"
+       y="60.347198"
        
-       transform="scale(0.85569064,1.1686467)"><tspan
-   font-size="2.86847px"
-   x="10.878091"
-   y="68.63131"
-   
-   >Source 1</tspan><tspan
-   font-size="2.86847px"
-   x="11.930708"
-   y="71.499771"
-   
-   >1.1.1.1</tspan></text>
-    <path
-       d="m 17.213959,70.298755 c 0,-0.404638 -0.240181,-0.73266 -0.536457,-0.73266 H 10.70703 c -0.296276,0 -0.536456,0.328022 -0.536456,0.73266 v 6.405131 c 0,0.404633 0.24018,0.732652 0.536456,0.732652 h 5.970472 c 0.296276,0 0.536457,-0.328019 0.536457,-0.732652 z"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 15.980829,70.003341 v 0.848619 h -1.423617 l -0.758236,1.904224 -0.773709,-1.904224 h -1.408139 v -0.848619 l -0.91299,1.076298 0.91299,1.076294 v -0.724428 h 1.005818 l 0.866547,2.090501 -0.866547,2.111202 h -1.005818 v -0.786519 l -0.91299,1.076293 0.91299,1.076293 V 76.19205 h 1.408139 l 0.773709,-1.945615 0.758236,1.945615 h 1.423617 v 0.765834 l 0.912974,-1.034902 -0.912974,-1.076293 v 0.786519 h -0.990344 l -0.882021,-2.111202 0.866547,-2.090501 h 1.005818 v 0.703731 l 0.912974,-1.055597 z"
-       stroke="#000000"
-       stroke-width="0.218253"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="42.813812"
-       y="68.63131"
-       
-       transform="scale(0.85569064,1.1686467)">Ingress 1<tspan
-   font-size="2.86847px"
-   x="43.995293"
-   y="71.499771"
-   
+       transform="scale(0.8869959,1.1274009)">Ingress 1<tspan
+   font-size="2.89029px"
+   x="49.777794"
+   y="63.237488"
+   id="tspan15"
    >2.2.2.2</tspan></text>
     <path
-       d="m 44.640519,70.298759 c 0,-0.404639 -0.24018,-0.732664 -0.536462,-0.732664 h -5.863746 c -0.296281,0 -0.536457,0.328025 -0.536457,0.732664 v 6.405112 c 0,0.404648 0.240176,0.732667 0.536457,0.732667 h 5.863746 c 0.296282,0 0.536462,-0.328019 0.536462,-0.732667 z"
+       d="m 51.4579,58.405437 c 0,-0.393324 -0.250864,-0.71218 -0.560316,-0.71218 h -6.124521 c -0.309456,0 -0.560317,0.318856 -0.560317,0.71218 v 6.22607 c 0,0.393335 0.250861,0.712187 0.560317,0.712187 h 6.124521 c 0.309452,0 0.560316,-0.318852 0.560316,-0.712187 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path19" />
     <path
-       d="m 43.49837,70.003341 v 0.848619 h -1.448167 l -0.771304,1.904224 -0.787048,-1.904224 h -1.432437 v -0.848619 l -0.92871,1.076298 0.92871,1.076294 v -0.724428 h 1.023164 l 0.8815,2.090501 -0.8815,2.111202 h -1.023164 v -0.786519 l -0.92871,1.076293 0.92871,1.076293 V 76.19205 h 1.432437 l 0.787048,-1.945615 0.771304,1.945615 h 1.448167 v 0.765834 l 0.928714,-1.034902 -0.928714,-1.076293 v 0.786519 h -1.00742 l -0.897234,-2.111202 0.881494,-2.090501 h 1.02316 v 0.703731 l 0.928714,-1.055597 z"
+       d="m 50.058471,58.11828 v 0.824896 H 48.571542 L 47.779587,60.794168 46.97147,58.943176 H 45.500705 V 58.11828 l -0.953588,1.046207 0.953588,1.046209 V 59.50652 h 1.050549 l 0.905086,2.032065 -0.905086,2.052182 h -1.050549 v -0.764528 l -0.953588,1.046207 0.953588,1.046208 v -0.784661 h 1.470765 l 0.808117,-1.891227 0.791955,1.891227 h 1.486929 v 0.744426 l 0.953575,-1.005973 -0.953575,-1.046207 v 0.764528 h -1.034385 l -0.92125,-2.052182 0.905085,-2.032065 h 1.05055 v 0.684059 l 0.953575,-1.026092 z"
        stroke="#000000"
-       stroke-width="0.218253"
+       stroke-width="0.219914"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path21" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="75.877464"
-       y="72.123352"
+       x="81.022888"
+       y="65.122452"
        
-       transform="scale(0.85569064,1.1686467)">Relay 1<tspan
-   font-size="2.86847px"
-   x="76.059341"
-   y="74.991814"
-   
+       transform="scale(0.8869959,1.1274009)">Transit 1<tspan
+   font-size="2.89029px"
+   x="82.084328"
+   y="68.012749"
+   id="tspan23"
    >3.3.3.3</tspan></text>
     <path
-       d="m 72.067082,70.298752 c 0,-0.404635 -0.240179,-0.732657 -0.536455,-0.732657 h -5.863774 c -0.296281,0 -0.536461,0.328022 -0.536461,0.732657 v 6.405134 c 0,0.404633 0.24018,0.732652 0.536461,0.732652 h 5.863774 c 0.296276,0 0.536455,-0.328019 0.536455,-0.732652 z"
+       d="m 80.104164,58.405432 c 0,-0.393324 -0.25086,-0.712175 -0.560313,-0.712175 h -6.124544 c -0.309456,0 -0.560316,0.318851 -0.560316,0.712175 v 6.226091 c 0,0.393319 0.25086,0.712171 0.560316,0.712171 h 6.124544 c 0.309453,0 0.560313,-0.318852 0.560313,-0.712171 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path27" />
     <path
-       d="M 70.92493,70.003341 V 70.85196 H 69.476765 L 68.70546,72.756184 67.918414,70.85196 h -1.432435 v -0.848619 l -0.928715,1.076298 0.928715,1.076294 v -0.724428 h 1.02316 l 0.881503,2.090501 -0.881503,2.111202 h -1.02316 v -0.786519 l -0.928715,1.076293 0.928715,1.076293 V 76.19205 h 1.432435 l 0.787046,-1.945615 0.771305,1.945615 h 1.448165 v 0.765834 l 0.928715,-1.034902 -0.928715,-1.076293 v 0.786519 h -1.007419 l -0.897232,-2.111202 0.881491,-2.090501 h 1.02316 v 0.703731 l 0.928715,-1.055597 z"
+       d="m 78.704735,58.11828 v 0.824896 h -1.48693 l -0.791942,1.850992 -0.808115,-1.850992 H 74.146979 V 58.11828 l -0.953575,1.046207 0.953575,1.046209 V 59.50652 h 1.050549 l 0.90509,2.032065 -0.90509,2.052182 h -1.050549 v -0.764528 l -0.953575,1.046207 0.953575,1.046208 v -0.784661 h 1.470769 l 0.808115,-1.891227 0.791942,1.891227 h 1.48693 v 0.744426 l 0.953574,-1.005973 -0.953574,-1.046207 v 0.764528 H 77.67035 l -0.921242,-2.052182 0.905077,-2.032065 h 1.05055 v 0.684059 l 0.953574,-1.026092 z"
        stroke="#000000"
-       stroke-width="0.218253"
+       stroke-width="0.219914"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path29" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="140.00383"
-       y="72.123352"
+       x="145.63715"
+       y="65.122452"
        
-       transform="scale(0.85569064,1.1686467)">Relay 2<tspan
-   font-size="2.86847px"
-   x="140.18571"
-   y="74.991814"
-   
+       transform="scale(0.8869959,1.1274009)">Transit 4<tspan
+   font-size="2.89029px"
+   x="146.69861"
+   y="68.012749"
+   id="tspan31"
    >6.6.6.6</tspan></text>
     <path
-       d="m 126.9202,70.298759 c 0,-0.404639 -0.24018,-0.732664 -0.53646,-0.732664 H 120.52 c -0.29628,0 -0.53646,0.328025 -0.53646,0.732664 v 6.405112 c 0,0.404648 0.24018,0.732667 0.53646,0.732667 h 5.86374 c 0.29628,0 0.53646,-0.328019 0.53646,-0.732667 z"
+       d="m 137.39669,58.405437 c 0,-0.393324 -0.25087,-0.71218 -0.56032,-0.71218 h -6.12452 c -0.30945,0 -0.56032,0.318856 -0.56032,0.71218 v 6.22607 c 0,0.393335 0.25087,0.712187 0.56032,0.712187 h 6.12452 c 0.30945,0 0.56032,-0.318852 0.56032,-0.712187 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path35" />
     <path
-       d="m 125.77806,70.14909 v 0.83094 h -1.44817 l -0.7713,1.864552 -0.78705,-1.864552 h -1.43244 v -0.83094 l -0.92871,1.053874 0.92871,1.053871 v -0.709336 h 1.02317 l 0.8815,2.046944 -0.8815,2.067216 h -1.02317 v -0.770138 l -0.92871,1.053877 0.92871,1.053877 v -0.790409 h 1.43244 l 0.78705,-1.905078 0.7713,1.905078 h 1.44817 v 0.749866 l 0.92871,-1.013334 -0.92871,-1.053877 v 0.770138 h -1.00742 l -0.89724,-2.067216 0.8815,-2.046944 h 1.02316 v 0.689077 l 0.92871,-1.033612 z"
+       d="m 135.99726,58.259953 v 0.807712 h -1.48694 l -0.79195,1.812429 -0.80812,-1.812429 h -1.47076 v -0.807712 l -0.95358,1.024414 0.95358,1.02441 v -0.689505 h 1.05055 l 0.90509,1.989725 -0.90509,2.009426 h -1.05055 v -0.748609 l -0.95358,1.02442 0.95358,1.02442 v -0.768319 h 1.47076 l 0.80812,-1.851822 0.79195,1.851822 h 1.48694 v 0.728904 l 0.95357,-0.985005 -0.95357,-1.02442 v 0.748609 h -1.03439 l -0.92124,-2.009426 0.90507,-1.989725 h 1.05056 v 0.669811 l 0.95357,-1.004716 z"
        stroke="#000000"
-       stroke-width="0.218253"
+       stroke-width="0.219914"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path37" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="171.48584"
-       y="68.63131"
+       x="178.23834"
+       y="60.347198"
        
-       transform="scale(0.85569064,1.1686467)">Egress 1<tspan
-   font-size="2.86847px"
-   x="172.24828"
-   y="71.499771"
-   
+       transform="scale(0.8869959,1.1274009)">Egress 1<tspan
+   font-size="2.89029px"
+   x="179.00659"
+   y="63.237488"
+   id="tspan39"
    >7.7.7.7</tspan></text>
     <path
-       d="m 154.34677,70.298752 c 0,-0.404635 -0.24018,-0.732657 -0.53646,-0.732657 h -5.86377 c -0.29628,0 -0.53646,0.328022 -0.53646,0.732657 v 6.405134 c 0,0.404633 0.24018,0.732652 0.53646,0.732652 h 5.86377 c 0.29628,0 0.53646,-0.328019 0.53646,-0.732652 z"
+       d="m 166.04294,58.405432 c 0,-0.393324 -0.25085,-0.712175 -0.5603,-0.712175 h -6.12455 c -0.30945,0 -0.56032,0.318851 -0.56032,0.712175 v 6.226091 c 0,0.393319 0.25087,0.712171 0.56032,0.712171 h 6.12455 c 0.30945,0 0.5603,-0.318852 0.5603,-0.712171 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path43" />
     <path
-       d="m 153.22036,70.003341 v 0.848619 h -1.42362 l -0.75824,1.904224 -0.7737,-1.904224 h -1.40815 v -0.848619 l -0.91298,1.076298 0.91298,1.076294 v -0.724428 h 1.00582 l 0.86655,2.090501 -0.86655,2.111202 h -1.00582 v -0.786519 l -0.91298,1.076293 0.91298,1.076293 V 76.19205 h 1.40815 l 0.7737,-1.945615 0.75824,1.945615 h 1.42362 v 0.765834 l 0.91297,-1.034902 -0.91297,-1.076293 v 0.786519 h -0.99035 l -0.88202,-2.111202 0.86655,-2.090501 h 1.00582 v 0.703731 l 0.91297,-1.055597 z"
+       d="m 164.64351,58.11828 v 0.824896 h -1.48692 l -0.79196,1.850992 -0.80811,-1.850992 h -1.47077 V 58.11828 l -0.95359,1.046207 0.95359,1.046209 V 59.50652 h 1.05055 l 0.90508,2.032065 -0.90508,2.052182 h -1.05055 v -0.764528 l -0.95359,1.046207 0.95359,1.046208 v -0.784661 h 1.47077 l 0.80811,-1.891227 0.79196,1.891227 h 1.48692 v 0.744426 l 0.95358,-1.005973 -0.95358,-1.046207 v 0.764528 h -1.03438 l -0.92125,-2.052182 0.90509,-2.032065 h 1.05054 v 0.684059 l 0.95358,-1.026092 z"
        stroke="#000000"
-       stroke-width="0.218253"
+       stroke-width="0.219914"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path45" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="107.06764"
-       y="84.96907"
+       x="113.33002"
+       y="76.809273"
        
-       transform="scale(0.85569064,1.1686467)">Transit 2<tspan
-   font-size="2.86847px"
-   x="108.12107"
-   y="87.837547"
-   
+       transform="scale(0.8869959,1.1274009)">Transit 3<tspan
+   font-size="2.89029px"
+   x="114.39145"
+   y="79.699562"
+   id="tspan47"
    >5.5.5.5</tspan></text>
     <path
-       d="m 99.493643,89.246081 c 0,-0.404634 -0.240179,-0.732653 -0.536455,-0.732653 h -5.863773 c -0.296282,0 -0.536462,0.328019 -0.536462,0.732653 v 6.405145 c 0,0.404618 0.24018,0.732644 0.536462,0.732644 h 5.863773 c 0.296276,0 0.536455,-0.328026 0.536455,-0.732644 z"
+       d="m 108.75043,76.823112 c 0,-0.393324 -0.25086,-0.712175 -0.56032,-0.712175 h -6.12454 c -0.30946,0 -0.56031,0.318851 -0.56031,0.712175 v 6.226091 c 0,0.393319 0.25085,0.712171 0.56031,0.712171 h 6.12454 c 0.30946,0 0.56032,-0.318852 0.56032,-0.712171 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path51" />
     <path
-       d="m 98.351495,89.096418 v 0.830939 h -1.448167 l -0.771295,1.864551 -0.787047,-1.864551 h -1.432424 v -0.830939 l -0.928714,1.053877 0.928714,1.05387 v -0.709337 h 1.02316 l 0.881492,2.046946 -0.881492,2.06721 h -1.02316 v -0.77013 l -0.928714,1.053877 0.928714,1.053877 v -0.79041 h 1.432424 l 0.787047,-1.90508 0.771295,1.90508 h 1.448167 v 0.749866 l 0.928712,-1.013333 -0.928712,-1.053877 v 0.77013 h -1.007422 l -0.897232,-2.06721 0.881492,-2.046946 h 1.023162 v 0.68908 l 0.928712,-1.033613 z"
+       d="m 107.351,76.677632 v 0.807713 h -1.48694 l -0.79195,1.812429 -0.80811,-1.812429 h -1.47077 v -0.807713 l -0.95359,1.024415 0.95359,1.02441 v -0.689505 h 1.05055 l 0.90509,1.989725 -0.90509,2.009426 h -1.05055 v -0.74861 l -0.95359,1.024421 0.95359,1.02442 v -0.768319 h 1.47077 l 0.80811,-1.851822 0.79195,1.851822 h 1.48694 v 0.728904 l 0.95356,-0.985005 -0.95356,-1.024421 v 0.74861 h -1.03439 l -0.92125,-2.009426 0.90508,-1.989725 h 1.05056 v 0.669811 l 0.95356,-1.004716 z"
        stroke="#000000"
-       stroke-width="0.218253"
+       stroke-width="0.219914"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path53" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="107.06764"
-       y="52.293537"
+       x="113.33002"
+       y="43.885124"
        
-       transform="scale(0.85569064,1.1686467)">Transit 1<tspan
-   font-size="2.86847px"
-   x="108.12107"
-   y="55.162003"
-   
+       transform="scale(0.8869959,1.1274009)">Transit 2<tspan
+   font-size="2.89029px"
+   x="114.39145"
+   y="46.775417"
+   id="tspan55"
    >4.4.4.4</tspan></text>
     <path
-       d="m 99.493643,51.205671 c 0,-0.404634 -0.240179,-0.732655 -0.536455,-0.732655 h -5.863773 c -0.296282,0 -0.536462,0.328021 -0.536462,0.732655 v 6.40514 c 0,0.404627 0.24018,0.732649 0.536462,0.732649 h 5.863773 c 0.296276,0 0.536455,-0.328022 0.536455,-0.732649 z"
+       d="m 108.75043,39.846075 c 0,-0.393324 -0.25086,-0.712177 -0.56032,-0.712177 h -6.12454 c -0.30946,0 -0.56031,0.318853 -0.56031,0.712177 v 6.226091 c 0,0.393318 0.25085,0.712171 0.56031,0.712171 h 6.12454 c 0.30946,0 0.56032,-0.318853 0.56032,-0.712171 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path59" />
     <path
-       d="m 98.351495,51.056011 v 0.830942 h -1.448167 l -0.771295,1.864549 -0.787047,-1.864549 h -1.432424 v -0.830942 l -0.928714,1.053878 0.928714,1.053881 v -0.709344 h 1.02316 l 0.881492,2.046953 -0.881492,2.067226 h -1.02316 v -0.770136 l -0.928714,1.053866 0.928714,1.053879 v -0.79041 h 1.432424 l 0.787047,-1.905081 0.771295,1.905081 h 1.448167 v 0.749877 l 0.928712,-1.013346 -0.928712,-1.053866 v 0.770136 h -1.007422 l -0.897232,-2.067226 0.881492,-2.046953 h 1.023162 v 0.68907 l 0.928712,-1.033607 z"
+       d="m 107.351,39.700594 v 0.807714 h -1.48694 l -0.79195,1.812428 -0.80811,-1.812428 h -1.47077 v -0.807714 l -0.95359,1.024421 0.95359,1.02442 V 41.05992 h 1.05055 l 0.90509,1.989731 -0.90509,2.009441 h -1.05055 v -0.74861 l -0.95359,1.024405 0.95359,1.02442 v -0.768314 h 1.47077 l 0.80811,-1.851827 0.79195,1.851827 h 1.48694 v 0.728915 l 0.95356,-0.985021 -0.95356,-1.024405 v 0.74861 h -1.03439 l -0.92125,-2.009441 0.90508,-1.989731 h 1.05056 v 0.669805 l 0.95356,-1.00471 z"
        stroke="#000000"
-       stroke-width="0.218253"
+       stroke-width="0.219914"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="200.51096"
-       y="68.63131"
-       
-       transform="scale(0.85569064,1.1686467)">Destination 1<tspan
-   font-size="2.86847px"
-   x="204.31146"
-   y="71.499771"
-   
-   >8.8.8.8</tspan></text>
+       id="path61" />
     <path
-       d="m 181.77333,70.298752 c 0,-0.404635 -0.24018,-0.732657 -0.53646,-0.732657 h -5.86377 c -0.29628,0 -0.53646,0.328022 -0.53646,0.732657 v 6.405134 c 0,0.404633 0.24018,0.732652 0.53646,0.732652 h 5.86377 c 0.29628,0 0.53646,-0.328019 0.53646,-0.732652 z"
+       d="M 51.4579,61.518467 H 72.842282"
        stroke="#000000"
-       stroke-width="0.291003"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 180.64692,70.003341 v 0.848619 h -1.42362 l -0.75823,1.904224 -0.77371,-1.904224 h -1.40814 v -0.848619 l -0.91299,1.076298 0.91299,1.076294 v -0.724428 h 1.00582 l 0.86654,2.090501 -0.86654,2.111202 h -1.00582 v -0.786519 l -0.91299,1.076293 0.91299,1.076293 V 76.19205 h 1.40814 l 0.77371,-1.945615 0.75823,1.945615 h 1.42362 v 0.765834 l 0.91297,-1.034902 -0.91297,-1.076293 v 0.786519 h -0.99034 l -0.88203,-2.111202 0.86655,-2.090501 h 1.00582 v 0.703731 l 0.91297,-1.055597 z"
-       stroke="#000000"
-       stroke-width="0.218253"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="M 17.213959,73.50131 H 37.687833"
-       stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path63" />
     <path
-       d="M 44.640519,73.50131 H 65.114395"
+       d="M 80.104164,61.468594 101.48855,42.959109"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path65" />
     <path
-       d="M 72.067082,73.450006 92.540957,54.408231"
+       d="m 108.75043,42.959109 21.38438,18.509485"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path67" />
     <path
-       d="M 99.493643,54.408231 119.96752,73.450006"
+       d="m 137.39669,61.518467 h 21.38437"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path69" />
     <path
-       d="m 126.9202,73.50131 h 20.47388"
+       d="m 108.75043,79.993527 21.38438,-18.47506"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path71" />
     <path
-       d="m 154.34677,73.50131 h 20.47387"
+       d="m 80.104164,61.518467 21.384386,18.4752"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
-    <path
-       d="M 99.493643,92.507663 119.96752,73.501308"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="M 72.067082,73.50131 92.540956,92.507818"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
+       id="path73" />
     <rect
-       x="19.34832"
-       y="3.396188"
-       width="16.221159"
-       height="8.4534388"
+       x="53.687176"
+       y="25.958176"
+       width="16.942537"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect75" />
     <text
-       font-size="2.86847px"
+       font-size="2.01064px"
        
-       x="26.730089"
-       y="7.6452875"
+       x="63.677887"
+       y="26.16641"
        
-       transform="scale(0.85569064,1.1686467)">DATA 1</text>
-    <rect
-       x="74.201447"
-       y="45.663311"
-       width="16.221159"
-       height="8.5991583"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="89.847633"
-       y="42.316277"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS F<tspan
-   font-size="1.99545px"
-   x="97.049973"
-   y="42.316277"
-   
+       transform="scale(0.8869959,1.1274009)">MPLS S<tspan
+   font-size="2.01064px"
+   x="71.044991"
+   y="26.16641"
+   id="tspan77"
    >-</tspan><tspan
-   font-size="1.99545px"
-   x="97.886612"
-   y="42.316277"
-   
+   font-size="2.01064px"
+   x="71.887978"
+   y="26.16641"
+   id="tspan79"
    >label</tspan><tspan
-   font-size="1.99545px"
-   x="93.249466"
-   y="44.810593"
-   
-   >20000</tspan></text>
-    <rect
-       x="74.308167"
-       y="134.57001"
-       width="16.221159"
-       height="8.4534101"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="89.9953"
-       y="118.26819"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS F<tspan
-   font-size="1.99545px"
-   x="97.197632"
-   y="118.26819"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="98.034264"
-   y="118.26819"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="93.397133"
-   y="120.7625"
-   
-   >20001</tspan></text>
-    <rect
-       x="101.62801"
-       y="45.663311"
-       width="16.327875"
-       height="8.5991583"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="122.00236"
-       y="42.316277"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS F<tspan
-   font-size="1.99545px"
-   x="129.2047"
-   y="42.316277"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="130.04134"
-   y="42.316277"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="125.40419"
-   y="44.810593"
-   
-   >20002</tspan></text>
-    <rect
-       x="101.73473"
-       y="134.57001"
-       width="16.327875"
-       height="8.4534101"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="122.12083"
-       y="118.26819"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS F<tspan
-   font-size="1.99545px"
-   x="129.32318"
-   y="118.26819"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="130.15982"
-   y="118.26819"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="125.52267"
-   y="120.7625"
-   
-   >20003</tspan></text>
-    <rect
-       x="156.2677"
-       y="3.396188"
-       width="16.221159"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="186.78099"
-       y="7.6452875"
-       
-       transform="scale(0.85569064,1.1686467)">DATA 1</text>
-    <rect
-       x="19.34832"
-       y="11.849612"
-       width="16.221159"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="27.057476"
-       y="13.631644"
-       
-       transform="scale(0.85569064,1.1686467)">IP <tspan
-   font-size="1.99545px"
-   x="30.767769"
-   y="13.631644"
-   
-   >1.1.1.1</tspan><tspan
-   font-size="1.99545px"
-   x="30.73139"
-   y="16.250677"
-   
-   >8.8.8.8</tspan></text>
-    <rect
-       x="156.2677"
-       y="11.849612"
-       width="16.221159"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="187.10774"
-       y="13.631644"
-       
-       transform="scale(0.85569064,1.1686467)">IP <tspan
-   font-size="1.99545px"
-   x="190.81804"
-   y="13.631644"
-   
-   >1.1.1.1</tspan><tspan
-   font-size="1.99545px"
-   x="190.78166"
-   y="16.250677"
-   
-   >8.8.8.8</tspan></text>
-    <rect
-       x="46.881599"
-       y="20.448786"
-       width="16.221159"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="57.863644"
-       y="20.615728"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS S<tspan
-   font-size="1.99545px"
-   x="65.175102"
-   y="20.615728"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="66.011749"
-   y="20.615728"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="62.48333"
-   y="23.110044"
-   
+   font-size="2.01064px"
+   x="68.33271"
+   y="28.679707"
+   id="tspan81"
    >100</tspan></text>
     <rect
-       x="46.881599"
-       y="28.756462"
-       width="16.221159"
-       height="8.4534388"
+       x="53.687176"
+       y="34.175293"
+       width="16.942537"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect85" />
     <text
-       font-size="1.99545px"
+       font-size="2.01064px"
        
-       x="57.918274"
-       y="27.724531"
+       x="63.732933"
+       y="33.454964"
        
-       transform="scale(0.85569064,1.1686467)">MPLS F<tspan
-   font-size="1.99545px"
-   x="65.120605"
-   y="27.724531"
-   
+       transform="scale(0.8869959,1.1274009)">MPLS F<tspan
+   font-size="2.01064px"
+   x="70.990051"
+   y="33.454964"
+   id="tspan87"
    >-</tspan><tspan
-   font-size="1.99545px"
-   x="65.957253"
-   y="27.724531"
-   
+   font-size="2.01064px"
+   x="71.833046"
+   y="33.454964"
+   id="tspan89"
    >label</tspan><tspan
-   font-size="1.99545px"
-   x="61.320107"
-   y="30.218847"
-   
+   font-size="2.01064px"
+   x="67.16066"
+   y="35.968254"
+   id="tspan91"
    >10000</tspan></text>
     <rect
-       x="46.881599"
-       y="3.396188"
-       width="16.221159"
-       height="8.4534388"
+       x="53.687176"
+       y="9.5239382"
+       width="16.942537"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect95" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="58.900402"
-       y="7.6452875"
+       x="64.722557"
+       y="13.222945"
        
-       transform="scale(0.85569064,1.1686467)">DATA 1</text>
+       transform="scale(0.8869959,1.1274009)">DATA 1</text>
     <rect
-       x="46.881599"
-       y="11.849612"
-       width="16.221159"
-       height="8.4534388"
+       x="53.687176"
+       y="17.741053"
+       width="16.942537"
+       height="8.2171049"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect99" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="59.227787"
-       y="13.631644"
+       x="65.052414"
+       y="19.254856"
        
-       transform="scale(0.85569064,1.1686467)">IP <tspan
-   font-size="1.99545px"
-   x="62.938076"
-   y="13.631644"
-   
+       transform="scale(0.8869959,1.1274009)">IP <tspan
+   font-size="2.01064px"
+   x="68.790932"
+   y="19.254856"
+   id="tspan101"
    >1.1.1.1</tspan><tspan
-   font-size="1.99545px"
-   x="62.901711"
-   y="16.250677"
-   
-   >8.8.8.8</tspan></text>
+   font-size="2.01064px"
+   x="68.754295"
+   y="21.893812"
+   id="tspan103"
+   >8.8.8.9</tspan></text>
     <rect
-       x="129.05457"
-       y="20.448786"
-       width="16.221159"
-       height="8.4534388"
+       x="140.40622"
+       y="116.9132"
+       width="16.942537"
+       height="8.2171049"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect107" />
     <text
-       font-size="1.99545px"
+       font-size="2.01064px"
        
-       x="153.97824"
-       y="20.615728"
+       x="161.43571"
+       y="106.84313"
        
-       transform="scale(0.85569064,1.1686467)">MPLS S<tspan
-   font-size="1.99545px"
-   x="161.2897"
-   y="20.615728"
-   
+       transform="scale(0.8869959,1.1274009)">MPLS S<tspan
+   font-size="2.01064px"
+   x="168.80281"
+   y="106.84313"
+   id="tspan109"
    >-</tspan><tspan
-   font-size="1.99545px"
-   x="162.12634"
-   y="20.615728"
-   
+   font-size="2.01064px"
+   x="169.64581"
+   y="106.84313"
+   id="tspan111"
    >label</tspan><tspan
-   font-size="1.99545px"
-   x="158.5979"
-   y="23.110044"
-   
-   >102</tspan></text>
+   font-size="2.01064px"
+   x="166.09053"
+   y="109.35642"
+   id="tspan113"
+   >100</tspan></text>
     <rect
-       x="129.05457"
-       y="28.756462"
-       width="16.221159"
-       height="8.4534388"
+       x="140.40622"
+       y="125.1303"
+       width="16.942537"
+       height="8.2171192"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect117" />
     <text
-       font-size="1.99545px"
+       font-size="2.01064px"
        
-       x="154.03188"
-       y="27.724531"
+       x="161.48976"
+       y="114.25735"
        
-       transform="scale(0.85569064,1.1686467)">MPLS F<tspan
-   font-size="1.99545px"
-   x="161.23421"
-   y="27.724531"
-   
+       transform="scale(0.8869959,1.1274009)">MPLS F<tspan
+   font-size="2.01064px"
+   x="168.74689"
+   y="114.25735"
+   id="tspan119"
    >-</tspan><tspan
-   font-size="1.99545px"
-   x="162.07085"
-   y="27.724531"
-   
+   font-size="2.01064px"
+   x="169.5899"
+   y="114.25735"
+   id="tspan121"
    >label</tspan><tspan
-   font-size="1.99545px"
-   x="157.4337"
-   y="30.218847"
-   
-   >10005</tspan></text>
+   font-size="2.01064px"
+   x="164.91748"
+   y="116.77065"
+   id="tspan123"
+   >10003</tspan></text>
     <rect
-       x="129.05457"
-       y="3.396188"
-       width="16.221159"
-       height="8.4534388"
+       x="140.40622"
+       y="100.33727"
+       width="16.942537"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect127" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="155.01462"
-       y="7.6452875"
+       x="162.48"
+       y="93.774002"
        
-       transform="scale(0.85569064,1.1686467)">DATA 1</text>
+       transform="scale(0.8869959,1.1274009)">DATA 1</text>
     <rect
-       x="129.05457"
-       y="11.849612"
-       width="16.221159"
-       height="8.4534388"
+       x="140.40622"
+       y="108.5544"
+       width="16.942537"
+       height="8.3588085"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect131" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="155.34138"
-       y="13.631644"
+       x="162.80922"
+       y="99.93158"
        
-       transform="scale(0.85569064,1.1686467)">IP <tspan
-   font-size="1.99545px"
-   x="159.05168"
-   y="13.631644"
-   
+       transform="scale(0.8869959,1.1274009)">IP <tspan
+   font-size="2.01064px"
+   x="166.54776"
+   y="99.93158"
+   id="tspan133"
    >1.1.1.1</tspan><tspan
-   font-size="1.99545px"
-   x="159.0153"
-   y="16.250677"
-   
-   >8.8.8.8</tspan><tspan
-   font-size="2.86847px"
-   x="11.005307"
-   y="84.96907"
-   
-   >Source 2</tspan><tspan
-   font-size="2.86847px"
-   x="12.057905"
-   y="87.837547"
-   
-   >1.1.1.2</tspan></text>
-    <path
-       d="m 17.320674,89.246088 c 0,-0.404641 -0.240181,-0.73266 -0.536457,-0.73266 H 10.81373 c -0.296281,0 -0.536467,0.328019 -0.536467,0.73266 v 6.405145 c 0,0.404641 0.240186,0.732667 0.536467,0.732667 h 5.970487 c 0.296276,0 0.536457,-0.328026 0.536457,-0.732667 z"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 16.087544,89.096418 v 0.830939 h -1.423617 l -0.758221,1.864551 -0.773709,-1.864551 h -1.408149 v -0.830939 l -0.912969,1.053877 0.912969,1.05387 v -0.709337 h 1.005823 l 0.866553,2.046946 -0.866553,2.06721 h -1.005823 v -0.77013 l -0.912969,1.053877 0.912969,1.053877 v -0.79041 h 1.408149 l 0.773709,-1.90508 0.758221,1.90508 h 1.423617 v 0.749866 l 0.912974,-1.013333 -0.912974,-1.053877 v 0.77013 h -0.990339 l -0.882016,-2.06721 0.866537,-2.046946 h 1.005818 v 0.68908 l 0.912974,-1.033613 z"
-       stroke="#000000"
-       stroke-width="0.218253"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="M 17.320674,92.448638 H 37.794548"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <rect
-       x="19.34832"
-       y="126.11659"
-       width="16.221159"
-       height="8.4534235"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="26.788706"
-       y="112.65598"
-       
-       transform="scale(0.85569064,1.1686467)">DATA 2</text>
-    <rect
-       x="19.34832"
-       y="134.57001"
-       width="16.221159"
-       height="8.4534101"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="27.116095"
-       y="118.64234"
-       
-       transform="scale(0.85569064,1.1686467)">IP <tspan
-   font-size="1.99545px"
-   x="30.826385"
-   y="118.64234"
-   
-   >1.1.1.2</tspan><tspan
-   font-size="1.99545px"
-   x="30.790007"
-   y="121.26137"
-   
-   >8.8.8.9</tspan><tspan
-   font-size="2.86847px"
-   x="200.65437"
-   y="84.96907"
-   
-   >Destination 2</tspan><tspan
-   font-size="2.86847px"
-   x="204.45445"
-   y="87.837547"
-   
+   font-size="2.01064px"
+   x="166.51111"
+   y="102.57054"
+   id="tspan135"
    >8.8.8.9</tspan></text>
     <path
-       d="m 181.88005,89.246081 c 0,-0.404634 -0.24018,-0.732653 -0.53646,-0.732653 h -5.86377 c -0.29628,0 -0.53646,0.328019 -0.53646,0.732653 v 6.405145 c 0,0.404618 0.24018,0.732644 0.53646,0.732644 h 5.86377 c 0.29628,0 0.53646,-0.328026 0.53646,-0.732644 z"
+       d="m 51.569367,76.823112 c 0,-0.393324 -0.25086,-0.712175 -0.560313,-0.712175 H 44.88453 c -0.309456,0 -0.560317,0.318851 -0.560317,0.712175 v 6.226064 c 0,0.39333 0.250861,0.712165 0.560317,0.712165 h 6.124524 c 0.309453,0 0.560313,-0.318835 0.560313,-0.712165 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path139" />
     <path
-       d="m 180.75364,89.096418 v 0.830939 h -1.42362 l -0.75823,1.864551 -0.77371,-1.864551 h -1.40815 v -0.830939 l -0.91298,1.053877 0.91298,1.05387 v -0.709337 h 1.00583 l 0.86654,2.046946 -0.86654,2.06721 h -1.00583 v -0.77013 l -0.91298,1.053877 0.91298,1.053877 v -0.79041 h 1.40815 l 0.77371,-1.90508 0.75823,1.90508 h 1.42362 v 0.749866 l 0.91297,-1.013333 -0.91297,-1.053877 v 0.77013 h -0.99035 l -0.88202,-2.06721 0.86655,-2.046946 h 1.00582 v 0.68908 l 0.91297,-1.033613 z"
+       d="m 50.169934,76.677632 v 0.807713 h -1.48693 l -0.791955,1.812429 -0.808117,-1.812429 h -1.470765 v -0.807713 l -0.953587,1.024415 0.953587,1.02441 v -0.689505 h 1.05055 l 0.905085,1.989725 -0.905085,2.009426 h -1.05055 v -0.74861 l -0.953587,1.024421 0.953587,1.02442 v -0.768319 h 1.470765 l 0.808117,-1.851822 0.791955,1.851822 h 1.48693 v 0.728904 l 0.953574,-0.985005 -0.953574,-1.024421 v 0.74861 h -1.034386 l -0.921249,-2.009426 0.905084,-1.989725 h 1.050551 v 0.669811 l 0.953574,-1.004716 z"
        stroke="#000000"
-       stroke-width="0.218253"
+       stroke-width="0.219914"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path141" />
     <path
-       d="m 154.34677,92.448638 20.63928,0.0084"
+       d="m 51.569367,79.993667 21.27035,-18.4752"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
-    <rect
-       x="156.2677"
-       y="126.11659"
-       width="16.221159"
-       height="8.4534235"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
+       id="path143" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="186.78099"
-       y="112.65598"
+       x="48.711845"
+       y="76.809273"
        
-       transform="scale(0.85569064,1.1686467)">DATA 2</text>
-    <rect
-       x="156.2677"
-       y="134.57001"
-       width="16.221159"
-       height="8.4534101"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="187.10774"
-       y="118.64234"
-       
-       transform="scale(0.85569064,1.1686467)">IP <tspan
-   font-size="1.99545px"
-   x="190.81804"
-   y="118.64234"
-   
-   >1.1.1.2</tspan><tspan
-   font-size="1.99545px"
-   x="190.78166"
-   y="121.26137"
-   
-   >8.8.8.9</tspan></text>
-    <rect
-       x="74.201447"
-       y="37.209885"
-       width="16.221159"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="89.665794"
-       y="35.082764"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS A<tspan
-   font-size="1.99545px"
-   x="97.231895"
-   y="35.082764"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="98.06852"
-   y="35.082764"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="93.831512"
-   y="37.57708"
-   
-   >1000</tspan></text>
-    <rect
-       x="46.774883"
-       y="125.97084"
-       width="16.221159"
-       height="8.4534235"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="57.808392"
-       y="111.03468"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS S<tspan
-   font-size="1.99545px"
-   x="65.119858"
-   y="111.03468"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="65.95649"
-   y="111.03468"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="62.428066"
-   y="113.52899"
-   
-   >103</tspan></text>
-    <rect
-       x="46.774883"
-       y="109.06399"
-       width="16.221159"
-       height="8.4533949"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="58.845154"
-       y="98.06424"
-       
-       transform="scale(0.85569064,1.1686467)">DATA 2</text>
-    <rect
-       x="46.774883"
-       y="117.51743"
-       width="16.221159"
-       height="8.4534235"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="59.172539"
-       y="104.05059"
-       
-       transform="scale(0.85569064,1.1686467)">IP <tspan
-   font-size="1.99545px"
-   x="62.882828"
-   y="104.05059"
-   
-   >1.1.1.2</tspan><tspan
-   font-size="1.99545px"
-   x="62.846451"
-   y="106.66962"
-   
-   >8.8.8.9</tspan></text>
-    <rect
-       x="74.308167"
-       y="125.97084"
-       width="16.221159"
-       height="8.4534235"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="89.813461"
-       y="111.03468"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS A<tspan
-   font-size="1.99545px"
-   x="97.379539"
-   y="111.03468"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="98.216187"
-   y="111.03468"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="93.979179"
-   y="113.52899"
-   
-   >1000</tspan></text>
-    <rect
-       x="101.73473"
-       y="125.97084"
-       width="16.327875"
-       height="8.4534235"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="121.93875"
-       y="111.03468"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS A<tspan
-   font-size="1.99545px"
-   x="129.50484"
-   y="111.03468"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="130.34148"
-   y="111.03468"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="126.10445"
-   y="113.52899"
-   
-   >1000</tspan></text>
-    <rect
-       x="101.62801"
-       y="37.209885"
-       width="16.327875"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="121.82027"
-       y="35.082764"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS A<tspan
-   font-size="1.99545px"
-   x="129.38635"
-   y="35.082764"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="130.22299"
-   y="35.082764"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="125.98598"
-   y="37.57708"
-   
-   >1000</tspan></text>
-    <path
-       d="m 44.74724,89.246081 c 0,-0.404634 -0.240181,-0.732653 -0.536457,-0.732653 h -5.863752 c -0.296281,0 -0.536462,0.328019 -0.536462,0.732653 v 6.405108 c 0,0.404648 0.240181,0.732652 0.536462,0.732652 h 5.863752 c 0.296276,0 0.536457,-0.328004 0.536457,-0.732652 z"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 43.605085,89.096418 v 0.830939 h -1.448162 l -0.771309,1.864551 -0.787043,-1.864551 h -1.432437 v -0.830939 l -0.928715,1.053877 0.928715,1.05387 v -0.709337 h 1.023159 l 0.881505,2.046946 -0.881505,2.06721 h -1.023159 v -0.77013 l -0.928715,1.053877 0.928715,1.053877 v -0.79041 h 1.432437 l 0.787043,-1.90508 0.771309,1.90508 h 1.448162 v 0.749866 l 0.928714,-1.013333 -0.928714,-1.053877 v 0.77013 h -1.00742 l -0.897229,-2.06721 0.881489,-2.046946 h 1.02316 v 0.68908 l 0.928714,-1.033613 z"
-       stroke="#000000"
-       stroke-width="0.218253"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="M 44.74724,92.507818 65.11194,73.501311"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="42.937405"
-       y="84.96907"
-       
-       transform="scale(0.85569064,1.1686467)">Ingress 2<tspan
-   font-size="2.86847px"
-   x="44.118885"
-   y="87.837547"
-   
+       transform="scale(0.8869959,1.1274009)">Ingress 2<tspan
+   font-size="2.89029px"
+   x="49.902328"
+   y="79.699562"
+   id="tspan145"
    >2.2.2.3</tspan></text>
     <path
-       d="m 154.34677,89.246088 c 0,-0.404641 -0.24018,-0.73266 -0.53646,-0.73266 h -5.97049 c -0.29628,0 -0.53646,0.328019 -0.53646,0.73266 v 6.405145 c 0,0.404641 0.24018,0.732667 0.53646,0.732667 h 5.97049 c 0.29628,0 0.53646,-0.328026 0.53646,-0.732667 z"
+       d="m 166.04294,76.823117 c 0,-0.393329 -0.25085,-0.71218 -0.5603,-0.71218 h -6.23601 c -0.30945,0 -0.56032,0.318851 -0.56032,0.71218 v 6.226059 c 0,0.393314 0.25087,0.712182 0.56032,0.712182 h 6.23601 c 0.30945,0 0.5603,-0.318868 0.5603,-0.712182 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path149" />
     <path
-       d="m 153.20461,89.096418 v 0.830939 h -1.44816 l -0.7713,1.864551 -0.78705,-1.864551 h -1.43244 v -0.830939 l -0.92871,1.053877 0.92871,1.05387 v -0.709337 h 1.02317 l 0.8815,2.046946 -0.8815,2.06721 h -1.02317 v -0.77013 l -0.92871,1.053877 0.92871,1.053877 v -0.79041 h 1.43244 l 0.78705,-1.90508 0.7713,1.90508 h 1.44816 v 0.749866 l 0.92872,-1.013333 -0.92872,-1.053877 v 0.77013 h -1.00741 l -0.89724,-2.06721 0.8815,-2.046946 h 1.02315 v 0.68908 l 0.92872,-1.033613 z"
+       d="m 164.64351,76.677632 v 0.807713 h -1.48692 l -0.79196,1.812429 -0.80811,-1.812429 h -1.47077 v -0.807713 l -0.95359,1.024415 0.95359,1.02441 v -0.689505 h 1.05055 l 0.90508,1.989725 -0.90508,2.009426 h -1.05055 v -0.74861 l -0.95359,1.024421 0.95359,1.02442 v -0.768319 h 1.47077 l 0.80811,-1.851822 0.79196,1.851822 h 1.48692 v 0.728904 l 0.95358,-0.985005 -0.95358,-1.024421 v 0.74861 h -1.03438 l -0.92125,-2.009426 0.90509,-1.989725 h 1.05054 v 0.669811 l 0.95358,-1.004716 z"
        stroke="#000000"
-       stroke-width="0.218253"
+       stroke-width="0.219914"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path151" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="171.18527"
-       y="84.96907"
+       x="177.93549"
+       y="76.809273"
        
-       transform="scale(0.85569064,1.1686467)">Egress 2<tspan
-   font-size="2.86847px"
-   x="171.94769"
-   y="87.837547"
-   
+       transform="scale(0.8869959,1.1274009)">Egress 2<tspan
+   font-size="2.89029px"
+   x="178.7037"
+   y="79.699562"
+   id="tspan153"
    >7.7.7.8</tspan></text>
-    <rect
-       x="46.774883"
-       y="134.57001"
-       width="16.221159"
-       height="8.4534101"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="57.863018"
-       y="118.26819"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS F<tspan
-   font-size="1.99545px"
-   x="65.065361"
-   y="118.26819"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="65.901993"
-   y="118.26819"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="61.264858"
-   y="120.7625"
-   
-   >10006</tspan></text>
     <path
-       d="m 126.9202,73.50131 20.43012,18.990621"
+       d="m 137.39669,61.518467 21.33867,18.459756"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
-    <rect
-       x="129.16129"
-       y="125.97084"
-       width="16.221159"
-       height="8.4534235"
+       id="path157" />
+    <text
+       font-size="2.89029px"
+       
+       x="16.292641"
+       y="31.444321"
+       
+       transform="scale(0.8869959,1.1274009)">Source 1<tspan
+   font-size="2.89029px"
+   x="17.354097"
+   y="34.33461"
+   id="tspan159"
+   >1.1.1.1</tspan></text>
+    <path
+       d="m 22.700176,25.820302 c 0,-0.393324 -0.25086,-0.712177 -0.560312,-0.712177 h -6.124523 c -0.309457,0 -0.560317,0.318853 -0.560317,0.712177 v 6.226064 c 0,0.39333 0.25086,0.712165 0.560317,0.712165 h 6.124523 c 0.309452,0 0.560312,-0.318835 0.560312,-0.712165 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path163" />
+    <path
+       d="m 21.300742,25.533149 v 0.824897 h -1.48693 l -0.791954,1.850991 -0.808114,-1.850991 h -1.470766 v -0.824897 l -0.953588,1.046208 0.953588,1.046208 v -0.704176 h 1.05055 l 0.905085,2.032064 -0.905085,2.052182 h -1.05055 v -0.764528 l -0.953588,1.046209 0.953588,1.046208 v -0.784662 h 1.470766 l 0.808114,-1.891226 0.791954,1.891226 h 1.48693 v 0.744427 l 0.953575,-1.005973 -0.953575,-1.046209 v 0.764528 h -1.034384 l -0.921251,-2.052182 0.905086,-2.032064 h 1.050549 v 0.68406 l 0.953575,-1.026092 z"
+       stroke="#000000"
+       stroke-width="0.219914"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path165" />
+    <path
+       d="M 22.700176,28.933336 44.187213,61.526119"
+       stroke="#000000"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
-    <text
-       font-size="1.99545px"
-       
-       x="154.10545"
-       y="111.03468"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS S<tspan
-   font-size="1.99545px"
-   x="161.41692"
-   y="111.03468"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="162.25356"
-   y="111.03468"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="158.72513"
-   y="113.52899"
-   
-   >105</tspan></text>
+       fill-rule="evenodd"
+       id="path167" />
     <rect
-       x="129.16129"
-       y="134.57001"
-       width="16.221159"
-       height="8.4534101"
+       x="25.26384"
+       y="9.5239382"
+       width="16.942537"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect169" />
     <text
-       font-size="1.99545px"
+       font-size="2.89029px"
        
-       x="154.15907"
-       y="118.26819"
+       x="32.67403"
+       y="13.222945"
        
-       transform="scale(0.85569064,1.1686467)">MPLS F<tspan
-   font-size="1.99545px"
-   x="161.3614"
-   y="118.26819"
-   
-   >-</tspan><tspan
-   font-size="1.99545px"
-   x="162.19804"
-   y="118.26819"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="157.5609"
-   y="120.7625"
-   
-   >10011</tspan></text>
+       transform="scale(0.8869959,1.1274009)">DATA 1</text>
     <rect
-       x="129.16129"
-       y="109.06399"
-       width="16.221159"
-       height="8.4533949"
+       x="25.26384"
+       y="17.599375"
+       width="16.942537"
+       height="8.2171049"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect173" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="155.14185"
-       y="98.06424"
+       x="33.003895"
+       y="19.254856"
        
-       transform="scale(0.85569064,1.1686467)">DATA 2</text>
-    <rect
-       x="129.16129"
-       y="117.51743"
-       width="16.221159"
-       height="8.4534235"
+       transform="scale(0.8869959,1.1274009)">IP <tspan
+   font-size="2.01064px"
+   x="36.742413"
+   y="19.254856"
+   id="tspan175"
+   >1.1.1.1</tspan><tspan
+   font-size="2.01064px"
+   x="36.705769"
+   y="21.893812"
+   id="tspan177"
+   >8.8.8.9</tspan><tspan
+   font-size="2.89029px"
+   x="16.186686"
+   y="105.71215"
+   id="tspan179"
+   >Source 2</tspan><tspan
+   font-size="2.89029px"
+   x="17.248201"
+   y="108.60243"
+   id="tspan181"
+   >1.1.1.2</tspan></text>
+    <path
+       d="m 22.58871,109.40824 c 0,-0.39331 -0.250862,-0.71217 -0.560314,-0.71217 h -6.124522 c -0.309457,0 -0.560317,0.31886 -0.560317,0.71217 v 6.22606 c 0,0.39334 0.25086,0.71217 0.560317,0.71217 h 6.124522 c 0.309452,0 0.560314,-0.31883 0.560314,-0.71217 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path185" />
+    <path
+       d="m 21.18928,109.26277 v 0.8077 h -1.48693 l -0.791954,1.81244 -0.808115,-1.81244 h -1.470765 v -0.8077 l -0.953588,1.02441 0.953588,1.02443 v -0.68952 h 1.050549 l 0.905085,1.98973 -0.905085,2.00944 h -1.050549 v -0.74861 l -0.953588,1.0244 0.953588,1.02443 v -0.76832 h 1.470765 l 0.808115,-1.85182 0.791954,1.85182 h 1.48693 v 0.72892 l 0.953575,-0.98503 -0.953575,-1.0244 v 0.74861 h -1.034386 l -0.921249,-2.00944 0.905085,-1.98973 h 1.05055 v 0.66982 l 0.953575,-1.00473 z"
+       stroke="#000000"
+       stroke-width="0.219914"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path187" />
+    <path
+       d="M 22.58871,112.5312 44.28374,79.936715"
+       stroke="#000000"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       fill-rule="evenodd"
+       id="path189" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="155.4686"
-       y="104.05059"
+       x="207.72052"
+       y="105.71215"
        
-       transform="scale(0.85569064,1.1686467)">IP <tspan
-   font-size="1.99545px"
-   x="159.17888"
-   y="104.05059"
-   
-   >1.1.1.2</tspan><tspan
-   font-size="1.99545px"
-   x="159.1425"
-   y="106.66962"
-   
+       transform="scale(0.8869959,1.1274009)">Destination 2<tspan
+   font-size="2.89029px"
+   x="211.54996"
+   y="108.60243"
+   id="tspan191"
    >8.8.8.9</tspan></text>
     <path
-       d="m 36.196449,75.541789 c -0.184197,0 -0.333495,-0.815611 -0.333495,-1.821856 0,-1.006104 0.149298,-1.821858 0.333495,-1.821858 0.184192,0 0.333489,0.815754 0.333489,1.821858 0,1.006245 -0.149297,1.821856 -0.333489,1.821856 h -18.00869 c -0.184192,0 -0.333495,-0.815611 -0.333495,-1.821856 0,-1.006104 0.149303,-1.821858 0.333495,-1.821858 h 18.00869"
+       d="m 194.91213,109.54992 c 0,-0.39332 -0.25085,-0.71217 -0.5603,-0.71217 h -6.12455 c -0.30945,0 -0.56032,0.31885 -0.56032,0.71217 v 6.22609 c 0,0.39331 0.25087,0.71217 0.56032,0.71217 h 6.12455 c 0.30945,0 0.5603,-0.31886 0.5603,-0.71217 z"
        stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
+       stroke-width="0.293217"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="28.555683"
-       y="60.400066"
-       
-       transform="scale(0.85569064,1.1686467)">App-1</text>
+       id="path195" />
     <path
-       d="m 36.303164,94.489122 c -0.184197,0 -0.333495,-0.815759 -0.333495,-1.821863 0,-1.006245 0.149298,-1.821856 0.333495,-1.821856 0.184197,0 0.333494,0.815611 0.333494,1.821856 0,1.006104 -0.149297,1.821863 -0.333494,1.821863 H 18.294479 c -0.184197,0 -0.333495,-0.815759 -0.333495,-1.821863 0,-1.006245 0.149298,-1.821856 0.333495,-1.821856 h 18.008685"
+       d="m 193.5127,109.40444 v 0.80771 h -1.48692 l -0.79195,1.81243 -0.80812,-1.81243 h -1.47077 v -0.80771 l -0.95359,1.02441 0.95359,1.02442 v -0.68951 h 1.05056 l 0.90507,1.98972 -0.90507,2.00943 h -1.05056 v -0.74861 l -0.95359,1.02442 0.95359,1.02442 v -0.76832 h 1.47077 l 0.80812,-1.85182 0.79195,1.85182 h 1.48692 v 0.7289 l 0.95358,-0.985 -0.95358,-1.02442 v 0.74861 h -1.03438 l -0.92125,-2.00943 0.90509,-1.98972 h 1.05054 v 0.66982 l 0.95358,-1.00473 z"
        stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
+       stroke-width="0.219914"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="28.297146"
-       y="83.721924"
-       
-       transform="scale(0.85569064,1.1686467)">App-2</text>
+       id="path197" />
     <path
-       d="m 173.4365,75.39604 c -0.18462,0 -0.33402,-0.815604 -0.33402,-1.821856 0,-1.006248 0.1494,-1.821859 0.33402,-1.821859 0.18357,0 0.33297,0.815611 0.33297,1.821859 0,1.006252 -0.1494,1.821856 -0.33297,1.821856 h -18.11646 c -0.18356,0 -0.33296,-0.815604 -0.33296,-1.821856 0,-1.006248 0.1494,-1.821859 0.33296,-1.821859 h 18.11646"
+       d="m 166.04294,79.936147 21.63853,32.712643"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path199" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="188.70784"
-       y="60.400066"
+       x="207.48428"
+       y="31.444321"
        
-       transform="scale(0.85569064,1.1686467)">App-1</text>
+       transform="scale(0.8869959,1.1274009)">Destination 1<tspan
+   font-size="2.89029px"
+   x="211.31371"
+   y="34.33461"
+   id="tspan201"
+   >8.8.8.8</tspan></text>
     <path
-       d="m 173.476,94.78062 c -0.22091,0 -0.4002,-0.978847 -0.4002,-2.186232 0,-1.207379 0.17929,-2.186233 0.4002,-2.186233 0.2209,0 0.40019,0.978854 0.40019,2.186233 0,1.207385 -0.17929,2.186232 -0.40019,2.186232 h -17.98201 c -0.22091,0 -0.4002,-0.978847 -0.4002,-2.186232 0,-1.207379 0.17929,-2.186233 0.4002,-2.186233 H 173.476"
+       d="m 194.68921,25.678628 c 0,-0.393324 -0.25086,-0.712175 -0.56032,-0.712175 h -6.12454 c -0.30946,0 -0.56031,0.318851 -0.56031,0.712175 v 6.226092 c 0,0.393318 0.25085,0.71217 0.56031,0.71217 h 6.12454 c 0.30946,0 0.56032,-0.318852 0.56032,-0.71217 z"
        stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
+       stroke-width="0.293217"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="188.91487"
-       y="83.721924"
-       
-       transform="scale(0.85569064,1.1686467)">App-2</text>
+       id="path205" />
     <path
-       d="m 63.342873,77.582273 c -0.397845,0 -0.720347,-1.761807 -0.720347,-3.935214 0,-2.173405 0.322502,-3.935215 0.720347,-3.935215 0.397846,0 0.720348,1.76181 0.720348,3.935215 0,2.173407 -0.322502,3.935214 -0.720348,3.935214 H 46.107892 c -0.397842,0 -0.720347,-1.761807 -0.720347,-3.935214 0,-2.173405 0.322505,-3.935215 0.720347,-3.935215 h 17.234981"
+       d="m 193.38481,25.533149 v 0.807714 h -1.51257 l -0.8056,1.812428 -0.82205,-1.812428 h -1.49612 v -0.807714 l -0.97002,1.024414 0.97002,1.02441 v -0.689504 h 1.06865 l 0.9207,1.989726 -0.9207,2.009424 h -1.06865 v -0.748608 l -0.97002,1.02442 0.97002,1.02442 v -0.768319 h 1.49612 l 0.82205,-1.851823 0.8056,1.851823 h 1.51257 v 0.728903 l 0.97001,-0.985004 -0.97001,-1.02442 v 0.748608 h -1.05223 l -0.93714,-2.009424 0.9207,-1.989726 h 1.06867 v 0.66981 l 0.97001,-1.004716 z"
        stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
+       stroke-width="0.219914"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="61.282227"
-       y="58.903477"
-       
-       transform="scale(0.85569064,1.1686467)">DN-1</text>
+       id="path207" />
     <path
-       d="m 65.403174,79.114531 c -0.330079,0.301115 -1.312313,-0.916322 -2.193912,-2.718945 -0.881705,-1.802763 -1.328854,-3.50817 -0.998881,-3.80914 0.329972,-0.301118 1.312206,0.916321 2.193804,2.718942 0.881706,1.802763 1.328962,3.508168 0.998989,3.809143 L 48.143329,94.859615 C 47.813356,95.16073 46.83112,93.943293 45.949524,92.14067 45.06782,90.337907 44.620561,88.632502 44.950642,88.331527 L 62.210381,72.586446"
+       d="M 166.04294,61.447347 187.42733,28.791664"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path209" />
+    <rect
+       x="168.27223"
+       y="116.77151"
+       width="17.054001"
+       height="8.2171049"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect211" />
     <text
-       font-size="2.86847px"
-       transform="matrix(0.71155573,-0.64911206,0.47528407,0.97179651,0,0)"
+       font-size="2.89029px"
        
-       x="6.9895267"
-       y="102.05008"
+       x="193.95146"
+       y="108.3511"
+       
+       transform="scale(0.8869959,1.1274009)">DATA 1</text>
+    <rect
+       x="168.27223"
+       y="125.1303"
+       width="17.054001"
+       height="8.2171192"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect215" />
+    <text
+       font-size="2.89029px"
+       
+       x="194.28195"
+       y="114.50868"
+       
+       transform="scale(0.8869959,1.1274009)">IP <tspan
+   font-size="2.01064px"
+   x="198.02048"
+   y="114.50868"
+   id="tspan217"
+   >1.1.1.1</tspan><tspan
+   font-size="2.01064px"
+   x="197.98383"
+   y="117.14764"
+   id="tspan219"
+   >8.8.8.9</tspan></text>
+    <path
+       d="m 41.361042,59.816531 c -0.123281,-0.189419 0.259934,-0.850898 0.855819,-1.477523 0.595886,-0.626769 1.178843,-0.98124 1.302123,-0.791959 0.12328,0.189419 -0.259821,0.850897 -0.85582,1.477661 -0.595886,0.626626 -1.178843,0.981097 -1.302122,0.791821 L 23.551312,32.45735 c -0.123279,-0.189421 0.259936,-0.850899 0.855821,-1.477668 0.59589,-0.626625 1.178846,-0.981236 1.302126,-0.791816 l 17.809725,27.359321"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path223" />
+    <text
+       font-size="2.89029px"
+       transform="matrix(0.56544019,0.86862717,-0.68340262,0.71869303,0,0)"
+       
+       x="47.197205"
+       y="-6.7317076"
+       >App-1</text>
+    <path
+       d="m 70.991976,65.48535 c -0.415534,0 -0.752379,-1.712559 -0.752379,-3.82521 0,-2.112652 0.336845,-3.825211 0.752379,-3.825211 0.41554,0 0.752384,1.712559 0.752384,3.825211 0,2.112651 -0.336844,3.82521 -0.752384,3.82521 H 52.990535 c -0.415539,0 -0.752383,-1.712559 -0.752383,-3.82521 0,-2.112652 0.336844,-3.825211 0.752383,-3.825211 h 18.001441"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path231" />
+    <text
+       font-size="2.89029px"
+       
+       x="67.196251"
+       y="50.545357"
+       
+       transform="scale(0.8869959,1.1274009)">DN - 1</text>
+    <path
+       d="m 185.06317,111.78883 c -0.1226,-0.18843 0.25972,-0.85006 0.85605,-1.47768 0.59633,-0.6262 1.17929,-0.98038 1.3019,-0.79195 0.12372,0.18984 -0.25972,0.85146 -0.85605,1.47766 -0.59521,0.62761 -1.17818,0.98181 -1.3019,0.79197 L 167.25344,84.42992 c -0.1226,-0.189275 0.25972,-0.850898 0.85605,-1.477523 0.59633,-0.626769 1.17929,-0.981235 1.3019,-0.791821 l 17.80973,27.358624"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path237" />
+    <text
+       font-size="2.89029px"
+       transform="matrix(0.56544019,0.86862717,-0.68340262,0.71869303,0,0)"
+       
+       x="195.54936"
+       y="-93.777214"
+       >App-1</text>
+    <path
+       d="m 155.8295,82.063674 c -0.34777,-0.286607 0.10147,-1.952275 1.00318,-3.720373 0.90285,-1.768237 1.91606,-2.969215 2.26383,-2.682609 0.34777,0.286612 -0.10147,1.952275 -1.0043,3.720518 -0.90174,1.768097 -1.91494,2.96907 -2.26271,2.682464 L 137.63968,67.072815 c -0.34777,-0.286606 0.10147,-1.952275 1.00317,-3.720373 0.90175,-1.768097 1.91496,-2.96907 2.26272,-2.682463 l 18.19094,14.990713"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path245" />
+    <text
+       font-size="2.89029px"
+       transform="matrix(0.74424382,0.61334792,-0.48255869,0.94595832,0,0)"
+       
+       x="174.42027"
+       y="-32.033894"
+       >DN-1</text>
+    <path
+       d="m 187.20106,32.580607 c -0.12373,0.188569 -0.70558,-0.170009 -1.29856,-0.800607 -0.59299,-0.630732 -0.97308,-1.294903 -0.84936,-1.483328 0.12373,-0.188568 0.70558,0.169865 1.29856,0.800602 0.59298,0.630732 0.9742,1.29476 0.84936,1.483333 l -17.92343,27.238051 c -0.12483,0.188568 -0.70557,-0.169871 -1.29967,-0.800604 -0.59299,-0.630737 -0.97308,-1.294908 -0.84935,-1.483332 l 17.92453,-27.23805"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path253" />
+    <text
+       font-size="2.89029px"
+       transform="matrix(0.56907889,-0.86477972,0.6803756,0.72331795,0,0)"
+       
+       x="98.202126"
+       y="175.42856"
+       >App-2</text>
+    <path
+       d="m 43.795079,84.500189 c -0.124059,0.188568 -0.705566,-0.169865 -1.298887,-0.800602 -0.593214,-0.630733 -0.97364,-1.294904 -0.84958,-1.483334 0.124058,-0.188568 0.705565,0.169871 1.29889,0.800609 0.593211,0.630732 0.973641,1.294903 0.849577,1.483327 L 25.87077,111.73782 c -0.124059,0.18843 -0.705566,-0.17001 -1.298891,-0.80046 -0.59321,-0.63045 -0.973641,-1.29491 -0.849581,-1.48333 L 41.646612,82.216253"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path261" />
+    <text
+       font-size="2.89029px"
+       transform="matrix(0.56907889,-0.86477972,0.6803756,0.72331795,0,0)"
+       
+       x="-50.722839"
+       y="89.435524"
+       >App-2</text>
+    <path
+       d="m 73.207327,67.227237 c -0.348884,0.284342 -1.35741,-0.922865 -2.252579,-2.696488 -0.895168,-1.773762 -1.338125,-3.442124 -0.989241,-3.726605 0.34888,-0.28448 1.357408,0.922725 2.252576,2.696488 0.895168,1.773623 1.338124,3.442124 0.989244,3.726605 L 54.960102,82.105182 C 54.611221,82.389663 53.602695,81.182457 52.707527,79.408695 51.812358,77.635072 51.369512,75.96657 51.718281,75.682228 L 69.965507,60.804144"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path269" />
+    <text
+       font-size="2.89029px"
+       transform="matrix(0.74658424,-0.60873544,0.47892975,0.94893308,0,0)"
+       
+       x="18.17164"
+       y="97.53714"
        >DN-2</text>
     <path
-       d="m 145.62256,77.436523 c -0.39806,0 -0.72035,-1.761806 -0.72035,-3.935213 0,-2.173404 0.32229,-3.935215 0.72035,-3.935215 0.39806,0 0.72035,1.761811 0.72035,3.935215 0,2.173407 -0.32229,3.935213 -0.72035,3.935213 h -17.23498 c -0.39806,0 -0.72035,-1.761806 -0.72035,-3.935213 0,-2.173404 0.32229,-3.935215 0.72035,-3.935215 h 17.23498"
+       d="m 156.93077,65.343678 c -0.41577,0 -0.75239,-1.712565 -0.75239,-3.825211 0,-2.112652 0.33662,-3.82521 0.75239,-3.82521 0.41576,0 0.75237,1.712558 0.75237,3.82521 0,2.112646 -0.33661,3.825211 -0.75237,3.825211 h -18.00145 c -0.41576,0 -0.75239,-1.712565 -0.75239,-3.825211 0,-2.112652 0.33663,-3.82521 0.75239,-3.82521 h 18.00145"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path277" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="157.40044"
-       y="58.903477"
+       x="164.04576"
+       y="50.545357"
        
-       transform="scale(0.85569064,1.1686467)">DN<tspan
-   font-size="2.86847px"
-   x="161.07437"
-   y="58.903477"
-   
-   >-1</tspan></text>
+       transform="scale(0.8869959,1.1274009)">DN-2</text>
     <path
-       d="m 144.56819,94.63706 c -0.33297,-0.294852 0.0971,-2.008422 0.96046,-3.827367 0.86441,-1.818937 1.83448,-3.05445 2.16744,-2.759606 0.33296,0.294852 -0.0971,2.008421 -0.96153,3.827366 -0.86335,1.818938 -1.83341,3.054458 -2.16637,2.759607 L 127.15285,79.215241 c -0.33296,-0.294851 0.0971,-2.008413 0.96046,-3.827358 0.86335,-1.819092 1.83342,-3.054603 2.16638,-2.759754 l 17.4164,15.421958"
+       d="m 130.89499,68.743865 c -0.55732,0.4671 -2.20141,-1.451028 -3.67163,-4.284235 -1.4691,-2.833209 -2.20921,-5.508733 -1.6519,-5.975832 0.55733,-0.466957 2.20031,1.451172 3.67052,4.284379 1.4702,2.833203 2.20922,5.508588 1.65301,5.975688 l -17.61021,14.759501 c -0.55731,0.467105 -2.2003,-1.451028 -3.67051,-4.284236 -1.47021,-2.833201 -2.20921,-5.508581 -1.6519,-5.975688 l 17.60909,-14.7595"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path283" />
     <text
-       font-size="2.86847px"
-       transform="matrix(0.71797679,0.63578712,-0.46552747,0.980566,0,0)"
+       font-size="2.89029px"
+       transform="matrix(0.7404872,-0.62064996,0.48830365,0.94118354,0,0)"
        
-       x="174.56789"
-       y="-20.541878"
-       >DN<tspan
-   font-size="2.86847px"
-   x="178.24002"
-   y="-20.544647"
-   
-   >-</tspan><tspan
-   font-size="2.86847px"
-   x="179.0582"
-   y="-20.629225"
-   
-   >2</tspan></text>
+       x="70.416733"
+       y="125.34568"
+       >DN-1 / DN-2</text>
     <path
-       d="m 67.051329,41.509472 c 0,-1.972126 1.170591,-3.570843 2.614594,-3.570843 1.444004,0 2.614595,1.598717 2.614595,3.570843 0,1.972125 -1.170591,3.570842 -2.614595,3.570842 -1.444003,0 -2.614594,-1.598717 -2.614594,-3.570842 z"
+       d="m 96.788328,83.168874 c -0.553529,-0.47404 0.207318,-3.139931 1.699378,-5.954435 1.49161,-2.814364 3.150194,-4.711524 3.704174,-4.237485 0.55286,0.474184 -0.20732,3.140075 -1.69983,5.95444 -1.491383,2.814504 -3.150081,4.711664 -3.703722,4.23748 L 79.295716,68.186802 c -0.55353,-0.474184 0.207322,-3.140076 1.699382,-5.954441 1.492058,-2.814503 3.150419,-4.711663 3.703949,-4.237623 l 17.492833,14.982216"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path295" />
     <text
-       font-size="5.23806px"
+       font-size="2.89029px"
+       transform="matrix(0.73557772,0.6300108,-0.49566839,0.93494343,0,0)"
        
-       x="79.795288"
-       y="37.452362"
-       
-       transform="scale(0.85569064,1.1686467)">R</text>
-    <path
-       d="m 119.66337,41.509472 c 0,-1.972126 1.1707,-3.570843 2.6146,-3.570843 1.44389,0 2.61459,1.598717 2.61459,3.570843 0,1.972125 -1.1707,3.570842 -2.61459,3.570842 -1.4439,0 -2.6146,-1.598717 -2.6146,-3.570842 z"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="5.23806px"
-       
-       x="141.53784"
-       y="37.452362"
-       
-       transform="scale(0.85569064,1.1686467)">E</text>
-    <path
-       d="m 67.051329,130.9263 c 0,-2.0128 1.170591,-3.64373 2.614594,-3.64373 1.444004,0 2.614595,1.63093 2.614595,3.64373 0,2.01278 -1.170591,3.64371 -2.614595,3.64371 -1.444003,0 -2.614594,-1.63093 -2.614594,-3.64371 z"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="5.23806px"
-       
-       x="79.795288"
-       y="114.02785"
-       
-       transform="scale(0.85569064,1.1686467)">R</text>
-    <path
-       d="m 119.66337,130.9263 c 0,-2.0128 1.1707,-3.64373 2.6146,-3.64373 1.44389,0 2.61459,1.63093 2.61459,3.64373 0,2.01278 -1.1707,3.64371 -2.61459,3.64371 -1.4439,0 -2.6146,-1.63093 -2.6146,-3.64371 z"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="5.23806px"
-       
-       x="141.53784"
-       y="114.02785"
-       
-       transform="scale(0.85569064,1.1686467)">E</text>
+       x="112.23055"
+       y="-6.1905408"
+       >DN-1 / DN-2</text>
     <rect
-       x="74.201447"
-       y="20.303036"
-       width="8.1105795"
-       height="8.4534101"
+       x="53.687176"
+       y="116.9132"
+       width="16.942537"
+       height="8.2171049"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect307" />
     <text
-       font-size="1.49659px"
+       font-size="2.01064px"
        
-       x="89.46962"
-       y="19.368572"
+       x="63.677887"
+       y="106.84313"
        
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="89.033112"
-   y="21.114594"
-   
-   >S</tspan><tspan
-   font-size="1.49659px"
-   x="89.869751"
-   y="21.114594"
-   
+       transform="scale(0.8869959,1.1274009)">MPLS S<tspan
+   font-size="2.01064px"
+   x="71.044991"
+   y="106.84313"
+   id="tspan309"
    >-</tspan><tspan
-   font-size="1.49659px"
-   x="90.488136"
-   y="21.114594"
-   
+   font-size="2.01064px"
+   x="71.887978"
+   y="106.84313"
+   id="tspan311"
    >label</tspan><tspan
-   font-size="1.99545px"
-   x="89.668953"
-   y="23.484194"
-   
+   font-size="2.01064px"
+   x="68.33271"
+   y="109.35642"
+   id="tspan313"
    >101</tspan></text>
     <rect
-       x="74.201447"
-       y="11.849612"
-       width="8.1105795"
-       height="8.4534388"
+       x="53.687176"
+       y="125.1303"
+       width="16.942537"
+       height="8.2171192"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect317" />
     <text
-       font-size="1.6213px"
+       font-size="2.01064px"
        
-       x="90.670753"
-       y="12.509203"
+       x="63.732933"
+       y="114.25735"
        
-       transform="scale(0.85569064,1.1686467)">IP<tspan
-   font-size="1.6213px"
-   x="88.869438"
-   y="14.37994"
-   
-   >1.1.1.1</tspan><tspan
-   font-size="1.6213px"
-   x="88.869438"
-   y="16.250677"
-   
+       transform="scale(0.8869959,1.1274009)">MPLS F<tspan
+   font-size="2.01064px"
+   x="70.990051"
+   y="114.25735"
+   id="tspan319"
+   >-</tspan><tspan
+   font-size="2.01064px"
+   x="71.833046"
+   y="114.25735"
+   id="tspan321"
+   >label</tspan><tspan
+   font-size="2.01064px"
+   x="67.16066"
+   y="116.77065"
+   id="tspan323"
+   >10004</tspan></text>
+    <rect
+       x="53.687176"
+       y="100.33727"
+       width="16.942537"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect327" />
+    <text
+       font-size="2.89029px"
+       
+       x="64.722557"
+       y="93.774002"
+       
+       transform="scale(0.8869959,1.1274009)">DATA 2</text>
+    <rect
+       x="53.687176"
+       y="108.5544"
+       width="16.942537"
+       height="8.3588085"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect331" />
+    <text
+       font-size="2.89029px"
+       
+       x="65.052414"
+       y="99.93158"
+       
+       transform="scale(0.8869959,1.1274009)">IP <tspan
+   font-size="2.01064px"
+   x="68.790932"
+   y="99.93158"
+   id="tspan333"
+   >1.1.1.2</tspan><tspan
+   font-size="2.01064px"
+   x="68.754295"
+   y="102.57054"
+   id="tspan335"
    >8.8.8.8</tspan></text>
     <rect
-       x="74.201447"
-       y="3.396188"
-       width="8.1105795"
-       height="8.4534388"
+       x="25.26384"
+       y="116.77151"
+       width="16.942537"
+       height="8.2171049"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect339" />
     <text
-       font-size="1.74602px"
+       font-size="2.89029px"
        
-       x="89.014908"
-       y="6.1486969"
+       x="32.67403"
+       y="108.3511"
        
-       transform="scale(0.85569064,1.1686467)">DATA <tspan
-   font-size="1.74602px"
-   x="90.906418"
-   y="8.2688656"
-   
-   >1</tspan></text>
+       transform="scale(0.8869959,1.1274009)">DATA 2</text>
     <rect
-       x="82.312027"
-       y="20.303036"
-       width="8.1105795"
-       height="8.4534101"
+       x="25.26384"
+       y="125.1303"
+       width="16.942537"
+       height="8.2171192"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect343" />
     <text
-       font-size="1.49659px"
+       font-size="2.89029px"
        
-       x="98.955879"
-       y="19.368572"
+       x="33.003895"
+       y="114.50868"
        
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="98.519371"
-   y="21.114594"
-   
-   >S</tspan><tspan
-   font-size="1.49659px"
-   x="99.35601"
-   y="21.114594"
-   
-   >-</tspan><tspan
-   font-size="1.49659px"
-   x="99.974388"
-   y="21.114594"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="99.15522"
-   y="23.484194"
-   
-   >104</tspan></text>
-    <rect
-       x="82.312027"
-       y="11.849612"
-       width="8.1105795"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.6213px"
-       
-       x="100.15701"
-       y="12.509203"
-       
-       transform="scale(0.85569064,1.1686467)">IP<tspan
-   font-size="1.6213px"
-   x="98.35569"
-   y="14.37994"
-   
+       transform="scale(0.8869959,1.1274009)">IP <tspan
+   font-size="2.01064px"
+   x="36.742413"
+   y="114.50868"
+   id="tspan345"
    >1.1.1.2</tspan><tspan
-   font-size="1.6213px"
-   x="98.35569"
-   y="16.250677"
-   
-   >8.8.8.9</tspan></text>
+   font-size="2.01064px"
+   x="36.705769"
+   y="117.14764"
+   id="tspan347"
+   >8.8.8.8</tspan></text>
     <rect
-       x="82.312027"
-       y="3.396188"
-       width="8.1105795"
-       height="8.4534388"
+       x="82.22197"
+       y="42.109062"
+       width="16.942537"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect351" />
     <text
-       font-size="1.74602px"
+       font-size="2.01064px"
        
-       x="98.50116"
-       y="6.1486969"
+       x="95.908493"
+       y="40.49218"
        
-       transform="scale(0.85569064,1.1686467)">DATA <tspan
-   font-size="1.74602px"
-   x="100.39269"
-   y="8.2688656"
-   
-   >2</tspan></text>
-    <rect
-       x="74.308167"
-       y="108.91824"
-       width="8.1105795"
-       height="8.5991583"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.49659px"
-       
-       x="89.617279"
-       y="95.320496"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="89.180779"
-   y="97.066505"
-   
-   >S</tspan><tspan
-   font-size="1.49659px"
-   x="90.01741"
-   y="97.066505"
-   
+       transform="scale(0.8869959,1.1274009)">MPLS F<tspan
+   font-size="2.01064px"
+   x="103.16564"
+   y="40.49218"
+   id="tspan353"
    >-</tspan><tspan
-   font-size="1.49659px"
-   x="90.635796"
-   y="97.066505"
-   
+   font-size="2.01064px"
+   x="104.00863"
+   y="40.49218"
+   id="tspan355"
    >label</tspan><tspan
-   font-size="1.99545px"
-   x="89.81662"
-   y="99.436104"
-   
+   font-size="2.01064px"
+   x="99.33622"
+   y="43.005478"
+   id="tspan357"
+   >20000</tspan></text>
+    <rect
+       x="110.97971"
+       y="42.109062"
+       width="16.942537"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect361" />
+    <text
+       font-size="2.01064px"
+       
+       x="128.31929"
+       y="40.49218"
+       
+       transform="scale(0.8869959,1.1274009)">MPLS F<tspan
+   font-size="2.01064px"
+   x="135.57645"
+   y="40.49218"
+   id="tspan363"
+   >-</tspan><tspan
+   font-size="2.01064px"
+   x="136.41945"
+   y="40.49218"
+   id="tspan365"
+   >label</tspan><tspan
+   font-size="2.01064px"
+   x="131.74704"
+   y="43.005478"
+   id="tspan367"
+   >20001</tspan></text>
+    <rect
+       x="82.22197"
+       y="25.816498"
+       width="8.4712687"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect371" />
+    <text
+       font-size="1.50798px"
+       
+       x="95.527481"
+       y="24.909765"
+       
+       transform="scale(0.8869959,1.1274009)">MPLS<tspan
+   font-size="1.50798px"
+   x="95.087646"
+   y="26.669069"
+   id="tspan373"
+   >S</tspan><tspan
+   font-size="1.50798px"
+   x="95.930649"
+   y="26.669069"
+   id="tspan375"
+   >-</tspan><tspan
+   font-size="1.50798px"
+   x="96.553749"
+   y="26.669069"
+   id="tspan377"
+   >label</tspan><tspan
+   font-size="2.01064px"
+   x="95.72834"
+   y="29.0567"
+   id="tspan379"
+   >100</tspan></text>
+    <rect
+       x="90.693245"
+       y="25.816498"
+       width="8.4712687"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect383" />
+    <text
+       font-size="1.50798px"
+       
+       x="105.08591"
+       y="24.909765"
+       
+       transform="scale(0.8869959,1.1274009)">MPLS<tspan
+   font-size="1.50798px"
+   x="104.64607"
+   y="26.669069"
+   id="tspan385"
+   >S</tspan><tspan
+   font-size="1.50798px"
+   x="105.48909"
+   y="26.669069"
+   id="tspan387"
+   >-</tspan><tspan
+   font-size="1.50798px"
+   x="106.11217"
+   y="26.669069"
+   id="tspan389"
+   >label</tspan><tspan
+   font-size="2.01064px"
+   x="105.28677"
+   y="29.0567"
+   id="tspan391"
    >101</tspan></text>
     <rect
-       x="82.418739"
-       y="108.91824"
-       width="8.1105795"
-       height="8.5991583"
+       x="82.22197"
+       y="17.599375"
+       width="8.4712687"
+       height="8.2171049"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect395" />
     <text
-       font-size="1.49659px"
+       font-size="1.63364px"
        
-       x="99.103539"
-       y="95.320496"
+       x="96.73774"
+       y="17.998205"
        
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="98.66703"
-   y="97.066505"
-   
-   >S</tspan><tspan
-   font-size="1.49659px"
-   x="99.503662"
-   y="97.066505"
-   
-   >-</tspan><tspan
-   font-size="1.49659px"
-   x="100.12206"
-   y="97.066505"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="99.302879"
-   y="99.436104"
-   
-   >104</tspan></text>
-    <rect
-       x="74.308167"
-       y="100.46481"
-       width="8.1105795"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.6213px"
-       
-       x="90.818298"
-       y="88.336403"
-       
-       transform="scale(0.85569064,1.1686467)">IP<tspan
-   font-size="1.6213px"
-   x="89.016991"
-   y="90.207146"
-   
+       transform="scale(0.8869959,1.1274009)">IP<tspan
+   font-size="1.63364px"
+   x="94.922729"
+   y="19.883175"
+   id="tspan397"
    >1.1.1.1</tspan><tspan
-   font-size="1.6213px"
-   x="89.016991"
-   y="92.077873"
-   
-   >8.8.8.8</tspan></text>
-    <rect
-       x="82.418739"
-       y="100.46481"
-       width="8.1105795"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.6213px"
-       
-       x="100.30455"
-       y="88.336403"
-       
-       transform="scale(0.85569064,1.1686467)">IP<tspan
-   font-size="1.6213px"
-   x="98.503242"
-   y="90.207146"
-   
-   >1.1.1.2</tspan><tspan
-   font-size="1.6213px"
-   x="98.503242"
-   y="92.077873"
-   
+   font-size="1.63364px"
+   x="94.922729"
+   y="21.768145"
+   id="tspan399"
    >8.8.8.9</tspan></text>
     <rect
-       x="74.308167"
-       y="92.011398"
-       width="8.1105795"
-       height="8.4534388"
+       x="90.693245"
+       y="17.599375"
+       width="8.4712687"
+       height="8.2171049"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect403" />
     <text
-       font-size="1.74602px"
+       font-size="1.63364px"
        
-       x="89.162567"
-       y="81.975891"
+       x="106.29618"
+       y="17.998205"
        
-       transform="scale(0.85569064,1.1686467)">DATA <tspan
-   font-size="1.74602px"
-   x="91.0541"
-   y="84.096062"
-   
+       transform="scale(0.8869959,1.1274009)">IP<tspan
+   font-size="1.63364px"
+   x="104.48116"
+   y="19.883175"
+   id="tspan405"
+   >1.1.1.2</tspan><tspan
+   font-size="1.63364px"
+   x="104.48116"
+   y="21.768145"
+   id="tspan407"
+   >8.8.8.8</tspan></text>
+    <rect
+       x="82.22197"
+       y="9.5239382"
+       width="8.4712687"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect411" />
+    <text
+       font-size="1.75931px"
+       
+       x="95.069427"
+       y="11.714975"
+       
+       transform="scale(0.8869959,1.1274009)">DATA <tspan
+   font-size="1.75931px"
+   x="96.975342"
+   y="13.851271"
+   id="tspan413"
    >1</tspan></text>
     <rect
-       x="82.418739"
-       y="92.011398"
-       width="8.1105795"
-       height="8.4534388"
+       x="90.693245"
+       y="9.5239382"
+       width="8.4712687"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect417" />
     <text
-       font-size="1.74602px"
+       font-size="1.75931px"
        
-       x="98.648827"
-       y="81.975891"
+       x="104.62786"
+       y="11.714975"
        
-       transform="scale(0.85569064,1.1686467)">DATA <tspan
-   font-size="1.74602px"
-   x="100.54035"
-   y="84.096062"
-   
+       transform="scale(0.8869959,1.1274009)">DATA <tspan
+   font-size="1.75931px"
+   x="106.53378"
+   y="13.851271"
+   id="tspan419"
    >2</tspan></text>
     <rect
-       x="101.62801"
-       y="20.303036"
-       width="8.2172976"
-       height="8.4534101"
+       x="110.97971"
+       y="25.816498"
+       width="8.4712687"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect423" />
     <text
-       font-size="1.49659px"
+       font-size="1.50798px"
        
-       x="121.62447"
-       y="19.368572"
+       x="127.93854"
+       y="24.909765"
        
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="121.18797"
-   y="21.114594"
-   
+       transform="scale(0.8869959,1.1274009)">MPLS<tspan
+   font-size="1.50798px"
+   x="127.49872"
+   y="26.669069"
+   id="tspan425"
    >S</tspan><tspan
-   font-size="1.49659px"
-   x="122.0246"
-   y="21.114594"
-   
+   font-size="1.50798px"
+   x="128.34172"
+   y="26.669069"
+   id="tspan427"
    >-</tspan><tspan
-   font-size="1.49659px"
-   x="122.64299"
-   y="21.114594"
-   
+   font-size="1.50798px"
+   x="128.9648"
+   y="26.669069"
+   id="tspan429"
    >label</tspan><tspan
-   font-size="1.99545px"
-   x="121.82381"
-   y="23.484194"
-   
+   font-size="2.01064px"
+   x="128.13939"
+   y="29.0567"
+   id="tspan431"
+   >100</tspan></text>
+    <rect
+       x="119.45098"
+       y="25.816498"
+       width="8.4712687"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect435" />
+    <text
+       font-size="1.50798px"
+       
+       x="137.4966"
+       y="24.909765"
+       
+       transform="scale(0.8869959,1.1274009)">MPLS<tspan
+   font-size="1.50798px"
+   x="137.05678"
+   y="26.669069"
+   id="tspan437"
+   >S</tspan><tspan
+   font-size="1.50798px"
+   x="137.89978"
+   y="26.669069"
+   id="tspan439"
+   >-</tspan><tspan
+   font-size="1.50798px"
+   x="138.52286"
+   y="26.669069"
+   id="tspan441"
+   >label</tspan><tspan
+   font-size="2.01064px"
+   x="137.69746"
+   y="29.0567"
+   id="tspan443"
    >101</tspan></text>
     <rect
-       x="109.84531"
-       y="20.303036"
-       width="8.1105795"
-       height="8.4534101"
+       x="110.97971"
+       y="17.599375"
+       width="8.4712687"
+       height="8.2171049"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect447" />
     <text
-       font-size="1.49659px"
+       font-size="1.63364px"
        
-       x="131.11035"
-       y="19.368572"
+       x="129.14868"
+       y="17.998205"
        
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="130.67384"
-   y="21.114594"
-   
-   >S</tspan><tspan
-   font-size="1.49659px"
-   x="131.51048"
-   y="21.114594"
-   
-   >-</tspan><tspan
-   font-size="1.49659px"
-   x="132.12888"
-   y="21.114594"
-   
-   >label</tspan><tspan
-   font-size="1.99545px"
-   x="131.30969"
-   y="23.484194"
-   
-   >104</tspan></text>
-    <rect
-       x="101.62801"
-       y="11.849612"
-       width="8.2172976"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.6213px"
-       
-       x="122.82548"
-       y="12.509203"
-       
-       transform="scale(0.85569064,1.1686467)">IP<tspan
-   font-size="1.6213px"
-   x="121.02419"
-   y="14.37994"
-   
+       transform="scale(0.8869959,1.1274009)">IP<tspan
+   font-size="1.63364px"
+   x="127.33365"
+   y="19.883175"
+   id="tspan449"
    >1.1.1.1</tspan><tspan
-   font-size="1.6213px"
-   x="121.02419"
-   y="16.250677"
-   
-   >8.8.8.8</tspan></text>
-    <rect
-       x="109.84531"
-       y="11.849612"
-       width="8.1105795"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.6213px"
-       
-       x="132.31137"
-       y="12.509203"
-       
-       transform="scale(0.85569064,1.1686467)">IP<tspan
-   font-size="1.6213px"
-   x="130.51007"
-   y="14.37994"
-   
-   >1.1.1.2</tspan><tspan
-   font-size="1.6213px"
-   x="130.51007"
-   y="16.250677"
-   
+   font-size="1.63364px"
+   x="127.33365"
+   y="21.768145"
+   id="tspan451"
    >8.8.8.9</tspan></text>
     <rect
-       x="101.62801"
-       y="3.396188"
-       width="8.2172976"
-       height="8.4534388"
+       x="119.45098"
+       y="17.599375"
+       width="8.4712687"
+       height="8.2171049"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect455" />
     <text
-       font-size="1.74602px"
+       font-size="1.63364px"
        
-       x="121.16926"
-       y="6.1486969"
+       x="138.70676"
+       y="17.998205"
        
-       transform="scale(0.85569064,1.1686467)">DATA <tspan
-   font-size="1.74602px"
-   x="123.06077"
-   y="8.2688656"
-   
+       transform="scale(0.8869959,1.1274009)">IP<tspan
+   font-size="1.63364px"
+   x="136.89171"
+   y="19.883175"
+   id="tspan457"
+   >1.1.1.2</tspan><tspan
+   font-size="1.63364px"
+   x="136.89171"
+   y="21.768145"
+   id="tspan459"
+   >8.8.8.8</tspan></text>
+    <rect
+       x="110.97971"
+       y="9.5239382"
+       width="8.4712687"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect463" />
+    <text
+       font-size="1.75931px"
+       
+       x="127.47987"
+       y="11.714975"
+       
+       transform="scale(0.8869959,1.1274009)">DATA <tspan
+   font-size="1.75931px"
+   x="129.38576"
+   y="13.851271"
+   id="tspan465"
    >1</tspan></text>
     <rect
-       x="109.84531"
-       y="3.396188"
-       width="8.1105795"
-       height="8.4534388"
+       x="119.45098"
+       y="9.5239382"
+       width="8.4712687"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect469" />
     <text
-       font-size="1.74602px"
+       font-size="1.75931px"
        
-       x="130.65639"
-       y="6.1486969"
+       x="137.03792"
+       y="11.714975"
        
-       transform="scale(0.85569064,1.1686467)">DATA <tspan
-   font-size="1.74602px"
-   x="132.5479"
-   y="8.2688656"
-   
+       transform="scale(0.8869959,1.1274009)">DATA <tspan
+   font-size="1.75931px"
+   x="138.94382"
+   y="13.851271"
+   id="tspan471"
    >2</tspan></text>
     <rect
-       x="101.73473"
-       y="108.91824"
-       width="8.1105795"
-       height="8.5991583"
+       x="82.22197"
+       y="33.891949"
+       width="8.4712687"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect475" />
     <text
-       font-size="1.49659px"
+       font-size="1.50798px"
        
-       x="121.7417"
-       y="95.320496"
+       x="95.528229"
+       y="32.323982"
        
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="121.3052"
-   y="97.066505"
-   
-   >S</tspan><tspan
-   font-size="1.49659px"
-   x="122.14184"
-   y="97.066505"
-   
+       transform="scale(0.8869959,1.1274009)">MPLS F-label<tspan
+   font-size="1.75931px"
+   x="94.922752"
+   y="36.219585"
+   id="tspan481"
+   >10002</tspan></text>
+    <rect
+       x="90.693245"
+       y="33.891949"
+       width="8.4712687"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect485" />
+    <text
+       font-size="1.50798px"
+       
+       x="105.08666"
+       y="32.323982"
+       
+       transform="scale(0.8869959,1.1274009)">MPLS F-label<tspan
+   font-size="1.75931px"
+   x="104.48116"
+   y="36.219585"
+   id="tspan491"
+   >10006</tspan></text>
+    <rect
+       x="110.97971"
+       y="33.891949"
+       width="8.4712687"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect495" />
+    <text
+       font-size="1.50798px"
+       
+       x="127.93854"
+       y="32.323982"
+       
+       transform="scale(0.8869959,1.1274009)">MPLS F-label<tspan
+   font-size="1.75931px"
+   x="127.33303"
+   y="36.219585"
+   id="tspan501"
+   >10002</tspan></text>
+    <rect
+       x="119.45098"
+       y="33.891949"
+       width="8.4712687"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect505" />
+    <text
+       font-size="1.50798px"
+       
+       x="137.4966"
+       y="32.323982"
+       
+       transform="scale(0.8869959,1.1274009)">MPLS F-label<tspan
+   font-size="1.75931px"
+   x="136.8911"
+   y="36.219585"
+   id="tspan511"
+   >10006</tspan></text>
+    <rect
+       x="139.51451"
+       y="25.958176"
+       width="16.942537"
+       height="8.2171326"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect515" />
+    <text
+       font-size="2.01064px"
+       
+       x="160.39145"
+       y="26.16641"
+       
+       transform="scale(0.8869959,1.1274009)">MPLS S<tspan
+   font-size="2.01064px"
+   x="167.75854"
+   y="26.16641"
+   id="tspan517"
    >-</tspan><tspan
-   font-size="1.49659px"
-   x="122.76022"
-   y="97.066505"
-   
+   font-size="2.01064px"
+   x="168.60155"
+   y="26.16641"
+   id="tspan519"
    >label</tspan><tspan
-   font-size="1.99545px"
-   x="121.94105"
-   y="99.436104"
-   
+   font-size="2.01064px"
+   x="165.04628"
+   y="28.679707"
+   id="tspan521"
    >101</tspan></text>
     <rect
-       x="109.84531"
-       y="108.91824"
-       width="8.2172976"
-       height="8.5991583"
+       x="139.51451"
+       y="34.175293"
+       width="16.942537"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect525" />
     <text
-       font-size="1.49659px"
+       font-size="2.01064px"
        
-       x="131.22884"
-       y="95.320496"
+       x="160.44673"
+       y="33.580624"
        
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="130.79233"
-   y="97.066505"
-   
-   >S</tspan><tspan
-   font-size="1.49659px"
-   x="131.62897"
-   y="97.066505"
-   
+       transform="scale(0.8869959,1.1274009)">MPLS F<tspan
+   font-size="2.01064px"
+   x="167.70387"
+   y="33.580624"
+   id="tspan527"
    >-</tspan><tspan
-   font-size="1.49659px"
-   x="132.24736"
-   y="97.066505"
-   
+   font-size="2.01064px"
+   x="168.54688"
+   y="33.580624"
+   id="tspan529"
    >label</tspan><tspan
-   font-size="1.99545px"
-   x="131.42818"
-   y="99.436104"
-   
-   >104</tspan></text>
+   font-size="2.01064px"
+   x="163.87445"
+   y="36.093918"
+   id="tspan531"
+   >10007</tspan></text>
     <rect
-       x="101.73473"
-       y="100.46481"
-       width="8.1105795"
-       height="8.4534388"
+       x="139.51451"
+       y="9.5239382"
+       width="16.942537"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect535" />
     <text
-       font-size="1.6213px"
+       font-size="2.89029px"
        
-       x="122.94396"
-       y="88.336403"
+       x="161.43571"
+       y="13.222945"
        
-       transform="scale(0.85569064,1.1686467)">IP<tspan
-   font-size="1.6213px"
-   x="121.14264"
-   y="90.207146"
-   
-   >1.1.1.1</tspan><tspan
-   font-size="1.6213px"
-   x="121.14264"
-   y="92.077873"
-   
+       transform="scale(0.8869959,1.1274009)">DATA 2</text>
+    <rect
+       x="139.51451"
+       y="17.741053"
+       width="16.942537"
+       height="8.2171049"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect539" />
+    <text
+       font-size="2.89029px"
+       
+       x="161.7662"
+       y="19.254856"
+       
+       transform="scale(0.8869959,1.1274009)">IP <tspan
+   font-size="2.01064px"
+   x="165.50475"
+   y="19.254856"
+   id="tspan541"
+   >1.1.1.2</tspan><tspan
+   font-size="2.01064px"
+   x="165.46808"
+   y="21.893812"
+   id="tspan543"
    >8.8.8.8</tspan></text>
     <rect
-       x="109.84531"
-       y="100.46481"
-       width="8.2172976"
-       height="8.4534388"
+       x="168.27223"
+       y="9.5239382"
+       width="17.054001"
+       height="8.2171326"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.293217"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect547" />
     <text
-       font-size="1.6213px"
+       font-size="2.89029px"
        
-       x="132.42984"
-       y="88.336403"
+       x="193.95146"
+       y="13.222945"
        
-       transform="scale(0.85569064,1.1686467)">IP<tspan
-   font-size="1.6213px"
-   x="130.62852"
-   y="90.207146"
-   
+       transform="scale(0.8869959,1.1274009)">DATA 2</text>
+    <rect
+       x="168.27223"
+       y="17.741053"
+       width="17.054001"
+       height="8.3587809"
+       stroke="#000000"
+       stroke-width="0.293217"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect551" />
+    <text
+       font-size="2.89029px"
+       
+       x="194.28195"
+       y="19.380524"
+       
+       transform="scale(0.8869959,1.1274009)">IP <tspan
+   font-size="2.01064px"
+   x="198.02048"
+   y="19.380524"
+   id="tspan553"
    >1.1.1.2</tspan><tspan
-   font-size="1.6213px"
-   x="130.62852"
-   y="92.077873"
-   
-   >8.8.8.9</tspan></text>
-    <rect
-       x="101.73473"
-       y="92.011398"
-       width="8.1105795"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.74602px"
-       
-       x="121.28773"
-       y="81.975891"
-       
-       transform="scale(0.85569064,1.1686467)">DATA <tspan
-   font-size="1.74602px"
-   x="123.17925"
-   y="84.096062"
-   
-   >1</tspan></text>
-    <rect
-       x="109.84531"
-       y="92.011398"
-       width="8.2172976"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.74602px"
-       
-       x="130.77362"
-       y="81.975891"
-       
-       transform="scale(0.85569064,1.1686467)">DATA <tspan
-   font-size="1.74602px"
-   x="132.66513"
-   y="84.096062"
-   
-   >2</tspan></text>
-    <rect
-       x="74.201447"
-       y="28.756462"
-       width="8.1105795"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.49659px"
-       
-       x="89.470367"
-       y="26.851521"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="89.070236"
-   y="28.597538"
-   
-   >F-</tspan><tspan
-   font-size="1.49659px"
-   x="90.452507"
-   y="28.597538"
-   
-   >label</tspan><tspan
-   font-size="1.74602px"
-   x="88.869438"
-   y="30.717709"
-   
-   >20004</tspan></text>
-    <rect
-       x="82.312027"
-       y="28.756462"
-       width="8.1105795"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.49659px"
-       
-       x="98.956627"
-       y="26.851521"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="98.556488"
-   y="28.597538"
-   
-   >F-</tspan><tspan
-   font-size="1.49659px"
-   x="99.938759"
-   y="28.597538"
-   
-   >label</tspan><tspan
-   font-size="1.74602px"
-   x="98.355698"
-   y="30.717709"
-   
-   >20005</tspan></text>
-    <rect
-       x="74.308167"
-       y="117.51743"
-       width="8.1105795"
-       height="8.4534235"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.49659px"
-       
-       x="89.617905"
-       y="102.67872"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="89.217781"
-   y="104.42474"
-   
-   >F-</tspan><tspan
-   font-size="1.49659px"
-   x="90.600044"
-   y="104.42474"
-   
-   >label</tspan><tspan
-   font-size="1.74602px"
-   x="89.016991"
-   y="106.54491"
-   
-   >20004</tspan></text>
-    <rect
-       x="82.418739"
-       y="117.51743"
-       width="8.1105795"
-       height="8.4534235"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.49659px"
-       
-       x="99.104164"
-       y="102.67872"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="98.704033"
-   y="104.42474"
-   
-   >F-</tspan><tspan
-   font-size="1.49659px"
-   x="100.0863"
-   y="104.42474"
-   
-   >label</tspan><tspan
-   font-size="1.74602px"
-   x="98.503242"
-   y="106.54491"
-   
-   >20005</tspan></text>
-    <rect
-       x="101.62801"
-       y="28.756462"
-       width="8.2172976"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.49659px"
-       
-       x="121.62572"
-       y="26.851521"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="121.22559"
-   y="28.597538"
-   
-   >F-</tspan><tspan
-   font-size="1.49659px"
-   x="122.60785"
-   y="28.597538"
-   
-   >label</tspan><tspan
-   font-size="1.74602px"
-   x="121.0248"
-   y="30.717709"
-   
-   >20004</tspan></text>
-    <rect
-       x="109.84531"
-       y="28.756462"
-       width="8.1105795"
-       height="8.4534388"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.49659px"
-       
-       x="131.1116"
-       y="26.851521"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="130.71147"
-   y="28.597538"
-   
-   >F-</tspan><tspan
-   font-size="1.49659px"
-   x="132.09373"
-   y="28.597538"
-   
-   >label</tspan><tspan
-   font-size="1.74602px"
-   x="130.51068"
-   y="30.717709"
-   
-   >20005</tspan></text>
-    <rect
-       x="101.73473"
-       y="117.51743"
-       width="8.1105795"
-       height="8.4534235"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.49659px"
-       
-       x="121.74295"
-       y="102.67872"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="121.34281"
-   y="104.42474"
-   
-   >F-</tspan><tspan
-   font-size="1.49659px"
-   x="122.72508"
-   y="104.42474"
-   
-   >label</tspan><tspan
-   font-size="1.74602px"
-   x="121.14202"
-   y="106.54491"
-   
-   >20004</tspan></text>
-    <rect
-       x="109.84531"
-       y="117.51743"
-       width="8.2172976"
-       height="8.4534235"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.49659px"
-       
-       x="131.22884"
-       y="102.67872"
-       
-       transform="scale(0.85569064,1.1686467)">MPLS<tspan
-   font-size="1.49659px"
-   x="130.82869"
-   y="104.42474"
-   
-   >F-</tspan><tspan
-   font-size="1.49659px"
-   x="132.21097"
-   y="104.42474"
-   
-   >label</tspan><tspan
-   font-size="1.74602px"
-   x="130.6279"
-   y="106.54491"
-   
-   >20005</tspan><tspan
-   font-size="4.11562px"
-   x="161.91939"
-   y="41.443268"
-   
-   >Note: S and A labels in this diagram</tspan><tspan
-   font-size="4.11562px"
-   x="161.91939"
-   y="46.307182"
-   
-   >include d-CWs of their own.</tspan></text>
+   font-size="2.01064px"
+   x="197.98383"
+   y="22.019478"
+   id="tspan555"
+   >8.8.8.8</tspan></text>
     <path
-       d="m 71.133298,73.209813 c -0.397845,0 -0.720348,-1.761811 -0.720348,-3.935215 0,-2.173405 0.322503,-3.935215 0.720348,-3.935215 0.397845,0 0.720347,1.76181 0.720347,3.935215 0,2.173404 -0.322502,3.935215 -0.720347,3.935215 h -5.17583 c -0.397845,0 -0.720348,-1.761811 -0.720348,-3.935215 0,-2.173405 0.322503,-3.935215 0.720348,-3.935215 h 5.17583"
+       d="m 68.567636,54.008021 c 0,-0.351216 0.223928,-0.635835 0.500252,-0.635835 h 14.493 c 0.276209,0 0.50025,0.284619 0.50025,0.635835 v 19.554478 c 0,0.35121 -0.224041,0.635834 -0.50025,0.635834 h -14.493 c -0.276324,0 -0.500252,-0.284624 -0.500252,-0.635834 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.586434"
        stroke-miterlimit="8"
+       stroke-dasharray="2.34575, 1.75931"
        fill="none"
        fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="77.687592"
-       y="58.903477"
-       
-       transform="scale(0.85569064,1.1686467)">DN<tspan
-   font-size="2.86847px"
-   x="81.361519"
-   y="58.903477"
-   
-   >-1</tspan></text>
+       id="path559" />
     <path
-       d="m 70.919862,81.51749 c -0.397846,0 -0.720348,-1.761814 -0.720348,-3.935217 0,-2.173404 0.322502,-3.935214 0.720348,-3.935214 0.397845,0 0.720347,1.76181 0.720347,3.935214 0,2.173403 -0.322502,3.935217 -0.720347,3.935217 H 65.85075 c -0.397845,0 -0.720348,-1.761814 -0.720348,-3.935217 0,-2.173404 0.322503,-3.935214 0.720348,-3.935214 h 5.069112"
+       d="m 125.52577,53.893828 c 0,-0.366369 0.23406,-0.663321 0.52165,-0.663321 h 15.11898 c 0.28758,0 0.52165,0.296952 0.52165,0.663321 v 19.499507 c 0,0.366374 -0.23407,0.66332 -0.52165,0.66332 h -15.11898 c -0.28759,0 -0.52165,-0.296946 -0.52165,-0.66332 z"
        stroke="#000000"
-       stroke-width="0.291003"
+       stroke-width="0.586434"
        stroke-miterlimit="8"
+       stroke-dasharray="2.34575, 1.75931"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path561" />
     <text
-       font-size="2.86847px"
+       font-size="2.89029px"
        
-       x="77.773277"
-       y="68.75602"
+       x="79.049828"
+       y="72.159683"
        
-       transform="scale(0.85569064,1.1686467)">DN<tspan
-   font-size="2.86847px"
-   x="81.447197"
-   y="68.75602"
-   
-   >-2</tspan></text>
-    <path
-       d="m 117.44897,81.371741 c -0.80999,0 -1.46737,-3.588916 -1.46737,-8.01618 0,-4.427262 0.65738,-8.016178 1.46737,-8.016178 0.80999,0 1.46738,3.588916 1.46738,8.016178 0,4.427264 -0.65739,8.01618 -1.46738,8.01618 H 75.02851 c -0.810418,0 -1.467481,-3.588916 -1.467481,-8.01618 0,-4.427262 0.657063,-8.016178 1.467481,-8.016178 h 42.42046"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="103.25994"
-       y="64.01683"
-       
-       transform="scale(0.85569064,1.1686467)">Aggregated DN-1</text>
-    <path
-       d="m 126.09314,73.209813 c -0.39806,0 -0.72035,-1.761811 -0.72035,-3.935215 0,-2.173405 0.32229,-3.935215 0.72035,-3.935215 0.39806,0 0.72035,1.76181 0.72035,3.935215 0,2.173404 -0.32229,3.935215 -0.72035,3.935215 h -5.06911 c -0.39806,0 -0.72035,-1.761811 -0.72035,-3.935215 0,-2.173405 0.32229,-3.935215 0.72035,-3.935215 h 5.06911"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="142.22502"
-       y="59.028191"
-       
-       transform="scale(0.85569064,1.1686467)">DN<tspan
-   font-size="2.86847px"
-   x="145.89896"
-   y="59.028191"
-   
-   >-1</tspan></text>
-    <path
-       d="m 126.00029,81.51749 c -0.39058,0 -0.70753,-1.729162 -0.70753,-3.862339 0,-2.133037 0.31695,-3.862344 0.70753,-3.862344 0.38952,0 0.70648,1.729307 0.70648,3.862344 0,2.133177 -0.31696,3.862339 -0.70648,3.862339 h -5.09685 c -0.38952,0 -0.70648,-1.729162 -0.70648,-3.862339 0,-2.133037 0.31696,-3.862344 0.70648,-3.862344 h 5.09685"
-       stroke="#000000"
-       stroke-width="0.291003"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="142.07536"
-       y="68.63131"
-       
-       transform="scale(0.85569064,1.1686467)">DN<tspan
-   font-size="2.86847px"
-   x="145.74927"
-   y="68.63131"
-   
-   >-2</tspan></text>
-    <path
-       d="m 61.021754,64.171644 c 0,-0.361165 0.214397,-0.65412 0.478951,-0.65412 h 13.875919 c 0.264448,0 0.478951,0.292955 0.478951,0.65412 v 20.116815 c 0,0.361312 -0.214503,0.654122 -0.478951,0.654122 H 61.500705 c -0.264554,0 -0.478951,-0.29281 -0.478951,-0.654122 z"
-       stroke="#000000"
-       stroke-width="0.582006"
-       stroke-miterlimit="8"
-       stroke-dasharray="2.32804, 1.74602"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 115.55472,64.19992 c 0,-0.376906 0.22411,-0.682396 0.49944,-0.682396 h 14.47525 c 0.27534,0 0.49944,0.30549 0.49944,0.682396 v 20.060265 c 0,0.376911 -0.2241,0.682396 -0.49944,0.682396 h -14.47525 c -0.27533,0 -0.49944,-0.305485 -0.49944,-0.682396 z"
-       stroke="#000000"
-       stroke-width="0.582006"
-       stroke-miterlimit="8"
-       stroke-dasharray="2.32804, 1.74602"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="2.86847px"
-       
-       x="73.046295"
-       y="78.359138"
-       
-       transform="scale(0.85569064,1.1686467)">aggregation<tspan
-   font-size="2.86847px"
-   x="135.51781"
-   y="78.359138"
-   
+       transform="scale(0.8869959,1.1274009)">aggregation<tspan
+   font-size="2.89029px"
+   x="141.99666"
+   y="72.159683"
+   id="tspan563"
    >disaggregation</tspan></text>
   </g>
 </svg>
