@@ -1,0 +1,145 @@
+
+TP01: Looking at it from an editorial point of view, there are a significant number of defects which make it 'Not Ready'.
+
+TP02: IANA Considerations MUST be present as per YANG Guidelines, RFC8407; no registration, no YANG module
+
+TP03: Security Considerations MUST follow the template as per YANG Guidelines
+
+TP04: Examples MUST use the addresses reserved for IETF documentation, not those allocated to other organisations.
+
+TP05: Requirements Language is out of date - see RFC8174
+
+TP06: YANG revision statement must refer to the title i.e. 'RFC XXXX; Determistic Networking (DetNet) YANG Model'
+
+TP07: The Information Model is now an RFC
+
+TP08: It is unfortunate that RFC9016 is Informationsl - it needs to be a Normative Reference IMO; your AD is probably familiar with this problem as it occurred as recently as last month and will doubtless occur many times again
+
+TP09: import yang-types references an obsolete RFC
+
+TP10: YANG prefix is cumbersome - I think 'detnet' quite long enough and likely too long - it is a shame that dtn is in use elsewhere
+
+TP11: references in the YANG module, RFC, IEEE or ietf-draft etc.,  MUST appear in I-D References and there needs to be a good reason why they are not Normative; I rarely see such a reason.
+
+TP12: six authors, one for the AD to reflect on
+
+TP13: Acknowledgements
+(perhaps not a coincidence:-)
+
+TP14: Ten pages of YANG tree diagram in the middle of the I-D breaks up the I-D and makes it harder to follow, for me.  The full diagram is needed, but not where it is.  Common practice is to place the whole diagram at the end, in an Appendix, and to place extracts, limited in depth, limited in extent, less than a page, ideally much less, after the text that describes their function.
+
+TP15: I note that this approach was used in early version of this I-D and, for me, it is a retrograde step to have changed.
+
+TP16: Wherever the diagrams are, they need an Informative Reference to RFC8340.
+
+TP17: References.  Could do with more in the YANG module, one per leaf/list etc is not too many - I identify some specific ones I struggle with below.
+
+TP18: Address Families.  Need explaining in the body of the I-D. I know of two different meanings in other WG and recently encountered a third, strange one.
+
+TP19: Augments.  Need explaining in the body of the I-D.  YANG that is valid for a standalone module may be invalid for a model of several modules (as the TEAS WG recently found).  Some authors include such an augment as an Appendix to guide developers.  At the least there should be explanations as to what kind of augments are anticipated where as opposed to reverse engineering the YANG.
+
+TP20: YANG Prefix.  Good practice is to have prefix for relatedmodules with an obvious connection, such as the same 3-4-5 letters with a suffix to separate them.  This reinforces my earlier comment about the chosen prefix being long as and when there are augmenting modules.
+
+TP21:      typedef app-flow-ref {
+What is an application in this context?  Could do with a reference and a paragraph in the body of the I-D.
+
+TP22:      typedef ipsec-spi {
+Others model spi as uint64.  I see nothing in RFC6071 to tell me what the valid range of values is.
+
+TP23:      typedef service-operation-type {
+and most of the other typedef
+Context is usually enough to know the class of an identifier; suggest removing '-type'
+
+TP24:      typedef forwarding-operations (-type { ) Could do with a reference or explanation for the enum which is not in
+RFC8960
+
+           MPLS enum.  The first 4 enums are the same as A YANG Data
+           Model for MPLS Base.  draft-ietf-mpls-base-yang."; And the other enum not in RFC8960?
+
+TP25:      grouping ip-header {
+          type inet:ip-address-no-zone;
+A wise choice but why is the tree diagram inet:ip-address?  Is the tree diagram really of this version of the module?
+
+TP26:        choice detnet-flow-type {
+          case ip-detnet-flow {
+Elsewhere it is 'case  ip' and 'case mpls'; I would think 'detnet-' is wholy redundant and probably '-flow' as well.
+
+TP27:        choice header-type {
+          case detnet-mpls-header {
+TP28:As above, ditch the 'detnet-' and probably '-header' as well
+
+TP29:            leaf outgoing-interface {
+...
+                "The outgoing interface, if this is a whole interface."; What is an interface when it is not whole? A reference perhaps.  This occurs elsewhere.
+
+TP30:      grouping detnet-forwarding-next-hop-content { This I am confused by.
+           case simple-next-hop {
+...
+TP31:               Modules for address families MUST augment this case with a
+               leaf containing a next-hop address of that address
+               family.";
+This sort of implies that
+            leaf outgoing-interface {
+is an address family (not that I know what a detnet address family is) whereas
+          case next-hop-list {
+...
+TP32:                                                 Modules for address
+                 families MUST augment this list with a leaf containing a
+                 next-hop address of that address family."; sort of suggests that
+               leaf hop-index {
+is an address family.  I am unsure what is meant to be augmented; YANG choice?.
+
+TP33:          leaf profile-name {
+            type string;
+            description
+              "An Aggregation group ID. Zero means the service is not
+               part of a group.";
+How is zero encoded?
+
+TP34:            leaf min-bandwidth {
+              type uint64;
+              units "bps";
+..
+                 guaranteed for the DetNet service.  MinBandwidth is
+                 specified in octets per second."; byte per second?
+
+TP35:            leaf max-latency {
+              type uint32;
+              units "nanoseconds";
+Has the max value a special meaning, such as too big for a uint32?
+
+TP36:                "The period of time in which the traffic
+                 specification cannot be exceeded."; Mmm.. should not?
+
+TP37:            leaf max-payload-size {
+I would like a reference.  MTU and such like are a source of confusion as to what is included; I want to know the name of the protocol field that starts the payload and where that field is defined.
+
+TP38:          list app-flow {
+            leaf name {
+              type string;
+RFC9016 would appear to label this as 'flowid'
+
+TP39:                  "The DetNet service protection type such as PRF, PEF,
+                   PEOF,PERF, and PEORF."; Abbreviations need expanding.
+
+TP40:                reference
+                [RFC9016]  "draft-ietf-detnet-data-plane-framework
+Section 4.3";
+I see no section 4.3 in RFC9016
+
+TP41:              choice outgoing-type {
+Probably better without '-type'
+
+TP42:                  "The out-going type may be a forwarding Sub-layer or a With or with-out a hyphen?  I like consistency.
+
+ TP43:                  service sub-layer or ? types need to be named."; ??
+
+TP44:                     Control-Word and S-label when the operation type is I need a reference; they are not in RFC9016 although I might guess where they are.
+
+TP45:                     decapsulates the DetNet Control-Word and A-label for ditto
+
+TP46:           leaf forwarding-operation-type {
+              type forwarding-operations-type; The typedef list six options; what about the sixth?
+
+TP47:                      "This is reference to the forwarding sub-layer."; Not quite English.
+
