@@ -55,8 +55,8 @@
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "1.1.1.1/32",
-              "dest-ip-prefix": "8.8.8.8/32",
+              "src-ip-prefix": "192.0.2.1/32",
+              "dest-ip-prefix": "192.0.2.8/32",
               "dscp": 6
             }
           }
@@ -70,8 +70,8 @@
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "1.1.1.1/32",
-              "dest-ip-prefix": "8.8.8.8/32",
+              "src-ip-prefix": "192.0.2.1/32",
+              "dest-ip-prefix": "192.0.2.8/32",
               "dscp": 7
             }
           }
@@ -140,20 +140,20 @@
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-2",
-          "service-operation-type": "service-initiation",
+          "service-operation": "service-initiation",
           "service-protection": {
-            "service-protection-type": "none",
+            "service-protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "incoming-type": {
+          "incoming": {
             "app-flow": {
-              "app-flow-list": [
+              "flow-list": [
                 "app-0",
                 "app-1"
               ]
             }
           },
-          "outgoing-type": {
+          "outgoing": {
             "forwarding-sub-layer": {
               "service-outgoing-list": [
                 {
@@ -181,15 +181,15 @@
         {
           "name": "fsl-1",
           "traffic-profile": "pf-3",
-          "forwarding-operation-type": "impose-and-forward",
-          "incoming-type": {
+          "forwarding-operation": "impose-and-forward",
+          "incoming": {
             "service-sub-layer": {
               "service-sub-layer": [
                 "ssl-1"
               ]
             }
           },
-          "outgoing-type": {
+          "outgoing": {
             "interface": {
               "outgoing-interface": "eth2",
               "mpls-label-stack": {

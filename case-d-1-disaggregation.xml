@@ -73,8 +73,8 @@
     <forwarding-sub-layer-list>
       <name>fsl-1</name>
       <traffic-profile>pf-1</traffic-profile>
-      <forwarding-operation-type>swap-and-forward</forwarding-operation-type>
-      <incoming-type>
+      <forwarding-operation>swap-and-forward</forwarding-operation>
+      <incoming>
         <forwarding-id>
           <interface>eth1</interface>
           <mpls-label-stack>
@@ -84,8 +84,8 @@
             </entry>
           </mpls-label-stack>
         </forwarding-id>
-      </incoming-type>
-      <outgoing-type>
+      </incoming>
+      <outgoing>
         <interface>
           <outgoing-interface>eth3</outgoing-interface>
           <mpls-label-stack>
@@ -95,13 +95,13 @@
             </entry>
           </mpls-label-stack>
         </interface>
-      </outgoing-type>
+      </outgoing>
     </forwarding-sub-layer-list>
     <forwarding-sub-layer-list>
       <name>fsl-2</name>
       <traffic-profile>pf-1</traffic-profile>
-      <forwarding-operation-type>swap-and-forward</forwarding-operation-type>
-      <incoming-type>
+      <forwarding-operation>swap-and-forward</forwarding-operation>
+      <incoming>
         <forwarding-id>
           <interface>eth1</interface>
           <mpls-label-stack>
@@ -111,8 +111,8 @@
             </entry>
           </mpls-label-stack>
         </forwarding-id>
-      </incoming-type>
-      <outgoing-type>
+      </incoming>
+      <outgoing>
         <interface>
           <outgoing-interface>eth2</outgoing-interface>
           <mpls-label-stack>
@@ -122,13 +122,13 @@
             </entry>
           </mpls-label-stack>
         </interface>
-      </outgoing-type>
+      </outgoing>
     </forwarding-sub-layer-list>
     <forwarding-sub-layer-list>
       <name>afl-1</name>
       <traffic-profile>pf-2</traffic-profile>
-      <forwarding-operation-type>pop-and-lookup</forwarding-operation-type>
-      <incoming-type>
+      <forwarding-operation>pop-and-lookup</forwarding-operation>
+      <incoming>
         <forwarding-id>
           <interface>eth1</interface>
           <mpls-label-stack>
@@ -138,13 +138,13 @@
             </entry>
           </mpls-label-stack>
         </forwarding-id>
-      </incoming-type>
-      <outgoing-type>
+      </incoming>
+      <outgoing>
         <forwarding-disaggregation>
           <forwarding-sub-layer>fsl-1</forwarding-sub-layer>
           <forwarding-sub-layer>fsl-2</forwarding-sub-layer>
         </forwarding-disaggregation>
-      </outgoing-type>
+      </outgoing>
     </forwarding-sub-layer-list>
   </forwarding-sub-layer>
 </detnet>

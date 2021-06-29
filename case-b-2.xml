@@ -54,8 +54,8 @@
         <app-flow-status>ready</app-flow-status>
         <interface>eth0</interface>
         <ip-app-flow>
-          <src-ip-prefix>1.1.1.1/32</src-ip-prefix>
-          <dest-ip-prefix>8.8.8.8/32</dest-ip-prefix>
+          <src-ip-prefix>192.0.2.1/32</src-ip-prefix>
+          <dest-ip-prefix>192.0.2.8/32</dest-ip-prefix>
           <dscp>6</dscp>
         </ip-app-flow>
       </ingress>
@@ -69,8 +69,8 @@
         <app-flow-status>ready</app-flow-status>
         <interface>eth0</interface>
         <ip-app-flow>
-          <src-ip-prefix>1.1.1.2/32</src-ip-prefix>
-          <dest-ip-prefix>8.8.8.9/32</dest-ip-prefix>
+          <src-ip-prefix>192.0.2.12/32</src-ip-prefix>
+          <dest-ip-prefix>192.0.2.9/32</dest-ip-prefix>
           <dscp>7</dscp>
         </ip-app-flow>
       </ingress>
@@ -126,16 +126,16 @@
       <service-rank>10</service-rank>
       <traffic-profile>2</traffic-profile>
       <service-protection>
-        <service-protection-type>none</service-protection-type>
+        <service-protection>none</service-protection>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
-      <service-operation-type>service-initiation</service-operation-type>
-      <incoming-type>
+      <service-operation>service-initiation</service-operation>
+      <incoming>
 	<app-flow>
-          <app-flow-list>app-1</app-flow-list>
+          <flow-list>app-1</flow-list>
         </app-flow>
-      </incoming-type>
-      <outgoing-type>
+      </incoming>
+      <outgoing>
 	<service-sub-layer>
         <aggregation-service-sub-layer>asl-1</aggregation-service-sub-layer>
         <service-label>
@@ -147,23 +147,23 @@
           </mpls-label-stack>
         </service-label>
       </service-sub-layer>
-      </outgoing-type>
+      </outgoing>
     </service-sub-layer-list>
     <service-sub-layer-list>
       <name>ssl-2</name>
       <service-rank>10</service-rank>
       <traffic-profile>2</traffic-profile>
-      <service-operation-type>service-initiation</service-operation-type>
+      <service-operation>service-initiation</service-operation>
       <service-protection>
-        <service-protection-type>none</service-protection-type>
+        <service-protection>none</service-protection>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
-      <incoming-type>
+      <incoming>
 	<app-flow>
-          <app-flow-list>app-2</app-flow-list>
+          <flow-list>app-2</flow-list>
         </app-flow>
-      </incoming-type>
-      <outgoing-type>
+      </incoming>
+      <outgoing>
 	<service-sub-layer>
         <aggregation-service-sub-layer>asl-1</aggregation-service-sub-layer>
         <service-label>
@@ -175,26 +175,26 @@
           </mpls-label-stack>
         </service-label>
       </service-sub-layer>
-      </outgoing-type>
+      </outgoing>
     </service-sub-layer-list>
     <service-sub-layer-list>
       <name>asl-1</name>
       <service-rank>10</service-rank>
       <non-grouped>
         <traffic-profile>2</traffic-profile>
-        <service-operation-type>service-initiation</service-operation-type>
+        <service-operation>service-initiation</service-operation>
       </non-grouped>
       <service-protection>
-        <service-protection-type>none</service-protection-type>
+        <service-protection>none</service-protection>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
-      <incoming-type>
+      <incoming>
 	<service-aggregation>
           <service-sub-layer>ssl-1</service-sub-layer>
           <service-sub-layer>ssl-2</service-sub-layer>
         </service-aggregation>
-      </incoming-type>
-      <outgoing-type>
+      </incoming>
+      <outgoing>
 	<forwarding-sub-layer>
         <service-outgoing-list>
           <service-outgoing-index>0</service-outgoing-index>
@@ -207,20 +207,20 @@
           <forwarding-sub-layer>afl-1</forwarding-sub-layer>
         </service-outgoing-list>
        </forwarding-sub-layer>
-      </outgoing-type>
+      </outgoing>
     </service-sub-layer-list>
   </service-sub-layer>
   <forwarding-sub-layer>
     <forwarding-sub-layer-list>
       <name>afl-1</name>
       <traffic-profile>3</traffic-profile>
-      <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
-      <incoming-type>
+      <forwarding-operation>impose-and-forward</forwarding-operation>
+      <incoming>
         <service-sub-layer>
         <service-sub-layer>asl-1</service-sub-layer>
         </service-sub-layer>
-      </incoming-type>
-      <outgoing-type>
+      </incoming>
+      <outgoing>
 	<interface>
         <outgoing-interface>eth2</outgoing-interface>
         <mpls-label-stack>
@@ -230,7 +230,7 @@
           </entry>
         </mpls-label-stack>
         </interface>
-      </outgoing-type>
+      </outgoing>
     </forwarding-sub-layer-list>
   </forwarding-sub-layer>
 </detnet>

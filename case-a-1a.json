@@ -140,12 +140,20 @@
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-2",
-          "service-operation-type": "service-initiation",
+          "service-operation": "service-initiation",
           "service-protection": {
-            "service-protection-type": "none",
+            "service-protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "outgoing-type": {
+          "incoming": {
+            "app-flow": {
+              "flow-list": [
+                "app-0",
+                "app-1"
+              ]
+            }
+          },
+          "outgoing": {
             "forwarding-sub-layer": {
               "service-outgoing-list": [
                 {
@@ -173,15 +181,15 @@
         {
           "name": "fsl-1",
           "traffic-profile": "pf-3",
-          "forwarding-operation-type": "impose-and-forward",
-          "incoming-type": {
+          "forwarding-operation": "impose-and-forward",
+          "incoming": {
             "service-sub-layer": {
               "service-sub-layer": [
                 "ssl-1"
               ]
             }
           },
-          "outgoing-type": {
+          "outgoing": {
             "interface": {
               "outgoing-interface": "eth2",
               "mpls-label-stack": {
