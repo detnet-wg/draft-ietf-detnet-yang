@@ -130,12 +130,12 @@
         <service-protection-type>none</service-protection-type>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
-     <incoming-type>
+     <incoming>
         <app-flow>
           <flow-list>app-1</flow-list>
 	</app-flow>
-      </incoming-type>
-      <outgoing-type>
+      </incoming>
+      <outgoing>
         <forwarding-sub-layer>
           <service-outgoing-list>
             <service-outgoing-index>0</service-outgoing-index>
@@ -148,7 +148,7 @@
             <forwarding-sub-layer>afl-1</forwarding-sub-layer>
           </service-outgoing-list>
 	</forwarding-sub-layer>
-      </outgoing-type>
+      </outgoing>
     </service-sub-layer-list>
     <service-sub-layer-list>
       <name>ssl-2</name>
@@ -159,12 +159,12 @@
         <service-protection-type>none</service-protection-type>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
-     <incoming-type>
+     <incoming>
         <app-flow>
           <flow-list>app-2</flow-list>
 	</app-flow>
-      </incoming-type>
-      <outgoing-type>
+      </incoming>
+      <outgoing>
         <forwarding-sub-layer>
           <service-outgoing-list>
             <service-outgoing-index>0</service-outgoing-index>
@@ -177,7 +177,7 @@
             <forwarding-sub-layer>afl-1</forwarding-sub-layer>
           </service-outgoing-list>
 	</forwarding-sub-layer>
-      </outgoing-type>
+      </outgoing>
     </service-sub-layer-list>
     </service-sub-layer>  
     <forwarding-sub-layer>
@@ -185,13 +185,13 @@
       <name>afl-1</name>
       <traffic-profile>3</traffic-profile>
       <forwarding-operation-type>impose-and-forward</forwarding-operation-type>
-      <incoming-type>
+      <incoming>
 	<service-sub-layer>
           <service-sub-layer>ssl-1</service-sub-layer>
           <service-sub-layer>ssl-2</service-sub-layer>
 	</service-sub-layer>
-      </incoming-type>
-      <outgoing-type>
+      </incoming>
+      <outgoing>
 	<interface>
           <outgoing-interface>eth2</outgoing-interface>
 	</interface>
@@ -201,7 +201,7 @@
             <label>10000</label>
           </entry>
         </mpls-label-stack>
-      </outgoing-type>
+      </outgoing>
     </forwarding-sub-layer-list>
     </forwarding-sub-layer>
 </detnet>

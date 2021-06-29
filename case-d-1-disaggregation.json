@@ -74,8 +74,8 @@
         {
           "name": "fsl-1",
           "traffic-profile": "pf-1",
-          "forwarding-operation-type": "swap-and-forward",
-          "incoming-type": {
+          "forwarding-operation": "swap-and-forward",
+          "incoming": {
             "forwarding-id": {
               "interface": "eth1",
               "mpls-label-stack": {
@@ -88,7 +88,7 @@
               }
             }
           },
-          "outgoing-type": {
+          "outgoing": {
             "interface": {
               "outgoing-interface": "eth3",
               "mpls-label-stack": {
@@ -105,8 +105,8 @@
         {
           "name": "fsl-2",
           "traffic-profile": "pf-1",
-          "forwarding-operation-type": "swap-and-forward",
-          "incoming-type": {
+          "forwarding-operation": "swap-and-forward",
+          "incoming": {
             "forwarding-id": {
               "interface": "eth1",
               "mpls-label-stack": {
@@ -119,7 +119,7 @@
               }
             }
           },
-          "outgoing-type": {
+          "outgoing": {
             "interface": {
               "outgoing-interface": "eth2",
               "mpls-label-stack": {
@@ -136,8 +136,8 @@
         {
           "name": "afl-1",
           "traffic-profile": "pf-2",
-          "forwarding-operation-type": "pop-and-lookup",
-          "incoming-type": {
+          "forwarding-operation": "pop-and-lookup",
+          "incoming": {
             "forwarding-id": {
               "interface": "eth1",
               "mpls-label-stack": {
@@ -150,7 +150,7 @@
               }
             }
           },
-          "outgoing-type": {
+          "outgoing": {
             "forwarding-disaggregation": {
               "forwarding-sub-layer": [
                 "fsl-1",
