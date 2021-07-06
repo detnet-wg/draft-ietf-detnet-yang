@@ -47,7 +47,7 @@
   <app-flows>
     <app-flow>
       <name>app-1</name>
-      <app-flow-bidir-congruent>false</app-flow-bidir-congruent>
+      <bidir-congruent>false</bidir-congruent>
       <outgoing-service>ssl-1</outgoing-service>
        <traffic-profile>1</traffic-profile>
       <ingress>
@@ -62,7 +62,7 @@
     </app-flow>
     <app-flow>
       <name>app-2</name>
-      <app-flow-bidir-congruent>false</app-flow-bidir-congruent>
+      <bidir-congruent>false</bidir-congruent>
       <outgoing-service>ssl-2</outgoing-service>
        <traffic-profile>1</traffic-profile>
       <ingress>
@@ -78,7 +78,7 @@
     </app-flow>
   </app-flows>
   <traffic-profile>  
-    <profile-name>1</profile-name>
+    <name>1</name>
     <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
@@ -91,7 +91,7 @@
     <member-apps>app-2</member-apps>
   </traffic-profile>
   <traffic-profile>  
-    <profile-name>2</profile-name>
+    <name>2</name>
     <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
@@ -104,7 +104,7 @@
     <member-services>ssl-2</member-services>
   </traffic-profile>
   <traffic-profile>  
-    <profile-name>3</profile-name>
+    <name>3</name>
     <flow-spec>
       <interval>5</interval>
       <max-pkts-per-interval>10</max-pkts-per-interval>
@@ -112,75 +112,75 @@
     </flow-spec>
     <member-fwd-sublayers>afl-1</member-fwd-sublayers>
   </traffic-profile>
-  <service-sub-layer>
-    <service-sub-layer-list>
+  <service>
+    <sub-layer>
       <name>ssl-1</name>
       <service-rank>10</service-rank>
       <traffic-profile>2</traffic-profile>
-      <service-operation>service-initiation</service-operation>
+      <operation>initiation</operation>
       <service-protection>
-        <service-protection>none</service-protection>
+        <protection>none</protection>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming>
 	<app-flow>
-          <flow-list>app-1</flow-list>
+          <flow>app-1</flow>
         </app-flow>
       </incoming>
       <outgoing>
 	<forwarding-sub-layer>
-          <service-outgoing-list>
-            <service-outgoing-index>0</service-outgoing-index>
+          <service-outgoing>
+            <index>0</index>
             <mpls-label-stack>
               <entry>
                 <id>0</id>
                 <label>100</label>
               </entry>
             </mpls-label-stack>
-            <forwarding-sub-layer>afl-1</forwarding-sub-layer>
-          </service-outgoing-list>
+            <sub-layer>afl-1</sub-layer>
+          </service-outgoing>
          </forwarding-sub-layer>
       </outgoing>
-    </service-sub-layer-list>
-    <service-sub-layer-list>
+    </sub-layer>
+    <sub-layer>
       <name>ssl-2</name>
       <service-rank>10</service-rank>
       <traffic-profile>2</traffic-profile>
-      <service-operation>service-initiation</service-operation>
+      <operation>initiation</operation>
       <service-protection>
-        <service-protection>none</service-protection>
+        <protection>none</protection>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming>
 	<app-flow>
-          <flow-list>app-2</flow-list>
+          <flow>app-2</flow>
         </app-flow>
       </incoming>
       <outgoing>
 	<forwarding-sub-layer>
-          <service-outgoing-list>
-            <service-outgoing-index>0</service-outgoing-index>
+          <service-outgoing>
+            <index>0</index>
             <mpls-label-stack>
               <entry>
                 <id>0</id>
                 <label>103</label>
               </entry>
             </mpls-label-stack>
-            <forwarding-sub-layer>afl-1</forwarding-sub-layer>
-          </service-outgoing-list>
+            <sub-layer>afl-1</sub-layer>
+          </service-outgoing>
          </forwarding-sub-layer>
       </outgoing>
-    </service-sub-layer-list>
-    </service-sub-layer>  
-    <forwarding-sub-layer>
-    <forwarding-sub-layer-list>
+    </sub-layer>
+    </service>  
+    <forwarding>
+    <sub-layer>
       <name>afl-1</name>
       <traffic-profile>3</traffic-profile>
-      <forwarding-operation>impose-and-forward</forwarding-operation>
+      <operation>impose-and-forward</operation>
       <incoming>
 	<service-sub-layer>
-          <service-sub-layer>ssl-1</service-sub-layer>
-          <service-sub-layer>ssl-2</service-sub-layer>
+          <sub-layer>ssl-1</sub-layer>
+          <sub-layer>ssl-2</sub-layer>
         </service-sub-layer>
       </incoming>
       <outgoing>
@@ -194,6 +194,6 @@
           </mpls-label-stack>
          </interface>
       </outgoing>
-    </forwarding-sub-layer-list>
-    </forwarding-sub-layer>
+    </sub-layer>
+    </forwarding>
 </detnet>

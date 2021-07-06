@@ -51,7 +51,7 @@
   xmlns:mpls="urn:ietf:params:xml:ns:yang:ietf-mpls"
   xmlns:pf="urn:ietf:params:xml:ns:yang:ietf-packet-fields">
    <traffic-profile>  
-    <profile-name>pf-1</profile-name>
+    <name>pf-1</name>
     <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
@@ -64,7 +64,7 @@
     <member-services>ssl-2</member-services>
   </traffic-profile>
    <traffic-profile>  
-    <profile-name>pf-2</profile-name>
+    <name>pf-2</name>
     <traffic-requirements>
       <min-bandwidth>200000000</min-bandwidth>
       <max-latency>100000000</max-latency>
@@ -76,7 +76,7 @@
     <member-services>asl-1</member-services>
   </traffic-profile>
   <traffic-profile>  
-    <profile-name>pf-3</profile-name>
+    <name>pf-3</name>
     <flow-spec>
       <interval>125</interval>
       <max-pkts-per-interval>1</max-pkts-per-interval>
@@ -88,7 +88,7 @@
     <member-fwd-sublayers>fsl-6</member-fwd-sublayers>
   </traffic-profile>
   <traffic-profile>  
-    <profile-name>pf-4</profile-name>
+    <name>pf-4</name>
     <flow-spec>
       <interval>125</interval>
       <max-pkts-per-interval>2</max-pkts-per-interval>
@@ -97,16 +97,16 @@
     <member-fwd-sublayers>fsl-1</member-fwd-sublayers>
     <member-fwd-sublayers>fsl-2</member-fwd-sublayers>
   </traffic-profile>
-  <service-sub-layer>
-    <service-sub-layer-list>
+  <service>
+    <sub-layer>
       <name>ssl-1</name>
       <service-rank>10</service-rank>
       <traffic-profile>pf-1</traffic-profile>
       <service-protection>
-        <service-protection>none</service-protection>
+        <protection>none</protection>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
-      <service-operation>service-relay</service-operation>
+      <operation>relay</operation>
       <incoming>
         <service-id>        
           <mpls-label-stack>
@@ -119,28 +119,28 @@
       </incoming>
       <outgoing>
         <forwarding-sub-layer>
-          <service-outgoing-list>
-            <service-outgoing-index>0</service-outgoing-index>
+          <service-outgoing>
+            <index>0</index>
             <mpls-label-stack>
               <entry>
                 <id>0</id>
                 <label>102</label>
               </entry>
             </mpls-label-stack>
-            <forwarding-sub-layer>fsl-5</forwarding-sub-layer>
-          </service-outgoing-list>
+            <sub-layer>fsl-5</sub-layer>
+          </service-outgoing>
         </forwarding-sub-layer>
       </outgoing>
-    </service-sub-layer-list>
-    <service-sub-layer-list>
+    </sub-layer>
+    <sub-layer>
       <name>ssl-2</name>
       <service-rank>10</service-rank>
       <traffic-profile>pf-1</traffic-profile>
       <service-protection>
-        <service-protection>none</service-protection>
+        <protection>none</protection>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
-      <service-operation>service-relay</service-operation>
+      <operation>relay</operation>
       <incoming>
         <service-id>        
           <mpls-label-stack>
@@ -153,28 +153,28 @@
       </incoming>
       <outgoing>
         <forwarding-sub-layer>
-          <service-outgoing-list>
-            <service-outgoing-index>0</service-outgoing-index>
+          <service-outgoing>
+            <index>0</index>
             <mpls-label-stack>
               <entry>
                 <id>0</id>
                 <label>105</label>
               </entry>
             </mpls-label-stack>
-            <forwarding-sub-layer>fsl-6</forwarding-sub-layer>
-          </service-outgoing-list>
+            <sub-layer>fsl-6</sub-layer>
+          </service-outgoing>
         </forwarding-sub-layer>
       </outgoing>
-    </service-sub-layer-list>
-    <service-sub-layer-list>
+    </sub-layer>
+    <sub-layer>
       <name>asl-1</name>
       <service-rank>10</service-rank>
       <traffic-profile>pf-2</traffic-profile>
       <service-protection>
-        <service-protection>elimination</service-protection>
+        <protection>elimination</protection>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
-      <service-operation>service-termination</service-operation>
+      <operation>termination</operation>
       <incoming>
         <service-id>        
           <mpls-label-stack>
@@ -187,17 +187,17 @@
       </incoming>
       <outgoing>
         <forwarding-disaggregation>
-          <forwarding-sub-layer>fsl-3</forwarding-sub-layer>
-          <forwarding-sub-layer>fsl-4</forwarding-sub-layer>
+          <sub-layer>fsl-3</sub-layer>
+          <sub-layer>fsl-4</sub-layer>
         </forwarding-disaggregation>
       </outgoing>
-    </service-sub-layer-list>
-  </service-sub-layer>
-  <forwarding-sub-layer>
-    <forwarding-sub-layer-list>
+    </sub-layer>
+  </service>
+  <forwarding>
+    <sub-layer>
       <name>fsl-1</name>
       <traffic-profile>pf-4</traffic-profile>
-      <forwarding-operation>pop-and-lookup</forwarding-operation>
+      <operation>pop-and-lookup</operation>
       <incoming>
 	<forwarding-id>
           <interface>eth0</interface>
@@ -211,14 +211,14 @@
       </incoming>
       <outgoing>
         <service-sub-layer>
-          <service-sub-layer>asl-1</service-sub-layer>
+          <sub-layer>asl-1</sub-layer>
         </service-sub-layer>
       </outgoing>
-    </forwarding-sub-layer-list>
-    <forwarding-sub-layer-list>
+    </sub-layer>
+    <sub-layer>
       <name>fsl-2</name>
       <traffic-profile>pf-4</traffic-profile>
-      <forwarding-operation>pop-and-lookup</forwarding-operation>
+      <operation>pop-and-lookup</operation>
       <incoming>
         <forwarding-id>
           <interface>eth1</interface>
@@ -232,14 +232,14 @@
       </incoming>
       <outgoing>
         <service-sub-layer>
-          <service-sub-layer>asl-1</service-sub-layer>
+          <sub-layer>asl-1</sub-layer>
         </service-sub-layer>
       </outgoing>
-    </forwarding-sub-layer-list>
-    <forwarding-sub-layer-list>
+    </sub-layer>
+    <sub-layer>
       <name>fsl-3</name>
       <traffic-profile>pf-3</traffic-profile>
-      <forwarding-operation>pop-and-lookup</forwarding-operation>
+      <operation>pop-and-lookup</operation>
       <incoming>
         <forwarding-id>
           <interface>eth0</interface>
@@ -253,14 +253,14 @@
       </incoming>
       <outgoing>
         <service-sub-layer>
-          <service-sub-layer>ssl-1</service-sub-layer>
+          <sub-layer>ssl-1</sub-layer>
         </service-sub-layer>
       </outgoing>
-    </forwarding-sub-layer-list>
-    <forwarding-sub-layer-list>
+    </sub-layer>
+    <sub-layer>
       <name>fsl-4</name>
       <traffic-profile>pf-3</traffic-profile>
-      <forwarding-operation>pop-and-lookup</forwarding-operation>
+      <operation>pop-and-lookup</operation>
       <incoming>
         <forwarding-id>
           <interface>eth1</interface>
@@ -274,17 +274,17 @@
       </incoming>
       <outgoing>
         <service-sub-layer>
-          <service-sub-layer>ssl-2</service-sub-layer>
+          <sub-layer>ssl-2</sub-layer>
         </service-sub-layer>
       </outgoing>
-    </forwarding-sub-layer-list>
-    <forwarding-sub-layer-list>
+    </sub-layer>
+    <sub-layer>
       <name>fsl-5</name>
       <traffic-profile>pf-3</traffic-profile>
-      <forwarding-operation>impose-and-forward</forwarding-operation>
+      <operation>impose-and-forward</operation>
       <incoming>
         <service-sub-layer>
-          <service-sub-layer>ssl-1</service-sub-layer>
+          <sub-layer>ssl-1</sub-layer>
         </service-sub-layer>
       </incoming>
       <outgoing>
@@ -298,14 +298,14 @@
           </mpls-label-stack>
         </interface>
       </outgoing>
-    </forwarding-sub-layer-list>
-    <forwarding-sub-layer-list>
+    </sub-layer>
+    <sub-layer>
       <name>fsl-6</name>
       <traffic-profile>pf-3</traffic-profile>
-      <forwarding-operation>impose-and-forward</forwarding-operation>
+      <operation>impose-and-forward</operation>
       <incoming>
         <service-sub-layer>
-          <service-sub-layer>ssl-2</service-sub-layer>
+          <sub-layer>ssl-2</sub-layer>
         </service-sub-layer>
       </incoming>
       <outgoing>
@@ -319,6 +319,6 @@
           </mpls-label-stack>
         </interface>
       </outgoing>
-    </forwarding-sub-layer-list>
-  </forwarding-sub-layer>
+    </sub-layer>
+  </forwarding>
 </detnet>

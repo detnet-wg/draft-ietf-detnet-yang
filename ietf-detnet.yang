@@ -164,8 +164,8 @@ module ietf-detnet {
   typedef service-sub-layer-ref {
     type leafref {
       path "/dnet:detnet"
-         + "/dnet:service-sub-layer"
-         + "/dnet:service-sub-layer-list"
+         + "/dnet:service"
+         + "/dnet:sub-layer"
          + "/dnet:name";
     }
     description
@@ -175,8 +175,8 @@ module ietf-detnet {
   typedef forwarding-sub-layer-ref {
     type leafref {
       path "/dnet:detnet"
-         + "/dnet:forwarding-sub-layer"
-         + "/dnet:forwarding-sub-layer-list"
+         + "/dnet:forwarding"
+         + "/dnet:sub-layer"
          + "/dnet:name";
     }
     description
@@ -187,7 +187,7 @@ module ietf-detnet {
     type leafref {
       path "/dnet:detnet"
          + "/dnet:traffic-profile"
-         + "/dnet:profile-name";
+         + "/dnet:name";
     }
     description
       "This is a Traffic Profile Reference.";
@@ -198,22 +198,23 @@ module ietf-detnet {
       range "1..max";
     }
     description
-      "IPsec Security Parameters Index. A 32 bit value where 0 is reserved.";
+      "IPsec Security Parameters Index. A 32 bit value
+       where 0 is reserved.";
     reference
       "IETF RFC 4303 Encapsulating Security Payload (ESP).";
   }
 
-  typedef service-operation {
+  typedef operation {
     type enumeration {
-      enum service-initiation {
+      enum initiation {
         description
           "This is an initiating service sub-layer encapsulation.";
       }
-      enum service-termination {
+      enum termination {
         description
           "Operation for DetNet service sub-layer decapsulation.";
       }
-      enum service-relay {
+      enum relay {
         description
           "Operation for DetNet service sub-layer swap.";
       }
@@ -224,7 +225,7 @@ module ietf-detnet {
     }
     description
       "Operation type identifies the behavior for this service
-       sub-layer instance. Operations are described as unidirectional
+       sub-layer. Operations are described as unidirectional
        but a service sub-layer may combine operation types.";
   }
 
@@ -594,7 +595,7 @@ module ietf-detnet {
   grouping app-flows-group {
     description
       "Incoming or outgoing app-flow reference group.";
-    leaf-list app-flow-list {
+    leaf-list flow {
       type app-flow-ref;
       description
         "List of ingress or egress app-flows.";
@@ -604,7 +605,7 @@ module ietf-detnet {
   grouping service-sub-layer-group {
     description
       "Incoming or outgoing service sub-layer reference group.";
-    leaf-list service-sub-layer {
+    leaf-list sub-layer {
       type service-sub-layer-ref;
       description
         "List of incoming or outgoing service sub-layers that have
@@ -615,7 +616,7 @@ module ietf-detnet {
   grouping forwarding-sub-layer-group {
     description
       "Incoming or outgoing forwarding sub-layer reference group.";
-    leaf-list forwarding-sub-layer {
+    leaf-list sub-layer {
       type forwarding-sub-layer-ref;
       description
         "List of incoming or outgoing forwarding sub-layers that
@@ -816,10 +817,10 @@ module ietf-detnet {
        applications, service sub-layers and forwarding sub-layers
        as well as the traffic profiles.";
     list traffic-profile {
-      key "profile-name";
+      key "name";
       description
         "A traffic profile.";
-      leaf profile-name {
+      leaf name {
         type string;
         description
           "An Aggregation group ID.";
@@ -1000,7 +1001,7 @@ module ietf-detnet {
             "RFC 9016
              Sections 4.1, 5.1";
         }
-        leaf app-flow-bidir-congruent {
+        leaf bidir-congruent {
           type boolean;
           default false;
           description
@@ -1033,11 +1034,6 @@ module ietf-detnet {
         container ingress {
           description
             "Ingress DetNet application flows or a compound flow.";
-          leaf name {
-            type string;
-            description
-              "Ingress DetNet application.";
-          }
           leaf app-flow-status {
             type identityref {
               base app-status;
@@ -1051,7 +1047,8 @@ module ietf-detnet {
           }
           leaf interface {
             type if:interface-ref;
-            description
+            mandatory true;
+	    description
             "Interface is used for any service type when
              matching all flows to the interface.";
           }
@@ -1060,11 +1057,6 @@ module ietf-detnet {
         container egress {
           description
             "Route's next-hop attribute.";
-          leaf name {
-            type string;
-            description
-              "Egress DetNet application.";
-          }
           choice application-type {
             description
               "This is the application type choices.";
@@ -1087,10 +1079,10 @@ module ietf-detnet {
         }
       }
     }
-    container service-sub-layer {
+    container service {
       description
         "The DetNet service sub-layer configuration.";
-      list service-sub-layer-list {
+      list sub-layer {
         key "name";
         description
           "Services are indexed by name.";
@@ -1113,9 +1105,9 @@ module ietf-detnet {
         }
         container service-protection {
           description
-            "This is the service protection type an sequence number 
+            "This is the service protection type and sequence number 
              options.";
-          leaf service-protection {
+          leaf protection {
             type service-protection;
             description
               "The DetNet service protection type such as 
@@ -1133,8 +1125,8 @@ module ietf-detnet {
                16-bits or 28-bits.";
           }
         }
-        leaf service-operation {
-          type service-operation;
+        leaf operation {
+          type operation;
           description
             "This is the service operation type for this service 
              sub-layer;"; 
@@ -1203,13 +1195,13 @@ module ietf-detnet {
                  label when the operation type is service-relay.";
               reference
                 "RFC 8964 Section 4.2.1 and 4.2.2."; 
-              list service-outgoing-list {
-                key "service-outgoing-index";
+              list service-outgoing {
+                key "index";
                 description
                   "List of the outgoing service
                    that separately for each node
                    where services will be eliminated.";
-                leaf service-outgoing-index {
+                leaf index {
                   type uint8;
                   description
                     "This index allows a list of multiple outgoing 
@@ -1230,7 +1222,7 @@ module ietf-detnet {
                  operation type is service-relay.";
               reference
                 "RFC 8964 Section 4.2.1 and 4.2.2."; 
-              leaf aggregation-service-sub-layer {
+              leaf aggregation-sub-layer {
                 type service-sub-layer-ref;
                 description
                   "reference point of the service-sub-layer
@@ -1284,10 +1276,10 @@ module ietf-detnet {
         }
       }
     }
-    container forwarding-sub-layer {
+    container forwarding {
       description
         "The DetNet forwarding sub-layer configuration.";
-      list forwarding-sub-layer-list {
+      list sub-layer {
         key "name";
         description
           "The List is one or more DetNet Traffic types.";
@@ -1301,7 +1293,7 @@ module ietf-detnet {
           description
             "The Traffic Profile for this group.";
         }
-        leaf forwarding-operation {
+        leaf operation {
           type forwarding-operations;
           description
             "This is the forwarding operation types 
@@ -1371,7 +1363,7 @@ module ietf-detnet {
                  sub-layers of the lower layer for
                  forwarding-to-service aggregation at the ingress
                  node or relay node.";
-              leaf aggregation-service-sub-layer {
+              leaf aggregation-sub-layer {
                 type service-sub-layer-ref;
                 description
                   "This is a reference to the service sub-layer.";
@@ -1389,7 +1381,7 @@ module ietf-detnet {
                  sub-layers of the lower layer for
                  forwarding-to-forwarding aggregation at the ingress
                  node or relay node or transit node.";
-              leaf aggregation-forwarding-sub-layer {
+              leaf aggregation-sub-layer {
                 type forwarding-sub-layer-ref;
                 description
                   "This is a reference to the forwarding sub-layer.";

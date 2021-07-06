@@ -48,7 +48,7 @@
       "app-flow": [
         {
           "name": "app-1",
-          "app-flow-bidir-congruent": false,
+          "bidir-congruent": false,
           "outgoing-service": "ssl-1",
           "traffic-profile": "1",
           "ingress": {
@@ -63,7 +63,7 @@
         },
         {
           "name": "app-2",
-          "app-flow-bidir-congruent": false,
+          "bidir-congruent": false,
           "outgoing-service": "ssl-2",
           "traffic-profile": "1",
           "ingress": {
@@ -80,7 +80,7 @@
     },
     "traffic-profile": [
       {
-        "profile-name": "1",
+        "name": "1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -95,7 +95,7 @@
         ]
       },
       {
-        "profile-name": "2",
+        "name": "2",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -110,7 +110,7 @@
         ]
       },
       {
-        "profile-name": "3",
+        "name": "3",
         "flow-spec": {
           "interval": 5,
           "max-pkts-per-interval": 10,
@@ -121,29 +121,29 @@
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "2",
-          "service-operation": "service-initiation",
+          "operation": "initiation",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
           "incoming": {
             "app-flow": {
-              "flow-list": [
+              "flow": [
                 "app-1"
               ]
             }
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -152,7 +152,7 @@
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "afl-1"
                   ]
                 }
@@ -164,23 +164,23 @@
           "name": "ssl-2",
           "service-rank": 10,
           "traffic-profile": "2",
-          "service-operation": "service-initiation",
+          "operation": "initiation",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
           "incoming": {
             "app-flow": {
-              "flow-list": [
+              "flow": [
                 "app-2"
               ]
             }
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -189,7 +189,7 @@
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "afl-1"
                   ]
                 }
@@ -199,15 +199,15 @@
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "afl-1",
           "traffic-profile": "3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1",
                 "ssl-2"
               ]

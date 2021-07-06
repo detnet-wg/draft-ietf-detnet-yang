@@ -14,9 +14,10 @@
        This document contains the specification for the Deterministic Networking
      YANG Model for configuration and operational data for DetNet Flows. 
       The model allows for provisioning of
-      end-to-end DetNet service along the path without dependency on any
+      end-to-end DetNet service on devices along the path without dependency on any
       signaling protocol. It also specifies operational status for
-      flows. 
+      flows.
+      An operator or network controller programs the configuration of the devices. 
        The YANG module defined in this document conforms to the Network
       Management Datastore Architecture (NMDA). 
     " name="description">
@@ -1188,11 +1189,11 @@ li > p:last-of-type {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">draft-ietf-detnet-yang-13</td>
-<td class="right">June 2021</td>
+<td class="right">July 2021</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Geng, et al.</td>
-<td class="center">Expires 31 December 2021</td>
+<td class="center">Expires 6 January 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1205,12 +1206,12 @@ li > p:last-of-type {
 <dd class="internet-draft">draft-ietf-detnet-yang-13</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-06-29" class="published">29 June 2021</time>
+<time datetime="2021-07-05" class="published">5 July 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-12-31">31 December 2021</time></dd>
+<dd class="expires"><time datetime="2022-01-06">6 January 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1242,9 +1243,10 @@ li > p:last-of-type {
 <p id="section-abstract-1">This document contains the specification for the Deterministic Networking
      YANG Model for configuration and operational data for DetNet Flows. 
       The model allows for provisioning of
-      end-to-end DetNet service along the path without dependency on any
+      end-to-end DetNet service on devices along the path without dependency on any
       signaling protocol. It also specifies operational status for
-      flows.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+      flows.
+      An operator or network controller programs the configuration of the devices.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">The YANG module defined in this document conforms to the Network
       Management Datastore Architecture (NMDA).<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
@@ -1280,7 +1282,7 @@ li > p:last-of-type {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 31 December 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 6 January 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1308,95 +1310,95 @@ li > p:last-of-type {
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="ulEmpty compact toc">
-<li class="ulEmpty compact toc" id="section-toc.1-1.1">
+<nav class="toc"><ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.2">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-terminology" class="xref">Terminology</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.3">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-detnet-yang-module" class="xref">DetNet YANG Module</a></p>
-<ul class="ulEmpty compact toc">
-<li class="ulEmpty compact toc" id="section-toc.1-1.3.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.3.2.1">
                 <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-detnet-application-flow-yan" class="xref">DetNet Application Flow YANG Attributes</a></p>
 </li>
-              <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-detnet-service-sub-layer-ya" class="xref">DetNet Service Sub-layer YANG Attributes</a></p>
 </li>
-              <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.3">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.3.2.3">
                 <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-detnet-forwarding-sub-layer" class="xref">DetNet Forwarding Sub-layer YANG Attributes</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.4">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-detnet-flow-aggregation" class="xref">DetNet Flow Aggregation</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.5">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-detnet-yang-structure-consi" class="xref">DetNet YANG Structure Considerations</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.6">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-detnet-configuration-yang-s" class="xref">DetNet Configuration YANG Structures</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.7">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-detnet-configuration-yang-m" class="xref">DetNet Configuration YANG Model</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.8">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.9">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.10">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-contributors" class="xref">Contributors</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.11">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-acknowledgments" class="xref">Acknowledgments</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.12">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.12">
             <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-references" class="xref">References</a></p>
-<ul class="ulEmpty compact toc">
-<li class="ulEmpty compact toc" id="section-toc.1-1.12.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.12.2.1">
                 <p id="section-toc.1-1.12.2.1.1"><a href="#section-12.1" class="xref">12.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-              <li class="ulEmpty compact toc" id="section-toc.1-1.12.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.12.2.2">
                 <p id="section-toc.1-1.12.2.2.1"><a href="#section-12.2" class="xref">12.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.13">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.13">
             <p id="section-toc.1-1.13.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-detnet-configuration-yang-t" class="xref">DetNet Configuration YANG Tree</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.14">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.14">
             <p id="section-toc.1-1.14.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-examples" class="xref">Examples</a></p>
-<ul class="ulEmpty compact toc">
-<li class="ulEmpty compact toc" id="section-toc.1-1.14.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.14.2.1">
                 <p id="section-toc.1-1.14.2.1.1"><a href="#section-b.1" class="xref">B.1</a>.  <a href="#name-example-a-1-json-configurat" class="xref">Example A-1 JSON Configuration/Operational</a></p>
 </li>
-              <li class="ulEmpty compact toc" id="section-toc.1-1.14.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.14.2.2">
                 <p id="section-toc.1-1.14.2.2.1"><a href="#section-b.2" class="xref">B.2</a>.  <a href="#name-example-b-1-xml-config-aggr" class="xref">Example B-1 XML Config: Aggregation using a Forwarding Sub-layer</a></p>
 </li>
-              <li class="ulEmpty compact toc" id="section-toc.1-1.14.2.3">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.14.2.3">
                 <p id="section-toc.1-1.14.2.3.1"><a href="#section-b.3" class="xref">B.3</a>.  <a href="#name-example-b-2-json-service-ag" class="xref">Example B-2 JSON Service Aggregation Configuration</a></p>
 </li>
-              <li class="ulEmpty compact toc" id="section-toc.1-1.14.2.4">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.14.2.4">
                 <p id="section-toc.1-1.14.2.4.1"><a href="#section-b.4" class="xref">B.4</a>.  <a href="#name-example-c-1-json-relay-aggr" class="xref">Example C-1 JSON Relay Aggregation/Disaggregation Configuration</a></p>
 </li>
-              <li class="ulEmpty compact toc" id="section-toc.1-1.14.2.5">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.14.2.5">
                 <p id="section-toc.1-1.14.2.5.1"><a href="#section-b.5" class="xref">B.5</a>.  <a href="#name-example-c-2-json-relay-aggr" class="xref">Example C-2 JSON Relay Aggregation Service Sub-Layer</a></p>
 </li>
-              <li class="ulEmpty compact toc" id="section-toc.1-1.14.2.6">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.14.2.6">
                 <p id="section-toc.1-1.14.2.6.1"><a href="#section-b.6" class="xref">B.6</a>.  <a href="#name-example-c-3-json-relay-serv" class="xref">Example C-3 JSON Relay Service Sub-Layer Aggregation/Disaggregation</a></p>
 </li>
-              <li class="ulEmpty compact toc" id="section-toc.1-1.14.2.7">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.14.2.7">
                 <p id="section-toc.1-1.14.2.7.1"><a href="#section-b.7" class="xref">B.7</a>.  <a href="#name-example-c-4-json-relay-serv" class="xref">Example C-4 JSON Relay Service Sub-Layer Aggregation/Disaggregation</a></p>
 </li>
-              <li class="ulEmpty compact toc" id="section-toc.1-1.14.2.8">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.14.2.8">
                 <p id="section-toc.1-1.14.2.8.1"><a href="#section-b.8" class="xref">B.8</a>.  <a href="#name-example-d-1-json-transit-fo" class="xref">Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/Disaggregation</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.15">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.15">
             <p id="section-toc.1-1.15.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
@@ -1437,6 +1439,38 @@ li > p:last-of-type {
       configuration and operational objects. 
       The corresponding attributes used in different sub-layers
       are defined in Section 3.1, 3.2, 3.3 respectively.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2"> Layers of the objects typically occur 
+          in the different data instances forming the node types defined in 
+          <span>[<a href="#RFC8655" class="xref">RFC8655</a>]</span>.
+          <a href="#table_layer_node" class="xref">Figure 1</a> 
+          illustrates the relationship between data instance node types and the included layers. 
+          Node types typically are logical per DetNet service
+          and one DetNet service can be one node type while another is another node type on 
+          same device. 
+          This model is a controller based model because a controller or operator 
+          configures all the devices to form a service.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<span id="name-detnet-layers-and-node-type"></span><div id="table_layer_node">
+<figure id="figure-1">
+        <div class="artwork art-text alignLeft" id="section-3-3.1">
+<pre>
+      +---------------------------------------------------+
+      |                    Instance                       |
++-----+-----------------+-----------------+---------------+
+|     |Edge Node        | Transit Node    |  Relay Node   |
++-----+-----------------+-----------------+---------------+
+|  L  |Application      |                 |               |
+|  a  +-----------------+-----------------+---------------+
+|  y  |Service Sub-Layer|Service Sub-Layer|               |
+|  e  +-----------------+-----------------+---------------+
+|  r  |Forwarding S-L   |Forwarding S-L   | Forwarding S-L|
++-----+-----------------+-----------------+---------------+
+
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-detnet-layers-and-node-type" class="selfRef">Detnet Layers and Node Types</a>
+        </figcaption></figure>
+</div>
 <section id="section-3.1">
         <h3 id="name-detnet-application-flow-yan">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-detnet-application-flow-yan" class="section-name selfRef">DetNet Application Flow YANG Attributes</a>
@@ -1565,25 +1599,31 @@ li > p:last-of-type {
       Model:<a href="#section-5-2" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-5-3">
 <pre>
-                  +-----------+
-                  |ietf-detnet|
-                  +-----+-----+
-                        |
-          +-------------+---------------+-------------------+
-          |             |               |                   |
-    +-----+-----+ +-----+-----+ +-------+------+            |
-    | App Flows | |service s-l| |forwarding s-l|            |
-    +-----+-----+ +-----+-----+ +-------+------+            |
-          |             |               |                   |
-    +-----+-----+ +-----+-----+ +-------+------+   +--------+-------+
-    | Ref to TR | | Ref to TR | |  Ref to TR   |   | Traffic Profile|
-    +-----------+ +-----------+ +--------------+   +----------------+
+                   +-----------+
+                   |ietf-detnet|
+                   +-----+-----+
+                         |
+          +--------------+----------------+-------------------+
+          |              |                |                   |
+    +-----+------+ +-----+------+ +-------+------+            |
+    | App Flows  | |service s-l | |forwarding s-l|            |
+    +-----+------+ +-----+------+ +-------+------+            |
+          |              |                |                   |
+    +-----+------+ +-----+------+ +-------+------+            |
+    | Reference  | | Reference  | | Reference    |            |
+    | to Traffic | | to Traffic | | to Traffic   |   +--------+-------+
+    | Profile    | | Profile    | | Profile      |   | Traffic Profile|
+    +------------+ +------------+ +--------------+   +----------------+
 </pre><a href="#section-5-3" class="pilcrow">¶</a>
 </div>
-<p id="section-5-4">There are three instances in DetNet YANG Model: App-flow instance,
-      service sub-layer instance and forwarding sub-layer instance,
-      respectively corresponding to four parts of DetNet functions defined in
-      section 3.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-4">
+              
+              
+              There are three layer types in DetNet YANG Model: 
+              App-flow data layer,
+              service sub-layer and forwarding sub-layer. 
+              Addtionally the Traffic parameters are captured in a Traffic profile
+              that can be refrenced by any of the layers.<a href="#section-5-4" class="pilcrow">¶</a></p>
 <p id="section-5-5">
       Below is a a summary YANG tree showing the major items. 
       A complete YANG tree is in section <a href="#Tree" class="xref">Appendix A</a>.<a href="#section-5-5" class="pilcrow">¶</a></p>
@@ -1592,7 +1632,8 @@ li > p:last-of-type {
       A single profile may be shared by multiple applications/sub-layer. 
       Each profile indicates the members that currently are using a profile.<a href="#section-5-6" class="pilcrow">¶</a></p>
 <p id="section-5-7">
-      Depending on what DetNet functions are used only some of the componets are configured.   
+      Depending on which DetNet layers and functions are required,
+      some or all of the componets may configured.   
       Examples are shown in <a href="#Examples" class="xref">Appendix B</a>.<a href="#section-5-7" class="pilcrow">¶</a></p>
 </section>
 <section id="section-6">
@@ -1612,37 +1653,42 @@ module: ietf-detnet
      |  |     ...
      |  +--rw flow-spec
      |  |     ...
+     |  |  +--rw interval?                uint32
+     |  |  +--rw max-pkts-per-interval?   uint32
+     |  |  +--rw max-payload-size?        uint32
+     |  |  +--rw min-payload-size?        uint32
+     |  |  +--rw min-pkts-per-interval?   uint32
      |  +--ro member-apps*            app-flow-ref
      |  +--ro member-services*        service-sub-layer-ref
      |  +--ro member-fwd-sublayers*   forwarding-sub-layer-ref
      +--rw app-flows
      |  +--rw app-flow* [name]
-     |     +--rw name                        string
-     |     +--rw app-flow-bidir-congruent?   boolean
-     |     +--ro outgoing-service?           service-sub-layer-ref
-     |     +--ro incoming-service?           service-sub-layer-ref
-     |     +--rw traffic-profile?            traffic-profile-ref
+     |     +--rw name                string
+     |     +--rw bidir-congruent?    boolean
+     |     +--ro outgoing-service?   service-sub-layer-ref
+     |     +--ro incoming-service?   service-sub-layer-ref
+     |     +--rw traffic-profile?    traffic-profile-ref
      |     +--rw ingress
      |     |     ...
      |     +--rw egress
      |           ...
-     +--rw service-sub-layer
-     |  +--rw service-sub-layer-list* [name]
+     +--rw service
+     |  +--rw sub-layer* [name]
      |     +--rw name                  string
      |     +--rw service-rank?         uint8
      |     +--rw traffic-profile?      traffic-profile-ref
      |     +--rw service-protection
      |     |     ...
-     |     +--rw service-operation?    service-operation
+     |     +--rw operation?            operation
      |     +--rw incoming
      |     |     ...
      |     +--rw outgoing
      |           ...
-     +--rw forwarding-sub-layer
-        +--rw forwarding-sub-layer-list* [name]
-           +--rw name                    string
-           +--rw traffic-profile?        traffic-profile-ref
-           +--rw forwarding-operation?   forwarding-operations
+     +--rw forwarding
+        +--rw sub-layer* [name]
+           +--rw name               string
+           +--rw traffic-profile?   traffic-profile-ref
+           +--rw operation?         forwarding-operations
            +--rw incoming
            |     ...
            +--rw outgoing
@@ -1826,8 +1872,8 @@ module ietf-detnet {
   typedef service-sub-layer-ref {
     type leafref {
       path "/dnet:detnet"
-         + "/dnet:service-sub-layer"
-         + "/dnet:service-sub-layer-list"
+         + "/dnet:service"
+         + "/dnet:sub-layer"
          + "/dnet:name";
     }
     description
@@ -1837,8 +1883,8 @@ module ietf-detnet {
   typedef forwarding-sub-layer-ref {
     type leafref {
       path "/dnet:detnet"
-         + "/dnet:forwarding-sub-layer"
-         + "/dnet:forwarding-sub-layer-list"
+         + "/dnet:forwarding"
+         + "/dnet:sub-layer"
          + "/dnet:name";
     }
     description
@@ -1849,7 +1895,7 @@ module ietf-detnet {
     type leafref {
       path "/dnet:detnet"
          + "/dnet:traffic-profile"
-         + "/dnet:profile-name";
+         + "/dnet:name";
     }
     description
       "This is a Traffic Profile Reference.";
@@ -1866,17 +1912,17 @@ module ietf-detnet {
       "IETF RFC 4303 Encapsulating Security Payload (ESP).";
   }
 
-  typedef service-operation {
+  typedef operation {
     type enumeration {
-      enum service-initiation {
+      enum initiation {
         description
           "This is an initiating service sub-layer encapsulation.";
       }
-      enum service-termination {
+      enum termination {
         description
           "Operation for DetNet service sub-layer decapsulation.";
       }
-      enum service-relay {
+      enum relay {
         description
           "Operation for DetNet service sub-layer swap.";
       }
@@ -1887,7 +1933,7 @@ module ietf-detnet {
     }
     description
       "Operation type identifies the behavior for this service
-       sub-layer instance. Operations are described as unidirectional
+       sub-layer. Operations are described as unidirectional
        but a service sub-layer may combine operation types.";
   }
 
@@ -2257,7 +2303,7 @@ module ietf-detnet {
   grouping app-flows-group {
     description
       "Incoming or outgoing app-flow reference group.";
-    leaf-list app-flow-list {
+    leaf-list flow {
       type app-flow-ref;
       description
         "List of ingress or egress app-flows.";
@@ -2267,7 +2313,7 @@ module ietf-detnet {
   grouping service-sub-layer-group {
     description
       "Incoming or outgoing service sub-layer reference group.";
-    leaf-list service-sub-layer {
+    leaf-list sub-layer {
       type service-sub-layer-ref;
       description
         "List of incoming or outgoing service sub-layers that have
@@ -2278,7 +2324,7 @@ module ietf-detnet {
   grouping forwarding-sub-layer-group {
     description
       "Incoming or outgoing forwarding sub-layer reference group.";
-    leaf-list forwarding-sub-layer {
+    leaf-list sub-layer {
       type forwarding-sub-layer-ref;
       description
         "List of incoming or outgoing forwarding sub-layers that
@@ -2479,10 +2525,10 @@ module ietf-detnet {
        applications, service sub-layers and forwarding sub-layers
        as well as the traffic profiles.";
     list traffic-profile {
-      key "profile-name";
+      key "name";
       description
         "A traffic profile.";
-      leaf profile-name {
+      leaf name {
         type string;
         description
           "An Aggregation group ID.";
@@ -2663,7 +2709,7 @@ module ietf-detnet {
             "RFC 9016
              Sections 4.1, 5.1";
         }
-        leaf app-flow-bidir-congruent {
+        leaf bidir-congruent {
           type boolean;
           default false;
           description
@@ -2696,11 +2742,6 @@ module ietf-detnet {
         container ingress {
           description
             "Ingress DetNet application flows or a compound flow.";
-          leaf name {
-            type string;
-            description
-              "Ingress DetNet application.";
-          }
           leaf app-flow-status {
             type identityref {
               base app-status;
@@ -2714,6 +2755,7 @@ module ietf-detnet {
           }
           leaf interface {
             type if:interface-ref;
+            mandatory true;
             description
             "Interface is used for any service type when
              matching all flows to the interface.";
@@ -2723,11 +2765,6 @@ module ietf-detnet {
         container egress {
           description
             "Route's next-hop attribute.";
-          leaf name {
-            type string;
-            description
-              "Egress DetNet application.";
-          }
           choice application-type {
             description
               "This is the application type choices.";
@@ -2750,10 +2787,10 @@ module ietf-detnet {
         }
       }
     }
-    container service-sub-layer {
+    container service {
       description
         "The DetNet service sub-layer configuration.";
-      list service-sub-layer-list {
+      list sub-layer {
         key "name";
         description
           "Services are indexed by name.";
@@ -2776,9 +2813,9 @@ module ietf-detnet {
         }
         container service-protection {
           description
-            "This is the service protection type an sequence number
+            "This is the service protection type and sequence number
              options.";
-          leaf service-protection {
+          leaf protection {
             type service-protection;
             description
               "The DetNet service protection type such as
@@ -2796,8 +2833,8 @@ module ietf-detnet {
                16-bits or 28-bits.";
           }
         }
-        leaf service-operation {
-          type service-operation;
+        leaf operation {
+          type operation;
           description
             "This is the service operation type for this service
              sub-layer;";
@@ -2866,13 +2903,13 @@ module ietf-detnet {
                  label when the operation type is service-relay.";
               reference
                 "RFC 8964 Section 4.2.1 and 4.2.2.";
-              list service-outgoing-list {
-                key "service-outgoing-index";
+              list service-outgoing {
+                key "index";
                 description
                   "List of the outgoing service
                    that separately for each node
                    where services will be eliminated.";
-                leaf service-outgoing-index {
+                leaf index {
                   type uint8;
                   description
                     "This index allows a list of multiple outgoing
@@ -2893,7 +2930,7 @@ module ietf-detnet {
                  operation type is service-relay.";
               reference
                 "RFC 8964 Section 4.2.1 and 4.2.2.";
-              leaf aggregation-service-sub-layer {
+              leaf aggregation-sub-layer {
                 type service-sub-layer-ref;
                 description
                   "reference point of the service-sub-layer
@@ -2947,10 +2984,10 @@ module ietf-detnet {
         }
       }
     }
-    container forwarding-sub-layer {
+    container forwarding {
       description
         "The DetNet forwarding sub-layer configuration.";
-      list forwarding-sub-layer-list {
+      list sub-layer {
         key "name";
         description
           "The List is one or more DetNet Traffic types.";
@@ -2964,7 +3001,7 @@ module ietf-detnet {
           description
             "The Traffic Profile for this group.";
         }
-        leaf forwarding-operation {
+        leaf operation {
           type forwarding-operations;
           description
             "This is the forwarding operation types
@@ -3034,7 +3071,7 @@ module ietf-detnet {
                  sub-layers of the lower layer for
                  forwarding-to-service aggregation at the ingress
                  node or relay node.";
-              leaf aggregation-service-sub-layer {
+              leaf aggregation-sub-layer {
                 type service-sub-layer-ref;
                 description
                   "This is a reference to the service sub-layer.";
@@ -3052,7 +3089,7 @@ module ietf-detnet {
                  sub-layers of the lower layer for
                  forwarding-to-forwarding aggregation at the ingress
                  node or relay node or transit node.";
-              leaf aggregation-forwarding-sub-layer {
+              leaf aggregation-sub-layer {
                 type forwarding-sub-layer-ref;
                 description
                   "This is a reference to the forwarding sub-layer.";
@@ -3295,8 +3332,8 @@ module ietf-detnet {
 <pre>
 module: ietf-detnet
   +--rw detnet
-     +--rw traffic-profile* [profile-name]
-     |  +--rw profile-name            string
+     +--rw traffic-profile* [name]
+     |  +--rw name                    string
      |  +--rw traffic-requirements
      |  |  +--rw min-bandwidth?                    uint64
      |  |  +--rw max-latency?                      uint32
@@ -3315,15 +3352,14 @@ module: ietf-detnet
      |  +--ro member-fwd-sublayers*   forwarding-sub-layer-ref
      +--rw app-flows
      |  +--rw app-flow* [name]
-     |     +--rw name                        string
-     |     +--rw app-flow-bidir-congruent?   boolean
-     |     +--ro outgoing-service?           service-sub-layer-ref
-     |     +--ro incoming-service?           service-sub-layer-ref
-     |     +--rw traffic-profile?            traffic-profile-ref
+     |     +--rw name                string
+     |     +--rw bidir-congruent?    boolean
+     |     +--ro outgoing-service?   service-sub-layer-ref
+     |     +--ro incoming-service?   service-sub-layer-ref
+     |     +--rw traffic-profile?    traffic-profile-ref
      |     +--rw ingress
-     |     |  +--rw name?                  string
      |     |  +--ro app-flow-status?       identityref
-     |     |  +--rw interface?             if:interface-ref
+     |     |  +--rw interface              if:interface-ref
      |     |  +--rw (data-flow-type)?
      |     |     +--:(tsn-app-flow)
      |     |     |  +--rw tsn-app-flow
@@ -3377,7 +3413,6 @@ module: ietf-detnet
      |     |                 +--rw label?
      |     |                         rt-types:mpls-label
      |     +--rw egress
-     |        +--rw name?             string
      |        +--rw (application-type)?
      |           +--:(ethernet)
      |           |  +--rw ethernet
@@ -3420,28 +3455,26 @@ module: ietf-detnet
      |                                      |       uint8
      |                                      +--rw traffic-class?
      |                                              uint8
-     +--rw service-sub-layer
-     |  +--rw service-sub-layer-list* [name]
+     +--rw service
+     |  +--rw sub-layer* [name]
      |     +--rw name                  string
      |     +--rw service-rank?         uint8
      |     +--rw traffic-profile?      traffic-profile-ref
      |     +--rw service-protection
-     |     |  +--rw service-protection?       service-protection
+     |     |  +--rw protection?               service-protection
      |     |  +--rw sequence-number-length?   sequence-number-field
-     |     +--rw service-operation?    service-operation
+     |     +--rw operation?            operation
      |     +--rw incoming
      |     |  +--rw (incoming)
      |     |     +--:(app-flow)
      |     |     |  +--rw app-flow
-     |     |     |     +--rw app-flow-list*   app-flow-ref
+     |     |     |     +--rw flow*   app-flow-ref
      |     |     +--:(service-aggregation)
      |     |     |  +--rw service-aggregation
-     |     |     |     +--rw service-sub-layer*
-     |     |     |             service-sub-layer-ref
+     |     |     |     +--rw sub-layer*   service-sub-layer-ref
      |     |     +--:(forwarding-aggregation)
      |     |     |  +--rw forwarding-aggregation
-     |     |     |     +--rw forwarding-sub-layer*
-     |     |     |             forwarding-sub-layer-ref
+     |     |     |     +--rw sub-layer*   forwarding-sub-layer-ref
      |     |     +--:(service-id)
      |     |        +--rw service-id
      |     |           +--rw (detnet-flow-type)?
@@ -3494,9 +3527,8 @@ module: ietf-detnet
      |        +--rw (outgoing)
      |           +--:(forwarding-sub-layer)
      |           |  +--rw forwarding-sub-layer
-     |           |     +--rw service-outgoing-list*
-     |           |             [service-outgoing-index]
-     |           |        +--rw service-outgoing-index        uint8
+     |           |     +--rw service-outgoing* [index]
+     |           |        +--rw index                         uint8
      |           |        +--rw (header-type)?
      |           |        |  +--:(mpls)
      |           |        |  |  +--rw mpls-label-stack
@@ -3520,11 +3552,11 @@ module: ietf-detnet
      |           |        |     |       inet:port-number
      |           |        |     +--rw destination-port?
      |           |        |             inet:port-number
-     |           |        +--rw forwarding-sub-layer*
+     |           |        +--rw sub-layer*
      |           |                forwarding-sub-layer-ref
      |           +--:(service-sub-layer)
      |           |  +--rw service-sub-layer
-     |           |     +--rw aggregation-service-sub-layer?
+     |           |     +--rw aggregation-sub-layer?
      |           |     |       service-sub-layer-ref
      |           |     +--rw service-label
      |           |        +--rw mpls-label-stack
@@ -3536,30 +3568,26 @@ module: ietf-detnet
      |           |              +--rw traffic-class?   uint8
      |           +--:(app-flow)
      |           |  +--rw app-flow
-     |           |     +--rw app-flow-list*   app-flow-ref
+     |           |     +--rw flow*   app-flow-ref
      |           +--:(service-disaggregation)
      |           |  +--rw service-disaggregation
-     |           |     +--rw service-sub-layer*
-     |           |             service-sub-layer-ref
+     |           |     +--rw sub-layer*   service-sub-layer-ref
      |           +--:(forwarding-disaggregation)
      |              +--rw forwarding-disaggregation
-     |                 +--rw forwarding-sub-layer*
-     |                         forwarding-sub-layer-ref
-     +--rw forwarding-sub-layer
-        +--rw forwarding-sub-layer-list* [name]
-           +--rw name                    string
-           +--rw traffic-profile?        traffic-profile-ref
-           +--rw forwarding-operation?   forwarding-operations
+     |                 +--rw sub-layer*   forwarding-sub-layer-ref
+     +--rw forwarding
+        +--rw sub-layer* [name]
+           +--rw name               string
+           +--rw traffic-profile?   traffic-profile-ref
+           +--rw operation?         forwarding-operations
            +--rw incoming
            |  +--rw (incoming)
            |     +--:(service-sub-layer)
            |     |  +--rw service-sub-layer
-           |     |     +--rw service-sub-layer*
-           |     |             service-sub-layer-ref
+           |     |     +--rw sub-layer*   service-sub-layer-ref
            |     +--:(forwarding-aggregation)
            |     |  +--rw forwarding-aggregation
-           |     |     +--rw forwarding-sub-layer*
-           |     |             forwarding-sub-layer-ref
+           |     |     +--rw sub-layer*   forwarding-sub-layer-ref
            |     +--:(forwarding-id)
            |        +--rw forwarding-id
            |           +--rw interface?
@@ -3623,12 +3651,12 @@ module: ietf-detnet
                  |        |     |  +--rw (operation-type)?
                  |        |     |     +--:(ip-forwarding)
                  |        |     |     |  +--rw next-hop-address?
-                 |        |     |     |        inet:ip-address-no-zone
+                 |        |     |     |          inet:ip-address-no-zone
                  |        |     |     +--:(mpls-over-ip-encapsulation)
                  |        |     |        +--rw src-ip-address?
-                 |        |     |        |     inet:ip-address-no-zone
+                 |        |     |        |       inet:ip-address-no-zone
                  |        |     |        +--rw dest-ip-address?
-                 |        |     |        |     inet:ip-address-no-zone
+                 |        |     |        |       inet:ip-address-no-zone
                  |        |     |        +--rw protocol-next-header?
                  |        |     |        |       uint8
                  |        |     |        +--rw dscp?
@@ -3658,13 +3686,12 @@ module: ietf-detnet
                  |                 |  +--rw (operation-type)?
                  |                 |     +--:(ip-forwarding)
                  |                 |     |  +--rw next-hop-address?
-                 |                 |     |     inet:ip-address-no-zone
-                 |                 |     +--:(mpls-over-ip-
-                 |                 |        | encapsulation)
+                 |                 |     |          inet:ip-address-no-zone
+                 |                 |     +--:(mpls-over-ip-encapsulation)
                  |                 |        +--rw src-ip-address?
-                 |                 |        |  inet:ip-address-no-zone
+                 |                 |        |       inet:ip-address-no-zone
                  |                 |        +--rw dest-ip-address?
-                 |                 |        |  inet:ip-address-no-zone
+                 |                 |        |       inet:ip-address-no-zone
                  |                 |        +--rw protocol-next-header?
                  |                 |        |       uint8
                  |                 |        +--rw dscp?
@@ -3688,7 +3715,7 @@ module: ietf-detnet
                  |                                  uint8
                  +--:(service-aggregation)
                  |  +--rw service-aggregation
-                 |     +--rw aggregation-service-sub-layer?
+                 |     +--rw aggregation-sub-layer?
                  |     |       service-sub-layer-ref
                  |     +--rw optional-forwarding-label
                  |        +--rw mpls-label-stack
@@ -3700,7 +3727,7 @@ module: ietf-detnet
                  |              +--rw traffic-class?   uint8
                  +--:(forwarding-sub-layer)
                  |  +--rw forwarding-sub-layer
-                 |     +--rw aggregation-forwarding-sub-layer?
+                 |     +--rw aggregation-sub-layer?
                  |     |       forwarding-sub-layer-ref
                  |     +--rw forwarding-label
                  |        +--rw mpls-label-stack
@@ -3712,12 +3739,10 @@ module: ietf-detnet
                  |              +--rw traffic-class?   uint8
                  +--:(service-sub-layer)
                  |  +--rw service-sub-layer
-                 |     +--rw service-sub-layer*
-                 |             service-sub-layer-ref
+                 |     +--rw sub-layer*   service-sub-layer-ref
                  +--:(forwarding-disaggregation)
                     +--rw forwarding-disaggregation
-                       +--rw forwarding-sub-layer*
-                               forwarding-sub-layer-ref
+                       +--rw sub-layer*   forwarding-sub-layer-ref
 </pre><a href="#section-appendix.a-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3742,7 +3767,7 @@ module: ietf-detnet
                 Two ways of illustrating this follow, then the JSON operational data model
                 corresponding to the diagrams follows.<a href="#section-b.1-1" class="pilcrow">¶</a></p>
 <span id="name-case-a-1-example-json-opera"></span><div id="case-a1">
-<figure id="figure-1">
+<figure id="figure-2">
           <div id="section-b.1-2.1">
             <div class="artwork art-svg alignLeft" id="section-b.1-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 -65 210 110" version="1.1">
@@ -3751,7 +3776,7 @@ module: ietf-detnet
                   <path d="m 78.932864,66.471283 c 0,-0.457693 -0.276038,-0.828725 -0.616551,-0.828725 h -6.739296 c -0.34052,0 -0.616564,0.371032 -0.616564,0.828725 v 7.244984 c 0,0.457699 0.276044,0.828733 0.616564,0.828733 h 6.739296 c 0.340513,0 0.616551,-0.371034 0.616551,-0.828733 z" stroke="#000000" stroke-width="0.331796" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
                   <path d="m 77.497526,66.137137 v 0.959894 h -1.664393 l -0.886453,2.153914 -0.904562,-2.153914 h -1.646302 v -0.959894 l -1.067381,1.217424 1.067381,1.217425 v -0.819418 h 1.175932 l 1.013106,2.36462 -1.013106,2.388029 h -1.175932 v -0.889646 l -1.067381,1.217424 1.067381,1.217425 v -0.913075 h 1.646302 l 0.904562,-2.200734 0.886453,2.200734 h 1.664393 V 74.0036 l 1.067381,-1.170605 -1.067381,-1.217424 v 0.889646 h -1.15784 l -1.031198,-2.388029 1.013107,-2.36462 h 1.175931 v 0.796008 l 1.067381,-1.194015 z" stroke="#000000" stroke-width="0.248847" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
                   <path d="M 47.411229,70.093778 H 70.942068" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none" fill-rule="evenodd"></path>
-                  <text font-size="2.70177px" x="8.3851624" y="67.142136" transform="scale(0.86254171,1.1593642)">Source 1<tspan font-size="2.70177px" x="9.6277428" y="70.412712">192.0.2.1</tspan>
+                  <text font-size="2.70177px" x="8.3851624" y="67.142136" transform="scale(0.86254171,1.1593642)">Source 1<tspan font-size="2.70177px" x="9.6277428" y="70.412712">2001:db8:1000::/48</tspan>
                     <tspan font-size="2.70177px" x="44.797974" y="67.142136">Ingress 1</tspan>
                     <tspan font-size="2.70177px" x="46.186546" y="70.412712">192.0.2.2</tspan>
                     <tspan font-size="2.70177px" x="82.330742" y="67.142136">Relay 1</tspan>
@@ -3767,7 +3792,7 @@ module: ietf-detnet
                   </text>
                   <path d="m 110.4545,44.874615 c 0,-0.457693 -0.27604,-0.828726 -0.61655,-0.828726 h -6.73929 c -0.34053,0 -0.61657,0.371033 -0.61657,0.828726 v 7.244984 c 0,0.457699 0.27604,0.828733 0.61657,0.828733 h 6.73929 c 0.34051,0 0.61655,-0.371034 0.61655,-0.828733 z" stroke="#000000" stroke-width="0.331796" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
                   <path d="m 108.9146,44.705327 v 0.939898 h -1.63618 l -0.87145,2.10904 -0.88922,-2.10904 h -1.6184 v -0.939898 l -1.0493,1.19207 1.0493,1.192071 v -0.802357 h 1.156 l 0.99593,2.315358 -0.99593,2.338294 h -1.156 v -0.871122 l -1.0493,1.192052 1.0493,1.192071 v -0.894052 h 1.6184 l 0.88922,-2.154886 0.87145,2.154886 h 1.63618 v 0.848205 l 1.04929,-1.146224 -1.04929,-1.192052 v 0.871122 h -1.13821 l -1.01372,-2.338294 0.99593,-2.315358 h 1.156 v 0.779421 l 1.04929,-1.169135 z" stroke="#000000" stroke-width="0.248847" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
-                  <text font-size="2.70177px" x="225.28676" y="67.142136" transform="scale(0.86254171,1.1593642)">Destination 1<tspan font-size="2.70177px" x="228.97635" y="70.412712">192.0.2.8</tspan>
+                  <text font-size="2.70177px" x="225.28676" y="67.142136" transform="scale(0.86254171,1.1593642)">Destination 1<tspan font-size="2.70177px" x="228.97635" y="70.412712">2001:db8:2000::/48</tspan>
                   </text>
                   <path d="M 15.889594,70.093778 H 39.420433" stroke="#000000" stroke-miterlimit="8" fill="none" fill-rule="evenodd"></path>
                   <path d="M 78.932864,70.035743 102.46371,48.49711" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none" fill-rule="evenodd"></path>
@@ -3787,7 +3812,7 @@ module: ietf-detnet
                     <tspan font-size="2.27518px" x="99.757515" y="38.986801">label 10001</tspan>
                   </text>
                   <rect x="81.14061" y="18.8223" width="18.520494" height="9.3970232" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
-                  <text font-size="2.70177px" x="99.11544" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan font-size="2.70177px" x="102.61922" y="22.918352">192.0.2.8</tspan>
+                  <text font-size="2.70177px" x="99.11544" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan font-size="2.70177px" x="102.61922" y="22.918352">2001:db8:2000::/48</tspan>
                   </text>
                   <rect x="81.017952" y="120.04636" width="18.643147" height="9.561883" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
                   <text font-size="2.27518px" x="101.50993" y="107.24217" transform="scale(0.86254171,1.1593642)">MPLS<tspan font-size="2.27518px" x="97.423851" y="109.94393">F</tspan>
@@ -3795,7 +3820,7 @@ module: ietf-detnet
                     <tspan font-size="2.27518px" x="99.621994" y="109.94393">label 10002</tspan>
                   </text>
                   <rect x="81.017952" y="101.41718" width="18.643147" height="9.3970232" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
-                  <text font-size="2.70177px" x="98.979935" y="90.889305" transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan font-size="2.70177px" x="102.4837" y="94.159889">192.0.2.8</tspan>
+                  <text font-size="2.70177px" x="98.979935" y="90.889305" transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan font-size="2.70177px" x="102.4837" y="94.159889">2001:db8:2000::/48</tspan>
                   </text>
                   <rect x="112.66224" y="28.219326" width="18.520494" height="9.5618668" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
                   <text font-size="2.27518px" x="138.18581" y="27.895308" transform="scale(0.86254171,1.1593642)">MPLS<tspan font-size="2.27518px" x="135.32407" y="30.597084">S</tspan>
@@ -3808,7 +3833,7 @@ module: ietf-detnet
                     <tspan font-size="2.27518px" x="136.29788" y="38.986801">label 10003</tspan>
                   </text>
                   <rect x="112.66224" y="18.8223" width="18.520494" height="9.3970232" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
-                  <text font-size="2.70177px" x="135.65608" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan font-size="2.70177px" x="139.15987" y="22.918352">192.0.2.8</tspan>
+                  <text font-size="2.70177px" x="135.65608" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan font-size="2.70177px" x="139.15987" y="22.918352">2001:db8:2000::/48</tspan>
                   </text>
                   <rect x="112.90755" y="120.04636" width="18.520494" height="9.561883" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
                   <text font-size="2.27518px" x="138.41759" y="107.24217" transform="scale(0.86254171,1.1593642)">MPLS<tspan font-size="2.27518px" x="134.33151" y="109.94393">F</tspan>
@@ -3816,7 +3841,7 @@ module: ietf-detnet
                     <tspan font-size="2.27518px" x="136.52966" y="109.94393">label 10004</tspan>
                   </text>
                   <rect x="112.90755" y="101.41718" width="18.520494" height="9.3970232" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
-                  <text font-size="2.70177px" x="135.88788" y="90.889305" transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan font-size="2.70177px" x="139.39165" y="94.159889">192.0.2.8</tspan>
+                  <text font-size="2.70177px" x="135.88788" y="90.889305" transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan font-size="2.70177px" x="139.39165" y="94.159889">2001:db8:2000::/48</tspan>
                   </text>
                   <rect x="49.864277" y="28.219326" width="18.520494" height="9.5618668" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
                   <text font-size="2.27518px" x="65.358055" y="27.895308" transform="scale(0.86254171,1.1593642)">MPLS<tspan font-size="2.27518px" x="62.4963" y="30.597084">S</tspan>
@@ -3829,7 +3854,7 @@ module: ietf-detnet
                     <tspan font-size="2.27518px" x="63.470974" y="38.986801">label 10000</tspan>
                   </text>
                   <rect x="49.864277" y="18.8223" width="18.520494" height="9.3970232" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
-                  <text font-size="2.70177px" x="62.828907" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan font-size="2.70177px" x="66.33268" y="22.918352">192.0.2.8</tspan>
+                  <text font-size="2.70177px" x="62.828907" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan font-size="2.70177px" x="66.33268" y="22.918352">2001:db8:2000::/48</tspan>
                   </text>
                   <rect x="144.30653" y="28.219326" width="18.520494" height="9.5618668" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
                   <text font-size="2.27518px" x="174.84889" y="27.895308" transform="scale(0.86254171,1.1593642)">MPLS<tspan font-size="2.27518px" x="171.98714" y="30.597084">S</tspan>
@@ -3842,7 +3867,7 @@ module: ietf-detnet
                     <tspan font-size="2.27518px" x="172.95955" y="38.986801">label 10005</tspan>
                   </text>
                   <rect x="144.30653" y="18.8223" width="18.520494" height="9.3970232" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
-                  <text font-size="2.70177px" x="172.32059" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan font-size="2.70177px" x="175.82437" y="22.918352">192.0.2.8</tspan>
+                  <text font-size="2.70177px" x="172.32059" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan font-size="2.70177px" x="175.82437" y="22.918352">2001:db8:2000::/48</tspan>
                   </text>
                   <rect x="81.017952" y="110.81422" width="18.643147" height="9.3970232" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
                   <text font-size="2.27518px" x="101.50908" y="99.136833" transform="scale(0.86254171,1.1593642)">MPLS<tspan font-size="2.27518px" x="98.647324" y="101.83861">S</tspan>
@@ -3862,10 +3887,10 @@ module: ietf-detnet
                   <rect x="75.498604" y="67.291161" width="64.760406" height="6.2646656" stroke="#000000" stroke-width="0.248847" stroke-linejoin="round" stroke-miterlimit="10" fill="none"></rect>
                   <text font-size="2.70177px" x="121.97231" y="61.738594" transform="scale(0.86254171,1.1593642)">DN-1</text>
                   <rect x="18.587944" y="18.8223" width="18.520494" height="9.3970232" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
-                  <text font-size="2.70177px" x="26.58005" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan font-size="2.70177px" x="30.083824" y="22.918352">192.0.2.8</tspan>
+                  <text font-size="2.70177px" x="26.58005" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan font-size="2.70177px" x="30.083824" y="22.918352">2001:db8:2000::/48</tspan>
                   </text>
                   <rect x="175.95082" y="18.8223" width="18.643147" height="9.3970232" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none"></rect>
-                  <text font-size="2.70177px" x="209.06046" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan font-size="2.70177px" x="212.56424" y="22.918352">192.0.2.8</tspan>
+                  <text font-size="2.70177px" x="209.06046" y="19.647791" transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan font-size="2.70177px" x="212.56424" y="22.918352">2001:db8:2000::/48</tspan>
                   </text>
                   <path d="m 38.93289,74.545 c -0.211698,0 -0.383288,-0.922558 -0.383288,-2.060756 0,-1.138192 0.17159,-2.06075 0.383288,-2.06075 0.211699,0 0.383289,0.922558 0.383289,2.06075 0,1.138198 -0.17159,2.060756 -0.383289,2.060756 H 15.904925 c -0.211698,0 -0.383288,-0.922558 -0.383288,-2.060756 0,-1.138192 0.17159,-2.06075 0.383288,-2.06075 H 38.93289" stroke="#000000" stroke-width="0.331796" stroke-miterlimit="8" fill="none" fill-rule="evenodd"></path>
                   <text font-size="2.70177px" x="28.600546" y="63.729374" transform="scale(0.86254171,1.1593642)">App-1</text>
@@ -3947,12 +3972,12 @@ module: ietf-detnet
               </svg><a href="#section-b.1-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-case-a-1-example-json-opera" class="selfRef">Case A-1 Example JSON Operational/Configuration</a>
           </figcaption></figure>
 </div>
 <span id="name-case-a-1-example-json-operat"></span><div id="case-a1-pipe">
-<figure id="figure-2">
+<figure id="figure-3">
           <div id="section-b.1-3.1">
             <div class="artwork art-svg alignLeft" id="section-b.1-3.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="100mm" viewBox="0 0 210 110" version="1.1">
@@ -4039,12 +4064,12 @@ module: ietf-detnet
               </svg><a href="#section-b.1-3.1.2" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-case-a-1-example-json-operat" class="selfRef">Case A-1 Example JSON Operational/Configuration</a>
           </figcaption></figure>
 </div>
 <span id="name-example-a-1-detnet-json-con"></span><div id="example-detnet-json-configuration-a-1">
-<figure id="figure-3">
+<figure id="figure-4">
           <div class="artwork art-text alignLeft" id="section-b.1-4.1">
 <pre>
 {
@@ -4097,30 +4122,30 @@ module: ietf-detnet
       "app-flow": [
         {
           "name": "app-0",
-          "app-flow-bidir-congruent": false,
+          "bidir-congruent": false,
           "outgoing-service": "ssl-1",
           "traffic-profile": "pf-1",
           "ingress": {
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.1/32",
-              "dest-ip-prefix": "192.0.2.8/32",
+              "src-ip-prefix": "2001:db8:1000::/48",
+              "dest-ip-prefix": "2001:db8:2000::/48",
               "dscp": 6
             }
           }
         },
         {
           "name": "app-1",
-          "app-flow-bidir-congruent": false,
+          "bidir-congruent": false,
           "outgoing-service": "ssl-1",
           "traffic-profile": "pf-1",
           "ingress": {
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.1/32",
-              "dest-ip-prefix": "192.0.2.8/32",
+              "src-ip-prefix": "2001:db8:1000::/48",
+              "dest-ip-prefix": "2001:db8:2000::/48",
               "dscp": 7
             }
           }
@@ -4129,7 +4154,7 @@ module: ietf-detnet
     },
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -4151,7 +4176,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
@@ -4172,7 +4197,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-3",
+        "name": "pf-3",
         "flow-spec": {
           "interval": 5,
           "max-pkts-per-interval": 10,
@@ -4183,20 +4208,20 @@ module: ietf-detnet
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-2",
-          "service-operation": "service-initiation",
+          "operation": "initiation",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
           "incoming": {
             "app-flow": {
-              "flow-list": [
+              "flow": [
                 "app-0",
                 "app-1"
               ]
@@ -4204,9 +4229,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -4215,7 +4240,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-1"
                   ]
                 }
@@ -4225,15 +4250,15 @@ module: ietf-detnet
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -4258,7 +4283,7 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-example-a-1-detnet-json-con" class="selfRef">Example A-1 DetNet JSON configuration</a>
           </figcaption></figure>
 </div>
@@ -4273,7 +4298,7 @@ module: ietf-detnet
                 illustrating this case is shown and then the 
                 corresponding XML operational data follows.<a href="#section-b.2-1" class="pilcrow">¶</a></p>
 <span id="name-case-b-1-example-xml-config"></span><div id="case-b1">
-<figure id="figure-4">
+<figure id="figure-5">
           <div id="section-b.2-2.1">
             <div class="artwork art-svg alignLeft" id="section-b.2-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 15 210 110" version="1.1">
@@ -4598,12 +4623,12 @@ module: ietf-detnet
               </svg><a href="#section-b.2-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-case-b-1-example-xml-config" class="selfRef">Case B-1 Example XML Config: Aggregation using a Forwarding Sub-layer</a>
           </figcaption></figure>
 </div>
 <span id="name-example-b-1-detnet-xml-conf"></span><div id="example-detnet-xml-fwd-aggregation-b-1">
-<figure id="figure-5">
+<figure id="figure-6">
           <div class="artwork art-text alignLeft" id="section-b.2-3.1">
 <pre>
 &lt;interfaces
@@ -4655,7 +4680,7 @@ module: ietf-detnet
   &lt;app-flows&gt;
     &lt;app-flow&gt;
       &lt;name&gt;app-1&lt;/name&gt;
-      &lt;app-flow-bidir-congruent&gt;false&lt;/app-flow-bidir-congruent&gt;
+      &lt;bidir-congruent&gt;false&lt;/bidir-congruent&gt;
       &lt;outgoing-service&gt;ssl-1&lt;/outgoing-service&gt;
        &lt;traffic-profile&gt;1&lt;/traffic-profile&gt;
       &lt;ingress&gt;
@@ -4670,7 +4695,7 @@ module: ietf-detnet
     &lt;/app-flow&gt;
     &lt;app-flow&gt;
       &lt;name&gt;app-2&lt;/name&gt;
-      &lt;app-flow-bidir-congruent&gt;false&lt;/app-flow-bidir-congruent&gt;
+      &lt;bidir-congruent&gt;false&lt;/bidir-congruent&gt;
       &lt;outgoing-service&gt;ssl-2&lt;/outgoing-service&gt;
        &lt;traffic-profile&gt;1&lt;/traffic-profile&gt;
       &lt;ingress&gt;
@@ -4686,7 +4711,7 @@ module: ietf-detnet
     &lt;/app-flow&gt;
   &lt;/app-flows&gt;
   &lt;traffic-profile&gt;
-    &lt;profile-name&gt;1&lt;/profile-name&gt;
+    &lt;name&gt;1&lt;/name&gt;
     &lt;traffic-requirements&gt;
       &lt;min-bandwidth&gt;100000000&lt;/min-bandwidth&gt;
       &lt;max-latency&gt;100000000&lt;/max-latency&gt;
@@ -4699,7 +4724,7 @@ module: ietf-detnet
     &lt;member-apps&gt;app-2&lt;/member-apps&gt;
   &lt;/traffic-profile&gt;
   &lt;traffic-profile&gt;
-    &lt;profile-name&gt;2&lt;/profile-name&gt;
+    &lt;name&gt;2&lt;/name&gt;
     &lt;traffic-requirements&gt;
       &lt;min-bandwidth&gt;100000000&lt;/min-bandwidth&gt;
       &lt;max-latency&gt;100000000&lt;/max-latency&gt;
@@ -4712,7 +4737,7 @@ module: ietf-detnet
     &lt;member-services&gt;ssl-2&lt;/member-services&gt;
   &lt;/traffic-profile&gt;
   &lt;traffic-profile&gt;
-    &lt;profile-name&gt;3&lt;/profile-name&gt;
+    &lt;name&gt;3&lt;/name&gt;
     &lt;flow-spec&gt;
       &lt;interval&gt;5&lt;/interval&gt;
       &lt;max-pkts-per-interval&gt;10&lt;/max-pkts-per-interval&gt;
@@ -4720,75 +4745,75 @@ module: ietf-detnet
     &lt;/flow-spec&gt;
     &lt;member-fwd-sublayers&gt;afl-1&lt;/member-fwd-sublayers&gt;
   &lt;/traffic-profile&gt;
-  &lt;service-sub-layer&gt;
-    &lt;service-sub-layer-list&gt;
+  &lt;service&gt;
+    &lt;sub-layer&gt;
       &lt;name&gt;ssl-1&lt;/name&gt;
       &lt;service-rank&gt;10&lt;/service-rank&gt;
       &lt;traffic-profile&gt;2&lt;/traffic-profile&gt;
-      &lt;service-operation&gt;service-initiation&lt;/service-operation&gt;
+      &lt;operation&gt;initiation&lt;/operation&gt;
       &lt;service-protection&gt;
-        &lt;service-protection&gt;none&lt;/service-protection&gt;
+        &lt;protection&gt;none&lt;/protection&gt;
         &lt;sequence-number-length&gt;long-sn&lt;/sequence-number-length&gt;
       &lt;/service-protection&gt;
      &lt;incoming&gt;
         &lt;app-flow&gt;
-          &lt;flow-list&gt;app-1&lt;/flow-list&gt;
+          &lt;flow&gt;app-1&lt;/flow&gt;
         &lt;/app-flow&gt;
       &lt;/incoming&gt;
       &lt;outgoing&gt;
         &lt;forwarding-sub-layer&gt;
-          &lt;service-outgoing-list&gt;
-            &lt;service-outgoing-index&gt;0&lt;/service-outgoing-index&gt;
+          &lt;service-outgoing&gt;
+            &lt;index&gt;0&lt;/index&gt;
             &lt;mpls-label-stack&gt;
               &lt;entry&gt;
                 &lt;id&gt;0&lt;/id&gt;
                 &lt;label&gt;100&lt;/label&gt;
               &lt;/entry&gt;
             &lt;/mpls-label-stack&gt;
-            &lt;forwarding-sub-layer&gt;afl-1&lt;/forwarding-sub-layer&gt;
-          &lt;/service-outgoing-list&gt;
+            &lt;sub-layer&gt;afl-1&lt;/sub-layer&gt;
+          &lt;/service-outgoing&gt;
          &lt;/forwarding-sub-layer&gt;
       &lt;/outgoing&gt;
-    &lt;/service-sub-layer-list&gt;
-    &lt;service-sub-layer-list&gt;
+    &lt;/sub-layer&gt;
+    &lt;sub-layer&gt;
       &lt;name&gt;ssl-2&lt;/name&gt;
       &lt;service-rank&gt;10&lt;/service-rank&gt;
       &lt;traffic-profile&gt;2&lt;/traffic-profile&gt;
-      &lt;service-operation&gt;service-initiation&lt;/service-operation&gt;
+      &lt;operation&gt;initiation&lt;/operation&gt;
       &lt;service-protection&gt;
-        &lt;service-protection&gt;none&lt;/service-protection&gt;
+        &lt;protection&gt;none&lt;/protection&gt;
         &lt;sequence-number-length&gt;long-sn&lt;/sequence-number-length&gt;
       &lt;/service-protection&gt;
      &lt;incoming&gt;
         &lt;app-flow&gt;
-          &lt;flow-list&gt;app-2&lt;/flow-list&gt;
+          &lt;flow&gt;app-2&lt;/flow&gt;
         &lt;/app-flow&gt;
       &lt;/incoming&gt;
       &lt;outgoing&gt;
         &lt;forwarding-sub-layer&gt;
-          &lt;service-outgoing-list&gt;
-            &lt;service-outgoing-index&gt;0&lt;/service-outgoing-index&gt;
+          &lt;service-outgoing&gt;
+            &lt;index&gt;0&lt;/index&gt;
             &lt;mpls-label-stack&gt;
               &lt;entry&gt;
                 &lt;id&gt;0&lt;/id&gt;
                 &lt;label&gt;103&lt;/label&gt;
               &lt;/entry&gt;
             &lt;/mpls-label-stack&gt;
-            &lt;forwarding-sub-layer&gt;afl-1&lt;/forwarding-sub-layer&gt;
-          &lt;/service-outgoing-list&gt;
+            &lt;sub-layer&gt;afl-1&lt;/sub-layer&gt;
+          &lt;/service-outgoing&gt;
          &lt;/forwarding-sub-layer&gt;
       &lt;/outgoing&gt;
-    &lt;/service-sub-layer-list&gt;
-    &lt;/service-sub-layer&gt;
-    &lt;forwarding-sub-layer&gt;
-    &lt;forwarding-sub-layer-list&gt;
+    &lt;/sub-layer&gt;
+    &lt;/service&gt;
+    &lt;forwarding&gt;
+    &lt;sub-layer&gt;
       &lt;name&gt;afl-1&lt;/name&gt;
       &lt;traffic-profile&gt;3&lt;/traffic-profile&gt;
-      &lt;forwarding-operation&gt;impose-and-forward&lt;/forwarding-operation&gt;
+      &lt;operation&gt;impose-and-forward&lt;/operation&gt;
       &lt;incoming&gt;
         &lt;service-sub-layer&gt;
-          &lt;service-sub-layer&gt;ssl-1&lt;/service-sub-layer&gt;
-          &lt;service-sub-layer&gt;ssl-2&lt;/service-sub-layer&gt;
+          &lt;sub-layer&gt;ssl-1&lt;/sub-layer&gt;
+          &lt;sub-layer&gt;ssl-2&lt;/sub-layer&gt;
         &lt;/service-sub-layer&gt;
       &lt;/incoming&gt;
       &lt;outgoing&gt;
@@ -4802,12 +4827,12 @@ module: ietf-detnet
           &lt;/mpls-label-stack&gt;
          &lt;/interface&gt;
       &lt;/outgoing&gt;
-    &lt;/forwarding-sub-layer-list&gt;
-    &lt;/forwarding-sub-layer&gt;
+    &lt;/sub-layer&gt;
+    &lt;/forwarding&gt;
 &lt;/detnet&gt;
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-example-b-1-detnet-xml-conf" class="selfRef">Example B-1 DetNet XML configuration</a>
           </figcaption></figure>
 </div>
@@ -4822,7 +4847,7 @@ module: ietf-detnet
                 A diagram illustrating this case is shown and then the 
                 corresponding JSON operational data follows.<a href="#section-b.3-1" class="pilcrow">¶</a></p>
 <span id="name-case-b-2-example-json-servi"></span><div id="case-b2">
-<figure id="figure-6">
+<figure id="figure-7">
           <div id="section-b.3-2.1">
             <div class="artwork art-svg alignLeft" id="section-b.3-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 15 210 110" version="1.1">
@@ -5153,12 +5178,12 @@ module: ietf-detnet
               </svg><a href="#section-b.3-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-case-b-2-example-json-servi" class="selfRef">Case B-2 Example JSON Service Aggregation</a>
           </figcaption></figure>
 </div>
 <span id="name-example-b-2-detnet-json-ser"></span><div id="example-detnet-json-service-aggregation-b-2">
-<figure id="figure-7">
+<figure id="figure-8">
           <div class="artwork art-text alignLeft" id="section-b.3-3.1">
 <pre>
 {
@@ -5211,7 +5236,7 @@ module: ietf-detnet
       "app-flow": [
         {
           "name": "app-1",
-          "app-flow-bidir-congruent": false,
+          "bidir-congruent": false,
           "outgoing-service": "ssl-1",
           "traffic-profile": "1",
           "ingress": {
@@ -5226,7 +5251,7 @@ module: ietf-detnet
         },
         {
           "name": "app-2",
-          "app-flow-bidir-congruent": false,
+          "bidir-congruent": false,
           "outgoing-service": "ssl-2",
           "traffic-profile": "1",
           "ingress": {
@@ -5243,7 +5268,7 @@ module: ietf-detnet
     },
     "traffic-profile": [
       {
-        "profile-name": "1",
+        "name": "1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -5258,7 +5283,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "2",
+        "name": "2",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -5273,7 +5298,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "3",
+        "name": "3",
         "flow-spec": {
           "interval": 5,
           "max-pkts-per-interval": 10,
@@ -5284,27 +5309,27 @@ module: ietf-detnet
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "2",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-initiation",
+          "operation": "initiation",
           "incoming": {
             "app-flow": {
-              "flow-list": [
+              "flow": [
                 "app-1"
               ]
             }
           },
           "outgoing": {
             "service-sub-layer": {
-              "aggregation-service-sub-layer": "asl-1",
+              "aggregation-sub-layer": "asl-1",
               "service-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -5322,21 +5347,21 @@ module: ietf-detnet
           "name": "ssl-2",
           "service-rank": 10,
           "traffic-profile": "2",
-          "service-operation": "service-initiation",
+          "operation": "initiation",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
           "incoming": {
             "app-flow": {
-              "flow-list": [
+              "flow": [
                 "app-2"
               ]
             }
           },
           "outgoing": {
             "service-sub-layer": {
-              "aggregation-service-sub-layer": "asl-1",
+              "aggregation-sub-layer": "asl-1",
               "service-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -5354,12 +5379,12 @@ module: ietf-detnet
           "name": "asl-1",
           "service-rank": 10,
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
           "incoming": {
             "service-aggregation": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1",
                 "ssl-2"
               ]
@@ -5367,9 +5392,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -5378,7 +5403,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "afl-1"
                   ]
                 }
@@ -5388,15 +5413,15 @@ module: ietf-detnet
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "afl-1",
           "traffic-profile": "3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }
@@ -5421,7 +5446,7 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-example-b-2-detnet-json-ser" class="selfRef">Example B-2 DetNet JSON Service Aggregation</a>
           </figcaption></figure>
 </div>
@@ -5436,7 +5461,7 @@ module: ietf-detnet
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
                 corresponding JSON operational data follows.<a href="#section-b.4-1" class="pilcrow">¶</a></p>
 <span id="name-case-c-1-example-json-servi"></span><div id="case-c1">
-<figure id="figure-8">
+<figure id="figure-9">
           <div id="section-b.4-2.1">
             <div class="artwork art-svg alignLeft" id="section-b.4-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 15 210 110" version="1.1">
@@ -5808,12 +5833,12 @@ module: ietf-detnet
               </svg><a href="#section-b.4-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-case-c-1-example-json-servi" class="selfRef">Case C-1 Example JSON Service Aggregation/Disaggregation</a>
           </figcaption></figure>
 </div>
 <span id="name-example-c-1-detnet-json-rel"></span><div id="example-detnet-json-service-aggregation-c-1">
-<figure id="figure-9">
+<figure id="figure-10">
           <div class="artwork art-text alignLeft" id="section-b.4-3.1">
 <pre>
 {
@@ -5864,7 +5889,7 @@ module: ietf-detnet
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -5879,7 +5904,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -5891,7 +5916,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-3",
+        "name": "pf-3",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -5907,17 +5932,17 @@ module: ietf-detnet
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "replication",
+            "protection": "replication",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -5932,9 +5957,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -5943,7 +5968,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-2",
                     "fsl-3"
                   ]
@@ -5957,10 +5982,10 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "replication",
+            "protection": "replication",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -5975,9 +6000,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -5986,7 +6011,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-5",
                     "fsl-6"
                   ]
@@ -5997,12 +6022,12 @@ module: ietf-detnet
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -6018,7 +6043,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -6027,17 +6052,17 @@ module: ietf-detnet
         {
           "name": "fsl-2",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "aggregation-forwarding-sub-layer": "afl-1",
+              "aggregation-sub-layer": "afl-1",
               "forwarding-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -6054,17 +6079,17 @@ module: ietf-detnet
         {
           "name": "fsl-3",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "aggregation-forwarding-sub-layer": "afl-2",
+              "aggregation-sub-layer": "afl-2",
               "forwarding-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -6081,7 +6106,7 @@ module: ietf-detnet
         {
           "name": "fsl-4",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -6097,7 +6122,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -6106,17 +6131,17 @@ module: ietf-detnet
         {
           "name": "fsl-5",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "aggregation-forwarding-sub-layer": "afl-1",
+              "aggregation-sub-layer": "afl-1",
               "forwarding-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -6133,17 +6158,17 @@ module: ietf-detnet
         {
           "name": "fsl-6",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "aggregation-forwarding-sub-layer": "afl-2",
+              "aggregation-sub-layer": "afl-2",
               "forwarding-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -6160,10 +6185,10 @@ module: ietf-detnet
         {
           "name": "afl-1",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "forwarding-aggregation": {
-              "forwarding-sub-layer": [
+              "sub-layer": [
                 "fsl-2",
                 "fsl-5"
               ]
@@ -6186,10 +6211,10 @@ module: ietf-detnet
         {
           "name": "afl-2",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "forwarding-aggregation": {
-              "forwarding-sub-layer": [
+              "sub-layer": [
                 "fsl-3",
                 "fsl-6"
               ]
@@ -6215,12 +6240,12 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-example-c-1-detnet-json-rel" class="selfRef">Example C-1 DetNet JSON Relay Service Aggregation</a>
           </figcaption></figure>
 </div>
 <span id="name-example-c-1-detnet-json-rela"></span><div id="example-detnet-json-service-disaggregation-c-1">
-<figure id="figure-10">
+<figure id="figure-11">
           <div class="artwork art-text alignLeft" id="section-b.4-4.1">
 <pre>
 {
@@ -6271,7 +6296,7 @@ module: ietf-detnet
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -6286,7 +6311,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -6298,7 +6323,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-3",
+        "name": "pf-3",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -6314,17 +6339,17 @@ module: ietf-detnet
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "elimination",
+            "protection": "elimination",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -6339,9 +6364,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -6350,7 +6375,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-3"
                   ]
                 }
@@ -6363,10 +6388,10 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "elimination",
+            "protection": "elimination",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -6381,9 +6406,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -6392,7 +6417,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-6"
                   ]
                 }
@@ -6402,12 +6427,12 @@ module: ietf-detnet
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "afl-1",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -6423,7 +6448,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-disaggregation": {
-              "forwarding-sub-layer": [
+              "sub-layer": [
                 "fsl-1",
                 "fsl-4"
               ]
@@ -6433,7 +6458,7 @@ module: ietf-detnet
         {
           "name": "afl-2",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -6449,7 +6474,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-disaggregation": {
-              "forwarding-sub-layer": [
+              "sub-layer": [
                 "fsl-2",
                 "fsl-5"
               ]
@@ -6459,7 +6484,7 @@ module: ietf-detnet
         {
           "name": "fsl-1",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -6475,7 +6500,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -6484,7 +6509,7 @@ module: ietf-detnet
         {
           "name": "fsl-2",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -6500,7 +6525,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -6509,10 +6534,10 @@ module: ietf-detnet
         {
           "name": "fsl-3",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -6534,7 +6559,7 @@ module: ietf-detnet
         {
           "name": "fsl-4",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -6550,7 +6575,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -6559,7 +6584,7 @@ module: ietf-detnet
         {
           "name": "fsl-5",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -6575,7 +6600,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -6584,10 +6609,10 @@ module: ietf-detnet
         {
           "name": "fsl-6",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -6612,7 +6637,7 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-example-c-1-detnet-json-rela" class="selfRef">Example C-1 DetNet JSON Relay Service Disaggregation</a>
           </figcaption></figure>
 </div>
@@ -6627,7 +6652,7 @@ module: ietf-detnet
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
                 corresponding JSON operational data follows.<a href="#section-b.5-1" class="pilcrow">¶</a></p>
 <span id="name-case-c-2-example-json-servi"></span><div id="case-c2">
-<figure id="figure-11">
+<figure id="figure-12">
           <div id="section-b.5-2.1">
             <div class="artwork art-svg alignLeft" id="section-b.5-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 15 210 110" version="1.1">
@@ -6960,12 +6985,12 @@ module: ietf-detnet
               </svg><a href="#section-b.5-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
+<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
 <a href="#name-case-c-2-example-json-servi" class="selfRef">Case C-2 Example JSON Service Aggregation/Disaggregation</a>
           </figcaption></figure>
 </div>
 <span id="name-example-c-2-detnet-json-rel"></span><div id="example-detnet-json-service-aggregation-c-2">
-<figure id="figure-12">
+<figure id="figure-13">
           <div class="artwork art-text alignLeft" id="section-b.5-3.1">
 <pre>
 {
@@ -7016,7 +7041,7 @@ module: ietf-detnet
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -7031,7 +7056,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -7043,7 +7068,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-3",
+        "name": "pf-3",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -7055,17 +7080,17 @@ module: ietf-detnet
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "replication",
+            "protection": "replication",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -7080,9 +7105,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -7091,7 +7116,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "afl-1",
                     "afl-2"
                   ]
@@ -7105,10 +7130,10 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "replication",
+            "protection": "replication",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -7123,9 +7148,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -7134,7 +7159,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "afl-1",
                     "afl-2"
                   ]
@@ -7145,12 +7170,12 @@ module: ietf-detnet
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -7166,7 +7191,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -7175,7 +7200,7 @@ module: ietf-detnet
         {
           "name": "fsl-2",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -7191,7 +7216,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -7200,10 +7225,10 @@ module: ietf-detnet
         {
           "name": "afl-1",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1",
                 "ssl-2"
               ]
@@ -7226,10 +7251,10 @@ module: ietf-detnet
         {
           "name": "afl-2",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1",
                 "ssl-2"
               ]
@@ -7255,12 +7280,12 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
+<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
 <a href="#name-example-c-2-detnet-json-rel" class="selfRef">Example C-2 DetNet JSON Relay Aggregation Service Sub-Layer</a>
           </figcaption></figure>
 </div>
 <span id="name-example-c-2-detnet-json-rela"></span><div id="example-detnet-json-service-disaggregation-c-2">
-<figure id="figure-13">
+<figure id="figure-14">
           <div class="artwork art-text alignLeft" id="section-b.5-4.1">
 <pre>
 {
@@ -7311,7 +7336,7 @@ module: ietf-detnet
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -7326,7 +7351,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -7338,7 +7363,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-3",
+        "name": "pf-3",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -7350,17 +7375,17 @@ module: ietf-detnet
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "elimination",
+            "protection": "elimination",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -7375,9 +7400,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -7386,7 +7411,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-1"
                   ]
                 }
@@ -7399,10 +7424,10 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "elimination",
+            "protection": "elimination",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -7417,9 +7442,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -7428,7 +7453,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-2"
                   ]
                 }
@@ -7438,12 +7463,12 @@ module: ietf-detnet
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "afl-1",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -7459,7 +7484,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1",
                 "ssl-2"
               ]
@@ -7469,7 +7494,7 @@ module: ietf-detnet
         {
           "name": "afl-2",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -7485,7 +7510,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1",
                 "ssl-2"
               ]
@@ -7495,10 +7520,10 @@ module: ietf-detnet
         {
           "name": "fsl-1",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -7520,10 +7545,10 @@ module: ietf-detnet
         {
           "name": "fsl-2",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -7548,7 +7573,7 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
+<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
 <a href="#name-example-c-2-detnet-json-rela" class="selfRef">Example C-2 DetNet JSON Relay Disaggregation Service Sub-Layer</a>
           </figcaption></figure>
 </div>
@@ -7565,7 +7590,7 @@ module: ietf-detnet
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
                 corresponding JSON operational data follows.<a href="#section-b.6-1" class="pilcrow">¶</a></p>
 <span id="name-case-c-3-example-json-servi"></span><div id="case-c3">
-<figure id="figure-14">
+<figure id="figure-15">
           <div id="section-b.6-2.1">
             <div class="artwork art-svg alignLeft" id="section-b.6-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 10 210 120" version="1.1">
@@ -7916,12 +7941,12 @@ module: ietf-detnet
               </svg><a href="#section-b.6-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
+<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
 <a href="#name-case-c-3-example-json-servi" class="selfRef">Case C-3 Example JSON Service Aggregation/Disaggregation</a>
           </figcaption></figure>
 </div>
 <span id="name-example-c-3-detnet-json-rel"></span><div id="example-detnet-json-service-aggregation-c-3">
-<figure id="figure-15">
+<figure id="figure-16">
           <div class="artwork art-text alignLeft" id="section-b.6-3.1">
 <pre>
 {
@@ -7972,7 +7997,7 @@ module: ietf-detnet
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -7987,7 +8012,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
@@ -8001,7 +8026,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-3",
+        "name": "pf-3",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -8013,7 +8038,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-4",
+        "name": "pf-4",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -8025,17 +8050,17 @@ module: ietf-detnet
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -8050,7 +8075,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "aggregation-service-sub-layer": "asl-1",
+              "aggregation-sub-layer": "asl-1",
               "service-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -8069,10 +8094,10 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -8087,7 +8112,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "aggregation-service-sub-layer": "asl-1",
+              "aggregation-sub-layer": "asl-1",
               "service-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -8106,13 +8131,13 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-2",
           "service-protection": {
-            "service-protection": "replication",
+            "protection": "replication",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-initiation",
+          "operation": "initiation",
           "incoming": {
             "service-aggregation": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1",
                 "ssl-2"
               ]
@@ -8120,9 +8145,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -8131,7 +8156,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-3",
                     "fsl-4"
                   ]
@@ -8142,12 +8167,12 @@ module: ietf-detnet
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -8163,7 +8188,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -8172,7 +8197,7 @@ module: ietf-detnet
         {
           "name": "fsl-2",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -8188,7 +8213,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -8197,10 +8222,10 @@ module: ietf-detnet
         {
           "name": "fsl-3",
           "traffic-profile": "pf-4",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }
@@ -8222,10 +8247,10 @@ module: ietf-detnet
         {
           "name": "fsl-4",
           "traffic-profile": "pf-4",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }
@@ -8250,12 +8275,12 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
+<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
 <a href="#name-example-c-3-detnet-json-rel" class="selfRef">Example C-3 DetNet JSON Relay Service Sub-Layer Aggregation</a>
           </figcaption></figure>
 </div>
 <span id="name-example-c-3-detnet-json-rela"></span><div id="example-detnet-json-service-disaggregation-c-3">
-<figure id="figure-16">
+<figure id="figure-17">
           <div class="artwork art-text alignLeft" id="section-b.6-4.1">
 <pre>
 {
@@ -8306,7 +8331,7 @@ module: ietf-detnet
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -8321,7 +8346,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
@@ -8335,7 +8360,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-3",
+        "name": "pf-3",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -8347,7 +8372,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-4",
+        "name": "pf-4",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -8359,17 +8384,17 @@ module: ietf-detnet
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -8384,9 +8409,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -8395,7 +8420,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-3"
                   ]
                 }
@@ -8408,10 +8433,10 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -8426,9 +8451,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -8437,7 +8462,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-4"
                   ]
                 }
@@ -8450,10 +8475,10 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-2",
           "service-protection": {
-            "service-protection": "elimination",
+            "protection": "elimination",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-termination",
+          "operation": "termination",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -8468,7 +8493,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-disaggregation": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1",
                 "ssl-2"
               ]
@@ -8477,12 +8502,12 @@ module: ietf-detnet
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-4",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -8498,7 +8523,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }
@@ -8507,7 +8532,7 @@ module: ietf-detnet
         {
           "name": "fsl-2",
           "traffic-profile": "pf-4",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -8523,7 +8548,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }
@@ -8532,10 +8557,10 @@ module: ietf-detnet
         {
           "name": "fsl-3",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -8557,10 +8582,10 @@ module: ietf-detnet
         {
           "name": "fsl-4",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -8585,7 +8610,7 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
+<figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
 <a href="#name-example-c-3-detnet-json-rela" class="selfRef">Example C-3 DetNet JSON Relay Service Sub-Layer Disaggregation</a>
           </figcaption></figure>
 </div>
@@ -8602,7 +8627,7 @@ module: ietf-detnet
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
                 corresponding JSON operational data follows.<a href="#section-b.7-1" class="pilcrow">¶</a></p>
 <span id="name-case-c-4-example-json-servi"></span><div id="case-c4">
-<figure id="figure-17">
+<figure id="figure-18">
           <div id="section-b.7-2.1">
             <div class="artwork art-svg alignLeft" id="section-b.7-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="155mm" viewBox="0 0 210 155" version="1.1">
@@ -8994,12 +9019,12 @@ module: ietf-detnet
               </svg><a href="#section-b.7-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
+<figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
 <a href="#name-case-c-4-example-json-servi" class="selfRef">Case C-4 Example JSON Service Aggregation/Disaggregation</a>
           </figcaption></figure>
 </div>
 <span id="name-example-c-4-detnet-json-rel"></span><div id="example-detnet-json-forwarding-aggregation-c-4">
-<figure id="figure-18">
+<figure id="figure-19">
           <div class="artwork art-text alignLeft" id="section-b.7-3.1">
 <pre>
 {
@@ -9050,7 +9075,7 @@ module: ietf-detnet
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -9065,7 +9090,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
@@ -9079,7 +9104,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-3",
+        "name": "pf-3",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -9093,7 +9118,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-4",
+        "name": "pf-4",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -9105,17 +9130,17 @@ module: ietf-detnet
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -9130,9 +9155,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -9141,7 +9166,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-3"
                   ]
                 }
@@ -9154,10 +9179,10 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -9172,9 +9197,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -9183,7 +9208,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-4"
                   ]
                 }
@@ -9196,13 +9221,13 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-2",
           "service-protection": {
-            "service-protection": "replication",
+            "protection": "replication",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-initiation",
+          "operation": "initiation",
           "incoming": {
             "forwarding-aggregation": {
-              "forwarding-sub-layer": [
+              "sub-layer": [
                 "fsl-3",
                 "fsl-4"
               ]
@@ -9210,9 +9235,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -9221,7 +9246,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-5",
                     "fsl-6"
                   ]
@@ -9232,12 +9257,12 @@ module: ietf-detnet
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -9253,7 +9278,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -9262,7 +9287,7 @@ module: ietf-detnet
         {
           "name": "fsl-2",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -9278,7 +9303,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -9287,17 +9312,17 @@ module: ietf-detnet
         {
           "name": "fsl-3",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
           },
           "outgoing": {
             "service-aggregation": {
-              "aggregation-service-sub-layer": "asl-1",
+              "aggregation-sub-layer": "asl-1",
               "optional-forwarding-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -9314,17 +9339,17 @@ module: ietf-detnet
         {
           "name": "fsl-4",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
           },
           "outgoing": {
             "service-aggregation": {
-              "aggregation-service-sub-layer": "asl-1",
+              "aggregation-sub-layer": "asl-1",
               "optional-forwarding-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -9341,10 +9366,10 @@ module: ietf-detnet
         {
           "name": "fsl-5",
           "traffic-profile": "pf-4",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }
@@ -9366,10 +9391,10 @@ module: ietf-detnet
         {
           "name": "fsl-6",
           "traffic-profile": "pf-4",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }
@@ -9394,12 +9419,12 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
+<figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
 <a href="#name-example-c-4-detnet-json-rel" class="selfRef">Example C-4 DetNet JSON Relay Service Sub-Layer Aggregation</a>
           </figcaption></figure>
 </div>
 <span id="name-example-c-4-detnet-json-rela"></span><div id="example-detnet-json-forwarding-disaggregation-c-4">
-<figure id="figure-19">
+<figure id="figure-20">
           <div class="artwork art-text alignLeft" id="section-b.7-4.1">
 <pre>
 {
@@ -9450,7 +9475,7 @@ module: ietf-detnet
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -9465,7 +9490,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
@@ -9479,7 +9504,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-3",
+        "name": "pf-3",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -9493,7 +9518,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-4",
+        "name": "pf-4",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -9505,17 +9530,17 @@ module: ietf-detnet
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -9530,9 +9555,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -9541,7 +9566,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-5"
                   ]
                 }
@@ -9554,10 +9579,10 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -9572,9 +9597,9 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -9583,7 +9608,7 @@ module: ietf-detnet
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-6"
                   ]
                 }
@@ -9596,10 +9621,10 @@ module: ietf-detnet
           "service-rank": 10,
           "traffic-profile": "pf-2",
           "service-protection": {
-            "service-protection": "elimination",
+            "protection": "elimination",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-termination",
+          "operation": "termination",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -9614,7 +9639,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-disaggregation": {
-              "forwarding-sub-layer": [
+              "sub-layer": [
                 "fsl-3",
                 "fsl-4"
               ]
@@ -9623,12 +9648,12 @@ module: ietf-detnet
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-4",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -9644,7 +9669,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }
@@ -9653,7 +9678,7 @@ module: ietf-detnet
         {
           "name": "fsl-2",
           "traffic-profile": "pf-4",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -9669,7 +9694,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }
@@ -9678,7 +9703,7 @@ module: ietf-detnet
         {
           "name": "fsl-3",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -9694,7 +9719,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -9703,7 +9728,7 @@ module: ietf-detnet
         {
           "name": "fsl-4",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -9719,7 +9744,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -9728,10 +9753,10 @@ module: ietf-detnet
         {
           "name": "fsl-5",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -9753,10 +9778,10 @@ module: ietf-detnet
         {
           "name": "fsl-6",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -9781,7 +9806,7 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
+<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
 <a href="#name-example-c-4-detnet-json-rela" class="selfRef">Example C-4 DetNet JSON Relay Service Sub-Layer Disaggregation</a>
           </figcaption></figure>
 </div>
@@ -9796,7 +9821,7 @@ module: ietf-detnet
                 This also illustrates a Transit node 4 disaggregating a forwarding sub-layer
                 into DetNet flow 1 and 2 forwarding sub-layers.<a href="#section-b.8-1" class="pilcrow">¶</a></p>
 <span id="name-case-d-1-example-service-ag"></span><div id="case-d1">
-<figure id="figure-20">
+<figure id="figure-21">
           <div id="section-b.8-2.1">
             <div class="artwork art-svg alignLeft" id="section-b.8-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="130mm" viewBox="0 5 210 130" version="1.1" id="svg8">
@@ -10051,12 +10076,12 @@ module: ietf-detnet
               </svg><a href="#section-b.8-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
+<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
 <a href="#name-case-d-1-example-service-ag" class="selfRef">Case D-1 Example Service Aggregation/Disaggregation</a>
           </figcaption></figure>
 </div>
 <span id="name-example-d-1-detnet-json-rel"></span><div id="example-detnet-json-forwarding-aggregation-d-1">
-<figure id="figure-21">
+<figure id="figure-22">
           <div class="artwork art-text alignLeft" id="section-b.8-3.1">
 <pre>
 {
@@ -10107,7 +10132,7 @@ module: ietf-detnet
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -10119,7 +10144,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -10130,12 +10155,12 @@ module: ietf-detnet
         ]
       }
     ],
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-1",
-          "forwarding-operation": "pop-impose-and-forward",
+          "operation": "pop-impose-and-forward",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -10151,7 +10176,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "aggregation-forwarding-sub-layer": "afl-1",
+              "aggregation-sub-layer": "afl-1",
               "forwarding-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -10168,7 +10193,7 @@ module: ietf-detnet
         {
           "name": "fsl-2",
           "traffic-profile": "pf-1",
-          "forwarding-operation": "pop-impose-and-forward",
+          "operation": "pop-impose-and-forward",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -10184,7 +10209,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "aggregation-forwarding-sub-layer": "afl-1",
+              "aggregation-sub-layer": "afl-1",
               "forwarding-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -10201,10 +10226,10 @@ module: ietf-detnet
         {
           "name": "afl-1",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "forwarding-aggregation": {
-              "forwarding-sub-layer": [
+              "sub-layer": [
                 "fsl-1",
                 "fsl-2"
               ]
@@ -10230,12 +10255,12 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
+<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
 <a href="#name-example-d-1-detnet-json-rel" class="selfRef">Example D-1 DetNet JSON Relay Service Sub-Layer Aggregation</a>
           </figcaption></figure>
 </div>
 <span id="name-example-d-1-detnet-json-rela"></span><div id="example-detnet-json-forwarding-disaggregation-d-1">
-<figure id="figure-22">
+<figure id="figure-23">
           <div class="artwork art-text alignLeft" id="section-b.8-4.1">
 <pre>
 {
@@ -10286,7 +10311,7 @@ module: ietf-detnet
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -10298,7 +10323,7 @@ module: ietf-detnet
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -10309,12 +10334,12 @@ module: ietf-detnet
         ]
       }
     ],
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-1",
-          "forwarding-operation": "swap-and-forward",
+          "operation": "swap-and-forward",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -10345,7 +10370,7 @@ module: ietf-detnet
         {
           "name": "fsl-2",
           "traffic-profile": "pf-1",
-          "forwarding-operation": "swap-and-forward",
+          "operation": "swap-and-forward",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -10376,7 +10401,7 @@ module: ietf-detnet
         {
           "name": "afl-1",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -10392,7 +10417,7 @@ module: ietf-detnet
           },
           "outgoing": {
             "forwarding-disaggregation": {
-              "forwarding-sub-layer": [
+              "sub-layer": [
                 "fsl-1",
                 "fsl-2"
               ]
@@ -10405,7 +10430,7 @@ module: ietf-detnet
 }
 </pre>
 </div>
-<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
+<figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
 <a href="#name-example-d-1-detnet-json-rela" class="selfRef">Example D-1 DetNet JSON Relay Service Sub-Layer Disaggregation</a>
           </figcaption></figure>
 </div>
