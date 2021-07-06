@@ -46,7 +46,7 @@
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -58,7 +58,7 @@
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -69,12 +69,12 @@
         ]
       }
     ],
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-1",
-          "forwarding-operation": "swap-and-forward",
+          "operation": "swap-and-forward",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -105,7 +105,7 @@
         {
           "name": "fsl-2",
           "traffic-profile": "pf-1",
-          "forwarding-operation": "swap-and-forward",
+          "operation": "swap-and-forward",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -136,7 +136,7 @@
         {
           "name": "afl-1",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -152,7 +152,7 @@
           },
           "outgoing": {
             "forwarding-disaggregation": {
-              "forwarding-sub-layer": [
+              "sub-layer": [
                 "fsl-1",
                 "fsl-2"
               ]

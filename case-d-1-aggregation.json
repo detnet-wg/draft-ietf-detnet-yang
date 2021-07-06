@@ -46,7 +46,7 @@
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -58,7 +58,7 @@
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -69,12 +69,12 @@
         ]
       }
     ],
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-1",
-          "forwarding-operation": "pop-impose-and-forward",
+          "operation": "pop-impose-and-forward",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -90,7 +90,7 @@
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "aggregation-forwarding-sub-layer": "afl-1",
+              "aggregation-sub-layer": "afl-1",
               "forwarding-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -107,7 +107,7 @@
         {
           "name": "fsl-2",
           "traffic-profile": "pf-1",
-          "forwarding-operation": "pop-impose-and-forward",
+          "operation": "pop-impose-and-forward",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -123,7 +123,7 @@
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "aggregation-forwarding-sub-layer": "afl-1",
+              "aggregation-sub-layer": "afl-1",
               "forwarding-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -140,10 +140,10 @@
         {
           "name": "afl-1",
           "traffic-profile": "pf-2",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "forwarding-aggregation": {
-              "forwarding-sub-layer": [
+              "sub-layer": [
                 "fsl-1",
                 "fsl-2"
               ]

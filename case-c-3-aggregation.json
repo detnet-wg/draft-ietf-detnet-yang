@@ -46,7 +46,7 @@
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
-        "profile-name": "pf-1",
+        "name": "pf-1",
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
@@ -61,7 +61,7 @@
         ]
       },
       {
-        "profile-name": "pf-2",
+        "name": "pf-2",
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
@@ -75,7 +75,7 @@
         ]
       },
       {
-        "profile-name": "pf-3",
+        "name": "pf-3",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
@@ -87,7 +87,7 @@
         ]
       },
       {
-        "profile-name": "pf-4",
+        "name": "pf-4",
         "flow-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
@@ -99,17 +99,17 @@
         ]
       }
     ],
-    "service-sub-layer": {
-      "service-sub-layer-list": [
+    "service": {
+      "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -124,7 +124,7 @@
           },
           "outgoing": {
             "service-sub-layer": {
-              "aggregation-service-sub-layer": "asl-1",
+              "aggregation-sub-layer": "asl-1",
               "service-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -143,10 +143,10 @@
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "service-protection": "none",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-relay",
+          "operation": "relay",
           "incoming": {
             "service-id": {
               "mpls-label-stack": {
@@ -161,7 +161,7 @@
           },
           "outgoing": {
             "service-sub-layer": {
-              "aggregation-service-sub-layer": "asl-1",
+              "aggregation-sub-layer": "asl-1",
               "service-label": {
                 "mpls-label-stack": {
                   "entry": [
@@ -180,13 +180,13 @@
           "service-rank": 10,
           "traffic-profile": "pf-2",
           "service-protection": {
-            "service-protection": "replication",
+            "protection": "replication",
             "sequence-number-length": "long-sn"
           },
-          "service-operation": "service-initiation",
+          "operation": "initiation",
           "incoming": {
             "service-aggregation": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1",
                 "ssl-2"
               ]
@@ -194,9 +194,9 @@
           },
           "outgoing": {
             "forwarding-sub-layer": {
-              "service-outgoing-list": [
+              "service-outgoing": [
                 {
-                  "service-outgoing-index": 0,
+                  "index": 0,
                   "mpls-label-stack": {
                     "entry": [
                       {
@@ -205,7 +205,7 @@
                       }
                     ]
                   },
-                  "forwarding-sub-layer": [
+                  "sub-layer": [
                     "fsl-3",
                     "fsl-4"
                   ]
@@ -216,12 +216,12 @@
         }
       ]
     },
-    "forwarding-sub-layer": {
-      "forwarding-sub-layer-list": [
+    "forwarding": {
+      "sub-layer": [
         {
           "name": "fsl-1",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth0",
@@ -237,7 +237,7 @@
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-1"
               ]
             }
@@ -246,7 +246,7 @@
         {
           "name": "fsl-2",
           "traffic-profile": "pf-3",
-          "forwarding-operation": "pop-and-lookup",
+          "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
               "interface": "eth1",
@@ -262,7 +262,7 @@
           },
           "outgoing": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "ssl-2"
               ]
             }
@@ -271,10 +271,10 @@
         {
           "name": "fsl-3",
           "traffic-profile": "pf-4",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }
@@ -296,10 +296,10 @@
         {
           "name": "fsl-4",
           "traffic-profile": "pf-4",
-          "forwarding-operation": "impose-and-forward",
+          "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
-              "service-sub-layer": [
+              "sub-layer": [
                 "asl-1"
               ]
             }

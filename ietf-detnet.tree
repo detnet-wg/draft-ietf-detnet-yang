@@ -1,7 +1,7 @@
 module: ietf-detnet
   +--rw detnet
-     +--rw traffic-profile* [profile-name]
-     |  +--rw profile-name            string
+     +--rw traffic-profile* [name]
+     |  +--rw name                    string
      |  +--rw traffic-requirements
      |  |  +--rw min-bandwidth?                    uint64
      |  |  +--rw max-latency?                      uint32
@@ -20,15 +20,14 @@ module: ietf-detnet
      |  +--ro member-fwd-sublayers*   forwarding-sub-layer-ref
      +--rw app-flows
      |  +--rw app-flow* [name]
-     |     +--rw name                        string
-     |     +--rw app-flow-bidir-congruent?   boolean
-     |     +--ro outgoing-service?           service-sub-layer-ref
-     |     +--ro incoming-service?           service-sub-layer-ref
-     |     +--rw traffic-profile?            traffic-profile-ref
+     |     +--rw name                string
+     |     +--rw bidir-congruent?    boolean
+     |     +--ro outgoing-service?   service-sub-layer-ref
+     |     +--ro incoming-service?   service-sub-layer-ref
+     |     +--rw traffic-profile?    traffic-profile-ref
      |     +--rw ingress
-     |     |  +--rw name?                  string
      |     |  +--ro app-flow-status?       identityref
-     |     |  +--rw interface?             if:interface-ref
+     |     |  +--rw interface              if:interface-ref
      |     |  +--rw (data-flow-type)?
      |     |     +--:(tsn-app-flow)
      |     |     |  +--rw tsn-app-flow
@@ -82,7 +81,6 @@ module: ietf-detnet
      |     |                 +--rw label?
      |     |                         rt-types:mpls-label
      |     +--rw egress
-     |        +--rw name?             string
      |        +--rw (application-type)?
      |           +--:(ethernet)
      |           |  +--rw ethernet
@@ -125,28 +123,26 @@ module: ietf-detnet
      |                                      |       uint8
      |                                      +--rw traffic-class?
      |                                              uint8
-     +--rw service-sub-layer
-     |  +--rw service-sub-layer-list* [name]
+     +--rw service
+     |  +--rw sub-layer* [name]
      |     +--rw name                  string
      |     +--rw service-rank?         uint8
      |     +--rw traffic-profile?      traffic-profile-ref
      |     +--rw service-protection
-     |     |  +--rw service-protection?       service-protection
+     |     |  +--rw protection?               service-protection
      |     |  +--rw sequence-number-length?   sequence-number-field
-     |     +--rw service-operation?    service-operation
+     |     +--rw operation?            operation
      |     +--rw incoming
      |     |  +--rw (incoming)
      |     |     +--:(app-flow)
      |     |     |  +--rw app-flow
-     |     |     |     +--rw app-flow-list*   app-flow-ref
+     |     |     |     +--rw flow*   app-flow-ref
      |     |     +--:(service-aggregation)
      |     |     |  +--rw service-aggregation
-     |     |     |     +--rw service-sub-layer*
-     |     |     |             service-sub-layer-ref
+     |     |     |     +--rw sub-layer*   service-sub-layer-ref
      |     |     +--:(forwarding-aggregation)
      |     |     |  +--rw forwarding-aggregation
-     |     |     |     +--rw forwarding-sub-layer*
-     |     |     |             forwarding-sub-layer-ref
+     |     |     |     +--rw sub-layer*   forwarding-sub-layer-ref
      |     |     +--:(service-id)
      |     |        +--rw service-id
      |     |           +--rw (detnet-flow-type)?
@@ -199,9 +195,8 @@ module: ietf-detnet
      |        +--rw (outgoing)
      |           +--:(forwarding-sub-layer)
      |           |  +--rw forwarding-sub-layer
-     |           |     +--rw service-outgoing-list*
-     |           |             [service-outgoing-index]
-     |           |        +--rw service-outgoing-index        uint8
+     |           |     +--rw service-outgoing* [index]
+     |           |        +--rw index                         uint8
      |           |        +--rw (header-type)?
      |           |        |  +--:(mpls)
      |           |        |  |  +--rw mpls-label-stack
@@ -225,11 +220,11 @@ module: ietf-detnet
      |           |        |     |       inet:port-number
      |           |        |     +--rw destination-port?
      |           |        |             inet:port-number
-     |           |        +--rw forwarding-sub-layer*
+     |           |        +--rw sub-layer*
      |           |                forwarding-sub-layer-ref
      |           +--:(service-sub-layer)
      |           |  +--rw service-sub-layer
-     |           |     +--rw aggregation-service-sub-layer?
+     |           |     +--rw aggregation-sub-layer?
      |           |     |       service-sub-layer-ref
      |           |     +--rw service-label
      |           |        +--rw mpls-label-stack
@@ -241,30 +236,26 @@ module: ietf-detnet
      |           |              +--rw traffic-class?   uint8
      |           +--:(app-flow)
      |           |  +--rw app-flow
-     |           |     +--rw app-flow-list*   app-flow-ref
+     |           |     +--rw flow*   app-flow-ref
      |           +--:(service-disaggregation)
      |           |  +--rw service-disaggregation
-     |           |     +--rw service-sub-layer*
-     |           |             service-sub-layer-ref
+     |           |     +--rw sub-layer*   service-sub-layer-ref
      |           +--:(forwarding-disaggregation)
      |              +--rw forwarding-disaggregation
-     |                 +--rw forwarding-sub-layer*
-     |                         forwarding-sub-layer-ref
-     +--rw forwarding-sub-layer
-        +--rw forwarding-sub-layer-list* [name]
-           +--rw name                    string
-           +--rw traffic-profile?        traffic-profile-ref
-           +--rw forwarding-operation?   forwarding-operations
+     |                 +--rw sub-layer*   forwarding-sub-layer-ref
+     +--rw forwarding
+        +--rw sub-layer* [name]
+           +--rw name               string
+           +--rw traffic-profile?   traffic-profile-ref
+           +--rw operation?         forwarding-operations
            +--rw incoming
            |  +--rw (incoming)
            |     +--:(service-sub-layer)
            |     |  +--rw service-sub-layer
-           |     |     +--rw service-sub-layer*
-           |     |             service-sub-layer-ref
+           |     |     +--rw sub-layer*   service-sub-layer-ref
            |     +--:(forwarding-aggregation)
            |     |  +--rw forwarding-aggregation
-           |     |     +--rw forwarding-sub-layer*
-           |     |             forwarding-sub-layer-ref
+           |     |     +--rw sub-layer*   forwarding-sub-layer-ref
            |     +--:(forwarding-id)
            |        +--rw forwarding-id
            |           +--rw interface?
@@ -392,7 +383,7 @@ module: ietf-detnet
                  |                                  uint8
                  +--:(service-aggregation)
                  |  +--rw service-aggregation
-                 |     +--rw aggregation-service-sub-layer?
+                 |     +--rw aggregation-sub-layer?
                  |     |       service-sub-layer-ref
                  |     +--rw optional-forwarding-label
                  |        +--rw mpls-label-stack
@@ -404,7 +395,7 @@ module: ietf-detnet
                  |              +--rw traffic-class?   uint8
                  +--:(forwarding-sub-layer)
                  |  +--rw forwarding-sub-layer
-                 |     +--rw aggregation-forwarding-sub-layer?
+                 |     +--rw aggregation-sub-layer?
                  |     |       forwarding-sub-layer-ref
                  |     +--rw forwarding-label
                  |        +--rw mpls-label-stack
@@ -416,9 +407,7 @@ module: ietf-detnet
                  |              +--rw traffic-class?   uint8
                  +--:(service-sub-layer)
                  |  +--rw service-sub-layer
-                 |     +--rw service-sub-layer*
-                 |             service-sub-layer-ref
+                 |     +--rw sub-layer*   service-sub-layer-ref
                  +--:(forwarding-disaggregation)
                     +--rw forwarding-disaggregation
-                       +--rw forwarding-sub-layer*
-                               forwarding-sub-layer-ref
+                       +--rw sub-layer*   forwarding-sub-layer-ref

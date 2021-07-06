@@ -51,7 +51,7 @@
   xmlns:mpls="urn:ietf:params:xml:ns:yang:ietf-mpls"
   xmlns:pf="urn:ietf:params:xml:ns:yang:ietf-packet-fields">
   <traffic-profile>  
-    <profile-name>pf-1</profile-name>
+    <name>pf-1</name>
     <flow-spec>
       <interval>125</interval>
       <max-pkts-per-interval>1</max-pkts-per-interval>
@@ -61,7 +61,7 @@
     <member-fwd-sublayers>fsl-2</member-fwd-sublayers>
   </traffic-profile>  
   <traffic-profile>  
-    <profile-name>pf-2</profile-name>
+    <name>pf-2</name>
     <flow-spec>
       <interval>125</interval>
       <max-pkts-per-interval>2</max-pkts-per-interval>
@@ -69,11 +69,11 @@
     </flow-spec>
     <member-fwd-sublayers>afl-1</member-fwd-sublayers>
   </traffic-profile>
-  <forwarding-sub-layer>
-    <forwarding-sub-layer-list>
+  <forwarding>
+    <sub-layer>
       <name>fsl-1</name>
       <traffic-profile>pf-1</traffic-profile>
-      <forwarding-operation>pop-impose-and-forward</forwarding-operation>
+      <operation>pop-impose-and-forward</operation>
       <incoming>
         <forwarding-id>
           <interface>eth0</interface>
@@ -87,7 +87,7 @@
       </incoming>
       <outgoing>
         <forwarding-sub-layer>
-          <aggregation-forwarding-sub-layer>afl-1</aggregation-forwarding-sub-layer>
+          <aggregation-sub-layer>afl-1</aggregation-sub-layer>
           <forwarding-label>       
             <mpls-label-stack>
               <entry>
@@ -98,11 +98,11 @@
           </forwarding-label>       
         </forwarding-sub-layer>
       </outgoing>
-    </forwarding-sub-layer-list>
-    <forwarding-sub-layer-list>
+    </sub-layer>
+    <sub-layer>
       <name>fsl-2</name>
       <traffic-profile>pf-1</traffic-profile>
-      <forwarding-operation>pop-impose-and-forward</forwarding-operation>
+      <operation>pop-impose-and-forward</operation>
       <incoming>
         <forwarding-id>
           <interface>eth1</interface>
@@ -116,7 +116,7 @@
       </incoming>
       <outgoing>
         <forwarding-sub-layer>
-          <aggregation-forwarding-sub-layer>afl-1</aggregation-forwarding-sub-layer>
+          <aggregation-sub-layer>afl-1</aggregation-sub-layer>
           <forwarding-label>
             <mpls-label-stack>
               <entry>
@@ -127,15 +127,15 @@
           </forwarding-label>
         </forwarding-sub-layer>
       </outgoing>
-    </forwarding-sub-layer-list>
-    <forwarding-sub-layer-list>
+    </sub-layer>
+    <sub-layer>
       <name>afl-1</name>
       <traffic-profile>pf-2</traffic-profile>
-      <forwarding-operation>impose-and-forward</forwarding-operation>
+      <operation>impose-and-forward</operation>
       <incoming>
         <forwarding-aggregation>
-          <forwarding-sub-layer>fsl-1</forwarding-sub-layer>
-          <forwarding-sub-layer>fsl-2</forwarding-sub-layer>
+          <sub-layer>fsl-1</sub-layer>
+          <sub-layer>fsl-2</sub-layer>
         </forwarding-aggregation>
       </incoming>
       <outgoing>
@@ -149,6 +149,6 @@
           </mpls-label-stack>
         </interface>
       </outgoing>
-    </forwarding-sub-layer-list>
-  </forwarding-sub-layer>
+    </sub-layer>
+  </forwarding>
 </detnet>
