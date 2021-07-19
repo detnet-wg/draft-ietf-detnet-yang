@@ -2361,7 +2361,7 @@ module: ietf-detnet
                  |                 |  +--rw (operation-type)?
                  |                 |     +--:(ip-forwarding)
                  |                 |     |  +--rw next-hop-address?
-		 |                 |     |        inet:
+                 |                 |     |        inet:
                  |                 |     |        ip-address-no-zone
                  |                 |     +--:(mpls-over-ip-
                  |                 |        | encapsulation)
@@ -2427,7 +2427,10 @@ module: ietf-detnet
     <section  anchor="Examples" numbered="true" toc="default">
       <name>Examples</name>
       <t> The following examples are provided.  These examples are tested with Yanglint
-            and use operational output to exercise both config true and config false objects.
+	      and use operational output to exercise both config true and config false objects.
+	      Note that IPv4 and IPv6 addresses are supported but for clarity in the examples 
+	      and diagrams IPv4 has been used. The IP types are imported from 
+              <xref target="RFC6991" format="default"/>  and these support both IPv4 and IPv6. 
                     
     </t>
     <t>
@@ -2500,55 +2503,31 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
    font-size="2.70177px"
    x="9.6277428"
    y="70.412712"
-   >2001:db8:1000::/48</tspan><tspan
+   >192.0.2.1</tspan><tspan
    font-size="2.70177px"
    x="44.797974"
    y="67.142136"
    >Ingress 1</tspan><tspan
    font-size="2.70177px"
-   x="46.186546"
-   y="70.412712"
-   >192.0.2.2</tspan><tspan
-   font-size="2.70177px"
    x="82.330742"
    y="67.142136"
    >Relay 1</tspan><tspan
-   font-size="2.70177px"
-   x="82.745392"
-   y="70.412712"
-   >192.0.2.3</tspan><tspan
    font-size="2.70177px"
    x="155.44701"
    y="67.142136"
    >Relay 2</tspan><tspan
    font-size="2.70177px"
-   x="155.86082"
-   y="70.412712"
-   >192.0.2.6</tspan><tspan
-   font-size="2.70177px"
    x="191.25833"
    y="67.142136"
    >Egress 1</tspan><tspan
-   font-size="2.70177px"
-   x="192.41724"
-   y="70.412712"
-   >192.0.2.7</tspan><tspan
    font-size="2.70177px"
    x="118.2251"
    y="85.770157"
    >Transit 2</tspan><tspan
    font-size="2.70177px"
-   x="119.30182"
-   y="89.040741"
-   >192.0.2.5</tspan><tspan
-   font-size="2.70177px"
    x="118.2251"
    y="48.514111"
-   >Transit 1</tspan><tspan
-   font-size="2.70177px"
-   x="119.30182"
-   y="51.784679"
-   >192.0.2.4</tspan></text>
+   >Transit 1</tspan></text>
     <path
        d="m 110.4545,44.874615 c 0,-0.457693 -0.27604,-0.828726 -0.61655,-0.828726 h -6.73929 c -0.34053,0 -0.61657,0.371033 -0.61657,0.828726 v 7.244984 c 0,0.457699 0.27604,0.828733 0.61657,0.828733 h 6.73929 c 0.34051,0 0.61655,-0.371034 0.61655,-0.828733 z"
        stroke="#000000"
@@ -2576,7 +2555,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
    font-size="2.70177px"
    x="228.97635"
    y="70.412712"
-   >2001:db8:2000::/48</tspan></text>
+   >192.0.2.8</tspan></text>
     <path
        d="M 15.889594,70.093778 H 39.420433"
        stroke="#000000"
@@ -2703,11 +2682,11 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
        
        x="99.11544"
        y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan
+       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
    font-size="2.70177px"
    x="102.61922"
    y="22.918352"
-   >2001:db8:2000::/48</tspan></text>
+   >192.0.2.8</tspan></text>
     <rect
        x="81.017952"
        y="120.04636"
@@ -2751,11 +2730,11 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
        
        x="98.979935"
        y="90.889305"
-       transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan
+       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
    font-size="2.70177px"
    x="102.4837"
    y="94.159889"
-   >2001:db8:2000::/48</tspan></text>
+   >192.0.2.8</tspan></text>
     <rect
        x="112.66224"
        y="28.219326"
@@ -2827,11 +2806,11 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
        
        x="135.65608"
        y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan
+       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
    font-size="2.70177px"
    x="139.15987"
    y="22.918352"
-   >2001:db8:2000::/48</tspan></text>
+   >192.0.2.8</tspan></text>
     <rect
        x="112.90755"
        y="120.04636"
@@ -2875,11 +2854,11 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
        
        x="135.88788"
        y="90.889305"
-       transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan
+       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
    font-size="2.70177px"
    x="139.39165"
    y="94.159889"
-   >2001:db8:2000::/48</tspan></text>
+   >192.0.2.8</tspan></text>
     <rect
        x="49.864277"
        y="28.219326"
@@ -2951,11 +2930,11 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
        
        x="62.828907"
        y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan
+       transform="scale(0.86254171,1.1593642)">IP 192.0.2.8<tspan
    font-size="2.70177px"
    x="66.33268"
    y="22.918352"
-   >2001:db8:2000::/48</tspan></text>
+   >192.0.2.8</tspan></text>
     <rect
        x="144.30653"
        y="28.219326"
@@ -3027,11 +3006,11 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
        
        x="172.32059"
        y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan
+       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
    font-size="2.70177px"
    x="175.82437"
    y="22.918352"
-   >2001:db8:2000::/48</tspan></text>
+   >192.0.2.8</tspan></text>
     <rect
        x="81.017952"
        y="110.81422"
@@ -3156,11 +3135,11 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
        
        x="26.58005"
        y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan
+       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
    font-size="2.70177px"
    x="30.083824"
    y="22.918352"
-   >2001:db8:2000::/48</tspan></text>
+   >192.0.2.8</tspan></text>
     <rect
        x="175.95082"
        y="18.8223"
@@ -3176,11 +3155,11 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
        
        x="209.06046"
        y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 2001:db8:1000::/48<tspan
+       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
    font-size="2.70177px"
    x="212.56424"
    y="22.918352"
-   >2001:db8:2000::/48</tspan></text>
+   >192.0.2.8</tspan></text>
     <path
        d="m 38.93289,74.545 c -0.211698,0 -0.383288,-0.922558 -0.383288,-2.060756 0,-1.138192 0.17159,-2.06075 0.383288,-2.06075 0.211699,0 0.383289,0.922558 0.383289,2.06075 0,1.138198 -0.17159,2.060756 -0.383289,2.060756 H 15.904925 c -0.211698,0 -0.383288,-0.922558 -0.383288,-2.060756 0,-1.138192 0.17159,-2.06075 0.383288,-2.06075 H 38.93289"
        stroke="#000000"
@@ -4294,8 +4273,8 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "2001:db8:1000::/48",
-              "dest-ip-prefix": "2001:db8:2000::/48",
+              "src-ip-prefix": "192.0.2.1",
+              "dest-ip-prefix": "192.0.2.8",
               "dscp": 6
             }
           }
@@ -4309,8 +4288,8 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "2001:db8:1000::/48",
-              "dest-ip-prefix": "2001:db8:2000::/48",
+              "src-ip-prefix": "192.0.2.1",
+              "dest-ip-prefix": "192.0.2.8",
               "dscp": 7
             }
           }
@@ -4582,12 +4561,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
        x="47.859951"
        y="70.663162"
        
-       transform="scale(0.88605917,1.1285928)">Ingress 1<tspan
-   font-size="2.92393px"
-   x="49.064266"
-   y="73.58709"
-   
-   >192.0.2.2</tspan></text>
+       transform="scale(0.88605917,1.1285928)">Ingress 1</text>
     <path
        d="m 50.856263,65.406311 c 0,-0.398322 -0.253516,-0.721231 -0.566239,-0.721231 h -6.189256 c -0.312727,0 -0.566239,0.322909 -0.566239,0.721231 v 6.305192 c 0,0.398333 0.253512,0.721237 0.566239,0.721237 h 6.189256 c 0.312723,0 0.566239,-0.322904 0.566239,-0.721237 z"
        stroke="#000000"
@@ -4614,30 +4588,15 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
        
        transform="scale(0.88605917,1.1285928)">Relay 2<tspan
    font-size="2.92393px"
-   x="147.11458"
-   y="73.58709"
-   
-   >192.0.2.6</tspan><tspan
-   font-size="2.92393px"
    x="179.01915"
    y="70.663162"
    
    >Egress 1</tspan><tspan
    font-size="2.92393px"
-   x="179.7964"
-   y="73.58709"
-   
-   >192.0.2.7</tspan><tspan
-   font-size="2.92393px"
    x="113.356"
    y="83.248756"
    
-   >Transit 2</tspan><tspan
-   font-size="2.92393px"
-   x="114.42986"
-   y="86.172691"
-   
-   >192.0.2.5</tspan></text>
+   >Transit 2</tspan></text>
     <path
        d="m 108.75438,84.058039 c 0,-0.398323 -0.25351,-0.721226 -0.56623,-0.721226 h -6.18928 c -0.31274,0 -0.56625,0.322903 -0.56625,0.721226 v 6.305184 c 0,0.398331 0.25351,0.721233 0.56625,0.721233 h 6.18928 c 0.31272,0 0.56623,-0.322902 0.56623,-0.721233 z"
        stroke="#000000"
@@ -4662,12 +4621,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
        x="113.35614"
        y="49.941429"
        
-       transform="scale(0.88605917,1.1285928)">Transit 1<tspan
-   font-size="2.92393px"
-   x="114.42995"
-   y="52.865356"
-   
-   >192.0.2.4</tspan></text>
+       transform="scale(0.88605917,1.1285928)">Transit 1</text>
     <path
        d="m 108.75438,46.611095 c 0,-0.398322 -0.25351,-0.721226 -0.56623,-0.721226 h -6.18928 c -0.31274,0 -0.56625,0.322904 -0.56625,0.721226 v 6.305185 c 0,0.398329 0.25351,0.721233 0.56625,0.721233 h 6.18928 c 0.31272,0 0.56623,-0.322904 0.56623,-0.721233 z"
        stroke="#000000"
@@ -4791,7 +4745,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
    x="16.263189"
    y="40.279758"
    
-   >192.0.2.12</tspan></text>
+   >192.0.2.2</tspan></text>
     <path
        d="m 21.794568,32.407082 c 0,-0.398322 -0.253512,-0.721226 -0.566235,-0.721226 h -6.189261 c -0.312727,0 -0.566239,0.322904 -0.566239,0.721226 v 6.305169 c 0,0.398318 0.253512,0.721221 0.566239,0.721221 h 6.189261 c 0.312723,0 0.566235,-0.322903 0.566235,-0.721221 z"
        stroke="#000000"
@@ -4856,7 +4810,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
    x="35.877186"
    y="25.024492"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="2.03404px"
    x="35.840099"
    y="27.69416"
@@ -4918,7 +4872,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
    x="199.03227"
    y="25.024492"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="2.03404px"
    x="198.99519"
    y="27.69416"
@@ -5149,7 +5103,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
    x="71.975174"
    y="25.787251"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.65265px"
    x="71.975174"
    y="27.69416"
@@ -5444,7 +5398,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
    x="104.43011"
    y="25.787251"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.65265px"
    x="104.43011"
    y="27.69416"
@@ -5594,7 +5548,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
    x="104.88765"
    y="89.096611"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.65265px"
    x="104.88765"
    y="91.003517"
@@ -5840,7 +5794,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
    x="137.46666"
    y="25.787251"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.65265px"
    x="137.46666"
    y="27.69416"
@@ -6012,7 +5966,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
    x="137.70311"
    y="89.096611"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.65265px"
    x="137.70311"
    y="91.003517"
@@ -6221,7 +6175,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
    x="170.19304"
    y="25.787251"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.65265px"
    x="170.19304"
    y="27.69416"
@@ -6636,12 +6590,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
        x="81.274445"
        y="70.663162"
        
-       transform="scale(0.88605917,1.1285928)">Relay 1<tspan
-   font-size="2.92393px"
-   x="81.459839"
-   y="73.58709"
-   
-   >192.0.2.3</tspan></text>
+       transform="scale(0.88605917,1.1285928)">Relay 1</text>
   </g>
 </svg>
 </artwork>
@@ -6721,7 +6670,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
         <app-flow-status>ready</app-flow-status>
         <interface>eth1</interface>
         <ip-app-flow>
-          <src-ip-prefix>192.0.2.12/32</src-ip-prefix>
+          <src-ip-prefix>192.0.2.2/32</src-ip-prefix>
           <dest-ip-prefix>192.0.2.9/32</dest-ip-prefix>
           <dscp>7</dscp>
         </ip-app-flow>
@@ -6946,12 +6895,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
        x="75.121887"
        y="67.076286"
        
-       transform="scale(0.92084851,1.0859549)">Relay 1<tspan
-   font-size="2.74992px"
-   x="75.296257"
-   y="69.82621"
-   
-   >192.0.2.3</tspan></text>
+       transform="scale(0.92084851,1.0859549)">Relay 1</text>
     <path
        d="m 76.541451,59.601761 c 0,-0.360465 -0.2478,-0.65268 -0.55344,-0.65268 H 69.9385 c -0.305682,0 -0.55344,0.292215 -0.55344,0.65268 v 5.705959 c 0,0.360461 0.247758,0.652676 0.55344,0.652676 h 6.049511 c 0.30564,0 0.55344,-0.292215 0.55344,-0.652676 z"
        stroke="#000000"
@@ -6976,12 +6920,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
        x="136.59819"
        y="67.076286"
        
-       transform="scale(0.92084851,1.0859549)">Relay 2<tspan
-   font-size="2.74992px"
-   x="136.77255"
-   y="69.82621"
-   
-   >192.0.2.6</tspan></text>
+       transform="scale(0.92084851,1.0859549)">Relay 2</text>
     <path
        d="m 133.13201,59.601766 c 0,-0.360466 -0.24779,-0.652685 -0.55343,-0.652685 h -6.04952 c -0.30563,0 -0.55344,0.292219 -0.55344,0.652685 v 5.705938 c 0,0.360477 0.24781,0.652692 0.55344,0.652692 h 6.04952 c 0.30564,0 0.55343,-0.292215 0.55343,-0.652692 z"
        stroke="#000000"
@@ -7006,12 +6945,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
        x="166.77922"
        y="67.076286"
        
-       transform="scale(0.92084851,1.0859549)">Egress 1<tspan
-   font-size="2.74992px"
-   x="167.51018"
-   y="69.82621"
-   
-   >192.0.2.7</tspan></text>
+       transform="scale(0.92084851,1.0859549)">Egress 1</text>
     <path
        d="m 161.42731,59.601761 c 0,-0.360465 -0.24781,-0.65268 -0.55345,-0.65268 h -6.04951 c -0.30568,0 -0.55344,0.292215 -0.55344,0.65268 v 5.705959 c 0,0.360461 0.24776,0.652676 0.55344,0.652676 h 6.04951 c 0.30564,0 0.55345,-0.292215 0.55345,-0.652676 z"
        stroke="#000000"
@@ -7036,12 +6970,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
        x="105.0231"
        y="78.67379"
        
-       transform="scale(0.92084851,1.0859549)">Transit 2<tspan
-   font-size="2.74992px"
-   x="106.03299"
-   y="81.423714"
-   
-   >192.0.2.5</tspan></text>
+       transform="scale(0.92084851,1.0859549)">Transit 2</text>
     <path
        d="m 104.83673,76.480813 c 0,-0.360465 -0.24779,-0.65268 -0.55344,-0.65268 h -6.049504 c -0.305682,0 -0.55344,0.292215 -0.55344,0.65268 v 5.705959 c 0,0.36046 0.247758,0.652675 0.55344,0.652675 h 6.049504 c 0.30565,0 0.55344,-0.292215 0.55344,-0.652675 z"
        stroke="#000000"
@@ -7066,12 +6995,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
        x="105.0231"
        y="47.348579"
        
-       transform="scale(0.92084851,1.0859549)">Transit 1<tspan
-   font-size="2.74992px"
-   x="106.03299"
-   y="50.098503"
-   
-   >192.0.2.4</tspan></text>
+       transform="scale(0.92084851,1.0859549)">Transit 1</text>
     <path
        d="m 104.83673,42.592865 c 0,-0.360466 -0.24779,-0.652681 -0.55344,-0.652681 h -6.049504 c -0.305682,0 -0.55344,0.292215 -0.55344,0.652681 v 5.705958 c 0,0.360461 0.247758,0.652675 0.55344,0.652675 h 6.049504 c 0.30565,0 0.55344,-0.292214 0.55344,-0.652675 z"
        stroke="#000000"
@@ -7195,7 +7119,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
    x="13.708145"
    y="38.261875"
    
-   >192.0.2.12</tspan></text>
+   >192.0.2.2</tspan></text>
     <path
        d="m 19.840773,29.738816 c 0,-0.360465 -0.247796,-0.65268 -0.553442,-0.65268 h -6.049507 c -0.305637,0 -0.553442,0.292215 -0.553442,0.65268 v 5.705935 c 0,0.36047 0.247805,0.65267 0.553442,0.65267 h 6.049507 c 0.305646,0 0.553442,-0.2922 0.553442,-0.65267 z"
        stroke="#000000"
@@ -7260,7 +7184,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
    x="32.154896"
    y="23.914433"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.91299px"
    x="32.120037"
    y="26.425243"
@@ -7340,7 +7264,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
    x="185.60065"
    y="23.914433"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.91299px"
    x="185.56577"
    y="26.425243"
@@ -7646,7 +7570,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
    x="66.103119"
    y="24.512253"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.55431px"
    x="66.103119"
    y="26.305681"
@@ -8012,7 +7936,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
    x="96.586502"
    y="24.512253"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.55431px"
    x="96.586502"
    y="26.305681"
@@ -8162,7 +8086,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
    x="96.845764"
    y="84.054077"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.55431px"
    x="96.845764"
    y="85.847504"
@@ -8452,7 +8376,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
    x="127.61037"
    y="24.512253"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.55431px"
    x="127.61037"
    y="26.305681"
@@ -8604,7 +8528,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
    x="127.62944"
    y="84.054077"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.55431px"
    x="127.62944"
    y="85.847504"
@@ -8813,7 +8737,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
    x="158.3557"
    y="24.512253"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.55431px"
    x="158.3557"
    y="26.305681"
@@ -9171,7 +9095,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.12/32",
+              "src-ip-prefix": "192.0.2.2/32",
               "dest-ip-prefix": "192.0.2.9/32",
               "dscp": 7
             }
@@ -9460,12 +9384,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
        x="37.124619"
        y="67.599197"
        
-       transform="scale(0.97023256,1.0306807)">Ingress 1<tspan
-   font-size="2.82205px"
-   x="38.286976"
-   y="70.421249"
-   
-   >192.0.2.2</tspan></text>
+       transform="scale(0.97023256,1.0306807)">Ingress 1</text>
     <path
        d="m 44.94936,61.077146 c 0,-0.35109 -0.267927,-0.63571 -0.59843,-0.63571 h -6.541087 c -0.330506,0 -0.59843,0.28462 -0.59843,0.63571 v 5.55756 c 0,0.3511 0.267924,0.63571 0.59843,0.63571 h 6.541087 c 0.330503,0 0.59843,-0.28461 0.59843,-0.63571 z"
        stroke="#000000"
@@ -9492,30 +9411,15 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
        
        transform="scale(0.97023256,1.0306807)">Relay 1<tspan
    font-size="2.82205px"
-   x="69.832237"
-   y="74.224884"
-   
-   >192.0.2.3</tspan><tspan
-   font-size="2.82205px"
    x="132.74237"
    y="71.402824"
    
    >Relay 2</tspan><tspan
    font-size="2.82205px"
-   x="132.92139"
-   y="74.224884"
-   
-   >192.0.2.6</tspan><tspan
-   font-size="2.82205px"
    x="163.71439"
    y="67.599197"
    
-   >Egress 1</tspan><tspan
-   font-size="2.82205px"
-   x="164.46445"
-   y="70.421249"
-   
-   >192.0.2.7</tspan></text>
+   >Egress 1</tspan></text>
     <path
        d="m 167.32814,61.077146 c 0,-0.35109 -0.26792,-0.63571 -0.59842,-0.63571 h -6.54112 c -0.33051,0 -0.59843,0.28462 -0.59843,0.63571 v 5.55757 c 0,0.35109 0.26792,0.6357 0.59843,0.6357 h 6.54112 c 0.3305,0 0.59842,-0.28461 0.59842,-0.6357 z"
        stroke="#000000"
@@ -9540,12 +9444,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
        x="100.33884"
        y="83.672615"
        
-       transform="scale(0.97023256,1.0306807)">Transit 2<tspan
-   font-size="2.82205px"
-   x="101.37522"
-   y="86.494675"
-   
-   >192.0.2.5</tspan></text>
+       transform="scale(0.97023256,1.0306807)">Transit 2</text>
     <path
        d="m 106.13875,77.517256 c 0,-0.3511 -0.26792,-0.63571 -0.59842,-0.63571 h -6.54112 c -0.330506,0 -0.598433,0.28461 -0.598433,0.63571 v 5.55757 c 0,0.35109 0.267927,0.6357 0.598433,0.6357 h 6.54112 c 0.3305,0 0.59842,-0.28461 0.59842,-0.6357 z"
        stroke="#000000"
@@ -9570,12 +9469,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
        x="100.33884"
        y="51.525776"
        
-       transform="scale(0.97023256,1.0306807)">Transit 1<tspan
-   font-size="2.82205px"
-   x="101.37522"
-   y="54.34782"
-   
-   >192.0.2.4</tspan></text>
+       transform="scale(0.97023256,1.0306807)">Transit 1</text>
     <path
        d="m 106.13875,44.510576 c 0,-0.3511 -0.26792,-0.63571 -0.59842,-0.63571 h -6.54112 c -0.330506,0 -0.598433,0.28461 -0.598433,0.63571 v 5.55757 c 0,0.35108 0.267927,0.6357 0.598433,0.6357 h 6.54112 c 0.3305,0 0.59842,-0.28462 0.59842,-0.6357 z"
        stroke="#000000"
@@ -9600,12 +9494,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
        x="192.27025"
        y="67.599197"
        
-       transform="scale(0.97023256,1.0306807)">Destination 1<tspan
-   font-size="2.82205px"
-   x="196.00926"
-   y="70.421249"
-   
-   >192.0.2.8</tspan></text>
+       transform="scale(0.97023256,1.0306807)">Destination 1</text>
     <path
        d="m 197.92284,61.077146 c 0,-0.35109 -0.26793,-0.63571 -0.59843,-0.63571 h -6.54112 c -0.3305,0 -0.59842,0.28462 -0.59842,0.63571 v 5.55757 c 0,0.35109 0.26792,0.6357 0.59842,0.6357 h 6.54112 c 0.3305,0 0.59843,-0.28461 0.59843,-0.6357 z"
        stroke="#000000"
@@ -10129,7 +10018,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
    x="6.8675623"
    y="86.494675"
    
-   >192.0.2.12</tspan></text>
+   >192.0.2.2</tspan></text>
     <path
        d="m 14.473711,77.517256 c 0,-0.3511 -0.267927,-0.63571 -0.598433,-0.63571 H 7.2151268 c -0.3305064,0 -0.5984335,0.28461 -0.5984335,0.63571 v 5.55758 c 0,0.3511 0.2679271,0.63572 0.5984335,0.63572 h 6.6601512 c 0.330506,0 0.598433,-0.28462 0.598433,-0.63572 z"
        stroke="#000000"
@@ -10194,7 +10083,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
    x="25.312113"
    y="110.17537"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.96317px"
    x="25.276333"
    y="112.75203"
@@ -10274,7 +10163,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
    x="183.02988"
    y="110.17537"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.96317px"
    x="182.99408"
    y="112.75203"
@@ -10350,7 +10239,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
    x="56.893711"
    y="96.065132"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.96317px"
    x="56.857914"
    y="98.641762"
@@ -10388,12 +10277,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
        x="37.246216"
        y="83.672615"
        
-       transform="scale(0.97023256,1.0306807)">Ingress 2<tspan
-   font-size="2.82205px"
-   x="38.408573"
-   y="86.494675"
-   
-   >192.0.2.23</tspan></text>
+       transform="scale(0.97023256,1.0306807)">Ingress 2</text>
     <path
        d="m 167.32814,77.517256 c 0,-0.3511 -0.26792,-0.63571 -0.59842,-0.63571 h -6.66016 c -0.33051,0 -0.59844,0.28461 -0.59844,0.63571 v 5.55758 c 0,0.3511 0.26793,0.63572 0.59844,0.63572 h 6.66016 c 0.3305,0 0.59842,-0.28462 0.59842,-0.63572 z"
        stroke="#000000"
@@ -10418,12 +10302,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
        x="163.41905"
        y="83.672615"
        
-       transform="scale(0.97023256,1.0306807)">Egress 2<tspan
-   font-size="2.82205px"
-   x="164.16916"
-   y="86.494675"
-   
-   >192.0.2.78</tspan></text>
+       transform="scale(0.97023256,1.0306807)">Egress 2</text>
     <rect
        x="47.330269"
        y="109.88822"
@@ -10534,7 +10413,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
    x="151.4192"
    y="96.065132"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.96317px"
    x="151.38342"
    y="98.641762"
@@ -10867,7 +10746,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
    x="91.681465"
    y="21.219387"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.59507px"
    x="91.681465"
    y="23.059853"
@@ -11039,7 +10918,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
    x="91.6903"
    y="89.80751"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.59507px"
    x="91.6903"
    y="91.64798"
@@ -11211,7 +11090,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
    x="123.21667"
    y="21.219387"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.59507px"
    x="123.21667"
    y="23.059853"
@@ -11383,7 +11262,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
    x="123.37249"
    y="89.684822"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.59507px"
    x="123.37249"
    y="91.525284"
@@ -12748,12 +12627,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
        x="42.885876"
        y="65.252716"
        
-       transform="scale(0.84010005,1.1903344)">Ingress 1<tspan
-   font-size="3.15392px"
-   x="44.184929"
-   y="68.406639"
-   
-   >192.0.2.2</tspan></text>
+       transform="scale(0.84010005,1.1903344)">Ingress 1</text>
     <path
        d="m 44.669843,66.57751 c 0,-0.453164 -0.259273,-0.820526 -0.579102,-0.820526 h -6.329815 c -0.319831,0 -0.579101,0.367362 -0.579101,0.820526 v 7.173223 c 0,0.453172 0.25927,0.82053 0.579101,0.82053 h 6.329815 c 0.319829,0 0.579102,-0.367358 0.579102,-0.82053 z"
        stroke="#000000"
@@ -12780,30 +12654,15 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
        
        transform="scale(0.84010005,1.1903344)">Relay 1<tspan
    font-size="3.15392px"
-   x="79.43988"
-   y="72.246201"
-   
-   >192.0.2.3</tspan><tspan
-   font-size="3.15392px"
    x="149.74815"
    y="69.092278"
    
    >Relay 2</tspan><tspan
    font-size="3.15392px"
-   x="149.94823"
-   y="72.246201"
-   
-   >192.0.2.6</tspan><tspan
-   font-size="3.15392px"
    x="184.36246"
    y="65.252724"
    
-   >Egress 1</tspan><tspan
-   font-size="3.15392px"
-   x="185.20071"
-   y="68.406639"
-   
-   >192.0.2.7</tspan></text>
+   >Egress 1</tspan></text>
     <path
        d="m 163.09589,66.577502 c 0,-0.453159 -0.25927,-0.820518 -0.57909,-0.820518 h -6.32985 c -0.31982,0 -0.57909,0.367359 -0.57909,0.820518 v 7.173219 c 0,0.453165 0.25927,0.820523 0.57909,0.820523 h 6.32985 c 0.31982,0 0.57909,-0.367358 0.57909,-0.820523 z"
        stroke="#000000"
@@ -12828,12 +12687,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
        x="113.53401"
        y="83.216354"
        
-       transform="scale(0.84010005,1.1903344)">Transit 2<tspan
-   font-size="3.15392px"
-   x="114.69227"
-   y="86.370277"
-   
-   >192.0.2.5</tspan></text>
+       transform="scale(0.84010005,1.1903344)">Transit 2</text>
     <path
        d="m 103.88287,87.797014 c 0,-0.453159 -0.25927,-0.820517 -0.5791,-0.820517 h -6.329843 c -0.319825,0 -0.579095,0.367358 -0.579095,0.820517 v 7.173228 c 0,0.453162 0.25927,0.820519 0.579095,0.820519 h 6.329843 c 0.31983,0 0.5791,-0.367357 0.5791,-0.820519 z"
        stroke="#000000"
@@ -12858,12 +12712,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
        x="113.53401"
        y="47.289078"
        
-       transform="scale(0.84010005,1.1903344)">Transit 1<tspan
-   font-size="3.15392px"
-   x="114.69227"
-   y="50.442997"
-   
-   >192.0.2.4</tspan></text>
+       transform="scale(0.84010005,1.1903344)">Transit 1</text>
     <path
        d="m 103.88287,45.194758 c 0,-0.453159 -0.25927,-0.820516 -0.5791,-0.820516 h -6.329843 c -0.319825,0 -0.579095,0.367357 -0.579095,0.820516 v 7.173218 c 0,0.453168 0.25927,0.820526 0.579095,0.820526 h 6.329843 c 0.31983,0 0.5791,-0.367358 0.5791,-0.820526 z"
        stroke="#000000"
@@ -13417,7 +13266,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
    x="9.0692492"
    y="86.370277"
    
-   >192.0.2.12</tspan></text>
+   >192.0.2.2</tspan></text>
     <path
        d="m 15.178529,87.797021 c 0,-0.453166 -0.259271,-0.820524 -0.579098,-0.820524 H 8.15439 c -0.3198304,0 -0.5791011,0.367358 -0.5791011,0.820524 v 7.173265 c 0,0.453171 0.2592707,0.820528 0.5791011,0.820528 h 6.445041 c 0.319827,0 0.579098,-0.367357 0.579098,-0.820528 z"
        stroke="#000000"
@@ -13482,7 +13331,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
    x="29.678211"
    y="104.60818"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="2.19403px"
    x="29.638214"
    y="107.48785"
@@ -13562,7 +13411,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
    x="205.61893"
    y="104.60818"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="2.19403px"
    x="205.57893"
    y="107.48785"
@@ -13638,7 +13487,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
    x="67.914444"
    y="88.701447"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="2.19403px"
    x="67.874458"
    y="91.5811"
@@ -13676,12 +13525,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
        x="43.021767"
        y="83.216354"
        
-       transform="scale(0.84010005,1.1903344)">Ingress 2<tspan
-   font-size="3.15392px"
-   x="44.320827"
-   y="86.370277"
-   
-   >192.0.2.23</tspan></text>
+       transform="scale(0.84010005,1.1903344)">Ingress 2</text>
     <path
        d="m 163.09589,87.797021 c 0,-0.453166 -0.25927,-0.820524 -0.57909,-0.820524 h -6.44504 c -0.31983,0 -0.5791,0.367358 -0.5791,0.820524 v 7.173265 c 0,0.453171 0.25927,0.820528 0.5791,0.820528 h 6.44504 c 0.31982,0 0.57909,-0.367357 0.57909,-0.820528 z"
        stroke="#000000"
@@ -13706,12 +13550,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
        x="184.03239"
        y="83.216354"
        
-       transform="scale(0.84010005,1.1903344)">Egress 2<tspan
-   font-size="3.15392px"
-   x="184.8707"
-   y="86.370277"
-   
-   >192.0.2.78</tspan></text>
+       transform="scale(0.84010005,1.1903344)">Egress 2</text>
     <rect
        x="49.508259"
        y="119.94836"
@@ -13822,7 +13661,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
    x="167.69096"
    y="88.701447"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="2.19403px"
    x="167.65099"
    y="91.5811"
@@ -14159,7 +13998,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
    x="103.97729"
    y="21.234938"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.78265px"
    x="103.97729"
    y="23.291843"
@@ -14331,7 +14170,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
    x="103.86842"
    y="89.5242"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.78265px"
    x="103.86842"
    y="91.5811"
@@ -14503,7 +14342,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
    x="139.20921"
    y="21.234938"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.78265px"
    x="139.20921"
    y="23.291843"
@@ -14675,7 +14514,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
    x="139.2764"
    y="89.5242"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.78265px"
    x="139.2764"
    y="91.5811"
@@ -15641,12 +15480,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
        x="42.534492"
        y="65.662704"
        
-       transform="scale(0.92557641,1.0804078)">Ingress 1<tspan
-   font-size="2.64251px"
-   x="43.622887"
-   y="68.305214"
-   
-   >192.0.2.2</tspan></text>
+       transform="scale(0.92557641,1.0804078)">Ingress 1</text>
     <path
        d="m 47.34577,62.50501 c 0,-0.344616 -0.239335,-0.623988 -0.534564,-0.623988 h -5.84303 c -0.295233,0 -0.534564,0.279372 -0.534564,0.623988 v 5.455049 c 0,0.344626 0.239331,0.623992 0.534564,0.623992 h 5.84303 c 0.295229,0 0.534564,-0.279366 0.534564,-0.623992 z"
        stroke="#000000"
@@ -15673,30 +15507,15 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
        
        transform="scale(0.92557641,1.0804078)">Relay 1<tspan
    font-size="2.64251px"
-   x="73.161194"
-   y="71.522179"
-   
-   >192.0.2.3</tspan><tspan
-   font-size="2.64251px"
    x="132.05373"
    y="68.879669"
    
    >Relay 2</tspan><tspan
    font-size="2.64251px"
-   x="132.22125"
-   y="71.522179"
-   
-   >192.0.2.6</tspan><tspan
-   font-size="2.64251px"
    x="161.07043"
    y="65.662704"
    
-   >Egress 1</tspan><tspan
-   font-size="2.64251px"
-   x="161.77277"
-   y="68.305214"
-   
-   >192.0.2.7</tspan></text>
+   >Egress 1</tspan></text>
     <path
        d="m 156.66438,62.505005 c 0,-0.344616 -0.23934,-0.623983 -0.53457,-0.623983 h -5.84305 c -0.29523,0 -0.53457,0.279367 -0.53457,0.623983 v 5.455069 c 0,0.344611 0.23934,0.623977 0.53457,0.623977 h 5.84305 c 0.29523,0 0.53457,-0.279366 0.53457,-0.623977 z"
        stroke="#000000"
@@ -15721,12 +15540,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
        x="101.72691"
        y="80.713516"
        
-       transform="scale(0.92557641,1.0804078)">Transit 2<tspan
-   font-size="2.64251px"
-   x="102.69737"
-   y="83.356026"
-   
-   >192.0.2.5</tspan></text>
+       transform="scale(0.92557641,1.0804078)">Transit 2</text>
     <path
        d="m 102.00507,78.64189 c 0,-0.344616 -0.23933,-0.623982 -0.53456,-0.623982 h -5.84305 c -0.295234,0 -0.534565,0.279366 -0.534565,0.623982 v 5.455069 c 0,0.344612 0.239331,0.623978 0.534565,0.623978 h 5.84305 c 0.29523,0 0.53456,-0.279366 0.53456,-0.623978 z"
        stroke="#000000"
@@ -15751,12 +15565,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
        x="101.72691"
        y="50.611893"
        
-       transform="scale(0.92557641,1.0804078)">Transit 1<tspan
-   font-size="2.64251px"
-   x="102.69737"
-   y="53.254406"
-   
-   >192.0.2.4</tspan></text>
+       transform="scale(0.92557641,1.0804078)">Transit 1</text>
     <path
        d="m 102.00507,46.243985 c 0,-0.344616 -0.23933,-0.623982 -0.53456,-0.623982 h -5.84305 c -0.295234,0 -0.534565,0.279366 -0.534565,0.623982 v 5.45507 c 0,0.34461 0.239331,0.623977 0.534565,0.623977 h 5.84305 c 0.29523,0 0.53456,-0.279367 0.53456,-0.623977 z"
        stroke="#000000"
@@ -16310,7 +16119,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
    x="14.201256"
    y="83.356026"
    
-   >192.0.2.12</tspan></text>
+   >192.0.2.2</tspan></text>
     <path
        d="m 20.122449,78.641895 c 0,-0.344621 -0.239342,-0.623987 -0.534551,-0.623987 h -5.949406 c -0.29525,0 -0.534552,0.279366 -0.534552,0.623987 v 5.455078 c 0,0.344622 0.239302,0.623988 0.534552,0.623988 h 5.949406 c 0.295209,0 0.534551,-0.279366 0.534551,-0.623988 z"
        stroke="#000000"
@@ -16375,7 +16184,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
    x="31.427538"
    y="104.611"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.83826px"
    x="31.394037"
    y="107.02374"
@@ -16455,7 +16264,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
    x="178.88014"
    y="104.611"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.83826px"
    x="178.84662"
    y="107.02374"
@@ -16563,7 +16372,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
    x="61.032734"
    y="91.398445"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.83826px"
    x="60.999233"
    y="93.81118"
@@ -16697,12 +16506,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
        x="42.64835"
        y="80.713516"
        
-       transform="scale(0.92557641,1.0804078)">Ingress 2<tspan
-   font-size="2.64251px"
-   x="43.736748"
-   y="83.356026"
-   
-   >192.0.2.23</tspan></text>
+       transform="scale(0.92557641,1.0804078)">Ingress 2</text>
     <path
        d="m 156.66438,78.641895 c 0,-0.344621 -0.23934,-0.623987 -0.53457,-0.623987 h -5.94939 c -0.29524,0 -0.53457,0.279366 -0.53457,0.623987 v 5.455078 c 0,0.344622 0.23933,0.623988 0.53457,0.623988 h 5.94939 c 0.29523,0 0.53457,-0.279366 0.53457,-0.623988 z"
        stroke="#000000"
@@ -16727,12 +16531,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
        x="160.7939"
        y="80.713516"
        
-       transform="scale(0.92557641,1.0804078)">Egress 2<tspan
-   font-size="2.64251px"
-   x="161.49625"
-   y="83.356026"
-   
-   >192.0.2.78</tspan></text>
+       transform="scale(0.92557641,1.0804078)">Egress 2</text>
     <rect
        x="49.472607"
        y="109.54691"
@@ -16875,7 +16674,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
    x="147.07239"
    y="91.283554"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.83826px"
    x="147.03886"
    y="93.696281"
@@ -17230,7 +17029,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
    x="93.701233"
    y="22.11875"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.49359px"
    x="93.701233"
    y="23.842125"
@@ -17380,7 +17179,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
    x="93.837166"
    y="85.42408"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.49359px"
    x="93.837166"
    y="87.147461"
@@ -17515,7 +17314,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
    x="123.31812"
    y="22.11875"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.49359px"
    x="123.31812"
    y="23.842125"
@@ -17687,7 +17486,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
    x="123.43187"
    y="85.42408"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.49359px"
    x="123.43187"
    y="87.147461"
@@ -18613,12 +18412,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
        x="42.813812"
        y="68.63131"
        
-       transform="scale(0.85569064,1.1686467)">Ingress 1<tspan
-   font-size="2.86847px"
-   x="43.995293"
-   y="71.499771"
-   
-   >192.0.2.2</tspan></text>
+       transform="scale(0.85569064,1.1686467)">Ingress 1</text>
     <path
        d="m 44.640519,70.298759 c 0,-0.404639 -0.24018,-0.732664 -0.536462,-0.732664 h -5.863746 c -0.296281,0 -0.536457,0.328025 -0.536457,0.732664 v 6.405112 c 0,0.404648 0.240176,0.732667 0.536457,0.732667 h 5.863746 c 0.296282,0 0.536462,-0.328019 0.536462,-0.732667 z"
        stroke="#000000"
@@ -18643,12 +18437,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
        x="75.877464"
        y="72.123352"
        
-       transform="scale(0.85569064,1.1686467)">Relay 1<tspan
-   font-size="2.86847px"
-   x="76.059341"
-   y="74.991814"
-   
-   >192.0.2.3</tspan></text>
+       transform="scale(0.85569064,1.1686467)">Relay 1</text>
     <path
        d="m 72.067082,70.298752 c 0,-0.404635 -0.240179,-0.732657 -0.536455,-0.732657 h -5.863774 c -0.296281,0 -0.536461,0.328022 -0.536461,0.732657 v 6.405134 c 0,0.404633 0.24018,0.732652 0.536461,0.732652 h 5.863774 c 0.296276,0 0.536455,-0.328019 0.536455,-0.732652 z"
        stroke="#000000"
@@ -18673,12 +18462,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
        x="140.00383"
        y="72.123352"
        
-       transform="scale(0.85569064,1.1686467)">Relay 2<tspan
-   font-size="2.86847px"
-   x="140.18571"
-   y="74.991814"
-   
-   >192.0.2.6</tspan></text>
+       transform="scale(0.85569064,1.1686467)">Relay 2</text>
     <path
        d="m 126.9202,70.298759 c 0,-0.404639 -0.24018,-0.732664 -0.53646,-0.732664 H 120.52 c -0.29628,0 -0.53646,0.328025 -0.53646,0.732664 v 6.405112 c 0,0.404648 0.24018,0.732667 0.53646,0.732667 h 5.86374 c 0.29628,0 0.53646,-0.328019 0.53646,-0.732667 z"
        stroke="#000000"
@@ -18703,12 +18487,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
        x="171.48584"
        y="68.63131"
        
-       transform="scale(0.85569064,1.1686467)">Egress 1<tspan
-   font-size="2.86847px"
-   x="172.24828"
-   y="71.499771"
-   
-   >192.0.2.7</tspan></text>
+       transform="scale(0.85569064,1.1686467)">Egress 1</text>
     <path
        d="m 154.34677,70.298752 c 0,-0.404635 -0.24018,-0.732657 -0.53646,-0.732657 h -5.86377 c -0.29628,0 -0.53646,0.328022 -0.53646,0.732657 v 6.405134 c 0,0.404633 0.24018,0.732652 0.53646,0.732652 h 5.86377 c 0.29628,0 0.53646,-0.328019 0.53646,-0.732652 z"
        stroke="#000000"
@@ -18733,12 +18512,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
        x="107.06764"
        y="84.96907"
        
-       transform="scale(0.85569064,1.1686467)">Transit 2<tspan
-   font-size="2.86847px"
-   x="108.12107"
-   y="87.837547"
-   
-   >192.0.2.5</tspan></text>
+       transform="scale(0.85569064,1.1686467)">Transit 2</text>
     <path
        d="m 99.493643,89.246081 c 0,-0.404634 -0.240179,-0.732653 -0.536455,-0.732653 h -5.863773 c -0.296282,0 -0.536462,0.328019 -0.536462,0.732653 v 6.405145 c 0,0.404618 0.24018,0.732644 0.536462,0.732644 h 5.863773 c 0.296276,0 0.536455,-0.328026 0.536455,-0.732644 z"
        stroke="#000000"
@@ -18763,12 +18537,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
        x="107.06764"
        y="52.293537"
        
-       transform="scale(0.85569064,1.1686467)">Transit 1<tspan
-   font-size="2.86847px"
-   x="108.12107"
-   y="55.162003"
-   
-   >192.0.2.4</tspan></text>
+       transform="scale(0.85569064,1.1686467)">Transit </text>
     <path
        d="m 99.493643,51.205671 c 0,-0.404634 -0.240179,-0.732655 -0.536455,-0.732655 h -5.863773 c -0.296282,0 -0.536462,0.328021 -0.536462,0.732655 v 6.40514 c 0,0.404627 0.24018,0.732649 0.536462,0.732649 h 5.863773 c 0.296276,0 0.536455,-0.328022 0.536455,-0.732649 z"
        stroke="#000000"
@@ -19322,7 +19091,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
    x="12.057905"
    y="87.837547"
    
-   >192.0.2.12</tspan></text>
+   >192.0.2.2</tspan></text>
     <path
        d="m 17.320674,89.246088 c 0,-0.404641 -0.240181,-0.73266 -0.536457,-0.73266 H 10.81373 c -0.296281,0 -0.536467,0.328019 -0.536467,0.73266 v 6.405145 c 0,0.404641 0.240186,0.732667 0.536467,0.732667 h 5.970487 c 0.296276,0 0.536457,-0.328026 0.536457,-0.732667 z"
        stroke="#000000"
@@ -19387,7 +19156,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
    x="30.826385"
    y="118.64234"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.99545px"
    x="30.790007"
    y="121.26137"
@@ -19467,7 +19236,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
    x="190.81804"
    y="118.64234"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.99545px"
    x="190.78166"
    y="121.26137"
@@ -19575,7 +19344,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
    x="62.882828"
    y="104.05059"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.99545px"
    x="62.846451"
    y="106.66962"
@@ -19887,7 +19656,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
    x="159.17888"
    y="104.05059"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.99545px"
    x="159.1425"
    y="106.66962"
@@ -20247,7 +20016,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
    x="98.35569"
    y="14.37994"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.6213px"
    x="98.35569"
    y="16.250677"
@@ -20397,7 +20166,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
    x="98.503242"
    y="90.207146"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.6213px"
    x="98.503242"
    y="92.077873"
@@ -20569,7 +20338,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
    x="130.51007"
    y="14.37994"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.6213px"
    x="130.51007"
    y="16.250677"
@@ -20741,7 +20510,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
    x="130.62852"
    y="90.207146"
    
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.6213px"
    x="130.62852"
    y="92.077873"
@@ -22029,12 +21798,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
        x="81.022888"
        y="65.122452"
        
-       transform="scale(0.8869959,1.1274009)">Transit 1<tspan
-   font-size="2.89029px"
-   x="82.084328"
-   y="68.012749"
-   id="tspan23"
-   >192.0.2.3</tspan></text>
+       transform="scale(0.8869959,1.1274009)">Transit 1</text>
     <path
        d="m 80.104164,58.405432 c 0,-0.393324 -0.25086,-0.712175 -0.560313,-0.712175 h -6.124544 c -0.309456,0 -0.560316,0.318851 -0.560316,0.712175 v 6.226091 c 0,0.393319 0.25086,0.712171 0.560316,0.712171 h 6.124544 c 0.309453,0 0.560313,-0.318852 0.560313,-0.712171 z"
        stroke="#000000"
@@ -22059,12 +21823,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
        x="145.63715"
        y="65.122452"
        
-       transform="scale(0.8869959,1.1274009)">Transit 4<tspan
-   font-size="2.89029px"
-   x="146.69861"
-   y="68.012749"
-   id="tspan31"
-   >192.0.2.6</tspan></text>
+       transform="scale(0.8869959,1.1274009)">Transit 4</text>
     <path
        d="m 137.39669,58.405437 c 0,-0.393324 -0.25087,-0.71218 -0.56032,-0.71218 h -6.12452 c -0.30945,0 -0.56032,0.318856 -0.56032,0.71218 v 6.22607 c 0,0.393335 0.25087,0.712187 0.56032,0.712187 h 6.12452 c 0.30945,0 0.56032,-0.318852 0.56032,-0.712187 z"
        stroke="#000000"
@@ -22089,12 +21848,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
        x="178.23834"
        y="60.347198"
        
-       transform="scale(0.8869959,1.1274009)">Egress 1<tspan
-   font-size="2.89029px"
-   x="179.00659"
-   y="63.237488"
-   id="tspan39"
-   >192.0.2.7</tspan></text>
+       transform="scale(0.8869959,1.1274009)">Egress 1</text>
     <path
        d="m 166.04294,58.405432 c 0,-0.393324 -0.25085,-0.712175 -0.5603,-0.712175 h -6.12455 c -0.30945,0 -0.56032,0.318851 -0.56032,0.712175 v 6.226091 c 0,0.393319 0.25087,0.712171 0.56032,0.712171 h 6.12455 c 0.30945,0 0.5603,-0.318852 0.5603,-0.712171 z"
        stroke="#000000"
@@ -22119,12 +21873,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
        x="113.33002"
        y="76.809273"
        
-       transform="scale(0.8869959,1.1274009)">Transit 3<tspan
-   font-size="2.89029px"
-   x="114.39145"
-   y="79.699562"
-   id="tspan47"
-   >192.0.2.5</tspan></text>
+       transform="scale(0.8869959,1.1274009)">Transit 3</text>
     <path
        d="m 108.75043,76.823112 c 0,-0.393324 -0.25086,-0.712175 -0.56032,-0.712175 h -6.12454 c -0.30946,0 -0.56031,0.318851 -0.56031,0.712175 v 6.226091 c 0,0.393319 0.25085,0.712171 0.56031,0.712171 h 6.12454 c 0.30946,0 0.56032,-0.318852 0.56032,-0.712171 z"
        stroke="#000000"
@@ -22149,12 +21898,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
        x="113.33002"
        y="43.885124"
        
-       transform="scale(0.8869959,1.1274009)">Transit 2<tspan
-   font-size="2.89029px"
-   x="114.39145"
-   y="46.775417"
-   id="tspan55"
-   >192.0.2.4</tspan></text>
+       transform="scale(0.8869959,1.1274009)">Transit 2</text>
     <path
        d="m 108.75043,39.846075 c 0,-0.393324 -0.25086,-0.712177 -0.56032,-0.712177 h -6.12454 c -0.30946,0 -0.56031,0.318853 -0.56031,0.712177 v 6.226091 c 0,0.393318 0.25085,0.712171 0.56031,0.712171 h 6.12454 c 0.30946,0 0.56032,-0.318853 0.56032,-0.712171 z"
        stroke="#000000"
@@ -22469,12 +22213,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
        x="48.711845"
        y="76.809273"
        
-       transform="scale(0.8869959,1.1274009)">Ingress 2<tspan
-   font-size="2.89029px"
-   x="49.902328"
-   y="79.699562"
-   id="tspan145"
-   >192.0.2.23</tspan></text>
+       transform="scale(0.8869959,1.1274009)">Ingress 2</text>
     <path
        d="m 166.04294,76.823117 c 0,-0.393329 -0.25085,-0.71218 -0.5603,-0.71218 h -6.23601 c -0.30945,0 -0.56032,0.318851 -0.56032,0.71218 v 6.226059 c 0,0.393314 0.25087,0.712182 0.56032,0.712182 h 6.23601 c 0.30945,0 0.5603,-0.318868 0.5603,-0.712182 z"
        stroke="#000000"
@@ -22499,12 +22238,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
        x="177.93549"
        y="76.809273"
        
-       transform="scale(0.8869959,1.1274009)">Egress 2<tspan
-   font-size="2.89029px"
-   x="178.7037"
-   y="79.699562"
-   id="tspan153"
-   >192.0.2.78</tspan></text>
+       transform="scale(0.8869959,1.1274009)">Egress 2</text>
     <path
        d="m 137.39669,61.518467 21.33867,18.459756"
        stroke="#000000"
@@ -22604,7 +22338,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
    x="17.248201"
    y="108.60243"
    id="tspan181"
-   >192.0.2.12</tspan></text>
+   >192.0.2.2</tspan></text>
     <path
        d="m 22.58871,109.40824 c 0,-0.39331 -0.250862,-0.71217 -0.560314,-0.71217 h -6.124522 c -0.309457,0 -0.560317,0.31886 -0.560317,0.71217 v 6.22606 c 0,0.39334 0.25086,0.71217 0.560317,0.71217 h 6.124522 c 0.309452,0 0.560314,-0.31883 0.560314,-0.71217 z"
        stroke="#000000"
@@ -23003,7 +22737,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
    x="68.790932"
    y="99.93158"
    id="tspan333"
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="2.01064px"
    x="68.754295"
    y="102.57054"
@@ -23047,7 +22781,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
    x="36.742413"
    y="114.50868"
    id="tspan345"
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="2.01064px"
    x="36.705769"
    y="117.14764"
@@ -23239,7 +22973,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
    x="104.48116"
    y="19.883175"
    id="tspan405"
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.63364px"
    x="104.48116"
    y="21.768145"
@@ -23411,7 +23145,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
    x="136.89171"
    y="19.883175"
    id="tspan457"
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="1.63364px"
    x="136.89171"
    y="21.768145"
@@ -23651,7 +23385,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
    x="165.50475"
    y="19.254856"
    id="tspan541"
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="2.01064px"
    x="165.46808"
    y="21.893812"
@@ -23695,7 +23429,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
    x="198.02048"
    y="19.380524"
    id="tspan553"
-   >192.0.2.12</tspan><tspan
+   >192.0.2.2</tspan><tspan
    font-size="2.01064px"
    x="197.98383"
    y="22.019478"
