@@ -5,14 +5,14 @@
 Network Working Group                                            X. Geng
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                                 Y. Ryoo
-Expires: 6 January 2022                                             ETRI
+Expires: 20 January 2022                                            ETRI
                                                                 D. Fedyk
                                                  LabN Consulting, L.L.C.
                                                                R. Rahman
                                                               Individual
                                                                    Z. Li
                                                             China Mobile
-                                                             5 July 2021
+                                                            19 July 2021
 
 
               Deterministic Networking (DetNet) YANG Model
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Geng, et al.             Expires 6 January 2022                 [Page 1]
+Geng, et al.             Expires 20 January 2022                [Page 1]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -63,7 +63,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 January 2022.
+   This Internet-Draft will expire on 20 January 2022.
 
 Copyright Notice
 
@@ -109,19 +109,19 @@ Table of Contents
 
 
 
-Geng, et al.             Expires 6 January 2022                 [Page 2]
+Geng, et al.             Expires 20 January 2022                [Page 2]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
-     B.5.  Example C-2 JSON Relay Aggregation Service Sub-Layer  . .  81
+     B.5.  Example C-2 JSON Relay Aggregation Service Sub-Layer  . .  82
      B.6.  Example C-3 JSON Relay Service Sub-Layer Aggregation/
            Disaggregation  . . . . . . . . . . . . . . . . . . . . .  94
      B.7.  Example C-4 JSON Relay Service Sub-Layer Aggregation/
            Disaggregation  . . . . . . . . . . . . . . . . . . . . . 108
      B.8.  Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/
            Disaggregation  . . . . . . . . . . . . . . . . . . . . . 124
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . 131
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . 132
 
 1.  Introduction
 
@@ -165,7 +165,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                 [Page 3]
+Geng, et al.             Expires 20 January 2022                [Page 3]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -221,7 +221,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                 [Page 4]
+Geng, et al.             Expires 20 January 2022                [Page 4]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -277,7 +277,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                 [Page 5]
+Geng, et al.             Expires 20 January 2022                [Page 5]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -333,7 +333,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                 [Page 6]
+Geng, et al.             Expires 20 January 2022                [Page 6]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -389,7 +389,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                 [Page 7]
+Geng, et al.             Expires 20 January 2022                [Page 7]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -445,7 +445,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                 [Page 8]
+Geng, et al.             Expires 20 January 2022                [Page 8]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -501,7 +501,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                 [Page 9]
+Geng, et al.             Expires 20 January 2022                [Page 9]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -557,7 +557,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 10]
+Geng, et al.             Expires 20 January 2022               [Page 10]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -613,7 +613,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 11]
+Geng, et al.             Expires 20 January 2022               [Page 11]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -669,7 +669,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 12]
+Geng, et al.             Expires 20 January 2022               [Page 12]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -725,7 +725,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 13]
+Geng, et al.             Expires 20 January 2022               [Page 13]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -781,7 +781,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 14]
+Geng, et al.             Expires 20 January 2022               [Page 14]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -837,7 +837,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 15]
+Geng, et al.             Expires 20 January 2022               [Page 15]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -893,7 +893,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 16]
+Geng, et al.             Expires 20 January 2022               [Page 16]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -949,7 +949,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 17]
+Geng, et al.             Expires 20 January 2022               [Page 17]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1005,7 +1005,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 18]
+Geng, et al.             Expires 20 January 2022               [Page 18]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1061,7 +1061,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 19]
+Geng, et al.             Expires 20 January 2022               [Page 19]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1117,7 +1117,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 20]
+Geng, et al.             Expires 20 January 2022               [Page 20]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1173,7 +1173,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 21]
+Geng, et al.             Expires 20 January 2022               [Page 21]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1229,7 +1229,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 22]
+Geng, et al.             Expires 20 January 2022               [Page 22]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1285,7 +1285,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 23]
+Geng, et al.             Expires 20 January 2022               [Page 23]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1341,7 +1341,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 24]
+Geng, et al.             Expires 20 January 2022               [Page 24]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1397,7 +1397,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 25]
+Geng, et al.             Expires 20 January 2022               [Page 25]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1453,7 +1453,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 26]
+Geng, et al.             Expires 20 January 2022               [Page 26]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1509,7 +1509,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 27]
+Geng, et al.             Expires 20 January 2022               [Page 27]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1565,7 +1565,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 28]
+Geng, et al.             Expires 20 January 2022               [Page 28]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1621,7 +1621,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 29]
+Geng, et al.             Expires 20 January 2022               [Page 29]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1677,7 +1677,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 30]
+Geng, et al.             Expires 20 January 2022               [Page 30]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1733,7 +1733,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 31]
+Geng, et al.             Expires 20 January 2022               [Page 31]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1789,7 +1789,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 32]
+Geng, et al.             Expires 20 January 2022               [Page 32]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1845,7 +1845,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 33]
+Geng, et al.             Expires 20 January 2022               [Page 33]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1901,7 +1901,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 34]
+Geng, et al.             Expires 20 January 2022               [Page 34]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -1957,7 +1957,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 35]
+Geng, et al.             Expires 20 January 2022               [Page 35]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2013,7 +2013,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 36]
+Geng, et al.             Expires 20 January 2022               [Page 36]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2069,7 +2069,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 37]
+Geng, et al.             Expires 20 January 2022               [Page 37]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2125,7 +2125,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 38]
+Geng, et al.             Expires 20 January 2022               [Page 38]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2181,7 +2181,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 39]
+Geng, et al.             Expires 20 January 2022               [Page 39]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2237,7 +2237,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 40]
+Geng, et al.             Expires 20 January 2022               [Page 40]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2293,7 +2293,7 @@ module: ietf-detnet
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 41]
+Geng, et al.             Expires 20 January 2022               [Page 41]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2349,7 +2349,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 42]
+Geng, et al.             Expires 20 January 2022               [Page 42]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2405,7 +2405,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 43]
+Geng, et al.             Expires 20 January 2022               [Page 43]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2461,7 +2461,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 44]
+Geng, et al.             Expires 20 January 2022               [Page 44]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2517,7 +2517,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 45]
+Geng, et al.             Expires 20 January 2022               [Page 45]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2573,7 +2573,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 46]
+Geng, et al.             Expires 20 January 2022               [Page 46]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2629,7 +2629,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 47]
+Geng, et al.             Expires 20 January 2022               [Page 47]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2685,7 +2685,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 48]
+Geng, et al.             Expires 20 January 2022               [Page 48]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2741,7 +2741,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 49]
+Geng, et al.             Expires 20 January 2022               [Page 49]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
@@ -2752,7 +2752,10 @@ Appendix B.  Examples
 
    The following examples are provided.  These examples are tested with
    Yanglint and use operational output to exercise both config true and
-   config false objects.
+   config false objects.  Note that IPv4 and IPv6 addresses are
+   supported but for clarity in the examples and diagrams IPv4 has been
+   used.  The IP types are imported from [RFC6991] and these support
+   both IPv4 and IPv6.
 
    The following are examples of aggregation and disaggregation at
    various points in Detnet.  Figures are provided in the PDF version of
@@ -2791,17 +2794,17 @@ B.1.  Example A-1 JSON Configuration/Operational
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
            "statistics": {
-             "discontinuity-time": "2020-12-18T23:59:00Z"
-           }
-         },
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 50]
+Geng, et al.             Expires 20 January 2022               [Page 50]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+             "discontinuity-time": "2020-12-18T23:59:00Z"
+           }
+         },
          {
            "name": "eth2",
            "type": "iana-if-type:ethernetCsmacd",
@@ -2840,31 +2843,31 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                "app-flow-status": "ready",
                "interface": "eth0",
                "ip-app-flow": {
-                 "src-ip-prefix": "2001:db8:1000::/48",
-                 "dest-ip-prefix": "2001:db8:2000::/48",
+                 "src-ip-prefix": "192.0.2.1",
+                 "dest-ip-prefix": "192.0.2.8",
                  "dscp": 6
                }
              }
            },
            {
-             "name": "app-1",
-             "bidir-congruent": false,
-             "outgoing-service": "ssl-1",
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 51]
+Geng, et al.             Expires 20 January 2022               [Page 51]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+             "name": "app-1",
+             "bidir-congruent": false,
+             "outgoing-service": "ssl-1",
              "traffic-profile": "pf-1",
              "ingress": {
                "app-flow-status": "ready",
                "interface": "eth0",
                "ip-app-flow": {
-                 "src-ip-prefix": "2001:db8:1000::/48",
-                 "dest-ip-prefix": "2001:db8:2000::/48",
+                 "src-ip-prefix": "192.0.2.1",
+                 "dest-ip-prefix": "192.0.2.8",
                  "dscp": 7
                }
              }
@@ -2903,17 +2906,17 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "max-loss": 2,
              "max-consecutive-loss-tolerance": 5,
              "max-misordering": 0
-           },
-           "flow-spec": {
-             "interval": 5,
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 52]
+Geng, et al.             Expires 20 January 2022               [Page 52]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+           },
+           "flow-spec": {
+             "interval": 5,
              "max-pkts-per-interval": 10,
              "max-payload-size": 1500,
              "min-payload-size": 100,
@@ -2959,17 +2962,17 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  "service-outgoing": [
                    {
                      "index": 0,
-                     "mpls-label-stack": {
-                       "entry": [
-                         {
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 53]
+Geng, et al.             Expires 20 January 2022               [Page 53]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                     "mpls-label-stack": {
+                       "entry": [
+                         {
                            "id": 0,
                            "label": 100
                          }
@@ -3015,16 +3018,17 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
          ]
        }
      }
-   }
-
-              Figure 4: Example A-1 DetNet JSON configuration
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 54]
+Geng, et al.             Expires 20 January 2022               [Page 54]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
+
+   }
+
+              Figure 4: Example A-1 DetNet JSON configuration
 
 B.2.  Example B-1 XML Config: Aggregation using a Forwarding Sub-layer
 
@@ -3070,18 +3074,18 @@ B.2.  Example B-1 XML Config: Aggregation using a Forwarding Sub-layer
       <name>eth3</name>
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 55]
+Geng, et al.             Expires 20 January 2022               [Page 55]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+      <statistics>
+         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
+      </statistics>
+    </interface>
     <interface>
       <name>eth4</name>
       <type>ia:ethernetCsmacd</type>
@@ -3118,7 +3122,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
         <app-flow-status>ready</app-flow-status>
         <interface>eth1</interface>
         <ip-app-flow>
-          <src-ip-prefix>192.0.2.12/32</src-ip-prefix>
+          <src-ip-prefix>192.0.2.2/32</src-ip-prefix>
           <dest-ip-prefix>192.0.2.9/32</dest-ip-prefix>
           <dscp>7</dscp>
         </ip-app-flow>
@@ -3126,18 +3130,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
       </ingress>
     </app-flow>
   </app-flows>
-  <traffic-profile>
-    <name>1</name>
-    <traffic-requirements>
-      <min-bandwidth>100000000</min-bandwidth>
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 56]
+Geng, et al.             Expires 20 January 2022               [Page 56]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+  <traffic-profile>
+    <name>1</name>
+    <traffic-requirements>
+      <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
       <max-loss>2</max-loss>
@@ -3182,18 +3186,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
      <incoming>
         <app-flow>
           <flow>app-1</flow>
-        </app-flow>
-      </incoming>
-      <outgoing>
-        <forwarding-sub-layer>
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 57]
+Geng, et al.             Expires 20 January 2022               [Page 57]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+        </app-flow>
+      </incoming>
+      <outgoing>
+        <forwarding-sub-layer>
           <service-outgoing>
             <index>0</index>
             <mpls-label-stack>
@@ -3238,18 +3242,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
     </sub-layer>
     </service>
     <forwarding>
-    <sub-layer>
-      <name>afl-1</name>
-      <traffic-profile>3</traffic-profile>
-      <operation>impose-and-forward</operation>
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 58]
+Geng, et al.             Expires 20 January 2022               [Page 58]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+    <sub-layer>
+      <name>afl-1</name>
+      <traffic-profile>3</traffic-profile>
+      <operation>impose-and-forward</operation>
       <incoming>
         <service-sub-layer>
           <sub-layer>ssl-1</sub-layer>
@@ -3294,18 +3298,18 @@ B.3.  Example B-2 JSON Service Aggregation Configuration
            "oper-status": "up",
            "statistics": {
              "discontinuity-time": "2020-10-02T23:59:00Z"
-           }
-         },
-         {
-           "name": "eth1",
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 59]
+Geng, et al.             Expires 20 January 2022               [Page 59]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+           }
+         },
+         {
+           "name": "eth1",
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
            "statistics": {
@@ -3350,18 +3354,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                "app-flow-status": "ready",
                "interface": "eth0",
                "ip-app-flow": {
-                 "src-ip-prefix": "192.0.2.1/32",
-                 "dest-ip-prefix": "192.0.2.8/32",
-                 "dscp": 6
-               }
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 60]
+Geng, et al.             Expires 20 January 2022               [Page 60]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                 "src-ip-prefix": "192.0.2.1/32",
+                 "dest-ip-prefix": "192.0.2.8/32",
+                 "dscp": 6
+               }
              }
            },
            {
@@ -3373,7 +3377,7 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                "app-flow-status": "ready",
                "interface": "eth0",
                "ip-app-flow": {
-                 "src-ip-prefix": "192.0.2.12/32",
+                 "src-ip-prefix": "192.0.2.2/32",
                  "dest-ip-prefix": "192.0.2.9/32",
                  "dscp": 7
                }
@@ -3406,18 +3410,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "max-loss": 2,
              "max-consecutive-loss-tolerance": 5,
              "max-misordering": 0
-           },
-           "member-services": [
-             "ssl-1",
-             "ssl-2"
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 61]
+Geng, et al.             Expires 20 January 2022               [Page 61]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+           },
+           "member-services": [
+             "ssl-1",
+             "ssl-2"
            ]
          },
          {
@@ -3462,18 +3466,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                        }
                      ]
                    }
-                 }
-               }
-             }
-           },
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 62]
+Geng, et al.             Expires 20 January 2022               [Page 62]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                 }
+               }
+             }
+           },
            {
              "name": "ssl-2",
              "service-rank": 10,
@@ -3518,18 +3522,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  "sub-layer": [
                    "ssl-1",
                    "ssl-2"
-                 ]
-               }
-             },
-             "outgoing": {
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 63]
+Geng, et al.             Expires 20 January 2022               [Page 63]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                 ]
+               }
+             },
+             "outgoing": {
                "forwarding-sub-layer": {
                  "service-outgoing": [
                    {
@@ -3574,18 +3578,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                        "id": 0,
                        "label": 20000
                      }
-                   ]
-                 }
-               }
-             }
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 64]
+Geng, et al.             Expires 20 January 2022               [Page 64]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                   ]
+                 }
+               }
+             }
            }
          ]
        }
@@ -3630,18 +3634,18 @@ B.4.  Example C-1 JSON Relay Aggregation/Disaggregation Configuration
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
            "statistics": {
-             "discontinuity-time": "2020-12-18T23:59:00Z"
-           }
-         },
-         {
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 65]
+Geng, et al.             Expires 20 January 2022               [Page 65]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+             "discontinuity-time": "2020-12-18T23:59:00Z"
+           }
+         },
+         {
            "name": "eth3",
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
@@ -3686,18 +3690,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            "member-fwd-sublayers": [
              "afl-1",
              "afl-2"
-           ]
-         },
-         {
-           "name": "pf-3",
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 66]
+Geng, et al.             Expires 20 January 2022               [Page 66]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+           ]
+         },
+         {
+           "name": "pf-3",
            "flow-spec": {
              "interval": 125,
              "max-pkts-per-interval": 1,
@@ -3742,18 +3746,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    {
                      "index": 0,
                      "mpls-label-stack": {
-                       "entry": [
-                         {
-                           "id": 0,
-                           "label": 101
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 67]
+Geng, et al.             Expires 20 January 2022               [Page 67]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                       "entry": [
+                         {
+                           "id": 0,
+                           "label": 101
                          }
                        ]
                      },
@@ -3798,18 +3802,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                            "id": 0,
                            "label": 104
                          }
-                       ]
-                     },
-                     "sub-layer": [
-                       "fsl-5",
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 68]
+Geng, et al.             Expires 20 January 2022               [Page 68]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                       ]
+                     },
+                     "sub-layer": [
+                       "fsl-5",
                        "fsl-6"
                      ]
                    }
@@ -3854,18 +3858,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                "service-sub-layer": {
                  "sub-layer": [
                    "ssl-1"
-                 ]
-               }
-             },
-             "outgoing": {
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 69]
+Geng, et al.             Expires 20 January 2022               [Page 69]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                 ]
+               }
+             },
+             "outgoing": {
                "forwarding-sub-layer": {
                  "aggregation-sub-layer": "afl-1",
                  "forwarding-label": {
@@ -3910,18 +3914,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            },
            {
              "name": "fsl-4",
-             "traffic-profile": "pf-3",
-             "operation": "pop-and-lookup",
-             "incoming": {
-               "forwarding-id": {
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 70]
+Geng, et al.             Expires 20 January 2022               [Page 70]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+             "traffic-profile": "pf-3",
+             "operation": "pop-and-lookup",
+             "incoming": {
+               "forwarding-id": {
                  "interface": "eth1",
                  "mpls-label-stack": {
                    "entry": [
@@ -3966,18 +3970,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    }
                  }
                }
-             }
-           },
-           {
-             "name": "fsl-6",
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 71]
+Geng, et al.             Expires 20 January 2022               [Page 71]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+             }
+           },
+           {
+             "name": "fsl-6",
              "traffic-profile": "pf-3",
              "operation": "impose-and-forward",
              "incoming": {
@@ -4022,18 +4026,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    "entry": [
                      {
                        "id": 0,
-                       "label": 20000
-                     }
-                   ]
-                 }
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 72]
+Geng, et al.             Expires 20 January 2022               [Page 72]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                       "label": 20000
+                     }
+                   ]
+                 }
                }
              }
            },
@@ -4078,18 +4082,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
            "statistics": {
-             "discontinuity-time": "2020-12-18T23:59:00Z"
-           }
-         },
-         {
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 73]
+Geng, et al.             Expires 20 January 2022               [Page 73]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+             "discontinuity-time": "2020-12-18T23:59:00Z"
+           }
+         },
+         {
            "name": "eth1",
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
@@ -4134,18 +4138,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "max-loss": 2,
              "max-consecutive-loss-tolerance": 5,
              "max-misordering": 0
-           },
-           "member-services": [
-             "ssl-1",
-             "ssl-2"
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 74]
+Geng, et al.             Expires 20 January 2022               [Page 74]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+           },
+           "member-services": [
+             "ssl-1",
+             "ssl-2"
            ]
          },
          {
@@ -4190,18 +4194,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "operation": "relay",
              "incoming": {
                "service-id": {
-                 "mpls-label-stack": {
-                   "entry": [
-                     {
-                       "id": 0,
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 75]
+Geng, et al.             Expires 20 January 2022               [Page 75]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                 "mpls-label-stack": {
+                   "entry": [
+                     {
+                       "id": 0,
                        "label": 101
                      }
                    ]
@@ -4246,18 +4250,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                        "id": 0,
                        "label": 104
                      }
-                   ]
-                 }
-               }
-             },
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 76]
+Geng, et al.             Expires 20 January 2022               [Page 76]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                   ]
+                 }
+               }
+             },
              "outgoing": {
                "forwarding-sub-layer": {
                  "service-outgoing": [
@@ -4302,18 +4306,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              },
              "outgoing": {
                "forwarding-disaggregation": {
-                 "sub-layer": [
-                   "fsl-1",
-                   "fsl-4"
-                 ]
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 77]
+Geng, et al.             Expires 20 January 2022               [Page 77]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                 "sub-layer": [
+                   "fsl-1",
+                   "fsl-4"
+                 ]
                }
              }
            },
@@ -4358,18 +4362,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                      }
                    ]
                  }
-               }
-             },
-             "outgoing": {
-               "service-sub-layer": {
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 78]
+Geng, et al.             Expires 20 January 2022               [Page 78]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+               }
+             },
+             "outgoing": {
+               "service-sub-layer": {
                  "sub-layer": [
                    "ssl-1"
                  ]
@@ -4414,18 +4418,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              },
              "outgoing": {
                "interface": {
-                 "outgoing-interface": "eth2",
-                 "mpls-label-stack": {
-                   "entry": [
-                     {
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 79]
+Geng, et al.             Expires 20 January 2022               [Page 79]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                 "outgoing-interface": "eth2",
+                 "mpls-label-stack": {
+                   "entry": [
+                     {
                        "id": 0,
                        "label": 10005
                      }
@@ -4470,18 +4474,18 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    "entry": [
                      {
                        "id": 0,
-                       "label": 10010
-                     }
-                   ]
-                 }
 
 
 
-Geng, et al.             Expires 6 January 2022                [Page 80]
+Geng, et al.             Expires 20 January 2022               [Page 80]
 
 Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
+                       "label": 10010
+                     }
+                   ]
+                 }
                }
              },
              "outgoing": {
@@ -4524,18 +4528,22 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
       Figure 11: Example C-1 DetNet JSON Relay Service Disaggregation
 
+
+
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 81]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
 B.5.  Example C-2 JSON Relay Aggregation Service Sub-Layer
 
    This illustrates the Relay node 1 aggregating the service sub-layers
    of DetNet flows 1 and 2 into a forwarding sub-layer A diagram
    illustrating both aggregation and disaggregation is shown and then
    the corresponding JSON operational data follows.
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 81]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
    Please consult the PDF or HTML versions for the Case C-2 Diagram.
@@ -4578,6 +4586,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            }
          },
          {
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 82]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            "name": "eth4",
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
@@ -4586,14 +4602,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            }
          }
        ]
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 82]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
      },
      "ietf-detnet:detnet": {
        "traffic-profile": [
@@ -4634,6 +4642,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            "member-fwd-sublayers": [
              "afl-1",
              "afl-2"
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 83]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            ]
          }
        ],
@@ -4642,14 +4658,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            {
              "name": "ssl-1",
              "service-rank": 10,
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 83]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
              "traffic-profile": "pf-1",
              "service-protection": {
                "protection": "replication",
@@ -4690,6 +4698,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                }
              }
            },
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 84]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            {
              "name": "ssl-2",
              "service-rank": 10,
@@ -4698,14 +4714,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                "protection": "replication",
                "sequence-number-length": "long-sn"
              },
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 84]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
              "operation": "relay",
              "incoming": {
                "service-id": {
@@ -4746,6 +4754,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
        "forwarding": {
          "sub-layer": [
            {
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 85]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              "name": "fsl-1",
              "traffic-profile": "pf-2",
              "operation": "pop-and-lookup",
@@ -4754,14 +4770,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  "interface": "eth0",
                  "mpls-label-stack": {
                    "entry": [
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 85]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                      {
                        "id": 0,
                        "label": 10000
@@ -4802,6 +4810,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  ]
                }
              }
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 86]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            },
            {
              "name": "afl-1",
@@ -4810,14 +4826,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "incoming": {
                "service-sub-layer": {
                  "sub-layer": [
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 86]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                    "ssl-1",
                    "ssl-2"
                  ]
@@ -4858,6 +4866,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                        "id": 0,
                        "label": 20001
                      }
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 87]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                    ]
                  }
                }
@@ -4866,14 +4882,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
          ]
        }
      }
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 87]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
    }
 
      Figure 13: Example C-2 DetNet JSON Relay Aggregation Service Sub-
@@ -4914,6 +4922,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "discontinuity-time": "2020-12-18T23:59:00Z"
            }
          },
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 88]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
          {
            "name": "eth4",
            "type": "iana-if-type:ethernetCsmacd",
@@ -4922,14 +4938,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "discontinuity-time": "2020-12-18T23:59:00Z"
            }
          }
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 88]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
        ]
      },
      "ietf-detnet:detnet": {
@@ -4970,6 +4978,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            },
            "member-fwd-sublayers": [
              "afl-1",
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 89]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              "afl-2"
            ]
          }
@@ -4978,14 +4994,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
          "sub-layer": [
            {
              "name": "ssl-1",
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 89]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
              "service-rank": 10,
              "traffic-profile": "pf-1",
              "service-protection": {
@@ -5026,6 +5034,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                }
              }
            },
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 90]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            {
              "name": "ssl-2",
              "service-rank": 10,
@@ -5034,14 +5050,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                "protection": "elimination",
                "sequence-number-length": "long-sn"
              },
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 90]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
              "operation": "relay",
              "incoming": {
                "service-id": {
@@ -5082,6 +5090,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
          "sub-layer": [
            {
              "name": "afl-1",
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 91]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              "traffic-profile": "pf-3",
              "operation": "pop-and-lookup",
              "incoming": {
@@ -5090,14 +5106,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  "mpls-label-stack": {
                    "entry": [
                      {
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 91]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                        "id": 0,
                        "label": 20002
                      }
@@ -5138,6 +5146,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    "ssl-2"
                  ]
                }
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 92]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              }
            },
            {
@@ -5146,14 +5162,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "operation": "impose-and-forward",
              "incoming": {
                "service-sub-layer": {
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 92]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                  "sub-layer": [
                    "ssl-1"
                  ]
@@ -5194,6 +5202,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                        "label": 10011
                      }
                    ]
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 93]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                  }
                }
              }
@@ -5202,13 +5218,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
        }
      }
    }
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 93]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
 
       Figure 14: Example C-2 DetNet JSON Relay Disaggregation Service
                                  Sub-Layer
@@ -5249,6 +5258,14 @@ B.6.  Example C-3 JSON Relay Service Sub-Layer Aggregation/
          },
          {
            "name": "eth2",
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 94]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
            "statistics": {
@@ -5258,14 +5275,6 @@ B.6.  Example C-3 JSON Relay Service Sub-Layer Aggregation/
          {
            "name": "eth3",
            "type": "iana-if-type:ethernetCsmacd",
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 94]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            "oper-status": "up",
            "statistics": {
              "discontinuity-time": "2020-12-18T23:59:00Z"
@@ -5305,6 +5314,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "max-latency": 100000000,
              "max-latency-variation": 100000000,
              "max-loss": 2,
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 95]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              "max-consecutive-loss-tolerance": 5,
              "max-misordering": 0
            },
@@ -5314,14 +5331,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
          },
          {
            "name": "pf-3",
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 95]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            "flow-spec": {
              "interval": 125,
              "max-pkts-per-interval": 1,
@@ -5361,6 +5370,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  "mpls-label-stack": {
                    "entry": [
                      {
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 96]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                        "id": 0,
                        "label": 100
                      }
@@ -5370,14 +5387,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              },
              "outgoing": {
                "service-sub-layer": {
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 96]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                  "aggregation-sub-layer": "asl-1",
                  "service-label": {
                    "mpls-label-stack": {
@@ -5417,6 +5426,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                "service-sub-layer": {
                  "aggregation-sub-layer": "asl-1",
                  "service-label": {
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 97]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                    "mpls-label-stack": {
                      "entry": [
                        {
@@ -5426,14 +5443,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                      ]
                    }
                  }
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 97]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                }
              }
            },
@@ -5473,6 +5482,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                      ]
                    }
                  ]
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 98]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                }
              }
            }
@@ -5482,14 +5499,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
          "sub-layer": [
            {
              "name": "fsl-1",
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 98]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
              "traffic-profile": "pf-3",
              "operation": "pop-and-lookup",
              "incoming": {
@@ -5529,6 +5538,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    ]
                  }
                }
+
+
+
+Geng, et al.             Expires 20 January 2022               [Page 99]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              },
              "outgoing": {
                "service-sub-layer": {
@@ -5538,14 +5555,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                }
              }
            },
-
-
-
-Geng, et al.             Expires 6 January 2022                [Page 99]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            {
              "name": "fsl-3",
              "traffic-profile": "pf-4",
@@ -5585,6 +5594,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "outgoing": {
                "interface": {
                  "outgoing-interface": "eth3",
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 100]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                  "mpls-label-stack": {
                    "entry": [
                      {
@@ -5594,14 +5611,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    ]
                  }
                }
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 100]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
              }
            }
          ]
@@ -5641,6 +5650,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
          },
          {
            "name": "eth3",
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 101]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
            "statistics": {
@@ -5650,14 +5667,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
          {
            "name": "eth4",
            "type": "iana-if-type:ethernetCsmacd",
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 101]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            "oper-status": "up",
            "statistics": {
              "discontinuity-time": "2020-12-18T23:59:00Z"
@@ -5697,6 +5706,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            ]
          },
          {
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 102]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            "name": "pf-3",
            "flow-spec": {
              "interval": 125,
@@ -5706,14 +5723,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            "member-fwd-sublayers": [
              "fsl-3",
              "fsl-4"
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 102]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            ]
          },
          {
@@ -5753,6 +5762,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                }
              },
              "outgoing": {
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 103]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                "forwarding-sub-layer": {
                  "service-outgoing": [
                    {
@@ -5762,14 +5779,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                          {
                            "id": 0,
                            "label": 102
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 103]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                          }
                        ]
                      },
@@ -5809,6 +5818,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                      "index": 0,
                      "mpls-label-stack": {
                        "entry": [
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 104]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                          {
                            "id": 0,
                            "label": 105
@@ -5818,14 +5835,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                      "sub-layer": [
                        "fsl-4"
                      ]
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 104]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                    }
                  ]
                }
@@ -5865,6 +5874,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
        },
        "forwarding": {
          "sub-layer": [
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 105]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            {
              "name": "fsl-1",
              "traffic-profile": "pf-4",
@@ -5874,14 +5891,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  "interface": "eth0",
                  "mpls-label-stack": {
                    "entry": [
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 105]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                      {
                        "id": 0,
                        "label": 20002
@@ -5921,6 +5930,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    "asl-1"
                  ]
                }
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 106]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              }
            },
            {
@@ -5930,14 +5947,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "incoming": {
                "service-sub-layer": {
                  "sub-layer": [
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 106]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                    "ssl-1"
                  ]
                }
@@ -5977,6 +5986,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                        "label": 10011
                      }
                    ]
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 107]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                  }
                }
              }
@@ -5985,14 +6002,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
        }
      }
    }
-
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 107]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
 
          Figure 17: Example C-3 DetNet JSON Relay Service Sub-Layer
                                Disaggregation
@@ -6033,6 +6042,14 @@ B.7.  Example C-4 JSON Relay Service Sub-Layer Aggregation/
            }
          },
          {
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 108]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            "name": "eth2",
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
@@ -6042,14 +6059,6 @@ B.7.  Example C-4 JSON Relay Service Sub-Layer Aggregation/
          },
          {
            "name": "eth3",
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 108]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
            "statistics": {
@@ -6089,6 +6098,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "min-bandwidth": "200000000",
              "max-latency": 100000000,
              "max-latency-variation": 100000000,
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 109]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              "max-loss": 2,
              "max-consecutive-loss-tolerance": 5,
              "max-misordering": 0
@@ -6098,14 +6115,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            ]
          },
          {
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 109]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            "name": "pf-3",
            "flow-spec": {
              "interval": 125,
@@ -6145,6 +6154,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "operation": "relay",
              "incoming": {
                "service-id": {
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 110]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                  "mpls-label-stack": {
                    "entry": [
                      {
@@ -6154,14 +6171,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    ]
                  }
                }
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 110]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
              },
              "outgoing": {
                "forwarding-sub-layer": {
@@ -6201,6 +6210,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                        "id": 0,
                        "label": 103
                      }
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 111]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                    ]
                  }
                }
@@ -6210,14 +6227,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  "service-outgoing": [
                    {
                      "index": 0,
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 111]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                      "mpls-label-stack": {
                        "entry": [
                          {
@@ -6257,6 +6266,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    {
                      "index": 0,
                      "mpls-label-stack": {
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 112]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                        "entry": [
                          {
                            "id": 0,
@@ -6266,14 +6283,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                      },
                      "sub-layer": [
                        "fsl-5",
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 112]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                        "fsl-6"
                      ]
                    }
@@ -6313,6 +6322,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            {
              "name": "fsl-2",
              "traffic-profile": "pf-3",
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 113]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              "operation": "pop-and-lookup",
              "incoming": {
                "forwarding-id": {
@@ -6322,14 +6339,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                      {
                        "id": 0,
                        "label": 10006
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 113]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                      }
                    ]
                  }
@@ -6369,6 +6378,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  }
                }
              }
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 114]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            },
            {
              "name": "fsl-4",
@@ -6378,14 +6395,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                "service-sub-layer": {
                  "sub-layer": [
                    "ssl-2"
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 114]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                  ]
                }
              },
@@ -6425,6 +6434,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                        "id": 0,
                        "label": 20000
                      }
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 115]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                    ]
                  }
                }
@@ -6434,14 +6451,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "name": "fsl-6",
              "traffic-profile": "pf-4",
              "operation": "impose-and-forward",
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 115]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
              "incoming": {
                "service-sub-layer": {
                  "sub-layer": [
@@ -6481,6 +6490,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            "statistics": {
              "discontinuity-time": "2020-12-18T23:59:00Z"
            }
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 116]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
          },
          {
            "name": "eth1",
@@ -6490,14 +6507,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "discontinuity-time": "2020-12-18T23:59:00Z"
            }
          },
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 116]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
          {
            "name": "eth2",
            "type": "iana-if-type:ethernetCsmacd",
@@ -6537,6 +6546,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "max-misordering": 0
            },
            "member-services": [
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 117]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              "ssl-1",
              "ssl-2"
            ]
@@ -6546,14 +6563,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            "traffic-requirements": {
              "min-bandwidth": "200000000",
              "max-latency": 100000000,
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 117]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
              "max-latency-variation": 100000000,
              "max-loss": 2,
              "max-consecutive-loss-tolerance": 5,
@@ -6593,6 +6602,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
        "service": {
          "sub-layer": [
            {
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 118]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              "name": "ssl-1",
              "service-rank": 10,
              "traffic-profile": "pf-1",
@@ -6602,14 +6619,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              },
              "operation": "relay",
              "incoming": {
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 118]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                "service-id": {
                  "mpls-label-stack": {
                    "entry": [
@@ -6649,6 +6658,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "service-protection": {
                "protection": "none",
                "sequence-number-length": "long-sn"
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 119]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              },
              "operation": "relay",
              "incoming": {
@@ -6658,14 +6675,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                      {
                        "id": 0,
                        "label": 104
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 119]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                      }
                    ]
                  }
@@ -6705,6 +6714,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                "service-id": {
                  "mpls-label-stack": {
                    "entry": [
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 120]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                      {
                        "id": 0,
                        "label": 1000
@@ -6714,14 +6731,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                }
              },
              "outgoing": {
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 120]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                "forwarding-disaggregation": {
                  "sub-layer": [
                    "fsl-3",
@@ -6761,6 +6770,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            },
            {
              "name": "fsl-2",
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 121]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              "traffic-profile": "pf-4",
              "operation": "pop-and-lookup",
              "incoming": {
@@ -6770,14 +6787,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    "entry": [
                      {
                        "id": 0,
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 121]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                        "label": 20003
                      }
                    ]
@@ -6817,6 +6826,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                }
              }
            },
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 122]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            {
              "name": "fsl-4",
              "traffic-profile": "pf-3",
@@ -6826,14 +6843,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  "interface": "eth1",
                  "mpls-label-stack": {
                    "entry": [
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 122]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                      {
                        "id": 0,
                        "label": 20005
@@ -6873,6 +6882,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    ]
                  }
                }
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 123]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              }
            },
            {
@@ -6882,14 +6899,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "incoming": {
                "service-sub-layer": {
                  "sub-layer": [
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 123]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                    "ssl-2"
                  ]
                }
@@ -6929,6 +6938,14 @@ B.8.  Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/
 
        Figure 21: Case D-1 Example Service Aggregation/Disaggregation
 
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 124]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
    {
      "ietf-interfaces:interfaces": {
        "interface": [
@@ -6938,14 +6955,6 @@ B.8.  Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/
            "oper-status": "up",
            "statistics": {
              "discontinuity-time": "2020-12-18T23:59:00Z"
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 124]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            }
          },
          {
@@ -6985,6 +6994,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
      "ietf-detnet:detnet": {
        "traffic-profile": [
          {
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 125]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
            "name": "pf-1",
            "flow-spec": {
              "interval": 125,
@@ -6994,14 +7011,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            "member-fwd-sublayers": [
              "fsl-1",
              "fsl-2"
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 125]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            ]
          },
          {
@@ -7041,6 +7050,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  "forwarding-label": {
                    "mpls-label-stack": {
                      "entry": [
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 126]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                        {
                          "id": 0,
                          "label": 10002
@@ -7050,14 +7067,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                  }
                }
              }
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 126]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            },
            {
              "name": "fsl-2",
@@ -7097,6 +7106,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "traffic-profile": "pf-2",
              "operation": "impose-and-forward",
              "incoming": {
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 127]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                "forwarding-aggregation": {
                  "sub-layer": [
                    "fsl-1",
@@ -7106,14 +7123,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              },
              "outgoing": {
                "interface": {
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 127]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                  "outgoing-interface": "eth3",
                  "mpls-label-stack": {
                    "entry": [
@@ -7153,6 +7162,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "discontinuity-time": "2020-12-18T23:59:00Z"
            }
          },
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 128]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
          {
            "name": "eth2",
            "type": "iana-if-type:ethernetCsmacd",
@@ -7162,14 +7179,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            }
          },
          {
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 128]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
            "name": "eth3",
            "type": "iana-if-type:ethernetCsmacd",
            "oper-status": "up",
@@ -7209,6 +7218,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "max-payload-size": 1518
            },
            "member-fwd-sublayers": [
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 129]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
              "afl-1"
            ]
          }
@@ -7218,14 +7235,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            {
              "name": "fsl-1",
              "traffic-profile": "pf-1",
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 129]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
              "operation": "swap-and-forward",
              "incoming": {
                "forwarding-id": {
@@ -7265,6 +7274,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                    "entry": [
                      {
                        "id": 0,
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 130]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
                        "label": 10006
                      }
                    ]
@@ -7274,14 +7291,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
              "outgoing": {
                "interface": {
                  "outgoing-interface": "eth2",
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 130]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
-
                  "mpls-label-stack": {
                    "entry": [
                      {
@@ -7321,6 +7330,14 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
            }
          ]
        }
+
+
+
+Geng, et al.             Expires 20 January 2022              [Page 131]
+
+Internet-Draft          draft-ietf-detnet-yang-13              July 2021
+
+
      }
    }
 
@@ -7328,15 +7345,6 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
                                Disaggregation
 
 Authors' Addresses
-
-
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 131]
-
-Internet-Draft          draft-ietf-detnet-yang-13              July 2021
-
 
    Xuesong Geng
    Huawei Technologies
@@ -7381,12 +7389,4 @@ Internet-Draft          draft-ietf-detnet-yang-13              July 2021
 
 
 
-
-
-
-
-
-
-
-
-Geng, et al.             Expires 6 January 2022               [Page 132]
+Geng, et al.             Expires 20 January 2022              [Page 132]

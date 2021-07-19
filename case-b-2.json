@@ -70,7 +70,7 @@
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.12/32",
+              "src-ip-prefix": "192.0.2.2/32",
               "dest-ip-prefix": "192.0.2.9/32",
               "dscp": 7
             }
