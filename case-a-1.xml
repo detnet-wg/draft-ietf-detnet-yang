@@ -54,8 +54,8 @@
         <app-flow-status>ready</app-flow-status>
         <interface>eth0</interface>
         <ip-app-flow>
-	  <src-ip-prefix>2001:0db8:1000::/48</src-ip-prefix>
-	  <dest-ip-prefix>2001:0db8:2000::/48</dest-ip-prefix>
+          <src-ip-prefix>192.0.2.1/32</src-ip-prefix>
+          <dest-ip-prefix>192.0.2.8/32</dest-ip-prefix>
           <dscp>6</dscp>
         </ip-app-flow>
       </ingress>
@@ -69,8 +69,8 @@
         <app-flow-status>ready</app-flow-status>
         <interface>eth0</interface>
         <ip-app-flow>
-	  <src-ip-prefix>2001:0db8:1000::/48</src-ip-prefix>
-	  <dest-ip-prefix>2001:0db8:2000::/48</dest-ip-prefix>
+          <src-ip-prefix>192.0.2.1/32</src-ip-prefix>
+          <dest-ip-prefix>192.0.2.8/32</dest-ip-prefix>
           <dscp>7</dscp>
         </ip-app-flow>
       </ingress>
