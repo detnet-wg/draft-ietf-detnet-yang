@@ -1,0 +1,348 @@
+
+TP01: Looking at it from an editorial point of view, there are a significant number of defects which make it 'Not Ready'.
+
+TP02: IANA Considerations MUST be present as per YANG Guidelines, RFC8407; no registration, no YANG module
+[Done]
+
+TP03: Security Considerations MUST follow the template as per YANG Guidelines
+[Done]
+
+TP04: Examples MUST use the addresses reserved for IETF documentation, not those allocated to other organisations.
+[Done] IP V4 only 
+
+TP05: Requirements Language is out of date - see RFC8174
+[Done]
+
+TP06: YANG revision statement must refer to the title i.e. 'RFC XXXX; Determistic Networking (DetNet) YANG Model'
+[Done]
+
+TP07: The Information Model is now an RFC
+[Done]
+
+TP08: It is unfortunate that RFC9016 is Informationsl - it needs to be a Normative Reference IMO; your AD is probably familiar with this problem as it occurred as recently as last month and will doubtless occur many times again
+[Help]
+
+TP09: import yang-types references an obsolete RFC
+[Done]
+
+TP10: YANG prefix is cumbersome - I think 'detnet' quite long enough and likely too long - it is a shame that dtn is in use elsewhere
+[Done]
+
+TP11: references in the YANG module, RFC, IEEE or ietf-draft etc.,  MUST appear in I-D References and there needs to be a good reason why they are not Normative; I rarely see such a reason.
+[Done] Please Check
+
+TP12: six authors, one for the AD to reflect on
+[Done]
+
+TP13: Acknowledgements
+(perhaps not a coincidence:-)
+[Done]
+
+TP14: Ten pages of YANG tree diagram in the middle of the I-D breaks up the I-D and makes it harder to follow, for me.  The full diagram is needed, but not where it is.  Common practice is to place the whole diagram at the end, in an Appendix, and to place extracts, limited in depth, limited in extent, less than a page, ideally much less, after the text that describes their function.
+[Done]
+
+TP15: I note that this approach was used in early version of this I-D and, for me, it is a retrograde step to have changed.
+[NA]
+
+TP16: Wherever the diagrams are, they need an Informative Reference to RFC8340.
+[Done]
+
+TP17: References.  Could do with more in the YANG module, one per leaf/list etc is not too many - I identify some specific ones I struggle with below.
+[Incomplete]
+ 
+TP18: Address Families.  Need explaining in the body of the I-D. I know of two different meanings in other WG and recently encountered a third, strange one.
+[Done]
+
+
+TP19: Augments.  Need explaining in the body of the I-D.  YANG that is valid for a standalone module may be invalid for a model of several modules (as the TEAS WG recently found).  Some authors include such an augment as an Appendix to guide developers.  At the least there should be explanations as to what kind of augments are anticipated where as opposed to reverse engineering the YANG.
+[Done]
+
+
+TP20: YANG Prefix.  Good practice is to have prefix for relatedmodules with an obvious connection, such as the same 3-4-5 letters with a suffix to separate them.  This reinforces my earlier comment about the chosen prefix being long as and when there are augmenting modules.
+[Done]
+
+
+TP21:      typedef app-flow-ref {
+What is an application in this context?  Could do with a reference and a paragraph in the body of the I-D.
+[Partial]
+
+TP22:      typedef ipsec-spi {
+Others model spi as uint64.  I see nothing in RFC6071 to tell me what the valid range of values is.
+[Done] Commentor was not completely correct it is unit32.
+
+
+TP23:      typedef service-operation-type {
+and most of the other typedef
+Context is usually enough to know the class of an identifier; suggest removing '-type'
+
+TP24:      typedef forwarding-operations (-type { ) Could do with a reference or explanation for the enum which is not in
+RFC8960
+           MPLS enum.  The first 4 enums are the same as A YANG Data
+           Model for MPLS Base.  draft-ietf-mpls-base-yang."; And the other enum not in RFC8960?
+[Check Removed Enum]
+
+
+
+TP25:      grouping ip-header {
+          type inet:ip-address-no-zone;
+A wise choice but why is the tree diagram inet:ip-address?  Is the tree diagram really of this version of the module?
+[Done] Editorial error. 
+
+TP26:        choice detnet-flow-type {
+          case ip-detnet-flow {
+Elsewhere it is 'case  ip' and 'case mpls'; I would think 'detnet-' is wholy redundant and probably '-flow' as well.
+[Help] This is from imported modules already published.
+
+TP27:        choice header-type {
+          case detnet-mpls-header {
+TP28:As above, ditch the 'detnet-' and probably '-header' as well
+[Partial - header-type seems right now it is not a YANG type]
+
+TP29:            leaf outgoing-interface {
+...
+                "The outgoing interface, if this is a whole interface."; What is an interface when it is not whole? A reference perhaps.  This occurs elsewhere.
+[Done]
+
+TP30:      grouping detnet-forwarding-next-hop-content { This I am confused by.
+           case simple-next-hop {
+[Help] This is existing YANG we copied.
+...
+TP31:               Modules for address families MUST augment this case with a
+               leaf containing a next-hop address of that address
+               family.";
+This sort of implies that
+            leaf outgoing-interface {
+is an address family (not that I know what a detnet address family is) whereas
+          case next-hop-list {
+[Done - removed augment notes]
+...
+TP32:                                                 Modules for address
+                 families MUST augment this list with a leaf containing a
+                 next-hop address of that address family."; sort of suggests that
+               leaf hop-index {
+is an address family.  I am unsure what is meant to be augmented; YANG choice?.
+[Done] As with previous. 
+
+TP33:          leaf profile-name {
+            type string;
+            description
+              "An Aggregation group ID. Zero means the service is not
+               part of a group.";
+How is zero encoded?
+[Done] Zero is old text removed. 
+
+TP34:            leaf min-bandwidth {
+              type uint64;
+              units "bps";
+..
+                 guaranteed for the DetNet service.  MinBandwidth is
+                 specified in octets per second."; byte per second?
+[Done] Octets/per second.
+
+TP35:            leaf max-latency {
+              type uint32;
+              units "nanoseconds";
+Has the max value a special meaning, such as too big for a uint32?
+[Done] Added in description.
+
+TP36:                "The period of time in which the traffic
+                 specification cannot be exceeded."; Mmm.. should not?
+[Done]
+
+TP37:            leaf max-payload-size {
+I would like a reference.  MTU and such like are a source of confusion as to what is included; I want to know the name of the protocol field that starts the payload and where that field is defined.
+[Done] Addre Refrence to 802.1Q. 
+TP38:          list app-flow {
+            leaf name {
+              type string;
+RFC9016 would appear to label this as 'flowid'
+[Check] We call it an App-Flow  We give the app-flow a name RFC 9016 calls the IP 6-tuple and the MPLS labels the flow identification. There is no flowid. While the name is the nam of an App-flow which uses a flow-id I dont thinh the name is the flow-id.It is really a local name.    
+ 
+TP39:                  "The DetNet service protection type such as PRF, PEF,
+                   PEOF,PERF, and PEORF."; Abbreviations need expanding.
+[Done added abbreviations]
+
+TP40:                reference
+                [RFC9016]  "draft-ietf-detnet-data-plane-framework
+Section 4.3";
+I see no section 4.3 in RFC9016
+[Done RFC 8938 Section 4.3]
+
+TP41:              choice outgoing-type {
+Probably better without '-type'
+[Done]
+
+TP42:                  "The out-going type may be a forwarding Sub-layer or a With or with-out a hyphen?  I like consistency.
+[Don] outgoing.
+
+ TP43:                  service sub-layer or ? types need to be named."; ??
+[Done] Check,
+
+TP44:                     Control-Word and S-label when the operation type is I need a reference; they are not in RFC9016 although I might guess where they are.
+[Done]
+
+TP45:                     decapsulates the DetNet Control-Word and A-label for ditto
+[Done]
+
+TP46:           leaf forwarding-operation-type {
+              type forwarding-operations-type; The typedef list six options; what about the sixth?
+[The 6 was removed]
+
+TP47:                      "This is reference to the forwarding sub-layer."; Not quite English.
+[Fixed]
+
+
+This is a review of the YANG module in draft-ietf-detnet-yang-12.
+
+XL01: 1) Missing diagrams in the PDF and HTML versions of the document.
+Sec A.1. says “Please consult the PDF or HTML versions for the Case A-1 Diagram”, but the this diagram and other diagrams are not present. Because of the missing diagrams, it is unclear how these examples work, so the following comments are based on some assumptions that may or may not be what the authors intend to hold.
+[Don] raised as a Tools issue to the editor. 
+
+XL02: 2) Implementation locations and the users of the model.
+    Is this a network model implemented on a controller or a device model
+    implemented on a network element? The abstract section states “The model
+    allows for provisioning of end-to-end DetNet service”, but the YANG module
+    and all examples use “ietf-interfaces”, which is a device model. The
+    interface name such as “eth0” is unique within the scope of a device. There
+    is no explanation in the YANG module and any of these examples.
+   If the model is intended to be used on a network-wide controller, any device
+   module should not be imported. A network-wide module may be used on a
+   device, and a device module may then be imported.
+
+[Don] Will Clarify.  The model is per device. Either an operator or a Controller aligns the configuration of the devices. 
+[Xufeng]: Thanks for the clarification, which also solves some of my confusion below. It would be beneficial to add some description to the document. 
+[Done]
+
+XL03: 3) In Sec 5., in the diagram, “TR” is used, but not defined. Amusing that “Ref”
+means “referencing”, the abbreviation also needs to be defined, especially if this is using the YANG leafref mechanism.
+[Don] TR should be Traffic Profile. I have expanded this acronym. 
+
+XL04: 4) In Sec 5., the last paragraph states “four parts of DetNet functions defined in section 3”, but “section 3” does not define the “four” parts.
+[Don] Wil fix this. This is referring to App-flow, Service Sub-layer, Forwarding Sub-layer and traffic Profile (as 4 but this this confusing.) The Model has 4 main section but supports 3 layers (not instances) 
+
+XL05: 5) In Sec 5., the last paragraph describes “three instances in DetNet YANG Model”. The term “instance” is not clear here. A YANG data model does not usually consist of “instances”. RFC7950 uses “instance” to indicate the configuration data or operational data, so “instance” means “data instance”, which is not part of a YANG data model that “describes how data is represented and accessed”.
+
+In Sec A.1, Example A-1 provides one data instance that contains all three “parts” (or components) of the DetNet system, so there is no such a concept of “App-flow instance”, “service sub-layer instance”, or “forwarding sub-layer instance”, because one single “data instance” may contain all three parts.
+[Don] App-flow is a layer.  A node for example an edge node is a data instance that has the 3 layers. 
+
+XL06: 6) In Sec 6. in the sub-tree app-flows,
+    6.1) Does this sub-tree model App-flow or NetNet flow, or both?
+    draft-ietf-detnet-flow-information-model-14 defines both terms and
+    describes the distinctions between them.
+[Don] App-Flow is a DetNet flow it all depends on the granularity and where you are. At an edge a flow or set of flows come from an application. It could be a single applications i.e. a voice call or a bunch of flows - another DetNet network (with voice and video flows). 
+Note it is all unidirectional.  
+
+XL07:    6.2) Except the leaf "name", all other leaves are optional. When a user
+    creates an instance of app-flow with only the name specified, what does the
+    system do?
+[Don] Will check but in essence if the Application is an ingress interface there is not much there. I think we can make interface mandatory (Multiple apps can aggregate multiple interfaces.)   Traffic flow qualifiers can be refine to less than an interface. 
+[Xufeng]: Right. Currently, even the interface is optional.  
+[Done]
+
+XL08:    6.3) Containers “ingress” and “egress” are specified. However, based on Sec
+    2.1 of draft-ietf-detnet-flow-information-model-14, An app-flow consists of
+    source and destination, not ingress and egress. “DN Ingress” and “DN
+    Egress” are parts of a “DetNet flow”, not app-flow.
+[Don] DetNet flow equals App-Flow.  Source and destination are used as traffic qualifiers for IP flows.  
+[No Change]
+
+XL09:    6.4) Container “ingress” should not contain both source and destination.
+    Sec 2.1. of draft-ietf-detnet-flow-information-model-14 defines the
+    “ingress” as the location where DetNet flow starts, so the ingress is
+    related only to the source, not the destination.
+[Don] Ingress is for aggregation / filtering of traffic in a unidirectional.  It is like an Access control list for the traffic.  Will add a note. But source and destination is correct. 
+[Xufeng]: A note would be appreciated. Your above clarification that the model is per device also helps me here and for some questions below.
+[Don] Updated
+
+XL10:    6.5) Based on Sec 5.4. of draft-ietf-detnet-flow-information-model-14, the
+    choice data-flow-type under the container “ingress” is how a DN flow is
+    identified, so this choice is not just related to the ingress of the flow,
+    and should be outside of the container “ingress”.
+[Don] This is Unidirectional. Ingress is the correct placement. The other direction is Ingress on the remote end. 
+[DOne] Clarified unidirectional.
+
+XL11:    6.6) Based on Sec 5.6. of draft-ietf-detnet-flow-information-model-14, the
+    ingress section of the model should identify the ingress node(s) and/or
+    starting reference points. It would be good to have some description on how
+    the ingress node(s) is (are) identified, especially in the case of
+    mpls-app-flow. The description on the leaf name currently is "Ingress
+    DetNet application", which is not consistent with the definition in
+    draft-ietf-detnet-flow-information-model-14.
+[Don] These are identified by interfaces and next-hops (interfaces). 
+[No Action]
+
+XL12:    6.7) Why is app-flow-status under the container ingress? app-flow-status is
+    related to an instance of app-flow, not only the “ingress” part of the
+    app-flow, right?
+[Don] The status is unidirectional. The remote side has the other direction status.  
+Question shoudl we allow for a flow status on other layers?
+
+XL13:   6.8) The leaf interface in the container ingress would only work when this
+    model is implemented on a device (but not on a controller) because
+    ietf-interfaces is a device model. Based on my previous assumption that
+    this model may be used as a network-wide model on a controller, the
+    referencing to ietf-interfaces would not be appropriate.
+[Don] This is a device model. The controller configures multiple devices. If the configuration does not align the flow will not work.A
+Clarified.  
+
+XL14:   6.9) The relationship between app-flow and service-sub-layer needs better
+    described. When an app-flow is served by a DN service, the packets of this
+    app-flow are processed by this particular ND service, so there is only one
+    supporting service. Why are there the “incoming-service” and
+    “outgoing-service”? Are the terms “incoming-service” and “outgoing-service”
+    defined and/or described in any document?
+[Don] We support point to point and point to multipoint. (Replication is an example.) 
+Clarified.
+
+XL15: 7) In Sec 6. in the  sub-tree traffic-profile:
+   The container flow-spec is not consistent with
+   draft-ietf-detnet-flow-information-model-14, which defines the leaves under
+   this container as TrafficSpecification in Sec 4.1.
+[Don] It is up the to WG if they want to change the name. I will ask the work Group. The flow specification is a functional model. The DetNet model does not map 1:1. 
+ASked on the mailing list.
+
+XL16: 8) Before Sec 6, the document does not have an informative reference to the YANG tree diagrams specification RFC8340. Refer to Section 2.2 of [RFC8349] for an example of such a reference.
+[Don] Added. Tom Petch Commented. 
+
+XL19: 9) In Sec 7, the document text does not have the references to the RFCs cited in the YANG module. These references also need to be listed in the document.
+Sec 5 of RFC7317 provides a good example.
+[Don] Added. Tom Petch Commented.
+
+XL20: 10) In Sec 9, the Security section is missing.
+[Don] Added. Tom Petch Commented.
+
+XL21: 11) In Sec 8, the IANA Considerations section is incorrect, with missing IANA requests.
+[Don] Added. Tom Petch Commented.
+
+XL22: 12) For the IP address or prefix examples in the Appendix,  a mix of either
+IPv4 and IPv6 addresses or IPv6 addresses exclusively SHOULD be used.
+[Don] The model supports it but it is a royal pain to align the sample config and the SVG diagrams. I would much rather say IPv4 is shown and IPv6 is supported. I already did some conversion of the from Tom Petch's comments apparently there is a Ipv4 IETF space we have to use. You can see the updates here:  https://github.com/detnet-wg/draft-ietf-detnet-yang/blob/master/draft-ietf-detnet-yang-13.pdf
+The issue is IPv6 examples do not clarify anything as far as I'm concerned. They just burn more text and diagram real estate (and editorial time). 
+[Xufeng]: Your opinion is understandable, but the consensus was documented in the guidelines [RFC8407], and it is a checkpoint during IESG review.
+[Don] Updated the text to say we use reusable IP configuration components that work for IPv4 and IPv6.
+
+XL23: 13) The module prefix ietf-detnet is better to be changed to detnet.
+IETF-defined YANG modules usually do not use “ietf-” as part of the prefix name.
+[Don] Changed to dnet per Tom Petch Comment. 
+
+XL24: 14) As described in Sec 4.3.1. of RFC8407, child nodes within a container or list SHOULD NOT replicate the parent identifier. There are several occasions in the YANG module, for example, profile-name, app-flow-bidir-congruent, service-protection, and service-operation-type.
+[Don] Perhaps the YANG tools should prevent this! We evolved the naming several times. Personally. I prefer to make the container profile and the child name for example which works when reading the tree diagram and in the config examples. 
+[Xufeng]: It could be raised to the tools' authors, but I'm not sure that they would be able to achieve this level of sophistication.
+[Don] We have refined the model to reduce this. There are still some cases mainly due to grouping where the naming can become ambiguous. 
+
+XL25: 15) The node name in the list or leaf-list statements should not contain the suffix “-list”, or in the plural format. For example, service-sub-layer-list is better to be changed to service-sub-layer; member-services should be member-service. The structure of app-flows/app-flow* is the common convention used in IETF. It would be good to be consistent within this module, so it will be a good idea to add a container "traffic-profiles" to the list "traffic-profile".
+[Don] Already removed -type.  Will remove -list. The exception here is next-hop-list which follows the existing examples in the MPLS world. 
+
+XL26: 16) Most of the leaves in this module are defined as optional, but only one leaf has a default statement in the entire module. It is generally needed to either provide a default value or an explanation in the description for such an optional leaf.
+[Don] Correct the leaves are optional - the model support various levels of traffic refinement (6-tuple) aggregation etc. 
+[Xufeng]: If a default statement is not appropriate, some clarification in the description statement would be appreciated.
+[Don] Needs to be checked.
+
+XL27: 17) There is no configuration node and operational state node to indicate whether DetNet is enabled on the system. Please confirm that this is the intention. The fact that this module is supported on a system may not mean that DetNet is enabled.
+[Don] I don't know I don't see a system enable/disable being useful. Perhaps a feature statement? Then if a system does not support the feature it is disabled. 
+[Xufeng]: If such a capability is not useful, you don't have to model it. A feature statement would not help in specifying the run-time system behavior. The system identifies a YANG feature when it loads a module.
+[Don] No action. 
+
+Thanks again. 
+Don  
+

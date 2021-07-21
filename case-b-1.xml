@@ -123,12 +123,12 @@
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming>
-	<app-flow>
+        <app-flow>
           <flow>app-1</flow>
         </app-flow>
       </incoming>
       <outgoing>
-	<forwarding-sub-layer>
+        <forwarding-sub-layer>
           <service-outgoing>
             <index>0</index>
             <mpls-label-stack>
@@ -152,12 +152,12 @@
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming>
-	<app-flow>
+        <app-flow>
           <flow>app-2</flow>
         </app-flow>
       </incoming>
       <outgoing>
-	<forwarding-sub-layer>
+        <forwarding-sub-layer>
           <service-outgoing>
             <index>0</index>
             <mpls-label-stack>
@@ -178,13 +178,13 @@
       <traffic-profile>3</traffic-profile>
       <operation>impose-and-forward</operation>
       <incoming>
-	<service-sub-layer>
+        <service-sub-layer>
           <sub-layer>ssl-1</sub-layer>
           <sub-layer>ssl-2</sub-layer>
         </service-sub-layer>
       </incoming>
       <outgoing>
-	<interface>
+        <interface>
           <outgoing-interface>eth2</outgoing-interface>
           <mpls-label-stack>
             <entry>

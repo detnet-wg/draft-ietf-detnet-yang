@@ -55,8 +55,8 @@
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "2001:db8:1000::/48",
-              "dest-ip-prefix": "2001:db8:2000::/48",
+              "src-ip-prefix": "192.0.2.1/32",
+              "dest-ip-prefix": "192.0.2.8/32",
               "dscp": 6
             }
           }
@@ -70,8 +70,8 @@
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "2001:db8:1000::/48",
-              "dest-ip-prefix": "2001:db8:2000::/48",
+              "src-ip-prefix": "192.0.2.1/32",
+              "dest-ip-prefix": "192.0.2.8/32",
               "dscp": 7
             }
           }

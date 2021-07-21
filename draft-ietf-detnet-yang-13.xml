@@ -127,6 +127,26 @@
       latency and zero congestion loss, are both included in this
       document.</t>
     </section>
+    <section numbered="true" toc="include">
+        <name slugifiedName="name-abbreviations">Abbreviations</name>
+        <t indent="0">
+   The following abbreviations are used in this document:
+        </t>
+	<dl newline="false" spacing="normal" indent="14">
+          <dt>PEF</dt>
+	  <dd>Packet Elimination Function</dd>
+          <dt>PRF</dt>
+	  <dd>Packet Replication Function</dd>
+          <dt>PEOF</dt>
+	  <dd>Packet Elimination and Ordering Functions</dd>
+          <dt>PERF</dt>
+	  <dd>Packet Elimination and Replication Functions</dd>
+          <dt>PREOF</dt>
+	  <dd>Packet Replication,  Elimination and Ordering Functions</dd>
+          <dt>MPLS</dt>
+          <dd>Multiprotocol Label Switching</dd>
+        </dl>
+      </section>
     <section numbered="true" toc="default">
       <name>Terminology</name>
       <t>This document uses the terminology defined in <xref target="RFC8655" format="default"> </xref>.</t>
@@ -166,6 +186,33 @@
               
 ]]></artwork>
       </figure>
+      <t>
+	      All of the layers have ingress/incoming and egress/outgoing operations but any instance
+	      may be configured as only unidirectional. This means that each unidirectional 
+	      flow identifier configuration is programmed starting at the ingress and flow status is 
+	      reported at ingress on each end.
+	      In the MPLS cases once encapsulated, the IP six tuple parameters may not be required to be programmed again. 
+	      In the IP case, without encapsulation, various IP flow id parameters must be configured along 
+	      the flow path.
+      </t>
+      <t>
+	      In the YANG model the terms source and destination are
+	      used as flow identifiers whereas ingress and egress refer to a 
+	      DetNet application direction from the application edge. 
+	      Ingress is to the DetNet application and egress is from the application. 
+	      The terms incoming and outgoing generally represent 
+	      the flow direction towards the remote application. Outgoing is viewed as
+	      going up the stack from Application to Service sub-layer to Forwarding sub-layer
+	      and incoming is the reverse.  
+	      Although, 
+	      in examples where there is aggregation and disaggregation 
+	      outgoing relates to the aggregating output and incoming 
+	      relates to the disaggregating flows. 
+      </t>
+      <t>
+	      At the egress the YANG model is handing off IP or MPLS to a next hop and a routing 
+	     next hop structure is used.  
+      </t>
       <section numbered="true" toc="default">
         <name>DetNet Application Flow YANG Attributes</name>
         <t>DetNet application flow is responsible for mapping between
@@ -307,8 +354,8 @@
               There are three layer types in DetNet YANG Model: 
               App-flow data layer,
               service sub-layer and forwarding sub-layer. 
-              Addtionally the Traffic parameters are captured in a Traffic profile
-              that can be refrenced by any of the layers. 
+              Additionally, the Traffic parameters are captured in a Traffic profile
+              that can be referenced by any of the layers. 
       </t>
       <t>
       Below is a a summary YANG tree showing the major items. 
@@ -321,14 +368,14 @@
       </t>
       <t>
       Depending on which DetNet layers and functions are required,
-      some or all of the componets may configured.   
+      some or all of the components may configured.   
       Examples are shown in <xref target="Examples"/>.
       </t>
 
     </section>
     <section numbered="true" toc="default">
             <name>DetNet Configuration YANG Structures</name>
-            <t> The following is a partial tree represenation of the YANG as defined in 
+            <t> The following is a partial tree representation of the YANG as defined in 
             <xref target="RFC8340" format="default"/>. This corresponds to the
             structure layout in the previous section. 
             </t>
@@ -388,7 +435,8 @@ module: ietf-detnet
             <t> The following model has references to RFCs
                 <xref target="RFC4303"/>, 
                 <xref target="RFC8960"/>, 
-                and <xref target="RFC8964"/>. 
+                <xref target="RFC8964"/>, 
+                and <xref target="IEEE8021Q"/>. 
             </t>
       <sourcecode name="" type="" markers="true"><![CDATA[
 module ietf-detnet {
@@ -1310,7 +1358,7 @@ module ietf-detnet {
             "The period of time in which the traffic
              specification should not be exceeded.";
           reference
-            "RFC 9016 Section 5.5";
+            "RFC 9016 Section 5.5, IEEE802.1Q";
         }
         leaf max-pkts-per-interval {
           type uint32;
@@ -1318,7 +1366,7 @@ module ietf-detnet {
             "The maximum number of packets that the
              source will transmit in one interval.";
           reference
-            "RFC 9016 Section 5.5";
+            "RFC 9016 Section 5.5, IEEE802.1Q";
         }
         leaf max-payload-size {
           type uint32;
@@ -1326,13 +1374,13 @@ module ietf-detnet {
             "The maximum payload size that the source
              will transmit.";
           reference
-            "RFC 9016 Section 5.5";
+            "RFC 9016 Section 5.5, IEEE802.1Q";
         }
         leaf min-payload-size {
           type uint32;
           description
             "The minimum payload size that the source
-             will transmit.";
+             will transmit., IEEE802.1Q";
         }
         leaf min-pkts-per-interval {
           type uint32;
@@ -1340,7 +1388,7 @@ module ietf-detnet {
             "The minimum number of packets that the
              source will transmit in one interval.";
           reference
-            "RFC 9016 Section 5.5";
+            "RFC 9016 Section 5.5, IEEE802.1Q";
         }
       }
       leaf-list member-apps {
@@ -1572,7 +1620,7 @@ module ietf-detnet {
             mandatory true;
             description
               "The outgoing type may be a forwarding Sub-layer or a
-               service sub-layer or ? types need to be named.";
+               service sub-layer or aggregation type.";
             container forwarding-sub-layer {
               description
                 "This service sub-layer is sent to the forwarding
@@ -1892,7 +1940,8 @@ module ietf-detnet {
     </section>
     <section anchor="Acknowledgments" numbered="true" toc="default">
       <name>Acknowledgments</name>
-      <t>  The editors of this document would like to thank Lou Berger and Tom Petch for their detailed comments. 
+      <t>  The editors of this document would like to thank Lou Berger, Tom Petch and 
+	     Xufeng Lui for their detailed comments. 
       </t>
     </section>
   </middle>
@@ -1997,7 +2046,19 @@ module ietf-detnet {
       <references>
         <name>Informative References</name>
         <?rfc include="reference.RFC.8340.xml"?>
-        <?rfc include="reference.RFC.9016.xml"?>
+	<?rfc include="reference.RFC.9016.xml"?>
+        <reference anchor="IEEE8021Q" target="https://ieeexplore.ieee.org/document/8403927" quoteTitle="true" derivedAnchor="IEEE8021Q">
+          <front>
+            <title>IEEE Standard for Local and Metropolitan Area Networks--Bridges and Bridged Networks</title>
+            <author>
+              <organization showOnFrontPage="true">IEEE</organization>
+            </author>
+            <date month="July" year="2018"/>
+          </front>
+          <seriesInfo name="DOI" value="10.1109/IEEESTD.2018.8403927"/>
+          <seriesInfo name="IEEE" value="802.1Q-2018"/>
+        </reference>
+	
       </references>
     </references>
     <section  anchor="Tree" numbered="true" toc="default">
@@ -4273,8 +4334,8 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.1",
-              "dest-ip-prefix": "192.0.2.8",
+              "src-ip-prefix": "192.0.2.1/32",
+              "dest-ip-prefix": "192.0.2.8/32",
               "dscp": 6
             }
           }
@@ -4288,8 +4349,8 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
             "app-flow-status": "ready",
             "interface": "eth0",
             "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.1",
-              "dest-ip-prefix": "192.0.2.8",
+              "src-ip-prefix": "192.0.2.1/32",
+              "dest-ip-prefix": "192.0.2.8/32",
               "dscp": 7
             }
           }
