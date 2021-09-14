@@ -9,7 +9,7 @@ module: ietf-detnet
      |  |  +--rw max-loss?                         uint32
      |  |  +--rw max-consecutive-loss-tolerance?   uint32
      |  |  +--rw max-misordering?                  uint32
-     |  +--rw flow-spec
+     |  +--rw traffic-spec
      |  |  +--rw interval?                uint32
      |  |  +--rw max-pkts-per-interval?   uint32
      |  |  +--rw max-payload-size?        uint32

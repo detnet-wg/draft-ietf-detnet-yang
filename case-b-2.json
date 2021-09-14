@@ -1,83 +1,5 @@
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
-    "app-flows": {
-      "app-flow": [
-        {
-          "name": "app-1",
-          "bidir-congruent": false,
-          "outgoing-service": "ssl-1",
-          "traffic-profile": "1",
-          "ingress": {
-            "app-flow-status": "ready",
-            "interface": "eth0",
-            "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.1/32",
-              "dest-ip-prefix": "192.0.2.8/32",
-              "dscp": 6
-            }
-          }
-        },
-        {
-          "name": "app-2",
-          "bidir-congruent": false,
-          "outgoing-service": "ssl-2",
-          "traffic-profile": "1",
-          "ingress": {
-            "app-flow-status": "ready",
-            "interface": "eth0",
-            "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.2/32",
-              "dest-ip-prefix": "192.0.2.9/32",
-              "dscp": 7
-            }
-          }
-        }
-      ]
-    },
     "traffic-profile": [
       {
         "name": "1",
@@ -111,7 +33,7 @@
       },
       {
         "name": "3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 5,
           "max-pkts-per-interval": 10,
           "max-payload-size": 1500
@@ -121,6 +43,40 @@
         ]
       }
     ],
+    "app-flows": {
+      "app-flow": [
+        {
+          "name": "app-1",
+          "bidir-congruent": false,
+          "outgoing-service": "ssl-1",
+          "traffic-profile": "1",
+          "ingress": {
+            "app-flow-status": "ietf-detnet:ready",
+            "interface": "eth0",
+            "ip-app-flow": {
+              "src-ip-prefix": "192.0.2.1/32",
+              "dest-ip-prefix": "192.0.2.8/32",
+              "dscp": 6
+            }
+          }
+        },
+        {
+          "name": "app-2",
+          "bidir-congruent": false,
+          "outgoing-service": "ssl-2",
+          "traffic-profile": "1",
+          "ingress": {
+            "app-flow-status": "ietf-detnet:ready",
+            "interface": "eth0",
+            "ip-app-flow": {
+              "src-ip-prefix": "192.0.2.2/32",
+              "dest-ip-prefix": "192.0.2.9/32",
+              "dscp": 7
+            }
+          }
+        }
+      ]
+    },
     "service": {
       "sub-layer": [
         {
@@ -147,7 +103,7 @@
                   "entry": [
                     {
                       "id": 0,
-                      "label": 102
+                      "label": "102"
                     }
                   ]
                 }
@@ -159,11 +115,11 @@
           "name": "ssl-2",
           "service-rank": 10,
           "traffic-profile": "2",
-          "operation": "initiation",
           "service-protection": {
             "protection": "none",
             "sequence-number-length": "long-sn"
           },
+          "operation": "initiation",
           "incoming": {
             "app-flow": {
               "flow": [
@@ -179,7 +135,7 @@
                   "entry": [
                     {
                       "id": 0,
-                      "label": 105
+                      "label": "105"
                     }
                   ]
                 }
@@ -190,10 +146,12 @@
         {
           "name": "asl-1",
           "service-rank": 10,
+          "traffic-profile": "2",
           "service-protection": {
             "protection": "none",
             "sequence-number-length": "long-sn"
           },
+          "operation": "initiation",
           "incoming": {
             "service-aggregation": {
               "sub-layer": [
@@ -211,7 +169,7 @@
                     "entry": [
                       {
                         "id": 0,
-                        "label": 1000
+                        "label": "1000"
                       }
                     ]
                   },
@@ -245,7 +203,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20000
+                    "label": "20000"
                   }
                 ]
               }
@@ -254,5 +212,49 @@
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-10-02T19:59:00-04:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-10-02T19:59:00-04:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-10-02T19:59:00-04:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-10-02T19:59:00-04:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-10-02T19:59:00-04:00"
+        }
+      }
+    ]
   }
 }

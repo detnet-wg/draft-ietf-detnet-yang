@@ -54,8 +54,8 @@
         <app-flow-status>ready</app-flow-status>
         <interface>eth0</interface>
         <ip-app-flow>
-          <src-ip-prefix>192.0.2.1/32</src-ip-prefix>
-          <dest-ip-prefix>192.0.2.8/32</dest-ip-prefix>
+          <src-ip-prefix>2001:db8::1/128</src-ip-prefix>
+	  <dest-ip-prefix>2001:db8::8/128</dest-ip-prefix>
           <dscp>6</dscp>
         </ip-app-flow>
       </ingress>
@@ -69,8 +69,8 @@
         <app-flow-status>ready</app-flow-status>
         <interface>eth0</interface>
         <ip-app-flow>
-          <src-ip-prefix>192.0.2.1/32</src-ip-prefix>
-          <dest-ip-prefix>192.0.2.8/32</dest-ip-prefix>
+          <src-ip-prefix>2001:db8::1/128</src-ip-prefix>
+	  <dest-ip-prefix>2001:db8::8/128</dest-ip-prefix>
           <dscp>7</dscp>
         </ip-app-flow>
       </ingress>
@@ -86,13 +86,13 @@
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
-    <flow-spec>
+    <traffic-spec>
       <interval>5</interval>
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
       <min-payload-size>100</min-payload-size>
       <min-pkts-per-interval>1</min-pkts-per-interval>
-    </flow-spec>
+    </traffic-spec>
     <member-apps>app-0</member-apps>
     <member-apps>app-1</member-apps>
     <!--<member-groups></member-groups>-->
@@ -108,13 +108,13 @@
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
-    <flow-spec>
+    <traffic-spec>
       <interval>5</interval>
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
       <min-payload-size>100</min-payload-size>
       <min-pkts-per-interval>1</min-pkts-per-interval>
-    </flow-spec>
+    </traffic-spec>
     <!--<member-apps></member-apps>-->
     <member-services>ssl-1</member-services>
     <!--<member-fwd-sublayers></member-fwd-sublayers>-->
@@ -122,11 +122,11 @@
   </traffic-profile>
   <traffic-profile>  
     <name>pf-3</name>
-    <flow-spec>
+    <traffic-spec>
       <interval>5</interval>
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
-    </flow-spec>
+    </traffic-spec>
     <!--<member-apps></member-apps>-->
     <!--<member-services></member-services>-->
     <!--<member-groups></member-groups>-->

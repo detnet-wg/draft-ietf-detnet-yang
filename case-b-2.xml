@@ -110,11 +110,11 @@
   </traffic-profile>
   <traffic-profile>  
     <name>3</name>
-    <flow-spec>
+    <traffic-spec>
       <interval>5</interval>
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
-    </flow-spec>
+    </traffic-spec>
     <!--<member-apps></member-apps>-->
     <!--<member-services></member-services>-->
     <!--<member-groups></member-groups>-->
@@ -180,10 +180,8 @@
     <sub-layer>
       <name>asl-1</name>
       <service-rank>10</service-rank>
-      <non-grouped>
-        <traffic-profile>2</traffic-profile>
-        <operation>initiation</operation>
-      </non-grouped>
+      <traffic-profile>2</traffic-profile>
+      <operation>initiation</operation>
       <service-protection>
         <protection>none</protection>
         <sequence-number-length>long-sn</sequence-number-length>
