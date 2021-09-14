@@ -132,17 +132,17 @@
         <t indent="0">
    The following abbreviations are used in this document:
         </t>
-	<dl newline="false" spacing="normal" indent="14">
+        <dl newline="false" spacing="normal" indent="14">
           <dt>PEF</dt>
-	  <dd>Packet Elimination Function</dd>
+          <dd>Packet Elimination Function</dd>
           <dt>PRF</dt>
-	  <dd>Packet Replication Function</dd>
+          <dd>Packet Replication Function</dd>
           <dt>PEOF</dt>
-	  <dd>Packet Elimination and Ordering Functions</dd>
+          <dd>Packet Elimination and Ordering Functions</dd>
           <dt>PERF</dt>
-	  <dd>Packet Elimination and Replication Functions</dd>
+          <dd>Packet Elimination and Replication Functions</dd>
           <dt>PREOF</dt>
-	  <dd>Packet Replication,  Elimination and Ordering Functions</dd>
+          <dd>Packet Replication,  Elimination and Ordering Functions</dd>
           <dt>MPLS</dt>
           <dd>Multiprotocol Label Switching</dd>
         </dl>
@@ -187,31 +187,31 @@
 ]]></artwork>
       </figure>
       <t>
-	      All of the layers have ingress/incoming and egress/outgoing operations but any instance
-	      may be configured as only unidirectional. This means that each unidirectional 
-	      flow identifier configuration is programmed starting at the ingress and flow status is 
-	      reported at ingress on each end.
-	      In the MPLS cases once encapsulated, the IP six tuple parameters may not be required to be programmed again. 
-	      In the IP case, without encapsulation, various IP flow id parameters must be configured along 
-	      the flow path.
+              All of the layers have ingress/incoming and egress/outgoing operations but any instance
+              may be configured as only unidirectional. This means that each unidirectional 
+              flow identifier configuration is programmed starting at the ingress and flow status is 
+              reported at ingress on each end.
+              In the MPLS cases once encapsulated, the IP six tuple parameters may not be required to be programmed again. 
+              In the IP case, without encapsulation, various IP flow id parameters must be configured along 
+              the flow path.
       </t>
       <t>
-	      In the YANG model the terms source and destination are
-	      used as flow identifiers whereas ingress and egress refer to a 
-	      DetNet application direction from the application edge. 
-	      Ingress is to the DetNet application and egress is from the application. 
-	      The terms incoming and outgoing generally represent 
-	      the flow direction towards the remote application. Outgoing is viewed as
-	      going up the stack from Application to Service sub-layer to Forwarding sub-layer
-	      and incoming is the reverse.  
-	      Although, 
-	      in examples where there is aggregation and disaggregation 
-	      outgoing relates to the aggregating output and incoming 
-	      relates to the disaggregating flows. 
+              In the YANG model the terms source and destination are
+              used as flow identifiers whereas ingress and egress refer to a 
+              DetNet application direction from the application edge. 
+              Ingress is to the DetNet application and egress is from the application. 
+              The terms incoming and outgoing generally represent 
+              the flow direction towards the remote application. Outgoing is viewed as
+              going up the stack from Application to Service sub-layer to Forwarding sub-layer
+              and incoming is the reverse.  
+              Although, 
+              in examples where there is aggregation and disaggregation 
+              outgoing relates to the aggregating output and incoming 
+              relates to the disaggregating flows. 
       </t>
       <t>
-	      At the egress the YANG model is handing off IP or MPLS to a next hop and a routing 
-	     next hop structure is used.  
+              At the egress the YANG model is handing off IP or MPLS to a next hop and a routing 
+             next hop structure is used.  
       </t>
       <section numbered="true" toc="default">
         <name>DetNet Application Flow YANG Attributes</name>
@@ -382,17 +382,10 @@
       <artwork name="" type="" align="left" alt=""><![CDATA[
 module: ietf-detnet
   +--rw detnet
-     +--rw traffic-profile* [profile-name]
-     |  +--rw profile-name            string
+     +--rw traffic-profile* [name]
+     |  +--rw name                    string
      |  +--rw traffic-requirements
-     |  |     ...
-     |  +--rw flow-spec
-     |  |     ...
-     |  |  +--rw interval?                uint32
-     |  |  +--rw max-pkts-per-interval?   uint32
-     |  |  +--rw max-payload-size?        uint32
-     |  |  +--rw min-payload-size?        uint32
-     |  |  +--rw min-pkts-per-interval?   uint32
+     |  +--rw traffic-spec
      |  +--ro member-apps*            app-flow-ref
      |  +--ro member-services*        service-sub-layer-ref
      |  +--ro member-fwd-sublayers*   forwarding-sub-layer-ref
@@ -434,6 +427,7 @@ module: ietf-detnet
             <name>DetNet Configuration YANG Model</name>
             <t> The following model has references to RFCs
                 <xref target="RFC4303"/>, 
+                <xref target="RFC8349"/>, 
                 <xref target="RFC8960"/>, 
                 <xref target="RFC8964"/>, 
                 and <xref target="IEEE8021Q"/>. 
@@ -1087,7 +1081,8 @@ module ietf-detnet {
 
   grouping detnet-app-next-hop-content {
     description
-      "Generic parameters of DetNet next hops.";
+      "Generic parameters of DetNet next hops. This follows the 
+       principles for next hops in RFC 8349";
     choice next-hop-options {
       mandatory true;
       description
@@ -1164,7 +1159,8 @@ module ietf-detnet {
 
   grouping detnet-forwarding-next-hop-content {
     description
-      "Generic parameters of DetNet next hops.";
+      "Generic parameters of DetNet next hops. This follows the 
+       principles for next hops in RFC 8349";
     choice next-hop-options {
       mandatory true;
       description
@@ -1342,7 +1338,7 @@ module ietf-detnet {
             "RFC 9016 Section 4.2";
         }
       }
-      container flow-spec {
+      container traffic-spec {
         description
           "Flow-specification specifies how the Source transmits
            packets for the flow.  This is the promise/request of the
@@ -1479,9 +1475,12 @@ module ietf-detnet {
             type identityref {
               base app-status;
             }
+            default none;
             config false;
             description
-              "Status of ingress application flow.";
+              "Status of ingress application flow. This is an
+               operational status and defaults to none if 
+               incomplete.";
             reference
               "RFC 9016 Sections
                4.1, 5.8";
@@ -1534,8 +1533,10 @@ module ietf-detnet {
         }
         leaf service-rank {
           type uint8;
+          default 255;
           description
-            "The DetNet rank for this service.";
+            "The DetNet rank for this service. Defaults to 255 
+            lowest rank if not specified.";
           reference
             "RFC 9016 Section 5.7.";
         }
@@ -1561,9 +1562,10 @@ module ietf-detnet {
           }
           leaf sequence-number-length {
             type sequence-number-field;
+            default zero-sn;
             description
               "Sequence number field length can be one of 0 (none),
-               16-bits or 28-bits.";
+               16-bits or 28-bits. The default is none.";
           }
         }
         leaf operation {
@@ -1671,7 +1673,10 @@ module ietf-detnet {
               }
               container service-label {
                 description
-                  "This is the MPLS service sub-layer label.";
+                  "This is the MPLS service sub-layer label. This
+                  is optional and only used when the service
+                  sublayer uses MPLS. It is an MPLS stack since 
+                  more than a single label may be used.";
                 uses rt-types:mpls-label-stack;
               }
             }
@@ -1941,7 +1946,7 @@ module ietf-detnet {
     <section anchor="Acknowledgments" numbered="true" toc="default">
       <name>Acknowledgments</name>
       <t>  The editors of this document would like to thank Lou Berger, Tom Petch and 
-	     Xufeng Lui for their detailed comments. 
+             Xufeng Lui for their detailed comments. 
       </t>
     </section>
   </middle>
@@ -2039,6 +2044,7 @@ module ietf-detnet {
       <?rfc include="reference.RFC.8446.xml"?>
       <?rfc include="reference.RFC.8040.xml"?>
       <?rfc include="reference.RFC.8174.xml"?>
+      <?rfc include="reference.RFC.8349.xml"?>
       <?rfc include="reference.RFC.8960.xml"?>
       <?rfc include="reference.RFC.8964.xml"?>
   
@@ -2046,7 +2052,7 @@ module ietf-detnet {
       <references>
         <name>Informative References</name>
         <?rfc include="reference.RFC.8340.xml"?>
-	<?rfc include="reference.RFC.9016.xml"?>
+        <?rfc include="reference.RFC.9016.xml"?>
         <reference anchor="IEEE8021Q" target="https://ieeexplore.ieee.org/document/8403927" quoteTitle="true" derivedAnchor="IEEE8021Q">
           <front>
             <title>IEEE Standard for Local and Metropolitan Area Networks--Bridges and Bridged Networks</title>
@@ -2058,7 +2064,7 @@ module ietf-detnet {
           <seriesInfo name="DOI" value="10.1109/IEEESTD.2018.8403927"/>
           <seriesInfo name="IEEE" value="802.1Q-2018"/>
         </reference>
-	
+        
       </references>
     </references>
     <section  anchor="Tree" numbered="true" toc="default">
@@ -2077,7 +2083,7 @@ module: ietf-detnet
      |  |  +--rw max-loss?                         uint32
      |  |  +--rw max-consecutive-loss-tolerance?   uint32
      |  |  +--rw max-misordering?                  uint32
-     |  +--rw flow-spec
+     |  +--rw traffic-spec
      |  |  +--rw interval?                uint32
      |  |  +--rw max-pkts-per-interval?   uint32
      |  |  +--rw max-payload-size?        uint32
@@ -2422,16 +2428,13 @@ module: ietf-detnet
                  |                 |  +--rw (operation-type)?
                  |                 |     +--:(ip-forwarding)
                  |                 |     |  +--rw next-hop-address?
-                 |                 |     |        inet:
-                 |                 |     |        ip-address-no-zone
+                 |                 |     |     inet:ip-address-no-zone
                  |                 |     +--:(mpls-over-ip-
-                 |                 |        | encapsulation)
+                 |                 |          encapsulation)
                  |                 |        +--rw src-ip-address?
-                 |                 |        |     inet:
-                 |                 |        |     ip-address-no-zone
+                 |                 |        |  inet:ip-address-no-zone
                  |                 |        +--rw dest-ip-address?
-                 |                 |        |     inet:
-                 |                 |        |     ip-address-no-zone
+                 |                 |        |  inet:ip-address-no-zone
                  |                 |        +--rw protocol-next-header?
                  |                 |        |       uint8
                  |                 |        +--rw dscp?
@@ -2488,9 +2491,9 @@ module: ietf-detnet
     <section  anchor="Examples" numbered="true" toc="default">
       <name>Examples</name>
       <t> The following examples are provided.  These examples are tested with Yanglint
-	      and use operational output to exercise both config true and config false objects.
-	      Note that IPv4 and IPv6 addresses are supported but for clarity in the examples 
-	      and diagrams IPv4 has been used. The IP types are imported from 
+              and use operational output to exercise both config true and config false objects.
+              Note that IPv4 and IPv6 addresses are supported but for clarity in the examples 
+              and diagrams IPv4 has been used in most examples. The IP types are imported from 
               <xref target="RFC6991" format="default"/>  and these support both IPv4 and IPv6. 
                     
     </t>
@@ -2504,7 +2507,7 @@ module: ietf-detnet
                 This illustrates simple aggregation. Ingress node 1 
                 aggregates App flows 0 and 1 into a service sub-layer of DetNet flow 1. 
                 Two ways of illustrating this follow, then the JSON operational data model
-                corresponding to the diagrams follows.
+                corresponding to the diagrams follows. This example uses IPv6 address format.
         </t>
 
                 <figure anchor="case-a1">
@@ -2521,1246 +2524,1367 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
    xmlns="http://www.w3.org/2000/svg"
    width="210mm"
    height="120mm"
-   viewBox="0 -65 210 110"
+   viewBox="0 0 210 110"
    version="1.1"
-   >
-  <defs
-     id="defs201" />
-  <g
-     
-     transform="matrix(1,0,0,0.97931387,-3.1750001,-77.150385)">
+   id="svg8">
+   <g
+     id="layer0">
     <path
-       d="m 78.932864,66.471283 c 0,-0.457693 -0.276038,-0.828725 -0.616551,-0.828725 h -6.739296 c -0.34052,0 -0.616564,0.371032 -0.616564,0.828725 v 7.244984 c 0,0.457699 0.276044,0.828733 0.616564,0.828733 h 6.739296 c 0.340513,0 0.616551,-0.371034 0.616551,-0.828733 z"
+       d="M 50.430999,57.791594 H 72.444454"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path23" />
+    <text
+       font-size="2.6386px"
+       id="text27"
+       x="12.439299"
+       y="62.850182"
+       
+       transform="scale(1.0001873,0.99981273)">Source 1<tspan
+   font-size="2.6386px"
+   x="10.163984"
+   y="66.06237"
+   id="tspan25"
+   >2001:db8::1</tspan></text>
+    <path
+       d="m 20.942022,55.271278 c 0,-0.318442 -0.258239,-0.576587 -0.576795,-0.576587 h -6.419434 c -0.318561,0 -0.576801,0.258145 -0.576801,0.576587 v 5.040659 c 0,0.318433 0.25824,0.576578 0.576801,0.576578 h 6.419434 c 0.318556,0 0.576795,-0.258145 0.576795,-0.576578 z"
+       stroke="#000000"
+       stroke-width="0.267684"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path28" />
     <path
-       d="m 77.497526,66.137137 v 0.959894 h -1.664393 l -0.886453,2.153914 -0.904562,-2.153914 h -1.646302 v -0.959894 l -1.067381,1.217424 1.067381,1.217425 v -0.819418 h 1.175932 l 1.013106,2.36462 -1.013106,2.388029 h -1.175932 v -0.889646 l -1.067381,1.217424 1.067381,1.217425 v -0.913075 h 1.646302 l 0.904562,-2.200734 0.886453,2.200734 h 1.664393 V 74.0036 l 1.067381,-1.170605 -1.067381,-1.217424 v 0.889646 h -1.15784 l -1.031198,-2.388029 1.013107,-2.36462 h 1.175931 v 0.796008 l 1.067381,-1.194015 z"
+       d="m 19.616167,55.038799 v 0.667832 h -1.530673 l -0.815251,1.498571 -0.831889,-1.498571 h -1.514031 v -0.667832 l -0.98164,0.847013 0.98164,0.847014 v -0.570109 h 1.081454 l 0.931711,1.645169 -0.931711,1.66145 h -1.081454 v -0.618965 l -0.98164,0.847012 0.98164,0.847013 v -0.635257 h 1.514031 l 0.831889,-1.531145 0.815251,1.531145 h 1.530673 v 0.602683 l 0.981626,-0.814439 -0.981626,-0.847012 v 0.618965 h -1.064815 l -0.948351,-1.66145 0.931711,-1.645169 h 1.081455 v 0.553817 l 0.981626,-0.830722 z"
        stroke="#000000"
-       stroke-width="0.248847"
+       stroke-width="0.200763"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
-    <path
-       d="M 47.411229,70.093778 H 70.942068"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
+       id="path31" />
     <text
-       font-size="2.70177px"
+       font-size="2.6386px"
+       id="text33"
+       x="41.816048"
+       y="63.079605"
        
-       x="8.3851624"
-       y="67.142136"
-       transform="scale(0.86254171,1.1593642)">Source 1<tspan
-   font-size="2.70177px"
-   x="9.6277428"
-   y="70.412712"
-   >192.0.2.1</tspan><tspan
-   font-size="2.70177px"
-   x="44.797974"
-   y="67.142136"
-   >Ingress 1</tspan><tspan
-   font-size="2.70177px"
-   x="82.330742"
-   y="67.142136"
-   >Relay 1</tspan><tspan
-   font-size="2.70177px"
-   x="155.44701"
-   y="67.142136"
-   >Relay 2</tspan><tspan
-   font-size="2.70177px"
-   x="191.25833"
-   y="67.142136"
-   >Egress 1</tspan><tspan
-   font-size="2.70177px"
-   x="118.2251"
-   y="85.770157"
-   >Transit 2</tspan><tspan
-   font-size="2.70177px"
-   x="118.2251"
-   y="48.514111"
-   >Transit 1</tspan></text>
+       transform="scale(1.0001873,0.99981273)">Ingress 1</text>
     <path
-       d="m 110.4545,44.874615 c 0,-0.457693 -0.27604,-0.828726 -0.61655,-0.828726 h -6.73929 c -0.34053,0 -0.61657,0.371033 -0.61657,0.828726 v 7.244984 c 0,0.457699 0.27604,0.828733 0.61657,0.828733 h 6.73929 c 0.34051,0 0.61655,-0.371034 0.61655,-0.828733 z"
+       d="m 50.430999,55.271278 c 0,-0.318433 -0.258243,-0.576587 -0.576804,-0.576587 h -6.304688 c -0.31856,0 -0.576803,0.258154 -0.576803,0.576587 v 5.04065 c 0,0.318442 0.258243,0.576587 0.576803,0.576587 h 6.304688 c 0.318561,0 0.576804,-0.258145 0.576804,-0.576587 z"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path34" />
     <path
-       d="m 108.9146,44.705327 v 0.939898 h -1.63618 l -0.87145,2.10904 -0.88922,-2.10904 h -1.6184 v -0.939898 l -1.0493,1.19207 1.0493,1.192071 v -0.802357 h 1.156 l 0.99593,2.315358 -0.99593,2.338294 h -1.156 v -0.871122 l -1.0493,1.192052 1.0493,1.192071 v -0.894052 h 1.6184 l 0.88922,-2.154886 0.87145,2.154886 h 1.63618 v 0.848205 l 1.04929,-1.146224 -1.04929,-1.192052 v 0.871122 h -1.13821 l -1.01372,-2.338294 0.99593,-2.315358 h 1.156 v 0.779421 l 1.04929,-1.169135 z"
+       d="m 49.202955,55.038799 v 0.667832 h -1.557057 l -0.829309,1.498571 -0.846231,-1.498571 h -1.540153 v -0.667832 l -0.99855,0.847013 0.99855,0.847014 v -0.570109 h 1.100101 l 0.947793,1.645169 -0.947793,1.66145 h -1.100101 v -0.618965 l -0.99855,0.847012 0.99855,0.847013 v -0.635257 h 1.540153 l 0.846231,-1.531145 0.829309,1.531145 h 1.557057 v 0.602683 l 0.998559,-0.814439 -0.998559,-0.847012 v 0.618965 h -1.08317 l -0.964705,-1.66145 0.947783,-1.645169 h 1.100092 v 0.553817 l 0.998559,-0.830722 z"
        stroke="#000000"
-       stroke-width="0.248847"
+       stroke-width="0.200763"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path36" />
     <text
-       font-size="2.70177px"
+       font-size="2.6386px"
+       id="text39"
+       x="72.230118"
+       y="63.079605"
        
-       x="225.28676"
-       y="67.142136"
-       transform="scale(0.86254171,1.1593642)">Destination 1<tspan
-   font-size="2.70177px"
-   x="228.97635"
-   y="70.412712"
-   >192.0.2.8</tspan></text>
+       transform="scale(1.0001873,0.99981273)">Relay 1</text>
     <path
-       d="M 15.889594,70.093778 H 39.420433"
+       d="m 79.919967,55.271278 c 0,-0.318442 -0.258242,-0.576587 -0.576793,-0.576587 h -6.304716 c -0.318561,0 -0.576803,0.258145 -0.576803,0.576587 v 5.040659 c 0,0.318433 0.258242,0.576578 0.576803,0.576578 h 6.304716 c 0.318551,0 0.576793,-0.258145 0.576793,-0.576578 z"
        stroke="#000000"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="M 78.932864,70.035743 102.46371,48.49711"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 110.4545,48.49711 23.53084,21.538633"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 141.97613,70.093778 h 23.53085"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 173.49777,70.093778 h 23.53084"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="M 110.4545,91.592347 133.98534,70.093772"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="M 78.932864,70.093778 102.46371,91.592516"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <rect
-       x="81.14061"
-       y="28.219326"
-       width="18.520494"
-       height="9.5618668"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="101.64459"
-       y="27.895308"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="98.782845"
-   y="30.597084"
-   >S</tspan><tspan
-   font-size="2.27518px"
-   x="100.31741"
-   y="30.597084"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="101.10541"
-   y="30.597084"
-   >label 101</tspan></text>
-    <rect
-       x="81.14061"
-       y="37.946068"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="101.64544"
-       y="36.285027"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="97.559372"
-   y="38.986801"
-   >F</tspan><tspan
-   font-size="2.27518px"
-   x="98.969498"
-   y="38.986801"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="99.757515"
-   y="38.986801"
-   >label 10001</tspan></text>
-    <rect
-       x="81.14061"
-       y="18.8223"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="99.11544"
-       y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
-   font-size="2.70177px"
-   x="102.61922"
-   y="22.918352"
-   >192.0.2.8</tspan></text>
-    <rect
-       x="81.017952"
-       y="120.04636"
-       width="18.643147"
-       height="9.561883"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="101.50993"
-       y="107.24217"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="97.423851"
-   y="109.94393"
-   >F</tspan><tspan
-   font-size="2.27518px"
-   x="98.833969"
-   y="109.94393"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="99.621994"
-   y="109.94393"
-   >label 10002</tspan></text>
-    <rect
-       x="81.017952"
-       y="101.41718"
-       width="18.643147"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="98.979935"
-       y="90.889305"
-       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
-   font-size="2.70177px"
-   x="102.4837"
-   y="94.159889"
-   >192.0.2.8</tspan></text>
-    <rect
-       x="112.66224"
-       y="28.219326"
-       width="18.520494"
-       height="9.5618668"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="138.18581"
-       y="27.895308"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="135.32407"
-   y="30.597084"
-   >S</tspan><tspan
-   font-size="2.27518px"
-   x="136.85863"
-   y="30.597084"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="137.64664"
-   y="30.597084"
-   >label 101</tspan></text>
-    <rect
-       x="112.66224"
-       y="37.946068"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="138.18581"
-       y="36.285027"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="134.09975"
-   y="38.986801"
-   >F</tspan><tspan
-   font-size="2.27518px"
-   x="135.50986"
-   y="38.986801"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="136.29788"
-   y="38.986801"
-   >label 10003</tspan></text>
-    <rect
-       x="112.66224"
-       y="18.8223"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="135.65608"
-       y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
-   font-size="2.70177px"
-   x="139.15987"
-   y="22.918352"
-   >192.0.2.8</tspan></text>
-    <rect
-       x="112.90755"
-       y="120.04636"
-       width="18.520494"
-       height="9.561883"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="138.41759"
-       y="107.24217"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="134.33151"
-   y="109.94393"
-   >F</tspan><tspan
-   font-size="2.27518px"
-   x="135.74164"
-   y="109.94393"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="136.52966"
-   y="109.94393"
-   >label 10004</tspan></text>
-    <rect
-       x="112.90755"
-       y="101.41718"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="135.88788"
-       y="90.889305"
-       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
-   font-size="2.70177px"
-   x="139.39165"
-   y="94.159889"
-   >192.0.2.8</tspan></text>
-    <rect
-       x="49.864277"
-       y="28.219326"
-       width="18.520494"
-       height="9.5618668"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="65.358055"
-       y="27.895308"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="62.4963"
-   y="30.597084"
-   >S</tspan><tspan
-   font-size="2.27518px"
-   x="64.030861"
-   y="30.597084"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="64.818886"
-   y="30.597084"
-   >label 100</tspan></text>
-    <rect
-       x="49.864277"
-       y="37.946068"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="65.35891"
-       y="36.285027"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="61.272827"
-   y="38.986801"
-   >F</tspan><tspan
-   font-size="2.27518px"
-   x="62.682949"
-   y="38.986801"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="63.470974"
-   y="38.986801"
-   >label 10000</tspan></text>
-    <rect
-       x="49.864277"
-       y="18.8223"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="62.828907"
-       y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 192.0.2.8<tspan
-   font-size="2.70177px"
-   x="66.33268"
-   y="22.918352"
-   >192.0.2.8</tspan></text>
-    <rect
-       x="144.30653"
-       y="28.219326"
-       width="18.520494"
-       height="9.5618668"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="174.84889"
-       y="27.895308"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="171.98714"
-   y="30.597084"
-   >S</tspan><tspan
-   font-size="2.27518px"
-   x="173.5217"
-   y="30.597084"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="174.30971"
-   y="30.597084"
-   >label 102</tspan></text>
-    <rect
-       x="144.30653"
-       y="37.946068"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="174.84746"
-       y="36.285027"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="170.7614"
-   y="38.986801"
-   >F</tspan><tspan
-   font-size="2.27518px"
-   x="172.17152"
-   y="38.986801"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="172.95955"
-   y="38.986801"
-   >label 10005</tspan></text>
-    <rect
-       x="144.30653"
-       y="18.8223"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="172.32059"
-       y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
-   font-size="2.70177px"
-   x="175.82437"
-   y="22.918352"
-   >192.0.2.8</tspan></text>
-    <rect
-       x="81.017952"
-       y="110.81422"
-       width="18.643147"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="101.50908"
-       y="99.136833"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="98.647324"
-   y="101.83861"
-   >S</tspan><tspan
-   font-size="2.27518px"
-   x="100.18188"
-   y="101.83861"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="100.9699"
-   y="101.83861"
-   >label 101</tspan></text>
-    <rect
-       x="112.90755"
-       y="110.81422"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.27518px"
-       
-       x="138.41617"
-       y="99.136833"
-       transform="scale(0.86254171,1.1593642)">MPLS<tspan
-   font-size="2.27518px"
-   x="135.55441"
-   y="101.83861"
-   >S</tspan><tspan
-   font-size="2.27518px"
-   x="137.08899"
-   y="101.83861"
-   >-</tspan><tspan
-   font-size="2.27518px"
-   x="137.87701"
-   y="101.83861"
-   >label 101</tspan></text>
-    <path
-       d="m 38.810239,69.599198 c -0.211699,0 -0.383289,-0.922726 -0.383289,-2.060756 0,-1.138191 0.17159,-2.060749 0.383289,-2.060749 0.211697,0 0.383287,0.922558 0.383287,2.060749 0,1.13803 -0.17159,2.060756 -0.383287,2.060756 H 15.904925 c -0.211698,0 -0.383288,-0.922726 -0.383288,-2.060756 0,-1.138191 0.17159,-2.060749 0.383288,-2.060749 h 22.905314"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="28.520348"
-       y="59.463413"
-       transform="scale(0.86254171,1.1593642)">App-0</text>
-    <path
-       d="m 196.40308,69.928914 c -0.22077,0 -0.39862,-0.959482 -0.39862,-2.143178 0,-1.183697 0.17785,-2.143178 0.39862,-2.143178 0.21955,0 0.39863,0.959481 0.39863,2.143178 0,1.183696 -0.17908,2.143178 -0.39863,2.143178 h -22.87465 c -0.21954,0 -0.39861,-0.959482 -0.39861,-2.143178 0,-1.183697 0.17907,-2.143178 0.39861,-2.143178 h 22.87465"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="211.12234"
-       y="59.747807"
-       transform="scale(0.86254171,1.1593642)">App-0</text>
-    <path
-       d="m 164.45217,74.707546 c -0.4575,0 -0.8279,-1.992328 -0.8279,-4.450062 0,-2.457903 0.3704,-4.450237 0.8279,-4.450237 0.45749,0 0.8279,1.992334 0.8279,4.450237 0,2.457734 -0.37041,4.450062 -0.8279,4.450062 H 47.993582 c -0.457125,0 -0.827657,-1.992328 -0.827657,-4.450062 0,-2.457903 0.370532,-4.450237 0.827657,-4.450237 l 116.458588,1.68e-4"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <rect
-       x="75.498604"
-       y="67.291161"
-       width="64.760406"
-       height="6.2646656"
-       stroke="#000000"
-       stroke-width="0.248847"
+       stroke-width="0.267684"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        fill="none"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="121.97231"
-       y="61.738594"
-       transform="scale(0.86254171,1.1593642)">DN-1</text>
-    <rect
-       x="18.587944"
-       y="18.8223"
-       width="18.520494"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="26.58005"
-       y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
-   font-size="2.70177px"
-   x="30.083824"
-   y="22.918352"
-   >192.0.2.8</tspan></text>
-    <rect
-       x="175.95082"
-       y="18.8223"
-       width="18.643147"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="209.06046"
-       y="19.647791"
-       transform="scale(0.86254171,1.1593642)">IP 192.0.2.1<tspan
-   font-size="2.70177px"
-   x="212.56424"
-   y="22.918352"
-   >192.0.2.8</tspan></text>
+       fill-rule="evenodd"
+       id="path41" />
     <path
-       d="m 38.93289,74.545 c -0.211698,0 -0.383288,-0.922558 -0.383288,-2.060756 0,-1.138192 0.17159,-2.06075 0.383288,-2.06075 0.211699,0 0.383289,0.922558 0.383289,2.06075 0,1.138198 -0.17159,2.060756 -0.383289,2.060756 H 15.904925 c -0.211698,0 -0.383288,-0.922558 -0.383288,-2.060756 0,-1.138192 0.17159,-2.06075 0.383288,-2.06075 H 38.93289"
+       d="m 78.691933,55.038799 v 0.667832 h -1.557066 l -0.829309,1.498571 -0.846231,-1.498571 h -1.540144 v -0.667832 l -0.99855,0.847013 0.99855,0.847014 v -0.570109 h 1.100101 l 0.947783,1.645169 -0.947783,1.66145 h -1.100101 v -0.618965 l -0.99855,0.847012 0.99855,0.847013 v -0.635257 h 1.540144 l 0.846231,-1.531145 0.829309,1.531145 h 1.557066 v 0.602683 l 0.99855,-0.814439 -0.99855,-0.847012 v 0.618965 h -1.083179 l -0.964696,-1.66145 0.947774,-1.645169 h 1.100101 v 0.553817 l 0.99855,-0.830722 z"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.200763"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path42" />
+    <text
+       font-size="2.6386px"
+       id="text47"
+       x="131.21765"
+       y="64.456268"
+       
+       transform="scale(1.0001873,0.99981273)">Relay <tspan
+   font-size="2.6386px"
+   x="137.67552"
+   y="64.456268"
+   id="tspan45"
+   >2</tspan></text>
+    <path
+       d="m 138.89792,55.271278 c 0,-0.318433 -0.25825,-0.576587 -0.57681,-0.576587 h -6.30468 c -0.31857,0 -0.5768,0.258154 -0.5768,0.576587 v 5.04065 c 0,0.318442 0.25823,0.576587 0.5768,0.576587 h 6.30468 c 0.31856,0 0.57681,-0.258145 0.57681,-0.576587 z"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path49" />
+    <path
+       d="m 137.66988,55.153496 v 0.653924 h -1.55706 l -0.82931,1.467352 -0.84622,-1.467352 h -1.54016 v -0.653924 l -0.99855,0.829365 0.99855,0.829367 v -0.55822 h 1.1001 l 0.94779,1.610884 -0.94779,1.62684 h -1.1001 v -0.606076 l -0.99855,0.829365 0.99855,0.829375 v -0.622031 h 1.54016 l 0.84622,-1.499244 0.82931,1.499244 h 1.55706 v 0.590121 l 0.99855,-0.797465 -0.99855,-0.829365 v 0.606076 h -1.08317 l -0.9647,-1.62684 0.94777,-1.610884 h 1.1001 v 0.542274 l 0.99855,-0.813421 z"
+       stroke="#000000"
+       stroke-width="0.200763"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path50" />
+    <text
+       font-size="2.6386px"
+       id="text53"
+       x="160.17683"
+       y="63.079605"
+       
+       transform="scale(1.0001873,0.99981273)">Egress 1</text>
+    <path
+       d="m 168.3869,55.271278 c 0,-0.318442 -0.25825,-0.576587 -0.57681,-0.576587 h -6.3047 c -0.31857,0 -0.57681,0.258145 -0.57681,0.576587 v 5.040659 c 0,0.318433 0.25824,0.576578 0.57681,0.576578 h 6.3047 c 0.31856,0 0.57681,-0.258145 0.57681,-0.576578 z"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path55" />
+    <path
+       d="m 167.17577,55.038799 v 0.667832 h -1.53066 l -0.81526,1.498571 -0.83189,-1.498571 h -1.51403 v -0.667832 l -0.98164,0.847013 0.98164,0.847014 v -0.570109 h 1.08145 l 0.93172,1.645169 -0.93172,1.66145 h -1.08145 v -0.618965 l -0.98164,0.847012 0.98164,0.847013 v -0.635257 h 1.51403 l 0.83189,-1.531145 0.81526,1.531145 h 1.53066 v 0.602683 l 0.98163,-0.814439 -0.98163,-0.847012 v 0.618965 h -1.06481 l -0.94834,-1.66145 0.9317,-1.645169 h 1.08145 v 0.553817 l 0.98163,-0.830722 z"
+       stroke="#000000"
+       stroke-width="0.200763"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path57" />
+    <text
+       font-size="2.6386px"
+       id="text59"
+       x="100.92083"
+       y="78.108131"
+       
+       transform="scale(1.0001873,0.99981273)">Transit 2</text>
+    <path
+       d="m 109.17945,70.182287 c 0,-0.318442 -0.25823,-0.576576 -0.57679,-0.576576 h -6.30469 c -0.31856,0 -0.5768,0.258134 -0.5768,0.576576 v 5.040642 c 0,0.318441 0.25824,0.576567 0.5768,0.576567 h 6.30469 c 0.31856,0 0.57679,-0.258126 0.57679,-0.576567 z"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path60" />
+    <path
+       d="m 107.96834,70.064506 v 0.653932 h -1.53066 l -0.81526,1.467343 -0.83189,-1.467343 h -1.51403 v -0.653932 l -0.98164,0.829375 0.98164,0.829366 v -0.558229 h 1.08145 l 0.93172,1.610884 -0.93172,1.626839 h -1.08145 v -0.606076 l -0.98164,0.829376 0.98164,0.829375 v -0.622032 h 1.51403 l 0.83189,-1.499244 0.81526,1.499244 h 1.53066 v 0.590121 l 0.98163,-0.797464 -0.98163,-0.829376 v 0.606076 h -1.06481 l -0.94836,-1.626839 0.93172,-1.610884 h 1.08145 v 0.542283 l 0.98163,-0.81342 z"
+       stroke="#000000"
+       stroke-width="0.200763"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path62" />
+    <text
+       font-size="2.6386px"
+       id="text65"
+       x="100.92083"
+       y="48.051079"
+       
+       transform="scale(1.0001873,0.99981273)">Transit 1</text>
+    <path
+       d="m 109.17945,40.370942 c 0,-0.32433 -0.26302,-0.587261 -0.58747,-0.587261 h -6.28332 c -0.32447,0 -0.58749,0.262931 -0.58749,0.587261 v 5.133961 c 0,0.32433 0.26302,0.587261 0.58749,0.587261 h 6.28332 c 0.32445,0 0.58747,-0.262931 0.58747,-0.587261 z"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path66" />
+    <path
+       d="m 107.96834,40.242487 v 0.653922 h -1.53066 l -0.81526,1.467353 -0.83189,-1.467353 h -1.51403 v -0.653922 l -0.98164,0.829365 0.98164,0.829375 v -0.558229 h 1.08145 l 0.93172,1.610894 -0.93172,1.626848 h -1.08145 v -0.606075 l -0.98164,0.829365 0.98164,0.829366 v -0.622032 h 1.51403 l 0.83189,-1.499243 0.81526,1.499243 h 1.53066 v 0.59014 l 0.98163,-0.797474 -0.98163,-0.829365 v 0.606075 h -1.06481 l -0.94836,-1.626848 0.93172,-1.610894 h 1.08145 v 0.542274 l 0.98163,-0.81342 z"
+       stroke="#000000"
+       stroke-width="0.200763"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path68" />
+    <text
+       font-size="2.6386px"
+       id="text73"
+       x="186.87598"
+       y="62.850182"
+       
+       transform="scale(1.0001873,0.99981273)">Destination 1<tspan
+   font-size="2.6386px"
+   x="187.12762"
+   y="65.947655"
+   id="tspan71"
+   >2001:db8::8</tspan></text>
+    <path
+       d="m 197.87586,55.271278 c 0,-0.318442 -0.25824,-0.576587 -0.57679,-0.576587 h -6.30472 c -0.31856,0 -0.5768,0.258145 -0.5768,0.576587 v 5.040659 c 0,0.318433 0.25824,0.576578 0.5768,0.576578 h 6.30472 c 0.31855,0 0.57679,-0.258145 0.57679,-0.576578 z"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path75" />
+    <path
+       d="m 196.66475,55.038799 v 0.667832 h -1.53067 l -0.81525,1.498571 -0.83189,-1.498571 h -1.51403 v -0.667832 l -0.98164,0.847013 0.98164,0.847014 v -0.570109 h 1.08145 l 0.93172,1.645169 -0.93172,1.66145 h -1.08145 v -0.618965 l -0.98164,0.847012 0.98164,0.847013 v -0.635257 h 1.51403 l 0.83189,-1.531145 0.81525,1.531145 h 1.53067 v 0.602683 l 0.98163,-0.814439 -0.98163,-0.847012 v 0.618965 h -1.06481 l -0.94836,-1.66145 0.93172,-1.645169 h 1.08145 v 0.553817 l 0.98163,-0.830722 z"
+       stroke="#000000"
+       stroke-width="0.200763"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path77" />
+    <path
+       d="M 20.942022,57.791594 H 42.955485"
+       stroke="#000000"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="28.600546"
-       y="63.729374"
-       transform="scale(0.86254171,1.1593642)">App-1</text>
+       id="path79" />
     <path
-       d="m 196.54046,74.380136 c -0.21097,0 -0.38268,-0.922558 -0.38268,-2.06075 0,-1.138192 0.17171,-2.06075 0.38268,-2.06075 0.21219,0 0.38389,0.922558 0.38389,2.06075 0,1.138192 -0.1717,2.06075 -0.38389,2.06075 h -22.90532 c -0.21096,0 -0.38267,-0.922558 -0.38267,-2.06075 0,-1.138192 0.17171,-2.06075 0.38267,-2.06075 h 22.90532"
+       d="M 79.690483,57.865921 101.70395,42.880583"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
-    <text
-       font-size="2.70177px"
-       
-       x="211.2034"
-       y="63.587162"
-       transform="scale(0.86254171,1.1593642)">App-1</text>
-    <rect
-       x="18.587944"
-       y="9.2604179"
-       width="9.3215733"
-       height="9.5618992"
+       id="path81" />
+    <path
+       d="m 109.17945,42.880583 22.01347,14.985338"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       fill-rule="evenodd"
+       id="path83" />
+    <path
+       d="m 138.89792,57.791594 h 22.01346"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path85" />
+    <path
+       d="m 168.3869,57.791594 h 22.01345"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path87" />
+    <path
+       d="M 109.17945,72.749067 131.19292,57.791594"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path89" />
+    <path
+       d="M 79.919967,57.791594 101.74411,72.749179"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path91" />
+    <rect
+       x="81.985344"
+       y="28.772472"
+       width="17.326206"
+       height="6.6525941"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect93" />
     <text
-       font-size="1.70639px"
+       font-size="1.83554px"
+       id="text101"
+       x="84.784561"
+       y="31.760616"
        
-       x="24.666197"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="26.510981"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">MPLS S<tspan
+   font-size="1.83554px"
+   x="91.510109"
+   y="31.760616"
+   id="tspan95"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="92.279709"
+   y="31.760616"
+   id="tspan97"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="89.034035"
+   y="34.055042"
+   id="tspan99"
+   >101</tspan></text>
+    <rect
+       x="81.985344"
+       y="35.53978"
+       width="17.326206"
+       height="6.6526051"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect103" />
+    <text
+       font-size="1.83554px"
+       id="text111"
+       x="84.834686"
+       y="38.52919"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS F<tspan
+   font-size="1.83554px"
+   x="91.459862"
+   y="38.52919"
+   id="tspan105"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="92.229446"
+   y="38.52919"
+   id="tspan107"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="87.96257"
+   y="40.823624"
+   id="tspan108"
+   >10001</tspan></text>
+    <rect
+       x="81.985344"
+       y="92.889847"
+       width="17.44095"
+       height="6.6525822"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect113" />
+    <text
+       font-size="1.83554px"
+       id="text121"
+       x="84.856598"
+       y="95.7752"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS F<tspan
+   font-size="1.83554px"
+   x="91.481766"
+   y="95.7752"
+   id="tspan115"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="92.251358"
+   y="95.7752"
+   id="tspan117"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="87.985825"
+   y="98.069618"
+   id="tspan118"
+   >10002</tspan></text>
+    <rect
+       x="111.24483"
+       y="28.772472"
+       width="17.44095"
+       height="6.6525941"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect123" />
+    <text
+       font-size="1.83554px"
+       id="text131"
+       x="114.04268"
+       y="31.760616"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS S<tspan
+   font-size="1.83554px"
+   x="120.76822"
+   y="31.760616"
+   id="tspan125"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="121.53782"
+   y="31.760616"
+   id="tspan127"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="118.29214"
+   y="34.055042"
+   id="tspan129"
+   >101</tspan></text>
+    <rect
+       x="111.24483"
+       y="35.53978"
+       width="17.44095"
+       height="6.6526051"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect133" />
+    <text
+       font-size="1.83554px"
+       id="text141"
+       x="114.09202"
+       y="38.52919"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS F<tspan
+   font-size="1.83554px"
+   x="120.7172"
+   y="38.52919"
+   id="tspan134"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="121.48679"
+   y="38.52919"
+   id="tspan137"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="117.22124"
+   y="40.823624"
+   id="tspan139"
+   >10003</tspan></text>
+    <rect
+       x="111.24483"
+       y="92.889847"
+       width="17.44095"
+       height="6.6525822"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect143" />
+    <text
+       font-size="1.83554px"
+       id="text151"
+       x="114.09202"
+       y="95.7752"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS F<tspan
+   font-size="1.83554px"
+   x="120.7172"
+   y="95.7752"
+   id="tspan145"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="121.48679"
+   y="95.7752"
+   id="tspan147"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="117.22124"
+   y="98.069618"
+   id="tspan149"
+   >10004</tspan></text>
+    <rect
+       x="52.725853"
+       y="28.772472"
+       width="17.44095"
+       height="6.6525941"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect153" />
+    <text
+       font-size="1.83554px"
+       id="text161"
+       x="55.581608"
+       y="31.760616"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS S<tspan
+   font-size="1.83554px"
+   x="62.307163"
+   y="31.760616"
+   id="tspan155"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="63.076763"
+   y="31.760616"
+   id="tspan157"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="59.831085"
+   y="34.055042"
+   id="tspan158"
+   >100</tspan></text>
+    <rect
+       x="52.725853"
+       y="35.53978"
+       width="17.44095"
+       height="6.6526051"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect163" />
+    <text
+       font-size="1.83554px"
+       id="text171"
+       x="55.631737"
+       y="38.414463"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS F<tspan
+   font-size="1.83554px"
+   x="62.256912"
+   y="38.414463"
+   id="tspan165"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="63.026505"
+   y="38.414463"
+   id="tspan167"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="58.759624"
+   y="40.708904"
+   id="tspan169"
+   >10000</tspan></text>
+    <rect
+       x="140.38957"
+       y="28.772472"
+       width="17.44095"
+       height="6.6525941"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect172" />
+    <text
+       font-size="1.83554px"
+       id="text181"
+       x="143.27606"
+       y="31.760616"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS S<tspan
+   font-size="1.83554px"
+   x="150.0016"
+   y="31.760616"
+   id="tspan174"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="150.77121"
+   y="31.760616"
+   id="tspan176"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="147.52553"
+   y="34.055042"
+   id="tspan178"
+   >102</tspan></text>
+    <rect
+       x="140.38957"
+       y="35.53978"
+       width="17.44095"
+       height="6.6526051"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect183" />
+    <text
+       font-size="1.83554px"
+       id="text191"
+       x="143.32536"
+       y="38.52919"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS F<tspan
+   font-size="1.83554px"
+   x="149.95053"
+   y="38.52919"
+   id="tspan185"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="150.72014"
+   y="38.52919"
+   id="tspan187"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="146.45461"
+   y="40.823624"
+   id="tspan189"
+   >10005</tspan></text>
+    <rect
+       x="81.985344"
+       y="86.122536"
+       width="17.44095"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect193" />
+    <text
+       font-size="1.83554px"
+       id="text201"
+       x="84.806473"
+       y="89.121384"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS S<tspan
+   font-size="1.83554px"
+   x="91.532028"
+   y="89.121384"
+   id="tspan195"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="92.301613"
+   y="89.121384"
+   id="tspan197"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="89.055939"
+   y="91.415802"
+   id="tspan199"
+   >101</tspan></text>
+    <rect
+       x="111.24483"
+       y="86.122536"
+       width="17.44095"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect203" />
+    <text
+       font-size="1.83554px"
+       id="text211"
+       x="114.04268"
+       y="89.121384"
+       
+       transform="scale(1.0001873,0.99981273)">MPLS S<tspan
+   font-size="1.83554px"
+   x="120.76822"
+   y="89.121384"
+   id="tspan205"
+   >-</tspan><tspan
+   font-size="1.83554px"
+   x="121.53782"
+   y="89.121384"
+   id="tspan207"
+   >label</tspan><tspan
+   font-size="1.83554px"
+   x="118.29214"
+   y="91.415802"
+   id="tspan209"
+   >101</tspan></text>
+    <path
+       d="m 41.35195,57.447494 c -0.198044,0 -0.358578,-0.641969 -0.358578,-1.43375 0,-0.791893 0.160534,-1.43375 0.358578,-1.43375 0.198045,0 0.358569,0.641857 0.358569,1.43375 0,0.791781 -0.160524,1.43375 -0.358569,1.43375 H 21.989052 c -0.198046,0 -0.35857,-0.641969 -0.35857,-1.43375 0,-0.791893 0.160524,-1.43375 0.35857,-1.43375 H 41.35195"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path213" />
+    <text
+       font-size="2.6386px"
+       id="text217"
+       x="28.700502"
+       y="56.884644"
+       
+       transform="scale(1.0001873,0.99981273)">App-0</text>
+    <path
+       d="m 188.89722,57.676897 c -0.20539,0 -0.37291,-0.667551 -0.37291,-1.491104 0,-0.823542 0.16752,-1.491102 0.37291,-1.491102 0.20653,0 0.37291,0.66756 0.37291,1.491102 0,0.823553 -0.16638,1.491104 -0.37291,1.491104 h -19.44896 c -0.20539,0 -0.37291,-0.667551 -0.37291,-1.491104 0,-0.823542 0.16752,-1.491102 0.37291,-1.491102 h 19.44896"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path219" />
+    <text
+       font-size="2.6386px"
+       id="text223"
+       x="176.01874"
+       y="57.114082"
+       
+       transform="scale(1.0001873,0.99981273)">App-0</text>
+    <path
+       d="m 158.43292,61.003202 c -0.42798,0 -0.7745,-1.386501 -0.7745,-3.096903 0,-1.71041 0.34652,-3.096902 0.7745,-3.096902 0.428,0 0.77453,1.386492 0.77453,3.096902 0,1.710402 -0.34653,3.096903 -0.77453,3.096903 H 53.041289 c -0.427762,0 -0.774523,-1.386501 -0.774523,-3.096903 0,-1.71041 0.346761,-3.096902 0.774523,-3.096902 H 158.43292"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path225" />
+    <text
+       font-size="2.6386px"
+       id="text229"
+       x="104.19498"
+       y="58.720184"
+       
+       transform="scale(1.0001873,0.99981273)">DN-1</text>
+    <path
+       d="m 41.466693,60.888496 c -0.198045,0 -0.358569,-0.641857 -0.358569,-1.43375 0,-0.791885 0.160524,-1.43375 0.358569,-1.43375 0.198044,0 0.358569,0.641865 0.358569,1.43375 0,0.791893 -0.160525,1.43375 -0.358569,1.43375 H 21.989052 c -0.198046,0 -0.35857,-0.641857 -0.35857,-1.43375 0,-0.791885 0.160524,-1.43375 0.35857,-1.43375 h 19.477641"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path230" />
+    <text
+       font-size="2.6386px"
+       id="text235"
+       x="28.765205"
+       y="60.326286"
+       
+       transform="scale(1.0001873,0.99981273)">App-1</text>
+    <path
+       d="m 188.91213,60.7738 c -0.19851,0 -0.35914,-0.641979 -0.35914,-1.43375 0,-0.791895 0.16063,-1.433751 0.35914,-1.433751 0.19736,0 0.358,0.641856 0.358,1.433751 0,0.791771 -0.16064,1.43375 -0.358,1.43375 h -19.36404 c -0.19735,0 -0.358,-0.641979 -0.358,-1.43375 0,-0.791895 0.16065,-1.433751 0.358,-1.433751 h 19.36404"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path236" />
+    <text
+       font-size="2.6386px"
+       id="text241"
+       x="176.08414"
+       y="60.326286"
+       
+       transform="scale(1.0001873,0.99981273)">App-1</text>
+    <rect
+       x="23.466373"
+       y="22.119858"
+       width="17.44095"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect243" />
+    <text
+       font-size="2.17972px"
+       id="text247"
+       x="26.468821"
+       y="24.992039"
+       
+       transform="scale(1.0001873,0.99981273)">2001:db8::1<tspan
+   font-size="2.17972px"
+   x="26.468821"
+   y="27.630642"
+   id="tspan245"
+   >2001:db8::8</tspan></text>
+    <rect
+       x="23.466373"
+       y="15.467249"
+       width="8.7204752"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect249" />
+    <text
+       font-size="1.60611px"
+       id="text253"
+       x="25.619083"
+       y="18.452915"
+       
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="27.359022"
+   y="20.403179"
+   id="tspan251"
    >0</tspan></text>
     <rect
-       x="27.909517"
-       y="9.2604179"
-       width="9.1989079"
-       height="9.5618992"
+       x="32.186848"
+       y="15.467249"
+       width="8.7204752"
+       height="6.6526165"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect255" />
     <text
-       font-size="1.70639px"
+       font-size="1.60611px"
+       id="text259"
+       x="34.345142"
+       y="18.452915"
        
-       x="35.388119"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="37.232903"
-   y="13.675445"
-   >1</tspan></text>
-    <rect
-       x="81.14061"
-       y="91.855301"
-       width="9.1989079"
-       height="9.5618668"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.70639px"
-       
-       x="97.062386"
-       y="82.926193"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="98.907173"
-   y="84.916969"
-   >0</tspan></text>
-    <rect
-       x="90.339523"
-       y="91.855301"
-       width="9.3215971"
-       height="9.5618668"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.70639px"
-       
-       x="107.81644"
-       y="82.926193"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="109.66123"
-   y="84.916969"
-   >1</tspan></text>
-    <rect
-       x="113.0302"
-       y="91.690437"
-       width="9.1989212"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.70639px"
-       
-       x="134.04214"
-       y="82.783989"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="135.88695"
-   y="84.774765"
-   >0</tspan></text>
-    <rect
-       x="122.22912"
-       y="91.690437"
-       width="9.1989336"
-       height="9.3970232"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-miterlimit="8"
-       fill="none"
-        />
-    <text
-       font-size="1.70639px"
-       
-       x="144.76392"
-       y="82.783989"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="146.60869"
-   y="84.774765"
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="36.085106"
+   y="20.403179"
+   id="tspan257"
    >1</tspan></text>
     <path
-       d="m 73.168207,32.835403 c 0,-2.276221 1.345373,-4.121499 3.004984,-4.121499 1.659605,0 3.004978,1.845278 3.004978,4.121499 0,2.276228 -1.345373,4.121506 -3.004978,4.121506 -1.659611,0 -3.004984,-1.845278 -3.004984,-4.121506 z"
+       d="m 74.527046,32.21348 c 0,-1.583666 1.258611,-2.86751 2.811203,-2.86751 1.552592,0 2.811203,1.283844 2.811203,2.86751 0,1.583666 -1.258611,2.8675 -2.811203,2.8675 -1.552592,0 -2.811203,-1.283834 -2.811203,-2.8675 z"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path260" />
     <text
-       font-size="4.69255px"
+       font-size="4.81831px"
+       id="text263"
+       x="75.833977"
+       y="34.055042"
        
-       x="86.610924"
-       y="30.028288"
-       transform="scale(0.86254171,1.1593642)">R</text>
+       transform="scale(1.0001873,0.99981273)">R</text>
     <path
-       d="m 133.63579,33.000267 c 0,-2.276227 1.34549,-4.121505 3.00497,-4.121505 1.65949,0 3.00499,1.845278 3.00499,4.121505 0,2.276222 -1.3455,4.1215 -3.00499,4.1215 -1.65948,0 -3.00497,-1.845278 -3.00497,-4.1215 z"
+       d="m 131.09539,32.21348 c 0,-1.583666 1.25873,-2.86751 2.81121,-2.86751 1.55247,0 2.8112,1.283844 2.8112,2.86751 0,1.583666 -1.25873,2.8675 -2.8112,2.8675 -1.55248,0 -2.81121,-1.283834 -2.81121,-2.8675 z"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path265" />
     <text
-       font-size="4.69255px"
+       font-size="4.81831px"
+       id="text267"
+       x="132.62874"
+       y="34.055042"
        
-       x="156.84227"
-       y="30.312691"
-       transform="scale(0.86254171,1.1593642)">E</text>
+       transform="scale(1.0001873,0.99981273)">E</text>
     <path
-       d="m 73.168207,114.93571 c 0,-2.27622 1.345373,-4.1215 3.004984,-4.1215 1.659605,0 3.004978,1.84528 3.004978,4.1215 0,2.27622 -1.345373,4.1215 -3.004978,4.1215 -1.659611,0 -3.004984,-1.84528 -3.004984,-4.1215 z"
+       d="m 74.527046,89.276753 c 0,-1.552001 1.258611,-2.810145 2.811203,-2.810145 1.552592,0 2.811203,1.258144 2.811203,2.810145 0,1.552001 -1.258611,2.810132 -2.811203,2.810132 -1.552592,0 -2.811203,-1.258131 -2.811203,-2.810132 z"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path268" />
     <text
-       font-size="4.69255px"
+       font-size="4.81831px"
+       id="text271"
+       x="75.833977"
+       y="91.071663"
        
-       x="86.610924"
-       y="100.84322"
-       transform="scale(0.86254171,1.1593642)">R</text>
+       transform="scale(1.0001873,0.99981273)">R</text>
     <path
-       d="m 133.63579,115.10057 c 0,-2.27623 1.34549,-4.1215 3.00497,-4.1215 1.65949,0 3.00499,1.84527 3.00499,4.1215 0,2.27622 -1.3455,4.1215 -3.00499,4.1215 -1.65948,0 -3.00497,-1.84528 -3.00497,-4.1215 z"
+       d="m 131.09539,89.276753 c 0,-1.552001 1.25873,-2.810145 2.81121,-2.810145 1.55247,0 2.8112,1.258144 2.8112,2.810145 0,1.552001 -1.25873,2.810132 -2.8112,2.810132 -1.55248,0 -2.81121,-1.258131 -2.81121,-2.810132 z"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path273" />
     <text
-       font-size="4.69255px"
+       font-size="4.81831px"
+       id="text275"
+       x="132.62874"
+       y="91.071663"
        
-       x="156.84227"
-       y="101.12761"
-       transform="scale(0.86254171,1.1593642)">E</text>
+       transform="scale(1.0001873,0.99981273)">E</text>
     <path
-       d="m 35.820589,63.417604 c 0,-0.364503 0.219915,-0.660098 0.4911,-0.660098 h 14.839944 c 0.271184,0 0.4911,0.295595 0.4911,0.660098 v 19.122447 c 0,0.364503 -0.219916,0.660098 -0.4911,0.660098 H 36.311689 c -0.271185,0 -0.4911,-0.295595 -0.4911,-0.660098 z"
+       d="m 39.58777,53.146703 c 0,-0.253602 0.20574,-0.459264 0.459434,-0.459264 h 13.882998 c 0.253693,0 0.459433,0.205662 0.459433,0.459264 v 13.304294 c 0,0.253602 -0.20574,0.459253 -0.459433,0.459253 H 40.047204 c -0.253694,0 -0.459434,-0.205651 -0.459434,-0.459253 z"
        stroke="#000000"
-       stroke-width="0.663589"
+       stroke-width="0.535366"
        stroke-miterlimit="8"
-       stroke-dasharray="2.65438, 1.99078"
+       stroke-dasharray="2.14148, 1.60611"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path276" />
     <path
-       d="m 161.53917,63.258018 c 0,-0.36747 0.22201,-0.665377 0.49552,-0.665377 h 14.95377 c 0.27351,0 0.49552,0.297907 0.49552,0.665377 v 19.276755 c 0,0.367476 -0.22201,0.665376 -0.49552,0.665376 h -14.95377 c -0.27351,0 -0.49552,-0.2979 -0.49552,-0.665376 z"
+       d="m 157.19944,53.03567 c 0,-0.255667 0.20769,-0.462927 0.46356,-0.462927 h 13.98948 c 0.25588,0 0.46357,0.20726 0.46357,0.462927 v 13.411654 c 0,0.255667 -0.20769,0.462926 -0.46357,0.462926 H 157.663 c -0.25587,0 -0.46356,-0.207259 -0.46356,-0.462926 z"
        stroke="#000000"
-       stroke-width="0.663589"
+       stroke-width="0.535366"
        stroke-miterlimit="8"
-       stroke-dasharray="2.65438, 1.99078"
+       stroke-dasharray="2.14148, 1.60611"
        fill="none"
        fill-rule="evenodd"
-        />
+       id="path279" />
     <text
-       font-size="2.70177px"
+       font-size="2.6386px"
+       id="text283"
+       x="40.472656"
+       y="70.880684"
        
-       x="43.589001"
-       y="76.811646"
-       transform="scale(0.86254171,1.1593642)">aggregation<tspan
-   font-size="2.70177px"
-   x="187.70877"
-   y="76.953835"
+       transform="scale(1.0001873,0.99981273)">aggregation<tspan
+   font-size="2.6386px"
+   x="156.59384"
+   y="70.995399"
+   id="tspan281"
    >disaggregation</tspan></text>
-    <path
-       d="m 110.4545,87.903088 c 0,-0.457693 -0.27604,-0.828726 -0.61655,-0.828726 h -6.73929 c -0.34053,0 -0.61657,0.371033 -0.61657,0.828726 v 7.244984 c 0,0.457699 0.27604,0.828732 0.61657,0.828732 h 6.73929 c 0.34051,0 0.61655,-0.371033 0.61655,-0.828732 z"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 108.9146,87.7338 v 0.939898 h -1.63618 l -0.87145,2.10904 -0.88922,-2.10904 h -1.6184 V 87.7338 l -1.0493,1.192064 1.0493,1.192058 v -0.802344 h 1.156 l 0.99593,2.315351 -0.99593,2.338276 h -1.156 v -0.871122 l -1.0493,1.192071 1.0493,1.19207 v -0.894057 h 1.6184 l 0.88922,-2.154881 0.87145,2.154881 h 1.63618 v 0.848191 l 1.04929,-1.146204 -1.04929,-1.192071 v 0.871122 h -1.13821 l -1.01372,-2.338276 0.99593,-2.315351 h 1.156 v 0.779427 l 1.04929,-1.169141 z"
-       stroke="#000000"
-       stroke-width="0.248847"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 141.73084,66.636141 c 0,-0.457693 -0.27605,-0.828726 -0.61656,-0.828726 h -6.7393 c -0.34051,0 -0.61656,0.371033 -0.61656,0.828726 v 7.244984 c 0,0.457699 0.27605,0.828733 0.61656,0.828733 h 6.7393 c 0.34051,0 0.61656,-0.371034 0.61656,-0.828733 z"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 140.19093,66.301995 v 0.959894 h -1.63618 l -0.87145,2.153914 -0.88923,-2.153914 h -1.61839 v -0.959894 l -1.0493,1.217424 1.0493,1.217425 v -0.819418 h 1.156 l 0.99593,2.36462 -0.99593,2.388029 h -1.156 v -0.889646 l -1.0493,1.217424 1.0493,1.217425 v -0.913075 h 1.61839 l 0.88923,-2.200734 0.87145,2.200734 h 1.63618 v 0.866255 l 1.04929,-1.170605 -1.04929,-1.217424 v 0.889646 h -1.13821 l -1.01372,-2.388029 0.99593,-2.36462 h 1.156 v 0.796008 l 1.04929,-1.194015 z"
-       stroke="#000000"
-       stroke-width="0.248847"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 47.165925,66.471283 c 0,-0.457693 -0.276041,-0.828725 -0.616554,-0.828725 h -6.739296 c -0.34052,0 -0.616561,0.371032 -0.616561,0.828725 v 7.244984 c 0,0.457699 0.276041,0.828733 0.616561,0.828733 h 6.739296 c 0.340513,0 0.616554,-0.371034 0.616554,-0.828733 z"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 45.626028,66.137137 v 0.959894 h -1.636184 l -0.871432,2.153914 -0.889229,-2.153914 h -1.618397 v -0.959894 l -1.04929,1.217424 1.04929,1.217425 v -0.819418 h 1.155998 l 0.995936,2.36462 -0.995936,2.388029 h -1.155998 v -0.889646 l -1.04929,1.217424 1.04929,1.217425 v -0.913075 h 1.618397 l 0.889229,-2.200734 0.871432,2.200734 h 1.636184 V 74.0036 l 1.049287,-1.170605 -1.049287,-1.217424 v 0.889646 h -1.138216 l -1.013708,-2.388029 0.995924,-2.36462 h 1.156 v 0.796008 l 1.049287,-1.194015 z"
-       stroke="#000000"
-       stroke-width="0.248847"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 15.521637,66.486636 c 0,-0.466173 -0.281155,-0.844078 -0.627975,-0.844078 H 8.1772068 c -0.3468227,0 -0.6279765,0.377905 -0.6279765,0.844078 v 7.379124 c 0,0.466173 0.2811538,0.844085 0.6279765,0.844085 h 6.7164552 c 0.34682,0 0.627975,-0.377912 0.627975,-0.844085 z"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 13.981736,66.301995 v 0.939899 h -1.636179 l -0.871445,2.109039 -0.889229,-2.109039 H 8.9664865 v -0.939899 l -1.0492994,1.192064 1.0492994,1.192059 v -0.802345 h 1.1559965 l 0.995938,2.315352 -0.995938,2.338275 H 8.9664865 v -0.871122 l -1.0492994,1.192071 1.0492994,1.192071 v -0.894058 h 1.6183965 l 0.889229,-2.15488 0.871445,2.15488 h 1.636179 v 0.848192 l 1.049292,-1.146205 -1.049292,-1.192071 V 72.5374 h -1.138211 l -1.013722,-2.338275 0.995937,-2.315352 h 1.155996 V 68.6632 l 1.049292,-1.169141 z"
-       stroke="#000000"
-       stroke-width="0.248847"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 172.76186,66.800999 c 0,-0.457693 -0.27604,-0.828726 -0.61655,-0.828726 h -6.73928 c -0.34051,0 -0.61656,0.371033 -0.61656,0.828726 v 7.244965 c 0,0.457687 0.27605,0.828721 0.61656,0.828721 h 6.73928 c 0.34051,0 0.61655,-0.371034 0.61655,-0.828721 z"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 171.32652,66.631717 v 0.939899 h -1.66439 l -0.88647,2.109039 -0.90456,-2.109039 h -1.64631 v -0.939899 l -1.06739,1.192071 1.06739,1.19207 v -0.802357 h 1.17593 l 1.01312,2.315358 -1.01312,2.338294 h -1.17593 v -0.871121 l -1.06739,1.192052 1.06739,1.19207 v -0.894051 h 1.64631 l 0.90456,-2.154887 0.88647,2.154887 h 1.66439 v 0.848204 l 1.06738,-1.146223 -1.06738,-1.192052 v 0.871121 h -1.15783 l -1.03121,-2.338294 1.01311,-2.315358 h 1.17593 v 0.779421 l 1.06738,-1.169134 z"
-       stroke="#000000"
-       stroke-width="0.248847"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 204.5288,66.48663 c 0,-0.466167 -0.28116,-0.844072 -0.62797,-0.844072 h -6.71644 c -0.34682,0 -0.62797,0.377905 -0.62797,0.844072 v 7.379111 c 0,0.46618 0.28115,0.844086 0.62797,0.844086 h 6.71644 c 0.34681,0 0.62797,-0.377906 0.62797,-0.844086 z"
-       stroke="#000000"
-       stroke-width="0.331796"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
-    <path
-       d="m 203.09346,66.301995 v 0.939899 h -1.66439 l -0.88647,2.109039 -0.90456,-2.109039 h -1.64632 v -0.939899 l -1.06737,1.192064 1.06737,1.192059 v -0.802345 h 1.17593 l 1.01312,2.315352 -1.01312,2.338275 h -1.17593 v -0.871122 l -1.06737,1.192071 1.06737,1.192071 v -0.894058 h 1.64632 l 0.90456,-2.15488 0.88647,2.15488 h 1.66439 v 0.848192 l 1.06738,-1.146205 -1.06738,-1.192071 V 72.5374 h -1.15784 l -1.0312,-2.338275 1.01311,-2.315352 h 1.17593 V 68.6632 l 1.06738,-1.169141 z"
-       stroke="#000000"
-       stroke-width="0.248847"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       fill="none"
-       fill-rule="evenodd"
-        />
     <rect
-       x="49.864277"
-       y="9.2604179"
-       width="9.1989079"
-       height="9.5618992"
+       x="52.725853"
+       y="22.119858"
+       width="17.44095"
+       height="6.6526165"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect285" />
     <text
-       font-size="1.70639px"
+       font-size="2.17972px"
+       id="text289"
+       x="55.704464"
+       y="24.992039"
        
-       x="60.846794"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="62.691586"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">2001:db8::1<tspan
+   font-size="2.17972px"
+   x="55.704464"
+   y="27.630642"
+   id="tspan287"
+   >2001:db8::8</tspan></text>
+    <rect
+       x="52.725853"
+       y="15.467249"
+       width="8.7204752"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect291" />
+    <text
+       font-size="1.60611px"
+       id="text295"
+       x="54.854847"
+       y="18.452915"
+       
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="56.594776"
+   y="20.403179"
+   id="tspan293"
    >0</tspan></text>
     <rect
-       x="59.185848"
-       y="9.2604179"
-       width="9.1989079"
-       height="9.5618992"
+       x="61.446327"
+       y="15.467249"
+       width="8.7204752"
+       height="6.6526165"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect297" />
     <text
-       font-size="1.70639px"
+       font-size="1.60611px"
+       id="text301"
+       x="63.580914"
+       y="18.452915"
        
-       x="71.663422"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="73.508209"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="65.320862"
+   y="20.403179"
+   id="tspan299"
    >1</tspan></text>
     <rect
-       x="81.263252"
-       y="9.2604179"
-       width="9.1989079"
-       height="9.5618992"
+       x="81.985344"
+       y="22.119858"
+       width="17.44095"
+       height="6.6526165"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect303" />
     <text
-       font-size="1.70639px"
+       font-size="2.17972px"
+       id="text307"
+       x="84.940231"
+       y="24.992039"
        
-       x="97.228035"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="99.07283"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">2001:db8::1<tspan
+   font-size="2.17972px"
+   x="84.940231"
+   y="27.630642"
+   id="tspan305"
+   >2001:db8::8</tspan></text>
+    <rect
+       x="81.985344"
+       y="15.467249"
+       width="8.7204752"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect309" />
+    <text
+       font-size="1.60611px"
+       id="text313"
+       x="84.090599"
+       y="18.452915"
+       
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="85.830544"
+   y="20.403179"
+   id="tspan310"
    >0</tspan></text>
     <rect
-       x="90.462181"
-       y="9.2604179"
-       width="9.1989336"
-       height="9.5618992"
+       x="90.705826"
+       y="15.467249"
+       width="8.7204752"
+       height="6.6526165"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect315" />
     <text
-       font-size="1.70639px"
+       font-size="1.60611px"
+       id="text319"
+       x="92.816673"
+       y="18.452915"
        
-       x="107.94997"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="109.79475"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="94.55661"
+   y="20.403179"
+   id="tspan317"
    >1</tspan></text>
     <rect
-       x="112.66224"
-       y="9.2604179"
-       width="9.3215847"
-       height="9.5618992"
+       x="111.24483"
+       y="22.119858"
+       width="17.44095"
+       height="6.6526165"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect321" />
     <text
-       font-size="1.70639px"
+       font-size="2.17972px"
+       id="text325"
+       x="114.17576"
+       y="24.992039"
        
-       x="133.7037"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="135.54849"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">2001:db8::1<tspan
+   font-size="2.17972px"
+   x="114.17576"
+   y="27.630642"
+   id="tspan322"
+   >2001:db8::8</tspan></text>
+    <rect
+       x="111.24483"
+       y="15.467249"
+       width="8.7204752"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect326" />
+    <text
+       font-size="1.60611px"
+       id="text331"
+       x="113.32683"
+       y="18.452915"
+       
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="115.06676"
+   y="20.403179"
+   id="tspan329"
    >0</tspan></text>
     <rect
-       x="121.98381"
-       y="9.2604179"
-       width="9.1989212"
-       height="9.5618992"
+       x="119.96532"
+       y="15.467249"
+       width="8.7204752"
+       height="6.6526165"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect333" />
     <text
-       font-size="1.70639px"
+       font-size="1.60611px"
+       id="text337"
+       x="122.05255"
+       y="18.452915"
        
-       x="144.49089"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="146.33569"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="123.79249"
+   y="20.403179"
+   id="tspan334"
    >1</tspan></text>
     <rect
-       x="144.30653"
-       y="9.2604179"
-       width="9.1989212"
-       height="9.5618992"
+       x="140.38957"
+       y="22.119858"
+       width="17.555693"
+       height="6.6526165"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect338" />
     <text
-       font-size="1.70639px"
+       font-size="2.17972px"
+       id="text343"
+       x="143.41141"
+       y="24.992039"
        
-       x="170.34546"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="172.19025"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">2001:db8::1<tspan
+   font-size="2.17972px"
+   x="143.41141"
+   y="27.630642"
+   id="tspan341"
+   >2001:db8::8</tspan></text>
+    <rect
+       x="140.38957"
+       y="15.467249"
+       width="8.7204857"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect345" />
+    <text
+       font-size="1.60611px"
+       id="text349"
+       x="142.56248"
+       y="18.452915"
+       
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="144.30241"
+   y="20.403179"
+   id="tspan346"
    >0</tspan></text>
     <rect
-       x="153.6281"
-       y="9.2604179"
-       width="9.1989212"
-       height="9.5618992"
+       x="149.11005"
+       y="15.467249"
+       width="8.8352175"
+       height="6.6526165"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect350" />
     <text
-       font-size="1.70639px"
+       font-size="1.60611px"
+       id="text355"
+       x="151.28821"
+       y="18.452915"
        
-       x="181.15396"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="182.99878"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="153.02815"
+   y="20.403179"
+   id="tspan352"
    >1</tspan></text>
     <rect
-       x="176.07347"
-       y="9.2604179"
-       width="9.1989212"
-       height="9.5618992"
+       x="169.64906"
+       y="22.119858"
+       width="17.44095"
+       height="6.6526165"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect357" />
     <text
-       font-size="1.70639px"
+       font-size="2.17972px"
+       id="text361"
+       x="172.64705"
+       y="24.992039"
        
-       x="207.15359"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="208.9984"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">2001:db8::1<tspan
+   font-size="2.17972px"
+   x="172.64705"
+   y="27.630642"
+   id="tspan359"
+   >2001:db8::8</tspan></text>
+    <rect
+       x="169.64906"
+       y="15.467249"
+       width="8.7204752"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect363" />
+    <text
+       font-size="1.60611px"
+       id="text367"
+       x="171.79813"
+       y="18.452915"
+       
+       transform="scale(1.0001873,0.99981273)">DATA 0</text>
+    <rect
+       x="178.36952"
+       y="15.467249"
+       width="8.7204752"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect369" />
+    <text
+       font-size="1.60611px"
+       id="text373"
+       x="180.52383"
+       y="18.452915"
+       
+       transform="scale(1.0001873,0.99981273)">DATA 1</text>
+    <rect
+       x="81.985344"
+       y="79.46991"
+       width="17.44095"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect375" />
+    <text
+       font-size="2.17972px"
+       id="text379"
+       x="84.940231"
+       y="82.352829"
+       
+       transform="scale(1.0001873,0.99981273)">2001:db8::1<tspan
+   font-size="2.17972px"
+   x="84.940231"
+   y="84.876709"
+   id="tspan376"
+   >2001:db8::8</tspan></text>
+    <rect
+       x="81.985344"
+       y="72.817299"
+       width="8.7204752"
+       height="6.6525941"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect381" />
+    <text
+       font-size="1.60611px"
+       id="text385"
+       x="84.090599"
+       y="75.813705"
+       
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="85.830544"
+   y="77.763977"
+   id="tspan383"
    >0</tspan></text>
     <rect
-       x="185.2724"
-       y="9.2604179"
-       width="9.3215733"
-       height="9.5618992"
+       x="90.705826"
+       y="72.817299"
+       width="8.7204752"
+       height="6.6525941"
        stroke="#000000"
-       stroke-width="0.331796"
+       stroke-width="0.267684"
        stroke-miterlimit="8"
        fill="none"
-        />
+       id="rect387" />
     <text
-       font-size="1.70639px"
+       font-size="1.60611px"
+       id="text391"
+       x="92.816673"
+       y="75.813705"
        
-       x="217.89526"
-       y="11.684663"
-       transform="scale(0.86254171,1.1593642)">DATA <tspan
-   font-size="1.70639px"
-   x="219.74005"
-   y="13.675445"
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="94.55661"
+   y="77.763977"
+   id="tspan388"
    >1</tspan></text>
+    <rect
+       x="111.24483"
+       y="79.355217"
+       width="17.44095"
+       height="6.6525941"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect393" />
+    <text
+       font-size="2.17972px"
+       id="text397"
+       x="114.17576"
+       y="82.238106"
+       
+       transform="scale(1.0001873,0.99981273)">2001:db8::1<tspan
+   font-size="2.17972px"
+   x="114.17576"
+   y="84.761986"
+   id="tspan395"
+   >2001:db8::8</tspan></text>
+    <rect
+       x="111.24483"
+       y="72.702606"
+       width="8.7204752"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect399" />
+    <text
+       font-size="1.60611px"
+       id="text403"
+       x="113.32683"
+       y="75.69899"
+       
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="115.06676"
+   y="77.649246"
+   id="tspan401"
+   >0</tspan></text>
+    <rect
+       x="119.96532"
+       y="72.702606"
+       width="8.7204752"
+       height="6.6526165"
+       stroke="#000000"
+       stroke-width="0.267684"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect405" />
+    <text
+       font-size="1.60611px"
+       id="text413"
+       x="122.05255"
+       y="75.69899"
+       
+       transform="scale(1.0001873,0.99981273)">DATA <tspan
+   font-size="1.60611px"
+   x="123.79249"
+   y="77.649246"
+   id="tspan406"
+   >1</tspan><tspan
+   font-size="3.2122px"
+   x="18.315672"
+   y="26.598156"
+   id="tspan409"
+   >IP</tspan><tspan
+   font-size="3.2122px"
+   x="189.36337"
+   y="26.483425"
+   id="tspan411"
+   >IP</tspan></text>
   </g>
 </svg>
 </artwork>
@@ -4278,85 +4402,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
           <name>Example A-1 DetNet JSON configuration</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
-    "app-flows": {
-      "app-flow": [
-        {
-          "name": "app-0",
-          "bidir-congruent": false,
-          "outgoing-service": "ssl-1",
-          "traffic-profile": "pf-1",
-          "ingress": {
-            "app-flow-status": "ready",
-            "interface": "eth0",
-            "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.1/32",
-              "dest-ip-prefix": "192.0.2.8/32",
-              "dscp": 6
-            }
-          }
-        },
-        {
-          "name": "app-1",
-          "bidir-congruent": false,
-          "outgoing-service": "ssl-1",
-          "traffic-profile": "pf-1",
-          "ingress": {
-            "app-flow-status": "ready",
-            "interface": "eth0",
-            "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.1/32",
-              "dest-ip-prefix": "192.0.2.8/32",
-              "dscp": 7
-            }
-          }
-        }
-      ]
-    },
     "traffic-profile": [
       {
         "name": "pf-1",
@@ -4368,7 +4414,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 5,
           "max-pkts-per-interval": 10,
           "max-payload-size": 1500,
@@ -4390,7 +4436,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 5,
           "max-pkts-per-interval": 10,
           "max-payload-size": 1500,
@@ -4403,7 +4449,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
       },
       {
         "name": "pf-3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 5,
           "max-pkts-per-interval": 10,
           "max-payload-size": 1500
@@ -4413,17 +4459,51 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
         ]
       }
     ],
+    "app-flows": {
+      "app-flow": [
+        {
+          "name": "app-0",
+          "bidir-congruent": false,
+          "outgoing-service": "ssl-1",
+          "traffic-profile": "pf-1",
+          "ingress": {
+            "app-flow-status": "ietf-detnet:ready",
+            "interface": "eth0",
+            "ip-app-flow": {
+              "src-ip-prefix": "2001:db8::1/128",
+              "dest-ip-prefix": "2001:db8::8/128",
+              "dscp": 6
+            }
+          }
+        },
+        {
+          "name": "app-1",
+          "bidir-congruent": false,
+          "outgoing-service": "ssl-1",
+          "traffic-profile": "pf-1",
+          "ingress": {
+            "app-flow-status": "ietf-detnet:ready",
+            "interface": "eth0",
+            "ip-app-flow": {
+              "src-ip-prefix": "2001:db8::1/128",
+              "dest-ip-prefix": "2001:db8::8/128",
+              "dscp": 7
+            }
+          }
+        }
+      ]
+    },
     "service": {
       "sub-layer": [
         {
           "name": "ssl-1",
           "service-rank": 10,
           "traffic-profile": "pf-2",
-          "operation": "initiation",
           "service-protection": {
             "protection": "none",
             "sequence-number-length": "long-sn"
           },
+          "operation": "initiation",
           "incoming": {
             "app-flow": {
               "flow": [
@@ -4441,7 +4521,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 100
+                        "label": "100"
                       }
                     ]
                   },
@@ -4475,7 +4555,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10000
+                    "label": "10000"
                   }
                 ]
               }
@@ -4484,6 +4564,50 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -6735,7 +6859,6 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
           <dest-ip-prefix>192.0.2.9/32</dest-ip-prefix>
           <dscp>7</dscp>
         </ip-app-flow>
-        <dscp>7</dscp>
       </ingress>
     </app-flow>
   </app-flows>
@@ -6767,11 +6890,11 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
   </traffic-profile>
   <traffic-profile>  
     <name>3</name>
-    <flow-spec>
+    <traffic-spec>
       <interval>5</interval>
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
-    </flow-spec>
+    </traffic-spec>
     <member-fwd-sublayers>afl-1</member-fwd-sublayers>
   </traffic-profile>
   <service>
@@ -6785,12 +6908,12 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming>
-        <app-flow>
+	<app-flow>
           <flow>app-1</flow>
         </app-flow>
       </incoming>
       <outgoing>
-        <forwarding-sub-layer>
+	<forwarding-sub-layer>
           <service-outgoing>
             <index>0</index>
             <mpls-label-stack>
@@ -6814,12 +6937,12 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming>
-        <app-flow>
+	<app-flow>
           <flow>app-2</flow>
         </app-flow>
       </incoming>
       <outgoing>
-        <forwarding-sub-layer>
+	<forwarding-sub-layer>
           <service-outgoing>
             <index>0</index>
             <mpls-label-stack>
@@ -6840,13 +6963,13 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
       <traffic-profile>3</traffic-profile>
       <operation>impose-and-forward</operation>
       <incoming>
-        <service-sub-layer>
+	<service-sub-layer>
           <sub-layer>ssl-1</sub-layer>
           <sub-layer>ssl-2</sub-layer>
         </service-sub-layer>
       </incoming>
       <outgoing>
-        <interface>
+	<interface>
           <outgoing-interface>eth2</outgoing-interface>
           <mpls-label-stack>
             <entry>
@@ -9085,85 +9208,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
           <name>Example B-2 DetNet JSON Service Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
-    "app-flows": {
-      "app-flow": [
-        {
-          "name": "app-1",
-          "bidir-congruent": false,
-          "outgoing-service": "ssl-1",
-          "traffic-profile": "1",
-          "ingress": {
-            "app-flow-status": "ready",
-            "interface": "eth0",
-            "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.1/32",
-              "dest-ip-prefix": "192.0.2.8/32",
-              "dscp": 6
-            }
-          }
-        },
-        {
-          "name": "app-2",
-          "bidir-congruent": false,
-          "outgoing-service": "ssl-2",
-          "traffic-profile": "1",
-          "ingress": {
-            "app-flow-status": "ready",
-            "interface": "eth0",
-            "ip-app-flow": {
-              "src-ip-prefix": "192.0.2.2/32",
-              "dest-ip-prefix": "192.0.2.9/32",
-              "dscp": 7
-            }
-          }
-        }
-      ]
-    },
     "traffic-profile": [
       {
         "name": "1",
@@ -9197,7 +9242,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
       },
       {
         "name": "3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 5,
           "max-pkts-per-interval": 10,
           "max-payload-size": 1500
@@ -9207,6 +9252,40 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
         ]
       }
     ],
+    "app-flows": {
+      "app-flow": [
+        {
+          "name": "app-1",
+          "bidir-congruent": false,
+          "outgoing-service": "ssl-1",
+          "traffic-profile": "1",
+          "ingress": {
+            "app-flow-status": "ietf-detnet:ready",
+            "interface": "eth0",
+            "ip-app-flow": {
+              "src-ip-prefix": "192.0.2.1/32",
+              "dest-ip-prefix": "192.0.2.8/32",
+              "dscp": 6
+            }
+          }
+        },
+        {
+          "name": "app-2",
+          "bidir-congruent": false,
+          "outgoing-service": "ssl-2",
+          "traffic-profile": "1",
+          "ingress": {
+            "app-flow-status": "ietf-detnet:ready",
+            "interface": "eth0",
+            "ip-app-flow": {
+              "src-ip-prefix": "192.0.2.2/32",
+              "dest-ip-prefix": "192.0.2.9/32",
+              "dscp": 7
+            }
+          }
+        }
+      ]
+    },
     "service": {
       "sub-layer": [
         {
@@ -9233,7 +9312,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
                   "entry": [
                     {
                       "id": 0,
-                      "label": 102
+                      "label": "102"
                     }
                   ]
                 }
@@ -9245,11 +9324,11 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
           "name": "ssl-2",
           "service-rank": 10,
           "traffic-profile": "2",
-          "operation": "initiation",
           "service-protection": {
             "protection": "none",
             "sequence-number-length": "long-sn"
           },
+          "operation": "initiation",
           "incoming": {
             "app-flow": {
               "flow": [
@@ -9265,7 +9344,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
                   "entry": [
                     {
                       "id": 0,
-                      "label": 105
+                      "label": "105"
                     }
                   ]
                 }
@@ -9276,10 +9355,12 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
         {
           "name": "asl-1",
           "service-rank": 10,
+          "traffic-profile": "2",
           "service-protection": {
             "protection": "none",
             "sequence-number-length": "long-sn"
           },
+          "operation": "initiation",
           "incoming": {
             "service-aggregation": {
               "sub-layer": [
@@ -9297,7 +9378,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 1000
+                        "label": "1000"
                       }
                     ]
                   },
@@ -9331,7 +9412,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20000
+                    "label": "20000"
                   }
                 ]
               }
@@ -9340,6 +9421,50 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-10-02T19:59:00-04:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-10-02T19:59:00-04:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-10-02T19:59:00-04:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-10-02T19:59:00-04:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-10-02T19:59:00-04:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -11815,50 +11940,6 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
           <name>Example C-1 DetNet JSON Relay Service Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
@@ -11878,7 +11959,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
       },
       {
         "name": "pf-2",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
@@ -11890,7 +11971,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
       },
       {
         "name": "pf-3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
@@ -11922,7 +12003,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 100
+                    "label": "100"
                   }
                 ]
               }
@@ -11937,7 +12018,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 101
+                        "label": "101"
                       }
                     ]
                   },
@@ -11965,7 +12046,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 103
+                    "label": "103"
                   }
                 ]
               }
@@ -11980,7 +12061,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 104
+                        "label": "104"
                       }
                     ]
                   },
@@ -12008,7 +12089,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10000
+                    "label": "10000"
                   }
                 ]
               }
@@ -12041,7 +12122,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                   "entry": [
                     {
                       "id": 0,
-                      "label": 10003
+                      "label": "10003"
                     }
                   ]
                 }
@@ -12068,7 +12149,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                   "entry": [
                     {
                       "id": 0,
-                      "label": 10004
+                      "label": "10004"
                     }
                   ]
                 }
@@ -12087,7 +12168,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10006
+                    "label": "10006"
                   }
                 ]
               }
@@ -12120,7 +12201,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                   "entry": [
                     {
                       "id": 0,
-                      "label": 10009
+                      "label": "10009"
                     }
                   ]
                 }
@@ -12147,7 +12228,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                   "entry": [
                     {
                       "id": 0,
-                      "label": 10010
+                      "label": "10010"
                     }
                   ]
                 }
@@ -12174,7 +12255,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20000
+                    "label": "20000"
                   }
                 ]
               }
@@ -12200,7 +12281,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20001
+                    "label": "20001"
                   }
                 ]
               }
@@ -12209,6 +12290,50 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -12217,50 +12342,6 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
           <name>Example C-1 DetNet JSON Relay Service Disaggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
@@ -12280,7 +12361,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
       },
       {
         "name": "pf-2",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
@@ -12292,7 +12373,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
       },
       {
         "name": "pf-3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
@@ -12324,7 +12405,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 101
+                    "label": "101"
                   }
                 ]
               }
@@ -12339,7 +12420,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 102
+                        "label": "102"
                       }
                     ]
                   },
@@ -12366,7 +12447,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 104
+                    "label": "104"
                   }
                 ]
               }
@@ -12381,7 +12462,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 105
+                        "label": "105"
                       }
                     ]
                   },
@@ -12408,7 +12489,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20002
+                    "label": "20002"
                   }
                 ]
               }
@@ -12434,7 +12515,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20003
+                    "label": "20003"
                   }
                 ]
               }
@@ -12460,7 +12541,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10003
+                    "label": "10003"
                   }
                 ]
               }
@@ -12485,7 +12566,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10004
+                    "label": "10004"
                   }
                 ]
               }
@@ -12517,7 +12598,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10005
+                    "label": "10005"
                   }
                 ]
               }
@@ -12535,7 +12616,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10009
+                    "label": "10009"
                   }
                 ]
               }
@@ -12560,7 +12641,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10010
+                    "label": "10010"
                   }
                 ]
               }
@@ -12592,7 +12673,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10011
+                    "label": "10011"
                   }
                 ]
               }
@@ -12601,6 +12682,50 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -14829,50 +14954,6 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
           <name>Example C-2 DetNet JSON Relay Aggregation Service Sub-Layer</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
@@ -14892,7 +14973,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
       },
       {
         "name": "pf-2",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
@@ -14904,7 +14985,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
       },
       {
         "name": "pf-3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
@@ -14932,7 +15013,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 100
+                    "label": "100"
                   }
                 ]
               }
@@ -14947,7 +15028,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 101
+                        "label": "101"
                       }
                     ]
                   },
@@ -14975,7 +15056,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 103
+                    "label": "103"
                   }
                 ]
               }
@@ -14990,7 +15071,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 104
+                        "label": "104"
                       }
                     ]
                   },
@@ -15018,7 +15099,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10000
+                    "label": "10000"
                   }
                 ]
               }
@@ -15043,7 +15124,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10006
+                    "label": "10006"
                   }
                 ]
               }
@@ -15076,7 +15157,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20000
+                    "label": "20000"
                   }
                 ]
               }
@@ -15102,7 +15183,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20001
+                    "label": "20001"
                   }
                 ]
               }
@@ -15111,6 +15192,50 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -15119,50 +15244,6 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
           <name>Example C-2 DetNet JSON Relay Disaggregation Service Sub-Layer</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
@@ -15182,7 +15263,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
       },
       {
         "name": "pf-2",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
@@ -15194,7 +15275,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
       },
       {
         "name": "pf-3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
@@ -15222,7 +15303,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 101
+                    "label": "101"
                   }
                 ]
               }
@@ -15237,7 +15318,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 102
+                        "label": "102"
                       }
                     ]
                   },
@@ -15264,7 +15345,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 104
+                    "label": "104"
                   }
                 ]
               }
@@ -15279,7 +15360,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 105
+                        "label": "105"
                       }
                     ]
                   },
@@ -15306,7 +15387,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20002
+                    "label": "20002"
                   }
                 ]
               }
@@ -15332,7 +15413,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20003
+                    "label": "20003"
                   }
                 ]
               }
@@ -15365,7 +15446,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10005
+                    "label": "10005"
                   }
                 ]
               }
@@ -15390,7 +15471,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10011
+                    "label": "10011"
                   }
                 ]
               }
@@ -15399,6 +15480,50 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -17746,50 +17871,6 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           <name>Example C-3 DetNet JSON Relay Service Sub-Layer Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
@@ -17823,7 +17904,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
       },
       {
         "name": "pf-3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
@@ -17835,7 +17916,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
       },
       {
         "name": "pf-4",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
@@ -17863,7 +17944,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 100
+                    "label": "100"
                   }
                 ]
               }
@@ -17877,7 +17958,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                   "entry": [
                     {
                       "id": 0,
-                      "label": 101
+                      "label": "101"
                     }
                   ]
                 }
@@ -17900,7 +17981,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 103
+                    "label": "103"
                   }
                 ]
               }
@@ -17914,7 +17995,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                   "entry": [
                     {
                       "id": 0,
-                      "label": 104
+                      "label": "104"
                     }
                   ]
                 }
@@ -17948,7 +18029,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 1000
+                        "label": "1000"
                       }
                     ]
                   },
@@ -17976,7 +18057,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10000
+                    "label": "10000"
                   }
                 ]
               }
@@ -18001,7 +18082,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10006
+                    "label": "10006"
                   }
                 ]
               }
@@ -18033,7 +18114,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20000
+                    "label": "20000"
                   }
                 ]
               }
@@ -18058,7 +18139,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20001
+                    "label": "20001"
                   }
                 ]
               }
@@ -18067,6 +18148,50 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -18075,50 +18200,6 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           <name>Example C-3 DetNet JSON Relay Service Sub-Layer Disaggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
@@ -18138,40 +18219,30 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
       },
       {
         "name": "pf-2",
-        "traffic-requirements": {
-          "min-bandwidth": "200000000",
-          "max-latency": 100000000,
-          "max-latency-variation": 100000000,
-          "max-loss": 2,
-          "max-consecutive-loss-tolerance": 5,
-          "max-misordering": 0
-        },
-        "member-services": [
-          "asl-1"
-        ]
-      },
-      {
-        "name": "pf-3",
-        "flow-spec": {
-          "interval": 125,
-          "max-pkts-per-interval": 1,
-          "max-payload-size": 1518
-        },
-        "member-fwd-sublayers": [
-          "fsl-3",
-          "fsl-4"
-        ]
-      },
-      {
-        "name": "pf-4",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
         },
         "member-fwd-sublayers": [
+          "afl-1",
+          "afl-2"
+        ]
+      },
+      {
+        "name": "pf-3",
+        "traffic-spec": {
+          "interval": 125,
+          "max-pkts-per-interval": 1,
+          "max-payload-size": 1518
+        },
+        "member-fwd-sublayers": [
           "fsl-1",
-          "fsl-2"
+          "fsl-2",
+          "fsl-3",
+          "fsl-4",
+          "fsl-5",
+          "fsl-6"
         ]
       }
     ],
@@ -18182,7 +18253,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "protection": "none",
+            "protection": "elimination",
             "sequence-number-length": "long-sn"
           },
           "operation": "relay",
@@ -18192,7 +18263,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 101
+                    "label": "101"
                   }
                 ]
               }
@@ -18207,7 +18278,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 102
+                        "label": "102"
                       }
                     ]
                   },
@@ -18224,7 +18295,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "protection": "none",
+            "protection": "elimination",
             "sequence-number-length": "long-sn"
           },
           "operation": "relay",
@@ -18234,7 +18305,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 104
+                    "label": "104"
                   }
                 ]
               }
@@ -18249,44 +18320,14 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": 105
+                        "label": "105"
                       }
                     ]
                   },
                   "sub-layer": [
-                    "fsl-4"
+                    "fsl-6"
                   ]
                 }
-              ]
-            }
-          }
-        },
-        {
-          "name": "asl-1",
-          "service-rank": 10,
-          "traffic-profile": "pf-2",
-          "service-protection": {
-            "protection": "elimination",
-            "sequence-number-length": "long-sn"
-          },
-          "operation": "termination",
-          "incoming": {
-            "service-id": {
-              "mpls-label-stack": {
-                "entry": [
-                  {
-                    "id": 0,
-                    "label": 1000
-                  }
-                ]
-              }
-            }
-          },
-          "outgoing": {
-            "service-disaggregation": {
-              "sub-layer": [
-                "ssl-1",
-                "ssl-2"
               ]
             }
           }
@@ -18296,8 +18337,8 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
     "forwarding": {
       "sub-layer": [
         {
-          "name": "fsl-1",
-          "traffic-profile": "pf-4",
+          "name": "afl-1",
+          "traffic-profile": "pf-2",
           "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
@@ -18306,23 +18347,24 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20002
+                    "label": "20002"
                   }
                 ]
               }
             }
           },
           "outgoing": {
-            "service-sub-layer": {
+            "forwarding-disaggregation": {
               "sub-layer": [
-                "asl-1"
+                "fsl-1",
+                "fsl-4"
               ]
             }
           }
         },
         {
-          "name": "fsl-2",
-          "traffic-profile": "pf-4",
+          "name": "afl-2",
+          "traffic-profile": "pf-2",
           "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
@@ -18331,7 +18373,33 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20003
+                    "label": "20003"
+                  }
+                ]
+              }
+            }
+          },
+          "outgoing": {
+            "forwarding-disaggregation": {
+              "sub-layer": [
+                "fsl-2",
+                "fsl-5"
+              ]
+            }
+          }
+        },
+        {
+          "name": "fsl-1",
+          "traffic-profile": "pf-3",
+          "operation": "pop-and-lookup",
+          "incoming": {
+            "forwarding-id": {
+              "interface": "eth0",
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": "10003"
                   }
                 ]
               }
@@ -18340,7 +18408,32 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "outgoing": {
             "service-sub-layer": {
               "sub-layer": [
-                "asl-1"
+                "ssl-1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "fsl-2",
+          "traffic-profile": "pf-3",
+          "operation": "pop-and-lookup",
+          "incoming": {
+            "forwarding-id": {
+              "interface": "eth1",
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": "10004"
+                  }
+                ]
+              }
+            }
+          },
+          "outgoing": {
+            "service-sub-layer": {
+              "sub-layer": [
+                "ssl-1"
               ]
             }
           }
@@ -18363,7 +18456,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10005
+                    "label": "10005"
                   }
                 ]
               }
@@ -18372,6 +18465,56 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
         },
         {
           "name": "fsl-4",
+          "traffic-profile": "pf-3",
+          "operation": "pop-and-lookup",
+          "incoming": {
+            "forwarding-id": {
+              "interface": "eth0",
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": "10009"
+                  }
+                ]
+              }
+            }
+          },
+          "outgoing": {
+            "service-sub-layer": {
+              "sub-layer": [
+                "ssl-2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "fsl-5",
+          "traffic-profile": "pf-3",
+          "operation": "pop-and-lookup",
+          "incoming": {
+            "forwarding-id": {
+              "interface": "eth1",
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": "10010"
+                  }
+                ]
+              }
+            }
+          },
+          "outgoing": {
+            "service-sub-layer": {
+              "sub-layer": [
+                "ssl-2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "fsl-6",
           "traffic-profile": "pf-3",
           "operation": "impose-and-forward",
           "incoming": {
@@ -18388,7 +18531,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10011
+                    "label": "10011"
                   }
                 ]
               }
@@ -18397,6 +18540,50 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -21021,50 +21208,6 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
           <name>Example C-4 DetNet JSON Relay Service Sub-Layer Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
@@ -21098,7 +21241,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
       },
       {
         "name": "pf-3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
@@ -21112,7 +21255,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
       },
       {
         "name": "pf-4",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
@@ -21140,7 +21283,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 100
+                    "label": "100"
                   }
                 ]
               }
@@ -21155,7 +21298,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                     "entry": [
                       {
                         "id": 0,
-                        "label": 101
+                        "label": "101"
                       }
                     ]
                   },
@@ -21182,7 +21325,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 103
+                    "label": "103"
                   }
                 ]
               }
@@ -21197,7 +21340,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                     "entry": [
                       {
                         "id": 0,
-                        "label": 104
+                        "label": "104"
                       }
                     ]
                   },
@@ -21235,7 +21378,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                     "entry": [
                       {
                         "id": 0,
-                        "label": 1000
+                        "label": "1000"
                       }
                     ]
                   },
@@ -21263,7 +21406,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10000
+                    "label": "10000"
                   }
                 ]
               }
@@ -21288,7 +21431,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10006
+                    "label": "10006"
                   }
                 ]
               }
@@ -21321,7 +21464,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                   "entry": [
                     {
                       "id": 0,
-                      "label": 20004
+                      "label": "20004"
                     }
                   ]
                 }
@@ -21348,7 +21491,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                   "entry": [
                     {
                       "id": 0,
-                      "label": 20005
+                      "label": "20005"
                     }
                   ]
                 }
@@ -21374,7 +21517,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20000
+                    "label": "20000"
                   }
                 ]
               }
@@ -21399,7 +21542,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20001
+                    "label": "20001"
                   }
                 ]
               }
@@ -21408,6 +21551,50 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -21416,50 +21603,6 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
           <name>Example C-4 DetNet JSON Relay Service Sub-Layer Disaggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
@@ -21493,7 +21636,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
       },
       {
         "name": "pf-3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
@@ -21507,7 +21650,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
       },
       {
         "name": "pf-4",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
@@ -21535,7 +21678,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 101
+                    "label": "101"
                   }
                 ]
               }
@@ -21550,7 +21693,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                     "entry": [
                       {
                         "id": 0,
-                        "label": 102
+                        "label": "102"
                       }
                     ]
                   },
@@ -21577,7 +21720,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 104
+                    "label": "104"
                   }
                 ]
               }
@@ -21592,7 +21735,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                     "entry": [
                       {
                         "id": 0,
-                        "label": 105
+                        "label": "105"
                       }
                     ]
                   },
@@ -21619,7 +21762,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 1000
+                    "label": "1000"
                   }
                 ]
               }
@@ -21649,7 +21792,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20002
+                    "label": "20002"
                   }
                 ]
               }
@@ -21674,7 +21817,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20003
+                    "label": "20003"
                   }
                 ]
               }
@@ -21699,7 +21842,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20004
+                    "label": "20004"
                   }
                 ]
               }
@@ -21724,7 +21867,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20005
+                    "label": "20005"
                   }
                 ]
               }
@@ -21756,7 +21899,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10005
+                    "label": "10005"
                   }
                 ]
               }
@@ -21781,7 +21924,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10011
+                    "label": "10011"
                   }
                 ]
               }
@@ -21790,6 +21933,50 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -21820,7 +22007,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
    height="130mm"
    viewBox="0 5 210 130"
    version="1.1"
-   id="svg8">
+   id="svg7">
   <g
      id="layer1">
     <text
@@ -23535,55 +23722,11 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
           <name>Example D-1 DetNet JSON Relay Service Sub-Layer Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
         "name": "pf-1",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
@@ -23595,7 +23738,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
       },
       {
         "name": "pf-2",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
@@ -23618,7 +23761,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10000
+                    "label": "10000"
                   }
                 ]
               }
@@ -23632,7 +23775,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                   "entry": [
                     {
                       "id": 0,
-                      "label": 10002
+                      "label": "10002"
                     }
                   ]
                 }
@@ -23651,7 +23794,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10004
+                    "label": "10004"
                   }
                 ]
               }
@@ -23665,7 +23808,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                   "entry": [
                     {
                       "id": 0,
-                      "label": 10006
+                      "label": "10006"
                     }
                   ]
                 }
@@ -23692,7 +23835,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20000
+                    "label": "20000"
                   }
                 ]
               }
@@ -23701,6 +23844,50 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>
@@ -23709,55 +23896,11 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
           <name>Example D-1 DetNet JSON Relay Service Sub-Layer Disaggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
         "name": "pf-1",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
@@ -23769,7 +23912,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
       },
       {
         "name": "pf-2",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
@@ -23792,7 +23935,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10002
+                    "label": "10002"
                   }
                 ]
               }
@@ -23805,7 +23948,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10003
+                    "label": "10003"
                   }
                 ]
               }
@@ -23823,7 +23966,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10006
+                    "label": "10006"
                   }
                 ]
               }
@@ -23836,7 +23979,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10007
+                    "label": "10007"
                   }
                 ]
               }
@@ -23854,7 +23997,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20001
+                    "label": "20001"
                   }
                 ]
               }
@@ -23871,6 +24014,50 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
 ]]></artwork>

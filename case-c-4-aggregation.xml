@@ -77,11 +77,11 @@
   </traffic-profile>
   <traffic-profile>  
     <name>pf-3</name>
-    <flow-spec>
+    <traffic-spec>
       <interval>125</interval>
       <max-pkts-per-interval>1</max-pkts-per-interval>
       <max-payload-size>1518</max-payload-size>
-    </flow-spec>
+    </traffic-spec>
     <member-fwd-sublayers>fsl-1</member-fwd-sublayers>
     <member-fwd-sublayers>fsl-2</member-fwd-sublayers>
     <member-fwd-sublayers>fsl-3</member-fwd-sublayers>
@@ -89,11 +89,11 @@
   </traffic-profile>
   <traffic-profile>  
     <name>pf-4</name>
-    <flow-spec>
+    <traffic-spec>
       <interval>125</interval>
       <max-pkts-per-interval>2</max-pkts-per-interval>
       <max-payload-size>1518</max-payload-size>
-    </flow-spec>
+    </traffic-spec>
     <member-fwd-sublayers>fsl-5</member-fwd-sublayers>
     <member-fwd-sublayers>fsl-6</member-fwd-sublayers>
   </traffic-profile>

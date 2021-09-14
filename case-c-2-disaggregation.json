@@ -1,48 +1,4 @@
 {
-  "ietf-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T23:59:00Z"
-        }
-      }
-    ]
-  },
   "ietf-detnet:detnet": {
     "traffic-profile": [
       {
@@ -62,7 +18,7 @@
       },
       {
         "name": "pf-2",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
@@ -74,7 +30,7 @@
       },
       {
         "name": "pf-3",
-        "flow-spec": {
+        "traffic-spec": {
           "interval": 125,
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
@@ -102,7 +58,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 101
+                    "label": "101"
                   }
                 ]
               }
@@ -117,7 +73,7 @@
                     "entry": [
                       {
                         "id": 0,
-                        "label": 102
+                        "label": "102"
                       }
                     ]
                   },
@@ -144,7 +100,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 104
+                    "label": "104"
                   }
                 ]
               }
@@ -159,7 +115,7 @@
                     "entry": [
                       {
                         "id": 0,
-                        "label": 105
+                        "label": "105"
                       }
                     ]
                   },
@@ -186,7 +142,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20002
+                    "label": "20002"
                   }
                 ]
               }
@@ -212,7 +168,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 20003
+                    "label": "20003"
                   }
                 ]
               }
@@ -245,7 +201,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10005
+                    "label": "10005"
                   }
                 ]
               }
@@ -270,7 +226,7 @@
                 "entry": [
                   {
                     "id": 0,
-                    "label": 10011
+                    "label": "10011"
                   }
                 ]
               }
@@ -279,5 +235,49 @@
         }
       ]
     }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        }
+      }
+    ]
   }
 }
