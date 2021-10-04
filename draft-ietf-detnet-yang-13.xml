@@ -527,7 +527,7 @@ module ietf-detnet {
      they appear in all capitals, as shown here. ";
      
 
-  revision 2021-06-29 {
+  revision 2021-10-04 {
     description
       "initial revision";
     reference
@@ -2126,16 +2126,20 @@ module: ietf-detnet
      |     |     |     +--rw source-port
      |     |     |     |  +--rw (port-range-or-operator)?
      |     |     |     |     +--:(range)
-     |     |     |     |     |  +--rw lower-port    inet:port-number
-     |     |     |     |     |  +--rw upper-port    inet:port-number
+     |     |     |     |     |  +--rw lower-port
+     |     |     |     |     |  |       inet:port-number
+     |     |     |     |     |  +--rw upper-port
+     |     |     |     |     |          inet:port-number
      |     |     |     |     +--:(operator)
      |     |     |     |        +--rw operator?     operator
      |     |     |     |        +--rw port          inet:port-number
      |     |     |     +--rw destination-port
      |     |     |     |  +--rw (port-range-or-operator)?
      |     |     |     |     +--:(range)
-     |     |     |     |     |  +--rw lower-port    inet:port-number
-     |     |     |     |     |  +--rw upper-port    inet:port-number
+     |     |     |     |     |  +--rw lower-port
+     |     |     |     |     |  |       inet:port-number
+     |     |     |     |     |  +--rw upper-port
+     |     |     |     |     |          inet:port-number
      |     |     |     |     +--:(operator)
      |     |     |     |        +--rw operator?     operator
      |     |     |     |        +--rw port          inet:port-number
@@ -18219,14 +18223,16 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
       },
       {
         "name": "pf-2",
-        "traffic-spec": {
-          "interval": 125,
-          "max-pkts-per-interval": 2,
-          "max-payload-size": 1518
+        "traffic-requirements": {
+          "min-bandwidth": "200000000",
+          "max-latency": 100000000,
+          "max-latency-variation": 100000000,
+          "max-loss": 2,
+          "max-consecutive-loss-tolerance": 5,
+          "max-misordering": 0
         },
-        "member-fwd-sublayers": [
-          "afl-1",
-          "afl-2"
+        "member-services": [
+          "asl-1"
         ]
       },
       {
@@ -18237,12 +18243,20 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "max-payload-size": 1518
         },
         "member-fwd-sublayers": [
-          "fsl-1",
-          "fsl-2",
           "fsl-3",
-          "fsl-4",
-          "fsl-5",
-          "fsl-6"
+          "fsl-4"
+        ]
+      },
+      {
+        "name": "pf-4",
+        "traffic-spec": {
+          "interval": 125,
+          "max-pkts-per-interval": 2,
+          "max-payload-size": 1518
+        },
+        "member-fwd-sublayers": [
+          "fsl-1",
+          "fsl-2"
         ]
       }
     ],
@@ -18253,7 +18267,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "protection": "elimination",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
           "operation": "relay",
@@ -18295,7 +18309,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "service-rank": 10,
           "traffic-profile": "pf-1",
           "service-protection": {
-            "protection": "elimination",
+            "protection": "none",
             "sequence-number-length": "long-sn"
           },
           "operation": "relay",
@@ -18325,9 +18339,39 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
                     ]
                   },
                   "sub-layer": [
-                    "fsl-6"
+                    "fsl-4"
                   ]
                 }
+              ]
+            }
+          }
+        },
+        {
+          "name": "asl-1",
+          "service-rank": 10,
+          "traffic-profile": "pf-2",
+          "service-protection": {
+            "protection": "elimination",
+            "sequence-number-length": "long-sn"
+          },
+          "operation": "termination",
+          "incoming": {
+            "service-id": {
+              "mpls-label-stack": {
+                "entry": [
+                  {
+                    "id": 0,
+                    "label": "1000"
+                  }
+                ]
+              }
+            }
+          },
+          "outgoing": {
+            "service-disaggregation": {
+              "sub-layer": [
+                "ssl-1",
+                "ssl-2"
               ]
             }
           }
@@ -18337,8 +18381,8 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
     "forwarding": {
       "sub-layer": [
         {
-          "name": "afl-1",
-          "traffic-profile": "pf-2",
+          "name": "fsl-1",
+          "traffic-profile": "pf-4",
           "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
@@ -18354,17 +18398,16 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
             }
           },
           "outgoing": {
-            "forwarding-disaggregation": {
+            "service-sub-layer": {
               "sub-layer": [
-                "fsl-1",
-                "fsl-4"
+                "asl-1"
               ]
             }
           }
         },
         {
-          "name": "afl-2",
-          "traffic-profile": "pf-2",
+          "name": "fsl-2",
+          "traffic-profile": "pf-4",
           "operation": "pop-and-lookup",
           "incoming": {
             "forwarding-id": {
@@ -18380,60 +18423,9 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
             }
           },
           "outgoing": {
-            "forwarding-disaggregation": {
-              "sub-layer": [
-                "fsl-2",
-                "fsl-5"
-              ]
-            }
-          }
-        },
-        {
-          "name": "fsl-1",
-          "traffic-profile": "pf-3",
-          "operation": "pop-and-lookup",
-          "incoming": {
-            "forwarding-id": {
-              "interface": "eth0",
-              "mpls-label-stack": {
-                "entry": [
-                  {
-                    "id": 0,
-                    "label": "10003"
-                  }
-                ]
-              }
-            }
-          },
-          "outgoing": {
             "service-sub-layer": {
               "sub-layer": [
-                "ssl-1"
-              ]
-            }
-          }
-        },
-        {
-          "name": "fsl-2",
-          "traffic-profile": "pf-3",
-          "operation": "pop-and-lookup",
-          "incoming": {
-            "forwarding-id": {
-              "interface": "eth1",
-              "mpls-label-stack": {
-                "entry": [
-                  {
-                    "id": 0,
-                    "label": "10004"
-                  }
-                ]
-              }
-            }
-          },
-          "outgoing": {
-            "service-sub-layer": {
-              "sub-layer": [
-                "ssl-1"
+                "asl-1"
               ]
             }
           }
@@ -18465,56 +18457,6 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
         },
         {
           "name": "fsl-4",
-          "traffic-profile": "pf-3",
-          "operation": "pop-and-lookup",
-          "incoming": {
-            "forwarding-id": {
-              "interface": "eth0",
-              "mpls-label-stack": {
-                "entry": [
-                  {
-                    "id": 0,
-                    "label": "10009"
-                  }
-                ]
-              }
-            }
-          },
-          "outgoing": {
-            "service-sub-layer": {
-              "sub-layer": [
-                "ssl-2"
-              ]
-            }
-          }
-        },
-        {
-          "name": "fsl-5",
-          "traffic-profile": "pf-3",
-          "operation": "pop-and-lookup",
-          "incoming": {
-            "forwarding-id": {
-              "interface": "eth1",
-              "mpls-label-stack": {
-                "entry": [
-                  {
-                    "id": 0,
-                    "label": "10010"
-                  }
-                ]
-              }
-            }
-          },
-          "outgoing": {
-            "service-sub-layer": {
-              "sub-layer": [
-                "ssl-2"
-              ]
-            }
-          }
-        },
-        {
-          "name": "fsl-6",
           "traffic-profile": "pf-3",
           "operation": "impose-and-forward",
           "incoming": {

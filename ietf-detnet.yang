@@ -92,7 +92,7 @@ module ietf-detnet {
      they appear in all capitals, as shown here. ";
      
 
-  revision 2021-06-29 {
+  revision 2021-10-04 {
     description
       "initial revision";
     reference
@@ -646,8 +646,8 @@ module ietf-detnet {
 
   grouping detnet-app-next-hop-content {
     description
-      "Generic parameters of DetNet next hops. This follows the principles
-       for next hops in RFC 8349";
+      "Generic parameters of DetNet next hops. This follows the 
+       principles for next hops in RFC 8349";
     choice next-hop-options {
       mandatory true;
       description
@@ -724,8 +724,8 @@ module ietf-detnet {
 
   grouping detnet-forwarding-next-hop-content {
     description
-      "Generic parameters of DetNet next hops. This follows the principles
-       for next hops in RFC 8349";
+      "Generic parameters of DetNet next hops. This follows the 
+       principles for next hops in RFC 8349";
     choice next-hop-options {
       mandatory true;
       description
@@ -1040,11 +1040,12 @@ module ietf-detnet {
             type identityref {
               base app-status;
             }
-	    default none;
+            default none;
             config false;
             description
-              "Status of ingress application flow. This is an operational status
-	       and defaults to none if incomplete.";
+              "Status of ingress application flow. This is an
+               operational status and defaults to none if 
+               incomplete.";
             reference
               "RFC 9016 Sections
                4.1, 5.8";
@@ -1097,10 +1098,10 @@ module ietf-detnet {
         }
         leaf service-rank {
           type uint8;
-	  default 255;
+          default 255;
           description
             "The DetNet rank for this service. Defaults to 255 
-	    lowest rank if not specified.";
+            lowest rank if not specified.";
           reference
             "RFC 9016 Section 5.7.";
         }
@@ -1126,7 +1127,7 @@ module ietf-detnet {
           }
           leaf sequence-number-length {
             type sequence-number-field;
-	    default zero-sn;
+            default zero-sn;
             description
               "Sequence number field length can be one of 0 (none),
                16-bits or 28-bits. The default is none.";
@@ -1237,9 +1238,10 @@ module ietf-detnet {
               }
               container service-label {
                 description
-                  "This is the MPLS service sub-layer label. This is optional 
-		   and only used when the service sublayer uses MPLS. It is 
-		   an MPLS stack since more than a single label may be used.";
+                  "This is the MPLS service sub-layer label. This
+                  is optional and only used when the service
+                  sublayer uses MPLS. It is an MPLS stack since 
+                  more than a single label may be used.";
                 uses rt-types:mpls-label-stack;
               }
             }
