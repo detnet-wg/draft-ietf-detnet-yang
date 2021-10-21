@@ -414,13 +414,13 @@ module: ietf-detnet
     </section>
     <section numbered="true" toc="default">
             <name>DetNet Configuration YANG Model</name>
-	    <t> This YANG model imports typedefs from <xref target="RFC6991"/>,
-		<xref target="RFC8519"/>, 
-		<xref target="RFC8294"/>, 
-		<xref target="RFC8343"/>, 
+            <t> This YANG model imports typedefs from <xref target="RFC6991"/>,
+                <xref target="RFC8519"/>, 
+                <xref target="RFC8294"/>, 
+                <xref target="RFC8343"/>, 
                 and <xref target="IEEE8021Q"/>. 
-		This YANG model also has the folowing references to RFCs 
-		that are not in the document text body
+                This YANG model also has the folowing references to RFCs 
+                that are not in the document text body
                 <xref target="RFC0791"/>, 
                 <xref target="RFC4303"/>, 
                 <xref target="RFC8349"/>, 
@@ -428,7 +428,7 @@ module: ietf-detnet
                 <xref target="RFC8964"/>, 
                 and <xref target="RFC8200"/>. 
             </t>
-            <sourcecode name="ietf-detnet@2021-10-20.yang" type="yang" markers="true">
+            <sourcecode name="ietf-detnet@2021-10-20.yang" type="yang" markers="true"><![CDATA[
 module ietf-detnet {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-detnet";
@@ -477,26 +477,26 @@ module ietf-detnet {
   organization
     "IETF DetNet Working Group";
   contact
-    "WG Web:   &lt;http://tools.ietf.org/wg/detnet/&gt;
-     WG List:  &lt;mailto: detnet@ietf.org&gt;
+    "WG Web:   <http://tools.ietf.org/wg/detnet/>
+     WG List:  <mailto: detnet@ietf.org>
 
      Editor:   Xuesong Geng
-                &lt;mailto:gengxuesong@huawei.com&gt;
+                <mailto:gengxuesong@huawei.com>
 
      Editor:   Yeoncheol Ryoo
-                &lt;mailto:dbduscjf@etri.re.kr&gt;
+                <mailto:dbduscjf@etri.re.kr>
 
      Editor:   Don Fedyk
-                &lt;mailto:dfedyk@labn.net&gt;
+                <mailto:dfedyk@labn.net>;
 
      Editor:   Reshad Rahman
-                &lt;mailto:reshad@yahoo.com&gt;
+                <mailto:reshad@yahoo.com>
 
      Editor:   Mach Chen
-                &lt;mailto:mach.chen@huawei.com&gt;
+                <mailto:mach.chen@huawei.com>
 
      Editor:   Zhenqiang Li
-                &lt;mailto:lizhenqiang@chinamobile.com&gt;";
+                <mailto:lizhenqiang@chinamobile.com>";
   description
     "This YANG module describes the parameters needed
      for DetNet flow configuration and flow status
@@ -515,7 +515,7 @@ module ietf-detnet {
 
      This version of this YANG module is part of RFC XXXX
      (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
-     for full legal notices.
+     for full legal notices.";
      
 
   revision 2021-10-20 {
@@ -1856,7 +1856,7 @@ module ietf-detnet {
     }
   }
 }
-</sourcecode>
+]]></sourcecode>
     </section>
     <section anchor="IANA" toc="include" numbered="true" removeInRFC="false" pn="section-10">
       <name>IANA Considerations</name>
@@ -6830,12 +6830,12 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming>
-	<app-flow>
+        <app-flow>
           <flow>app-1</flow>
         </app-flow>
       </incoming>
       <outgoing>
-	<forwarding-sub-layer>
+        <forwarding-sub-layer>
           <service-outgoing>
             <index>0</index>
             <mpls-label-stack>
@@ -6859,12 +6859,12 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
      <incoming>
-	<app-flow>
+        <app-flow>
           <flow>app-2</flow>
         </app-flow>
       </incoming>
       <outgoing>
-	<forwarding-sub-layer>
+        <forwarding-sub-layer>
           <service-outgoing>
             <index>0</index>
             <mpls-label-stack>
@@ -6885,13 +6885,13 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
       <traffic-profile>3</traffic-profile>
       <operation>impose-and-forward</operation>
       <incoming>
-	<service-sub-layer>
+        <service-sub-layer>
           <sub-layer>ssl-1</sub-layer>
           <sub-layer>ssl-2</sub-layer>
         </service-sub-layer>
       </incoming>
       <outgoing>
-	<interface>
+        <interface>
           <outgoing-interface>eth2</outgoing-interface>
           <mpls-label-stack>
             <entry>
