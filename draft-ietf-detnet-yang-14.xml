@@ -1947,7 +1947,6 @@ module ietf-detnet {
       <references>
         <name>Normative References</name>
         <?rfc include="reference.RFC.6991.xml"?>
-        <?rfc include="reference.RFC.3688.xml"?>
         <?rfc include="reference.RFC.6020.xml"?>
         <?rfc include="reference.RFC.7950.xml"?>
         <?rfc include="reference.RFC.8655.xml"?>
@@ -1962,15 +1961,16 @@ module ietf-detnet {
       <?rfc include="reference.RFC.8519.xml"?>
       <?rfc include="reference.RFC.8960.xml"?>
       <?rfc include="reference.RFC.8964.xml"?>
+        <?rfc include="reference.RFC.9016.xml"?>
       </references>
       <references>
         <name>Informative References</name>
+      <?rfc include="reference.RFC.3688.xml"?>
       <?rfc include="reference.RFC.6241.xml"?>
       <?rfc include="reference.RFC.6242.xml"?>
       <?rfc include="reference.RFC.8040.xml"?>
       <?rfc include="reference.RFC.8341.xml"?>
         <?rfc include="reference.RFC.8340.xml"?>
-        <?rfc include="reference.RFC.9016.xml"?>
         <reference anchor="IEEE8021Q" target="https://ieeexplore.ieee.org/document/8403927" quoteTitle="true" derivedAnchor="IEEE8021Q">
           <front>
             <title>IEEE Standard for Local and Metropolitan Area Networks--Bridges and Bridged Networks</title>
