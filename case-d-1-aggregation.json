@@ -8,7 +8,7 @@
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
         },
-        "member-fwd-sublayers": [
+        "member-fwd-sublayer": [
           "fsl-1",
           "fsl-2"
         ]
@@ -20,7 +20,7 @@
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
         },
-        "member-fwd-sublayers": [
+        "member-fwd-sublayer": [
           "afl-1"
         ]
       }

@@ -86,8 +86,8 @@
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
-    <member-apps>app-1</member-apps>
-    <member-apps>app-2</member-apps>
+    <member-app>app-1</member-app>
+    <member-app>app-2</member-app>
   </traffic-profile>
   <traffic-profile>  
     <name>2</name>
@@ -99,8 +99,8 @@
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
-    <member-services>ssl-1</member-services>
-    <member-services>ssl-2</member-services>
+    <member-service>ssl-1</member-service>
+    <member-service>ssl-2</member-service>
   </traffic-profile>
   <traffic-profile>  
     <name>3</name>
@@ -109,7 +109,7 @@
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
     </traffic-spec>
-    <member-fwd-sublayers>afl-1</member-fwd-sublayers>
+    <member-fwd-sublayer>afl-1</member-fwd-sublayer>
   </traffic-profile>
   <service>
     <sub-layer>

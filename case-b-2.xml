@@ -86,10 +86,10 @@
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
-    <member-apps>app-1</member-apps>
-    <member-apps>app-2</member-apps>
+    <member-app>app-1</member-app>
+    <member-app>app-2</member-app>
     <!--<member-groups></member-groups>-->
-    <!--<member-fwd-sublayers></member-fwd-sublayers>-->
+    <!--<member-fwd-sublayer></member-fwd-sublayer>-->
   </traffic-profile>
   <traffic-profile>  
     <name>2</name>
@@ -101,11 +101,11 @@
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
-    <member-services>ssl-1</member-services>
-    <member-services>ssl-2</member-services>
-    <!--<member-apps></member-apps>-->
-    <!--<member-services></member-services>-->
-    <!--<member-fwd-sublayers></member-fwd-sublayers>-->
+    <member-service>ssl-1</member-service>
+    <member-service>ssl-2</member-service>
+    <!--<member-app></member-app>-->
+    <!--<member-service></member-service>-->
+    <!--<member-fwd-sublayer></member-fwd-sublayer>-->
     <!--<member-groups></member-groups>-->
   </traffic-profile>
   <traffic-profile>  
@@ -115,10 +115,10 @@
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
     </traffic-spec>
-    <!--<member-apps></member-apps>-->
-    <!--<member-services></member-services>-->
+    <!--<member-app></member-app>-->
+    <!--<member-service></member-service>-->
     <!--<member-groups></member-groups>-->
-    <member-fwd-sublayers>afl-1</member-fwd-sublayers>
+    <member-fwd-sublayer>afl-1</member-fwd-sublayer>
   </traffic-profile>
   <service>
     <sub-layer>

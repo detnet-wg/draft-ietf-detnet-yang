@@ -57,8 +57,8 @@
       <max-pkts-per-interval>1</max-pkts-per-interval>
       <max-payload-size>1518</max-payload-size>
     </traffic-spec>
-    <member-fwd-sublayers>fsl-1</member-fwd-sublayers>
-    <member-fwd-sublayers>fsl-2</member-fwd-sublayers>
+    <member-fwd-sublayer>fsl-1</member-fwd-sublayer>
+    <member-fwd-sublayer>fsl-2</member-fwd-sublayer>
   </traffic-profile>  
   <traffic-profile>  
     <name>pf-2</name>
@@ -67,7 +67,7 @@
       <max-pkts-per-interval>2</max-pkts-per-interval>
       <max-payload-size>1518</max-payload-size>
     </traffic-spec>
-    <member-fwd-sublayers>afl-1</member-fwd-sublayers>
+    <member-fwd-sublayer>afl-1</member-fwd-sublayer>
   </traffic-profile>
   <forwarding>
     <sub-layer>

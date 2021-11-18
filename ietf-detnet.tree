@@ -15,9 +15,9 @@ module: ietf-detnet
      |  |  +--rw max-payload-size?        uint32
      |  |  +--rw min-payload-size?        uint32
      |  |  +--rw min-pkts-per-interval?   uint32
-     |  +--ro member-apps*            app-flow-ref
-     |  +--ro member-services*        service-sub-layer-ref
-     |  +--ro member-fwd-sublayers*   forwarding-sub-layer-ref
+     |  +--ro member-app*            app-flow-ref
+     |  +--ro member-service*        service-sub-layer-ref
+     |  +--ro member-fwd-sublayer*   forwarding-sub-layer-ref
      +--rw app-flows
      |  +--rw app-flow* [name]
      |     +--rw name                string
@@ -52,16 +52,20 @@ module: ietf-detnet
      |     |     |     +--rw source-port
      |     |     |     |  +--rw (port-range-or-operator)?
      |     |     |     |     +--:(range)
-     |     |     |     |     |  +--rw lower-port    inet:port-number
-     |     |     |     |     |  +--rw upper-port    inet:port-number
+     |     |     |     |     |  +--rw lower-port
+     |     |     |     |     |  |       inet:port-number
+     |     |     |     |     |  +--rw upper-port
+     |     |     |     |     |          inet:port-number
      |     |     |     |     +--:(operator)
      |     |     |     |        +--rw operator?     operator
      |     |     |     |        +--rw port          inet:port-number
      |     |     |     +--rw destination-port
      |     |     |     |  +--rw (port-range-or-operator)?
      |     |     |     |     +--:(range)
-     |     |     |     |     |  +--rw lower-port    inet:port-number
-     |     |     |     |     |  +--rw upper-port    inet:port-number
+     |     |     |     |     |  +--rw lower-port
+     |     |     |     |     |  |       inet:port-number
+     |     |     |     |     |  +--rw upper-port
+     |     |     |     |     |          inet:port-number
      |     |     |     |     +--:(operator)
      |     |     |     |        +--rw operator?     operator
      |     |     |     |        +--rw port          inet:port-number
@@ -98,27 +102,29 @@ module: ietf-detnet
      |                    |     +--:(mpls)
      |                    |        +--rw mpls-label-stack
      |                    |           +--rw entry* [id]
-     |                    |              +--rw id               uint8
+     |                    |              +--rw id             uint8
      |                    |              +--rw label?
      |                    |              |       rt-types:mpls-label
-     |                    |              +--rw ttl?             uint8
-     |                    |              +--rw traffic-class?   uint8
+     |                    |              +--rw ttl?           uint8
+     |                    |              +--rw traffic-class? uint8
      |                    +--:(next-hop-list)
      |                       +--rw next-hop* [hop-index]
-     |                          +--rw hop-index                 uint8
+     |                          +--rw hop-index               uint8
      |                          +--rw outgoing-interface?
      |                          |       if:interface-ref
      |                          +--rw (flow-type)?
      |                             +--:(ip)
      |                             |  +--rw next-hop-address?
-     |                             |          inet:ip-address-no-zone
+     |                             |          inet:ip-address-no-
+     |                             |            zone
      |                             +--:(mpls)
      |                                +--rw mpls-label-stack
      |                                   +--rw entry* [id]
      |                                      +--rw id
      |                                      |       uint8
      |                                      +--rw label?
-     |                                      |       rt-types:mpls-label
+     |                                      |       rt-types:mpls-
+     |                                      |         label
      |                                      +--rw ttl?
      |                                      |       uint8
      |                                      +--rw traffic-class?
@@ -151,8 +157,8 @@ module: ietf-detnet
      |     |              |  |       inet:ip-prefix
      |     |              |  +--rw dest-ip-prefix?
      |     |              |  |       inet:ip-prefix
-     |     |              |  +--rw protocol-next-header?     uint8
-     |     |              |  +--rw dscp?                     inet:dscp
+     |     |              |  +--rw protocol-next-header?  uint8
+     |     |              |  +--rw dscp?                  inet:dscp
      |     |              |  +--rw flow-label?
      |     |              |  |       inet:ipv6-flow-label
      |     |              |  +--rw source-port
@@ -177,17 +183,17 @@ module: ietf-detnet
      |     |              |  |        +--rw operator?     operator
      |     |              |  |        +--rw port
      |     |              |  |                inet:port-number
-     |     |              |  +--rw ipsec-spi?                ipsec-spi
+     |     |              |  +--rw ipsec-spi?             ipsec-spi
      |     |              +--:(mpls-detnet-flow)
      |     |                 +--rw (label-space)?
      |     |                    +--:(context-label-space)
      |     |                    |  +--rw mpls-label-stack
      |     |                    |     +--rw entry* [id]
-     |     |                    |        +--rw id               uint8
+     |     |                    |        +--rw id             uint8
      |     |                    |        +--rw label?
      |     |                    |        |       rt-types:mpls-label
-     |     |                    |        +--rw ttl?             uint8
-     |     |                    |        +--rw traffic-class?   uint8
+     |     |                    |        +--rw ttl?           uint8
+     |     |                    |        +--rw traffic-class? uint8
      |     |                    +--:(platform-label-space)
      |     |                       +--rw label?
      |     |                               rt-types:mpls-label
@@ -266,8 +272,8 @@ module: ietf-detnet
            |              |  |       inet:ip-prefix
            |              |  +--rw dest-ip-prefix?
            |              |  |       inet:ip-prefix
-           |              |  +--rw protocol-next-header?     uint8
-           |              |  +--rw dscp?                     inet:dscp
+           |              |  +--rw protocol-next-header?   uint8
+           |              |  +--rw dscp?                   inet:dscp
            |              |  +--rw flow-label?
            |              |  |       inet:ipv6-flow-label
            |              |  +--rw source-port
@@ -292,7 +298,7 @@ module: ietf-detnet
            |              |  |        +--rw operator?     operator
            |              |  |        +--rw port
            |              |  |                inet:port-number
-           |              |  +--rw ipsec-spi?                ipsec-spi
+           |              |  +--rw ipsec-spi?              ipsec-spi
            |              +--:(mpls-detnet-flow)
            |                 +--rw (label-space)?
            |                    +--:(context-label-space)
@@ -319,30 +325,31 @@ module: ietf-detnet
                  |        |     |  +--rw (operation-type)?
                  |        |     |     +--:(ip-forwarding)
                  |        |     |     |  +--rw next-hop-address?
-                 |        |     |     |          inet:ip-address-no-zone
-                 |        |     |     +--:(mpls-over-ip-encapsulation)
+                 |        |     |     |      inet:ip-address-no-zone
+                 |        |     |     +--:(mpls-over-ip-
+                 |        |     |          encapsulation)
                  |        |     |        +--rw src-ip-address?
-                 |        |     |        |       inet:ip-address-no-zone
+                 |        |     |        |   inet:ip-address-no-zone
                  |        |     |        +--rw dest-ip-address?
-                 |        |     |        |       inet:ip-address-no-zone
+                 |        |     |        |   inet:ip-address-no-zone
                  |        |     |        +--rw protocol-next-header?
                  |        |     |        |       uint8
                  |        |     |        +--rw dscp?
-                 |        |     |        |       inet:dscp
+                 |        |     |        |     inet:dscp
                  |        |     |        +--rw flow-label?
-                 |        |     |        |       inet:ipv6-flow-label
+                 |        |     |        |     inet:ipv6-flow-label
                  |        |     |        +--rw source-port?
-                 |        |     |        |       inet:port-number
+                 |        |     |        |     inet:port-number
                  |        |     |        +--rw destination-port?
-                 |        |     |                inet:port-number
+                 |        |     |              inet:port-number
                  |        |     +--:(mpls)
                  |        |        +--rw mpls-label-stack
                  |        |           +--rw entry* [id]
-                 |        |              +--rw id               uint8
+                 |        |              +--rw id              uint8
                  |        |              +--rw label?
                  |        |              |       rt-types:mpls-label
-                 |        |              +--rw ttl?             uint8
-                 |        |              +--rw traffic-class?   uint8
+                 |        |              +--rw ttl?            uint8
+                 |        |              +--rw traffic-class?  uint8
                  |        +--:(next-hop-list)
                  |           +--rw next-hop* [hop-index]
                  |              +--rw hop-index
@@ -354,29 +361,36 @@ module: ietf-detnet
                  |                 |  +--rw (operation-type)?
                  |                 |     +--:(ip-forwarding)
                  |                 |     |  +--rw next-hop-address?
-                 |                 |     |          inet:ip-address-no-zone
-                 |                 |     +--:(mpls-over-ip-encapsulation)
+                 |                 |     |     inet:ip-address-no-
+                 |                 |     |       zone
+                 |                 |     +--:(mpls-over-ip-
+                 |                 |          encapsulation)
                  |                 |        +--rw src-ip-address?
-                 |                 |        |       inet:ip-address-no-zone
+                 |                 |        |  inet:ip-address-no-
+                 |                 |        |    zone
                  |                 |        +--rw dest-ip-address?
-                 |                 |        |       inet:ip-address-no-zone
-                 |                 |        +--rw protocol-next-header?
-                 |                 |        |       uint8
+                 |                 |        |  inet:ip-address-no-
+                 |                 |        |    zone
+                 |                 |        +--rw protocol-next-
+                 |                 |        |     header?
+                 |                 |        |     uint8
                  |                 |        +--rw dscp?
-                 |                 |        |       inet:dscp
+                 |                 |        |     inet:dscp
                  |                 |        +--rw flow-label?
-                 |                 |        |       inet:ipv6-flow-label
+                 |                 |        |     inet:ipv6-flow-
+                 |                 |        |       label
                  |                 |        +--rw source-port?
                  |                 |        |       inet:port-number
                  |                 |        +--rw destination-port?
-                 |                 |                inet:port-number
+                 |                 |              inet:port-number
                  |                 +--:(mpls)
                  |                    +--rw mpls-label-stack
                  |                       +--rw entry* [id]
                  |                          +--rw id
                  |                          |       uint8
                  |                          +--rw label?
-                 |                          |       rt-types:mpls-label
+                 |                          |     rt-types:mpls-
+                 |                          |       label
                  |                          +--rw ttl?
                  |                          |       uint8
                  |                          +--rw traffic-class?
