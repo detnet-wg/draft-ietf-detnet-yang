@@ -1913,19 +1913,19 @@ module ietf-detnet {
       These data nodes may be considered sensitive or vulnerable in some network
       environments. Write operations (e.g., edit-config) to these data nodes without
       proper protection can break or incorrectly connect DetNet flows.
-      Since this is a configured Data Plane any changes that are not coordidated with 
-      all devices along the path the whole detnet module is considered vulnerable and should
+      Since this is a configured Data Plane any changes that are not coordinated with 
+      all devices along the path the whole DetNet module is considered vulnerable and should
       have authorized access only.
       </t>
       <t>
-      Similarly the data nodes in these YANG modules may be
+      Similarly, the data nodes in these YANG modules may be
       considered sensitive or vulnerable in some network environments.  It
       is thus important to control read access (e.g., via get, get-config,
-      or notification) to these data nodes.These are the subtrees and data node
+      or notification) to these data nodes. These are the subtrees and data node
       and their sensitivity/vulnerability: 
       </t>
       <t>
-      detnet/app-flows:  This controls the application details so it could be considered sensitve.
+      detnet/app-flows:  This controls the application details so it could be considered sensitive.
       </t>
       <t>
       detnet/traffic-profile/member-app: This links traffic profiles to applications. 
