@@ -2168,14 +2168,14 @@ Internet-Draft          draft-ietf-detnet-yang-14          November 2021
    in some network environments.  Write operations (e.g., edit-config)
    to these data nodes without proper protection can break or
    incorrectly connect DetNet flows.  Since this is a configured Data
-   Plane any changes that are not coordidated with all devices along the
-   path the whole detnet module is considered vulnerable and should have
+   Plane any changes that are not coordinated with all devices along the
+   path the whole DetNet module is considered vulnerable and should have
    authorized access only.
 
-   Similarly the data nodes in these YANG modules may be considered
+   Similarly, the data nodes in these YANG modules may be considered
    sensitive or vulnerable in some network environments.  It is thus
    important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes.These are the subtrees and data
+   notification) to these data nodes.  These are the subtrees and data
    node and their sensitivity/vulnerability:
 
 
@@ -2187,7 +2187,7 @@ Internet-Draft          draft-ietf-detnet-yang-14          November 2021
 
 
    detnet/app-flows: This controls the application details so it could
-   be considered sensitve.
+   be considered sensitive.
 
    detnet/traffic-profile/member-app: This links traffic profiles to
    applications.
