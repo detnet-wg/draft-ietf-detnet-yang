@@ -93,10 +93,10 @@
       <min-payload-size>100</min-payload-size>
       <min-pkts-per-interval>1</min-pkts-per-interval>
     </traffic-spec>
-    <member-apps>app-0</member-apps>
-    <member-apps>app-1</member-apps>
+    <member-app>app-0</member-app>
+    <member-app>app-1</member-app>
     <!--<member-groups></member-groups>-->
-    <!--<member-fwd-sublayers></member-fwd-sublayers>-->
+    <!--<member-fwd-sublayer></member-fwd-sublayer>-->
   </traffic-profile>
   <traffic-profile>  
     <name>pf-2</name>
@@ -115,9 +115,9 @@
       <min-payload-size>100</min-payload-size>
       <min-pkts-per-interval>1</min-pkts-per-interval>
     </traffic-spec>
-    <!--<member-apps></member-apps>-->
-    <member-services>ssl-1</member-services>
-    <!--<member-fwd-sublayers></member-fwd-sublayers>-->
+    <!--<member-app></member-app>-->
+    <member-service>ssl-1</member-service>
+    <!--<member-fwd-sublayer></member-fwd-sublayer>-->
     <!--<member-groups></member-groups>-->
   </traffic-profile>
   <traffic-profile>  
@@ -127,10 +127,10 @@
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
     </traffic-spec>
-    <!--<member-apps></member-apps>-->
-    <!--<member-services></member-services>-->
+    <!--<member-app></member-app>-->
+    <!--<member-service></member-service>-->
     <!--<member-groups></member-groups>-->
-    <member-fwd-sublayers>fsl-1</member-fwd-sublayers>
+    <member-fwd-sublayer>fsl-1</member-fwd-sublayer>
   </traffic-profile>
   <service>
     <sub-layer>

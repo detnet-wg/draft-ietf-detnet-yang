@@ -18,7 +18,7 @@
           "min-payload-size": 100,
           "min-pkts-per-interval": 1
         },
-        "member-apps": [
+        "member-app": [
           "app-0",
           "app-1"
         ]
@@ -40,7 +40,7 @@
           "min-payload-size": 100,
           "min-pkts-per-interval": 1
         },
-        "member-services": [
+        "member-service": [
           "ssl-1"
         ]
       },
@@ -51,7 +51,7 @@
           "max-pkts-per-interval": 10,
           "max-payload-size": 1500
         },
-        "member-fwd-sublayers": [
+        "member-fwd-sublayer": [
           "fsl-1"
         ]
       }

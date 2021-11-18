@@ -60,8 +60,8 @@
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
-    <member-services>ssl-1</member-services>
-    <member-services>ssl-2</member-services>
+    <member-service>ssl-1</member-service>
+    <member-service>ssl-2</member-service>
   </traffic-profile>
    <traffic-profile>  
     <name>pf-2</name>
@@ -73,7 +73,7 @@
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
-    <member-services>asl-1</member-services>
+    <member-service>asl-1</member-service>
   </traffic-profile>
   <traffic-profile>  
     <name>pf-3</name>
@@ -82,8 +82,8 @@
       <max-pkts-per-interval>1</max-pkts-per-interval>
       <max-payload-size>1518</max-payload-size>
     </traffic-spec>
-    <member-fwd-sublayers>fsl-3</member-fwd-sublayers>
-    <member-fwd-sublayers>fsl-4</member-fwd-sublayers>
+    <member-fwd-sublayer>fsl-3</member-fwd-sublayer>
+    <member-fwd-sublayer>fsl-4</member-fwd-sublayer>
   </traffic-profile>
   <traffic-profile>  
     <name>pf-4</name>
@@ -92,8 +92,8 @@
       <max-pkts-per-interval>2</max-pkts-per-interval>
       <max-payload-size>1518</max-payload-size>
     </traffic-spec>
-    <member-fwd-sublayers>fsl-1</member-fwd-sublayers>
-    <member-fwd-sublayers>fsl-2</member-fwd-sublayers>
+    <member-fwd-sublayer>fsl-1</member-fwd-sublayer>
+    <member-fwd-sublayer>fsl-2</member-fwd-sublayer>
   </traffic-profile>
   <service>
     <sub-layer>

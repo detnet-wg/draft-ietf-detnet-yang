@@ -11,7 +11,7 @@
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
-        "member-services": [
+        "member-service": [
           "ssl-1",
           "ssl-2"
         ]
@@ -26,7 +26,7 @@
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
-        "member-services": [
+        "member-service": [
           "asl-1"
         ]
       },
@@ -37,7 +37,7 @@
           "max-pkts-per-interval": 1,
           "max-payload-size": 1518
         },
-        "member-fwd-sublayers": [
+        "member-fwd-sublayer": [
           "fsl-3",
           "fsl-4"
         ]
@@ -49,7 +49,7 @@
           "max-pkts-per-interval": 2,
           "max-payload-size": 1518
         },
-        "member-fwd-sublayers": [
+        "member-fwd-sublayer": [
           "fsl-1",
           "fsl-2"
         ]
