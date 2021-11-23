@@ -1925,16 +1925,16 @@ module ietf-detnet {
       and their sensitivity/vulnerability: 
       </t>
       <t>
-      detnet/app-flows:  This controls the application details so it could be considered sensitive.
+      /detnet/app-flows:  This controls the application details so it could be considered sensitive.
       </t>
       <t>
-      detnet/traffic-profile/member-app: This links traffic profiles to applications. 
+      /detnet/traffic-profile/member-app: This links traffic profiles to applications, o this also coudl be considered moer sensitive. The trafic profiles liked to service sub-layer and forwarding sub-layer are less sensitive. 
       </t>
       <t>
-      detnet/service/incoming/app-flow: This links applications to services.
+      /detnet/service/sub-layer/incoming/app-flow: This links applications to services.
       </t>
       <t>
-      detnet/service/outgoing/app-flow: This links applications to services.
+      /detnet/service/sub-layer/outgoing/app-flow: This links applications to services.
        </t>
       </section>
     <section anchor="Contributors" numbered="true" toc="default">
