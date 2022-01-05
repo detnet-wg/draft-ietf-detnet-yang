@@ -418,17 +418,19 @@ module: ietf-detnet
                 <xref target="RFC8519"/>, 
                 <xref target="RFC8294"/>, 
                 <xref target="RFC8343"/>, 
-                and <xref target="IEEE8021Q"/>. 
+                <xref target="IEEE8021Q"/>, 
+                and <xref target="IEEE8021QCX"/>. 
                 This YANG model also has the folowing references to RFCs 
                 that are not in the document text body
                 <xref target="RFC0791"/>, 
                 <xref target="RFC4303"/>, 
                 <xref target="RFC8349"/>, 
+                <xref target="RFC8938"/>, 
                 <xref target="RFC8960"/>, 
                 <xref target="RFC8964"/>, 
                 and <xref target="RFC8200"/>. 
             </t>
-            <sourcecode name="ietf-detnet@2021-10-20.yang" type="yang" markers="true"><![CDATA[
+            <sourcecode name="ietf-detnet@2022-01-05.yang" type="yang" markers="true"><![CDATA[
 module ietf-detnet {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-detnet";
@@ -477,7 +479,7 @@ module ietf-detnet {
   organization
     "IETF DetNet Working Group";
   contact
-    "WG Web:   <http://tools.ietf.org/wg/detnet/>
+    "WG Web:   <https://datatracker.ietf.org/wg/detnet/>
      WG List:  <mailto: detnet@ietf.org>
 
      Editor:   Xuesong Geng
@@ -491,9 +493,6 @@ module ietf-detnet {
 
      Editor:   Reshad Rahman
                 <mailto:reshad@yahoo.com>
-
-     Editor:   Mach Chen
-                <mailto:mach.chen@huawei.com>
 
      Editor:   Zhenqiang Li
                 <mailto:lizhenqiang@chinamobile.com>";
@@ -520,7 +519,7 @@ module ietf-detnet {
 
   revision 2022-01-05 {
     description
-      "initial revision";
+      "Initial revision";
     reference
       "RFC XXXX: Deterministic Networking (DetNet) YANG Model";
   }
@@ -1985,6 +1984,7 @@ module ietf-detnet {
       <?rfc include="reference.RFC.8349.xml"?>
       <?rfc include="reference.RFC.8446.xml"?>
       <?rfc include="reference.RFC.8519.xml"?>
+      <?rfc include="reference.RFC.8938.xml"?>
       <?rfc include="reference.RFC.8960.xml"?>
       <?rfc include="reference.RFC.8964.xml"?>
         <?rfc include="reference.RFC.9016.xml"?>
@@ -1996,18 +1996,29 @@ module ietf-detnet {
       <?rfc include="reference.RFC.6242.xml"?>
       <?rfc include="reference.RFC.8040.xml"?>
       <?rfc include="reference.RFC.8341.xml"?>
-        <?rfc include="reference.RFC.8340.xml"?>
-        <reference anchor="IEEE8021Q" target="https://ieeexplore.ieee.org/document/8403927" quoteTitle="true" derivedAnchor="IEEE8021Q">
-          <front>
-            <title>IEEE Standard for Local and Metropolitan Area Networks--Bridges and Bridged Networks</title>
-            <author>
-              <organization showOnFrontPage="true">IEEE</organization>
-            </author>
-            <date month="July" year="2018"/>
-          </front>
-          <seriesInfo name="DOI" value="10.1109/IEEESTD.2018.8403927"/>
-          <seriesInfo name="IEEE" value="802.1Q-2018"/>
-        </reference>
+      <?rfc include="reference.RFC.8340.xml"?>
+      <reference anchor="IEEE8021Q" target="https://ieeexplore.ieee.org/document/8403927" quoteTitle="true" derivedAnchor="IEEE8021Q">
+        <front>
+          <title>IEEE Standard for Local and Metropolitan Area Networks--Bridges and Bridged Networks</title>
+          <author>
+            <organization showOnFrontPage="true">IEEE</organization>
+          </author>
+          <date month="July" year="2018"/>
+        </front>
+        <seriesInfo name="DOI" value="10.1109/IEEESTD.2018.8403927"/>
+        <seriesInfo name="IEEE" value="802.1Q-2018"/>
+      </reference>
+      <reference anchor="IEEE8021QCX" target="https://ieeexplore.ieee.org/document/9212765" quoteTitle="true" derivedAnchor="IEEE8021QCX">
+        <front>
+          <title>IEEE Standard for Local and Metropolitan Area Networks--Bridges and Bridged Networks Amendment 33: YANG Data Model for Connectivity Fault Management</title>
+          <author>
+            <organization showOnFrontPage="true">IEEE</organization>
+          </author>
+          <date month="October" year="2020"/>
+        </front>
+        <seriesInfo name="DOI" value="10.1109/IEEESTD.2020.9212765"/>
+        <seriesInfo name="IEEE" value="802.1Qcx-2020"/>
+      </reference>
         
       </references>
     </references>
