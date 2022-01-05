@@ -72,7 +72,7 @@ module ietf-detnet {
      reporting. This YANG module conforms to the Network 
      Management Datastore Architecture (NMDA).
      
-     Copyright (c) 2021 IETF Trust and the persons identified as
+     Copyright (c) 2022 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -87,7 +87,7 @@ module ietf-detnet {
      for full legal notices.";
      
 
-  revision 2021-11-18 {
+  revision 2022-01-05 {
     description
       "initial revision";
     reference
@@ -105,7 +105,7 @@ module ietf-detnet {
   identity none {
     base app-status;
     description
-      "This Application has no status. This type of status is
+      "This Application has no status. This identity is
        expected when the configuration is incomplete.";
     reference
       "RFC 9016 Section 5.8";
@@ -317,19 +317,20 @@ module ietf-detnet {
       }
     }
     description
-      "This typedef describes the service protection types.";
+      "This typedef describes the service protection enumeration
+       values.";
   }
 
   typedef sequence-number-generation {
     type enumeration {
       enum copy-from-app-flow {
         description
-          "This type means copy the app-flow sequence number to the
-           DetNet-flow.";
+          "This enum value means copy the app-flow sequence number 
+           to the DetNet-flow.";
       }
       enum generate-by-detnet-flow {
         description
-          "This type means generate the sequence number by the
+          "This enum value means generate the sequence number by the
            DetNet flow.";
       }
     }
@@ -355,13 +356,13 @@ module ietf-detnet {
       }
     }
     description
-      "This type captures the sequence number behavior.";
+      "This enumeration configures the sequence number behavior.";
   }
 
   grouping ip-header {
     description
       "This grouping captures the IPv4/IPv6 packet header
-       information. it is modeled after existing fields.";
+       information. It is modeled after existing fields.";
     leaf src-ip-address {
       type inet:ip-address-no-zone;
       description
@@ -398,7 +399,7 @@ module ietf-detnet {
     leaf flow-label {
       type inet:ipv6-flow-label;
       description
-        "The flow label value of the header.IPV6 only.";
+        "The flow label value of the header. IPv6 only.";
       reference
         "RFC 6991 Common YANG Data Types";
     }
@@ -500,7 +501,7 @@ module ietf-detnet {
          the 'upper-layer' header.";
       reference
         "RFC 791: Internet Protocol
-          RFC 8200: Internet Protocol, Version 6 (IPv6)
+         RFC 8200: Internet Protocol, Version 6 (IPv6)
          Specification.";
     }
     leaf dscp {
@@ -914,7 +915,8 @@ module ietf-detnet {
             "The period of time in which the traffic
              specification should not be exceeded.";
           reference
-            "RFC 9016 Section 5.5, IEEE802.1Q";
+            "RFC 9016 Section 5.5,
+             IEEE802.1Q";
         }
         leaf max-pkts-per-interval {
           type uint32;
@@ -1408,6 +1410,8 @@ module ietf-detnet {
                  This outgoing type only can be chosen when the
                  operation type is pop-and-lookup.";
               uses service-sub-layer-group;
+              reference
+                "RFC 8964 Section 4.2.3";
             }
             container forwarding-disaggregation {
               description
