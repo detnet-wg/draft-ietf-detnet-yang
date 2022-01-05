@@ -1744,17 +1744,19 @@ module: ietf-detnet
                 <span>[<a href="#RFC8519" class="xref">RFC8519</a>]</span>, 
                 <span>[<a href="#RFC8294" class="xref">RFC8294</a>]</span>, 
                 <span>[<a href="#RFC8343" class="xref">RFC8343</a>]</span>, 
-                and <span>[<a href="#IEEE8021Q" class="xref">IEEE8021Q</a>]</span>. 
+                <span>[<a href="#IEEE8021Q" class="xref">IEEE8021Q</a>]</span>, 
+                and <span>[<a href="#IEEE8021QCX" class="xref">IEEE8021QCX</a>]</span>. 
                 This YANG model also has the folowing references to RFCs 
                 that are not in the document text body
                 <span>[<a href="#RFC0791" class="xref">RFC0791</a>]</span>, 
                 <span>[<a href="#RFC4303" class="xref">RFC4303</a>]</span>, 
                 <span>[<a href="#RFC8349" class="xref">RFC8349</a>]</span>, 
+                <span>[<a href="#RFC8938" class="xref">RFC8938</a>]</span>, 
                 <span>[<a href="#RFC8960" class="xref">RFC8960</a>]</span>, 
                 <span>[<a href="#RFC8964" class="xref">RFC8964</a>]</span>, 
                 and <span>[<a href="#RFC8200" class="xref">RFC8200</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <div id="section-8-2">
-<pre class="sourcecode lang-yang">&lt;CODE BEGINS&gt; file "ietf-detnet@2021-10-20.yang"
+<pre class="sourcecode lang-yang">&lt;CODE BEGINS&gt; file "ietf-detnet@2022-01-05.yang"
 
 module ietf-detnet {
   yang-version 1.1;
@@ -1804,7 +1806,7 @@ module ietf-detnet {
   organization
     "IETF DetNet Working Group";
   contact
-    "WG Web:   &lt;http://tools.ietf.org/wg/detnet/&gt;
+    "WG Web:   &lt;https://datatracker.ietf.org/wg/detnet/&gt;
      WG List:  &lt;mailto: detnet@ietf.org&gt;
 
      Editor:   Xuesong Geng
@@ -1818,9 +1820,6 @@ module ietf-detnet {
 
      Editor:   Reshad Rahman
                 &lt;mailto:reshad@yahoo.com&gt;
-
-     Editor:   Mach Chen
-                &lt;mailto:mach.chen@huawei.com&gt;
 
      Editor:   Zhenqiang Li
                 &lt;mailto:lizhenqiang@chinamobile.com&gt;";
@@ -1847,7 +1846,7 @@ module ietf-detnet {
 
   revision 2022-01-05 {
     description
-      "initial revision";
+      "Initial revision";
     reference
       "RFC XXXX: Deterministic Networking (DetNet) YANG Model";
   }
@@ -3370,6 +3369,10 @@ module ietf-detnet {
         <dd>
 <span class="refAuthor">Finn, N.</span>, <span class="refAuthor">Thubert, P.</span>, <span class="refAuthor">Varga, B.</span>, and <span class="refAuthor">J. Farkas</span>, <span class="refTitle">"Deterministic Networking Architecture"</span>, <span class="seriesInfo">RFC 8655</span>, <span class="seriesInfo">DOI 10.17487/RFC8655</span>, <time datetime="2019-10" class="refDate">October 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8655">https://www.rfc-editor.org/info/rfc8655</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8938">[RFC8938]</dt>
+        <dd>
+<span class="refAuthor">Varga, B., Ed.</span>, <span class="refAuthor">Farkas, J.</span>, <span class="refAuthor">Berger, L.</span>, <span class="refAuthor">Malis, A.</span>, and <span class="refAuthor">S. Bryant</span>, <span class="refTitle">"Deterministic Networking (DetNet) Data Plane Framework"</span>, <span class="seriesInfo">RFC 8938</span>, <span class="seriesInfo">DOI 10.17487/RFC8938</span>, <time datetime="2020-11" class="refDate">November 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8938">https://www.rfc-editor.org/info/rfc8938</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8960">[RFC8960]</dt>
         <dd>
 <span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Raza, K.</span>, <span class="refAuthor">Gandhi, R.</span>, <span class="refAuthor">Liu, X.</span>, and <span class="refAuthor">V. Beeram</span>, <span class="refTitle">"A YANG Data Model for MPLS Base"</span>, <span class="seriesInfo">RFC 8960</span>, <span class="seriesInfo">DOI 10.17487/RFC8960</span>, <time datetime="2020-12" class="refDate">December 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8960">https://www.rfc-editor.org/info/rfc8960</a>&gt;</span>. </dd>
@@ -3396,6 +3399,10 @@ module ietf-detnet {
 <dt id="IEEE8021Q">[IEEE8021Q]</dt>
         <dd>
 <span class="refAuthor">IEEE</span>, <span class="refTitle">"IEEE Standard for Local and Metropolitan Area Networks--Bridges and Bridged Networks"</span>, <span class="seriesInfo">DOI 10.1109/IEEESTD.2018.8403927</span>, <span class="seriesInfo">IEEE 802.1Q-2018</span>, <time datetime="2018-07" class="refDate">July 2018</time>, <span>&lt;<a href="https://ieeexplore.ieee.org/document/8403927">https://ieeexplore.ieee.org/document/8403927</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IEEE8021QCX">[IEEE8021QCX]</dt>
+        <dd>
+<span class="refAuthor">IEEE</span>, <span class="refTitle">"IEEE Standard for Local and Metropolitan Area Networks--Bridges and Bridged Networks Amendment 33: YANG Data Model for Connectivity Fault Management"</span>, <span class="seriesInfo">DOI 10.1109/IEEESTD.2020.9212765</span>, <span class="seriesInfo">IEEE 802.1Qcx-2020</span>, <time datetime="2020-10" class="refDate">October 2020</time>, <span>&lt;<a href="https://ieeexplore.ieee.org/document/9212765">https://ieeexplore.ieee.org/document/9212765</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3688">[RFC3688]</dt>
         <dd>

@@ -46,7 +46,7 @@ module ietf-detnet {
   organization
     "IETF DetNet Working Group";
   contact
-    "WG Web:   <http://tools.ietf.org/wg/detnet/>
+    "WG Web:   <https://datatracker.ietf.org/wg/detnet/>
      WG List:  <mailto: detnet@ietf.org>
 
      Editor:   Xuesong Geng
@@ -89,7 +89,7 @@ module ietf-detnet {
 
   revision 2022-01-05 {
     description
-      "initial revision";
+      "Initial revision";
     reference
       "RFC XXXX: Deterministic Networking (DetNet) YANG Model";
   }
