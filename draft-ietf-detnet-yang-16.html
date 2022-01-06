@@ -21,29 +21,29 @@
        The YANG module defined in this document conforms to the Network
       Management Datastore Architecture (NMDA). 
     " name="description">
-<meta content="xml2rfc 3.7.0" name="generator">
+<meta content="xml2rfc 3.12.0" name="generator">
 <meta content="draft-ietf-detnet-yang-16" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.7.0
-    Python 3.6.9
+  xml2rfc 3.12.0
+    Python 3.8.10
     appdirs 1.4.4
-    ConfigArgParse 1.4.1
-    google-i18n-address 2.4.0
+    ConfigArgParse 1.5.3
+    google-i18n-address 2.5.0
     html5lib 1.1
     intervaltree 3.1.0
-    Jinja2 2.11.3
+    Jinja2 3.0.3
     kitchen 1.2.6
-    lxml 4.6.3
-    pycairo 1.20.0
+    lxml 4.7.1
+    pycairo 1.19.1
     pycountry 20.7.3
-    pyflakes 2.3.1
-    PyYAML 5.4.1
-    requests 2.25.1
-    setuptools 56.2.0
-    six 1.16.0
+    pyflakes 2.4.0
+    PyYAML 6.0
+    requests 2.27.1
+    setuptools 45.2.0
+    six 1.14.0
     WeasyPrint 52.5
 -->
-<link href="draft-ietf-detnet-yang-16.xml" rel="alternate" type="application/rfc+xml">
+<link href="/usr/src/app/tmp/0aff4077-48c3-4804-924e-3e6b665f80f7/draft-ietf-detnet-yang-16.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
 
@@ -210,6 +210,9 @@ ul.empty, .ulEmpty {
 }
 ul.empty li, .ulEmpty li {
   margin-top: 0.5em;
+}
+ul.ulBare, li.ulBare {
+  margin-left: 0em !important;
 }
 ul.compact, .ulCompact,
 ol.compact, .olCompact {
@@ -393,6 +396,12 @@ hr {
 #identifiers dd {
   float: left;
   margin-bottom: 0;
+}
+/* Fix PDF info block run off issue */
+@media print {
+  #identifiers dd {
+    float: none;
+  }
 }
 #identifiers .authors .author {
   display: inline-block;
@@ -1088,7 +1097,7 @@ tr:nth-child(2n+1) > td {
 }
 /* Change the approach to avoiding breaks inside artwork etc. */
 figure, pre, table, .artwork, .sourcecode  {
-  break-before: avoid-page;
+  break-before: auto;
   break-after: auto;
 }
 /* Avoid breaks between <dt> and <dd> */
@@ -1193,7 +1202,7 @@ li > p:last-of-type {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Geng, et al.</td>
-<td class="center">Expires 9 July 2022</td>
+<td class="center">Expires 10 July 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1206,12 +1215,12 @@ li > p:last-of-type {
 <dd class="internet-draft">draft-ietf-detnet-yang-16</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-01-05" class="published">5 January 2022</time>
+<time datetime="2022-01-06" class="published">6 January 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-07-09">9 July 2022</time></dd>
+<dd class="expires"><time datetime="2022-07-10">10 July 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1269,7 +1278,7 @@ li > p:last-of-type {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 July 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 July 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1287,9 +1296,9 @@ li > p:last-of-type {
             publication of this document. Please review these documents
             carefully, as they describe your rights and restrictions with
             respect to this document. Code Components extracted from this
-            document must include Simplified BSD License text as described in
+            document must include Revised BSD License text as described in
             Section 4.e of the Trust Legal Provisions and are provided without
-            warranty as described in the Simplified BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="toc">
@@ -1297,99 +1306,99 @@ li > p:last-of-type {
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.1">
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.2">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-abbreviations" class="xref">Abbreviations</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.3">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="xref">3</a>.  <a href="#name-terminology" class="xref">Terminology</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.4">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-detnet-yang-module" class="xref">DetNet YANG Module</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.4.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-detnet-application-flow-yan" class="xref">DetNet Application Flow YANG Attributes</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.4.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-detnet-service-sub-layer-ya" class="xref">DetNet Service Sub-layer YANG Attributes</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.4.2.3">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
                 <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-detnet-forwarding-sub-layer" class="xref">DetNet Forwarding Sub-layer YANG Attributes</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.5">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-detnet-flow-aggregation" class="xref">DetNet Flow Aggregation</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.6">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-detnet-yang-structure-consi" class="xref">DetNet YANG Structure Considerations</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.7">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-detnet-configuration-yang-s" class="xref">DetNet Configuration YANG Structures</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.8">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-detnet-configuration-yang-m" class="xref">DetNet Configuration YANG Model</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-10" class="xref">10</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.10">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.11">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-contributors" class="xref">Contributors</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.12">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
             <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-acknowledgments" class="xref">Acknowledgments</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.13">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
             <p id="section-toc.1-1.13.1"><a href="#section-13" class="xref">13</a>. <a href="#name-references" class="xref">References</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.13.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.1">
                 <p id="section-toc.1-1.13.2.1.1"><a href="#section-13.1" class="xref">13.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.13.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.2">
                 <p id="section-toc.1-1.13.2.2.1"><a href="#section-13.2" class="xref">13.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-detnet-configuration-yang-t" class="xref">DetNet Configuration YANG Tree</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#appendix-A" class="xref">Appendix A</a>.  <a href="#name-detnet-configuration-yang-t" class="xref">DetNet Configuration YANG Tree</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.15">
-            <p id="section-toc.1-1.15.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-examples" class="xref">Examples</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.15.2.1">
-                <p id="section-toc.1-1.15.2.1.1"><a href="#section-b.1" class="xref">B.1</a>.  <a href="#name-example-a-1-json-configurat" class="xref">Example A-1 JSON Configuration/Operational</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#appendix-B" class="xref">Appendix B</a>.  <a href="#name-examples" class="xref">Examples</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.1">
+                <p id="section-toc.1-1.15.2.1.1"><a href="#appendix-B.1" class="xref">B.1</a>.  <a href="#name-example-a-1-json-configurat" class="xref">Example A-1 JSON Configuration/Operational</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.15.2.2">
-                <p id="section-toc.1-1.15.2.2.1"><a href="#section-b.2" class="xref">B.2</a>.  <a href="#name-example-b-1-xml-config-aggr" class="xref">Example B-1 XML Config: Aggregation using a Forwarding Sub-layer</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.2">
+                <p id="section-toc.1-1.15.2.2.1"><a href="#appendix-B.2" class="xref">B.2</a>.  <a href="#name-example-b-1-xml-config-aggr" class="xref">Example B-1 XML Config: Aggregation using a Forwarding Sub-layer</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.15.2.3">
-                <p id="section-toc.1-1.15.2.3.1"><a href="#section-b.3" class="xref">B.3</a>.  <a href="#name-example-b-2-json-service-ag" class="xref">Example B-2 JSON Service Aggregation Configuration</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.3">
+                <p id="section-toc.1-1.15.2.3.1"><a href="#appendix-B.3" class="xref">B.3</a>.  <a href="#name-example-b-2-json-service-ag" class="xref">Example B-2 JSON Service Aggregation Configuration</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.15.2.4">
-                <p id="section-toc.1-1.15.2.4.1"><a href="#section-b.4" class="xref">B.4</a>.  <a href="#name-example-c-1-json-relay-aggr" class="xref">Example C-1 JSON Relay Aggregation/Disaggregation Configuration</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.4">
+                <p id="section-toc.1-1.15.2.4.1"><a href="#appendix-B.4" class="xref">B.4</a>.  <a href="#name-example-c-1-json-relay-aggr" class="xref">Example C-1 JSON Relay Aggregation/Disaggregation Configuration</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.15.2.5">
-                <p id="section-toc.1-1.15.2.5.1"><a href="#section-b.5" class="xref">B.5</a>.  <a href="#name-example-c-2-json-relay-aggr" class="xref">Example C-2 JSON Relay Aggregation Service Sub-Layer</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.5">
+                <p id="section-toc.1-1.15.2.5.1"><a href="#appendix-B.5" class="xref">B.5</a>.  <a href="#name-example-c-2-json-relay-aggr" class="xref">Example C-2 JSON Relay Aggregation Service Sub-Layer</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.15.2.6">
-                <p id="section-toc.1-1.15.2.6.1"><a href="#section-b.6" class="xref">B.6</a>.  <a href="#name-example-c-3-json-relay-serv" class="xref">Example C-3 JSON Relay Service Sub-Layer Aggregation/Disaggregation</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.6">
+                <p id="section-toc.1-1.15.2.6.1"><a href="#appendix-B.6" class="xref">B.6</a>.  <a href="#name-example-c-3-json-relay-serv" class="xref">Example C-3 JSON Relay Service Sub-Layer Aggregation/Disaggregation</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.15.2.7">
-                <p id="section-toc.1-1.15.2.7.1"><a href="#section-b.7" class="xref">B.7</a>.  <a href="#name-example-c-4-json-relay-serv" class="xref">Example C-4 JSON Relay Service Sub-Layer Aggregation/Disaggregation</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.7">
+                <p id="section-toc.1-1.15.2.7.1"><a href="#appendix-B.7" class="xref">B.7</a>.  <a href="#name-example-c-4-json-relay-serv" class="xref">Example C-4 JSON Relay Service Sub-Layer Aggregation/Disaggregation</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.15.2.8">
-                <p id="section-toc.1-1.15.2.8.1"><a href="#section-b.8" class="xref">B.8</a>.  <a href="#name-example-d-1-json-transit-fo" class="xref">Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/Disaggregation</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.8">
+                <p id="section-toc.1-1.15.2.8.1"><a href="#appendix-B.8" class="xref">B.8</a>.  <a href="#name-example-d-1-json-transit-fo" class="xref">Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/Disaggregation</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.16">
-            <p id="section-toc.1-1.16.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
+            <p id="section-toc.1-1.16.1"><a href="#appendix-C" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1474,7 +1483,7 @@ li > p:last-of-type {
           configures all the devices to form a service.<a href="#section-4-2" class="pilcrow">¶</a></p>
 <span id="name-detnet-layers-and-node-type"></span><div id="table_layer_node">
 <figure id="figure-1">
-        <div class="artwork art-text alignLeft" id="section-4-3.1">
+        <div class="alignLeft art-text artwork" id="section-4-3.1">
 <pre>
       +---------------------------------------------------+
       |                    Instance                       |
@@ -1644,7 +1653,7 @@ li > p:last-of-type {
 <p id="section-6-1"></p>
 <p id="section-6-2">The picture shows that the general structure of the DetNet YANG
       Model:<a href="#section-6-2" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6-3">
+<div class="alignLeft art-text artwork" id="section-6-3">
 <pre>
                   +-----------+
                   |ietf-detnet|
@@ -1690,7 +1699,7 @@ li > p:last-of-type {
 <p id="section-7-1"> The following is a partial tree representation of the YANG as defined in 
             <span>[<a href="#RFC8340" class="xref">RFC8340</a>]</span>. This corresponds to the
             structure layout in the previous section.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7-2">
+<div class="alignLeft art-text artwork" id="section-7-2">
 <pre>
 module: ietf-detnet
   +--rw detnet
@@ -1756,7 +1765,7 @@ module: ietf-detnet
                 <span>[<a href="#RFC8964" class="xref">RFC8964</a>]</span>, 
                 and <span>[<a href="#RFC8200" class="xref">RFC8200</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <div id="section-8-2">
-<pre class="sourcecode lang-yang">&lt;CODE BEGINS&gt; file "ietf-detnet@2022-01-05.yang"
+<pre class="lang-yang sourcecode">&lt;CODE BEGINS&gt; file "ietf-detnet@2022-01-05.yang"
 
 module ietf-detnet {
   yang-version 1.1;
@@ -1805,9 +1814,10 @@ module ietf-detnet {
 
   organization
     "IETF DetNet Working Group";
+
   contact
     "WG Web:   &lt;https://datatracker.ietf.org/wg/detnet/&gt;
-     WG List:  &lt;mailto: detnet@ietf.org&gt;
+     WG List:  &lt;mailto:detnet@ietf.org&gt;
 
      Editor:   Xuesong Geng
                 &lt;mailto:gengxuesong@huawei.com&gt;
@@ -1834,14 +1844,13 @@ module ietf-detnet {
 
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject to
-     the license terms contained in, the Simplified BSD License set
+     the license terms contained in, the Revised BSD License set
      forth in Section 4.c of the IETF Trust's Legal Provisions
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC XXXX
-     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
-     for full legal notices.";
+     This version of this YANG module is part of RFC XXXX;
+     see the RFC itself for full legal notices.";
 
 
   revision 2022-01-05 {
@@ -3191,52 +3200,52 @@ module ietf-detnet {
 </div>
 </section>
 <div id="IANA">
-<section id="section-9">
+<section id="section-10">
       <h2 id="name-iana-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-9-1">This document registers a URI in the "IETF XML Registry"
+<p id="section-10-1">This document registers a URI in the "IETF XML Registry"
    <span>[<a href="#RFC3688" class="xref">RFC3688</a>]</span>.  Following the format in <span>[<a href="#RFC3688" class="xref">RFC3688</a>]</span>,
-   the following registration is requested to be made:<a href="#section-9-1" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel dlCompact" id="section-9-2">
-        <dt id="section-9-2.1">ID:</dt>
-        <dd style="margin-left: 1.5em" id="section-9-2.2">yang:ietf-detnet<a href="#section-9-2.2" class="pilcrow">¶</a>
+   the following registration is requested to be made:<a href="#section-10-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlCompact dlParallel" id="section-10-2">
+        <dt id="section-10-2.1">ID:</dt>
+        <dd style="margin-left: 1.5em" id="section-10-2.2">yang:ietf-detnet<a href="#section-10-2.2" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
-<dt id="section-9-2.3">URI:</dt>
-        <dd style="margin-left: 1.5em" id="section-9-2.4">urn:ietf:params:xml:ns:yang:ietf-detnet<a href="#section-9-2.4" class="pilcrow">¶</a>
+<dt id="section-10-2.3">URI:</dt>
+        <dd style="margin-left: 1.5em" id="section-10-2.4">urn:ietf:params:xml:ns:yang:ietf-detnet<a href="#section-10-2.4" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
-<dt id="section-9-2.5">Registrant Contact:</dt>
-        <dd style="margin-left: 1.5em" id="section-9-2.6">The IESG.<a href="#section-9-2.6" class="pilcrow">¶</a>
+<dt id="section-10-2.5">Registrant Contact:</dt>
+        <dd style="margin-left: 1.5em" id="section-10-2.6">The IESG.<a href="#section-10-2.6" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
-<dt id="section-9-2.7">XML:</dt>
-        <dd style="margin-left: 1.5em" id="section-9-2.8">N/A, the requested URI is an XML namespace.<a href="#section-9-2.8" class="pilcrow">¶</a>
+<dt id="section-10-2.7">XML:</dt>
+        <dd style="margin-left: 1.5em" id="section-10-2.8">N/A, the requested URI is an XML namespace.<a href="#section-10-2.8" class="pilcrow">¶</a>
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-9-3">This document registers YANG modules in the "YANG Module Names"
-      registry <span>[<a href="#RFC6020" class="xref">RFC6020</a>]</span>.<a href="#section-9-3" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel dlCompact" id="section-9-4">
-        <dt id="section-9-4.1">Name:</dt>
-        <dd style="margin-left: 1.5em" id="section-9-4.2">ietf-detnet<a href="#section-9-4.2" class="pilcrow">¶</a>
+<p id="section-10-5">This document registers YANG modules in the "YANG Module Names"
+      registry <span>[<a href="#RFC6020" class="xref">RFC6020</a>]</span>.<a href="#section-10-5" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlCompact dlParallel" id="section-10-6">
+        <dt id="section-10-6.1">Name:</dt>
+        <dd style="margin-left: 1.5em" id="section-10-6.2">ietf-detnet<a href="#section-10-6.2" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
-<dt id="section-9-4.3">Maintained by IANA:</dt>
-        <dd style="margin-left: 1.5em" id="section-9-4.4">N<a href="#section-9-4.4" class="pilcrow">¶</a>
+<dt id="section-10-6.3">Maintained by IANA:</dt>
+        <dd style="margin-left: 1.5em" id="section-10-6.4">N<a href="#section-10-6.4" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
-<dt id="section-9-4.5">Namespace:</dt>
-        <dd style="margin-left: 1.5em" id="section-9-4.6">urn:ietf:params:xml:ns:yang:ietf-detnet<a href="#section-9-4.6" class="pilcrow">¶</a>
+<dt id="section-10-6.5">Namespace:</dt>
+        <dd style="margin-left: 1.5em" id="section-10-6.6">urn:ietf:params:xml:ns:yang:ietf-detnet<a href="#section-10-6.6" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
-<dt id="section-9-4.7">Prefix:</dt>
-        <dd style="margin-left: 1.5em" id="section-9-4.8">dnet<a href="#section-9-4.8" class="pilcrow">¶</a>
+<dt id="section-10-6.7">Prefix:</dt>
+        <dd style="margin-left: 1.5em" id="section-10-6.8">dnet<a href="#section-10-6.8" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
-<dt id="section-9-4.9">Reference:</dt>
-        <dd style="margin-left: 1.5em" id="section-9-4.10">This RFC when published.<a href="#section-9-4.10" class="pilcrow">¶</a>
+<dt id="section-10-6.9">Reference:</dt>
+        <dd style="margin-left: 1.5em" id="section-10-6.10">This RFC when published.<a href="#section-10-6.10" class="pilcrow">¶</a>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -3432,12 +3441,12 @@ module ietf-detnet {
 </section>
 </section>
 <div id="Tree">
-<section id="section-appendix.a">
+<section id="appendix-A">
       <h2 id="name-detnet-configuration-yang-t">
-<a href="#section-appendix.a" class="section-number selfRef">Appendix A. </a><a href="#name-detnet-configuration-yang-t" class="section-name selfRef">DetNet Configuration YANG Tree</a>
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-detnet-configuration-yang-t" class="section-name selfRef">DetNet Configuration YANG Tree</a>
       </h2>
-<p id="section-appendix.a-1"> This is the full YANG tree as described in <span>[<a href="#RFC8340" class="xref">RFC8340</a>]</span>.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-appendix.a-2">
+<p id="appendix-A-1"> This is the full YANG tree as described in <span>[<a href="#RFC8340" class="xref">RFC8340</a>]</span>.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A-2">
 <pre>
 module: ietf-detnet
   +--rw detnet
@@ -3866,36 +3875,36 @@ module: ietf-detnet
                  +--:(forwarding-disaggregation)
                     +--rw forwarding-disaggregation
                        +--rw sub-layer*   forwarding-sub-layer-ref
-</pre><a href="#section-appendix.a-2" class="pilcrow">¶</a>
+</pre><a href="#appendix-A-2" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="Examples">
-<section id="section-appendix.b">
+<section id="appendix-B">
       <h2 id="name-examples">
-<a href="#section-appendix.b" class="section-number selfRef">Appendix B. </a><a href="#name-examples" class="section-name selfRef">Examples</a>
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-examples" class="section-name selfRef">Examples</a>
       </h2>
-<p id="section-appendix.b-1"> The following examples are provided.  These examples are tested with Yanglint
+<p id="appendix-B-1"> The following examples are provided.  These examples are tested with Yanglint
               and use operational output to exercise both config true and config false objects.
               Note that IPv4 and IPv6 addresses are supported but for clarity in the examples 
               and diagrams IPv4 has been used in most examples. The IP types are imported from 
-              <span>[<a href="#RFC6991" class="xref">RFC6991</a>]</span>  and these support both IPv4 and IPv6.<a href="#section-appendix.b-1" class="pilcrow">¶</a></p>
-<p id="section-appendix.b-2">
+              <span>[<a href="#RFC6991" class="xref">RFC6991</a>]</span>  and these support both IPv4 and IPv6.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">
          The following are examples of aggregation and disaggregation at various points in Detnet. Figures 
-         are provided in the PDF version of this document.<a href="#section-appendix.b-2" class="pilcrow">¶</a></p>
-<section id="section-b.1">
-        <h2 id="name-example-a-1-json-configurat">
-<a href="#section-b.1" class="section-number selfRef">B.1. </a><a href="#name-example-a-1-json-configurat" class="section-name selfRef">Example A-1 JSON Configuration/Operational</a>
-        </h2>
-<p id="section-b.1-1">
+         are provided in the PDF version of this document.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<section id="appendix-B.1">
+        <h3 id="name-example-a-1-json-configurat">
+<a href="#appendix-B.1" class="section-number selfRef">B.1. </a><a href="#name-example-a-1-json-configurat" class="section-name selfRef">Example A-1 JSON Configuration/Operational</a>
+        </h3>
+<p id="appendix-B.1-1">
                 This illustrates simple aggregation. Ingress node 1 
                 aggregates App flows 0 and 1 into a service sub-layer of DetNet flow 1. 
                 Two ways of illustrating this follow, then the JSON operational data model
-                corresponding to the diagrams follows. This example uses IPv6 address format.<a href="#section-b.1-1" class="pilcrow">¶</a></p>
+                corresponding to the diagrams follows. This example uses IPv6 address format.<a href="#appendix-B.1-1" class="pilcrow">¶</a></p>
 <span id="name-case-a-1-example-json-opera"></span><div id="case-a1">
 <figure id="figure-2">
-          <div id="section-b.1-2.1">
-            <div class="artwork art-svg alignLeft" id="section-b.1-2.1.2">
+          <div id="appendix-B.1-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-B.1-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 0 210 110" version="1.1" id="svg8">
                 <g id="layer0">
                   <path d="M 50.430999,57.791594 H 72.444454" stroke="#000000" stroke-width="0.267684" stroke-miterlimit="8" fill="none" fill-rule="evenodd" id="path23"></path>
@@ -4088,7 +4097,7 @@ module: ietf-detnet
                     <tspan font-size="3.2122px" x="189.36337" y="26.483425" id="tspan411">IP</tspan>
                   </text>
                 </g>
-              </svg><a href="#section-b.1-2.1.2" class="pilcrow">¶</a>
+              </svg><a href="#appendix-B.1-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
@@ -4097,8 +4106,8 @@ module: ietf-detnet
 </div>
 <span id="name-case-a-1-example-json-operat"></span><div id="case-a1-pipe">
 <figure id="figure-3">
-          <div id="section-b.1-3.1">
-            <div class="artwork art-svg alignLeft" id="section-b.1-3.1.2">
+          <div id="appendix-B.1-3.1">
+            <div class="alignLeft art-svg artwork" id="appendix-B.1-3.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="100mm" viewBox="0 0 210 110" version="1.1">
                 <g>
                   <path d="m 70.117127,15.966295 c 0,1.251181 -3.545926,2.265539 -7.920122,2.265539 -4.374193,0 -7.920122,-1.014358 -7.920122,-2.265539 0,-1.251181 3.545929,-2.265538 7.920122,-2.265538 4.374196,0 7.920122,1.014357 7.920122,2.265538 v 18.325689 c 0,1.251181 -3.545926,2.265535 -7.920122,2.265535 -4.374193,0 -7.920122,-1.014354 -7.920122,-2.265535 V 15.966295" stroke="#000000" stroke-width="0.219642" stroke-miterlimit="8" fill="none" fill-rule="evenodd"></path>
@@ -4180,7 +4189,7 @@ module: ietf-detnet
                   <path d="m 140.51088,14.925829 -2e-5,4.259473 h 0.10267 l 1e-5,-4.259473 z m 0.66734,0.234941 -0.61602,-1.409668 -0.616,1.409668 z"></path>
                   <path d="m 49.656812,18.212299 c 0,-0.851137 0.603074,-1.54117 1.346949,-1.54117 H 151.97511 c 0.74449,0 1.34729,0.690033 1.34729,1.54117 v 44.644999 c 0,0.851139 -0.6028,1.541173 -1.34729,1.541173 H 51.003761 c -0.743875,0 -1.346949,-0.690034 -1.346949,-1.541173 z" stroke="#000000" stroke-width="0.439283" stroke-miterlimit="8" stroke-dasharray="1.75714, 1.31786" fill="none" fill-rule="evenodd"></path>
                 </g>
-              </svg><a href="#section-b.1-3.1.2" class="pilcrow">¶</a>
+              </svg><a href="#appendix-B.1-3.1.2" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
@@ -4189,7 +4198,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-a-1-detnet-json-con"></span><div id="example-detnet-json-configuration-a-1">
 <figure id="figure-4">
-          <div class="artwork art-text alignLeft" id="section-b.1-4.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.1-4.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -4407,19 +4416,19 @@ module: ietf-detnet
           </figcaption></figure>
 </div>
 </section>
-<section id="section-b.2">
-        <h2 id="name-example-b-1-xml-config-aggr">
-<a href="#section-b.2" class="section-number selfRef">B.2. </a><a href="#name-example-b-1-xml-config-aggr" class="section-name selfRef">Example B-1 XML Config: Aggregation using a Forwarding Sub-layer</a>
-        </h2>
-<p id="section-b.2-1">
+<section id="appendix-B.2">
+        <h3 id="name-example-b-1-xml-config-aggr">
+<a href="#appendix-B.2" class="section-number selfRef">B.2. </a><a href="#name-example-b-1-xml-config-aggr" class="section-name selfRef">Example B-1 XML Config: Aggregation using a Forwarding Sub-layer</a>
+        </h3>
+<p id="appendix-B.2-1">
                 This illustrates aggrgation in the service sub-layers of DetNet.
                 Flows 1 and 2 are aggregated into a forwarding sub-layer. A diagram 
                 illustrating this case is shown and then the 
-                corresponding XML operational data follows.<a href="#section-b.2-1" class="pilcrow">¶</a></p>
+                corresponding XML operational data follows.<a href="#appendix-B.2-1" class="pilcrow">¶</a></p>
 <span id="name-case-b-1-example-xml-config"></span><div id="case-b1">
 <figure id="figure-5">
-          <div id="section-b.2-2.1">
-            <div class="artwork art-svg alignLeft" id="section-b.2-2.1.2">
+          <div id="appendix-B.2-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-B.2-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 15 210 110" version="1.1">
                 <g>
                   <path d="m 79.692681,65.419668 c 0,-0.405703 -0.258207,-0.734588 -0.576725,-0.734588 h -6.168305 c -0.318517,0 -0.576725,0.328885 -0.576725,0.734588 v 6.421941 c 0,0.405702 0.258208,0.734587 0.576725,0.734587 h 6.168305 c 0.318518,0 0.576725,-0.328885 0.576725,-0.734587 z" stroke="#000000" stroke-width="0.29663" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
@@ -4733,7 +4742,7 @@ module: ietf-detnet
                   <path d="m 136.15995,65.115504 v 0.83538 h -1.52854 l -0.81413,1.874515 -0.83073,-1.874515 h -1.51196 v -0.83538 l -0.98027,1.059504 0.98027,1.059504 v -0.713126 h 1.07997 l 0.93042,2.057888 -0.93042,2.078261 h -1.07997 v -0.774243 l -0.98027,1.059504 0.98027,1.059503 v -0.794633 h 1.51196 l 0.83073,-1.915261 0.81413,1.915261 h 1.52854 v 0.753887 l 0.98027,-1.018757 -0.98027,-1.059504 v 0.774243 h -1.06333 l -0.94705,-2.078261 0.93043,-2.057888 h 1.07995 v 0.692753 l 0.98027,-1.039131 z" stroke="#000000" stroke-width="0.222473" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
                   <text font-size="2.92393px" x="81.274445" y="70.663162" transform="scale(0.88605917,1.1285928)">Relay 1</text>
                 </g>
-              </svg><a href="#section-b.2-2.1.2" class="pilcrow">¶</a>
+              </svg><a href="#appendix-B.2-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
@@ -4742,7 +4751,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-b-1-detnet-xml-conf"></span><div id="example-detnet-xml-fwd-aggregation-b-1">
 <figure id="figure-6">
-          <div class="artwork art-text alignLeft" id="section-b.2-3.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.2-3.1">
 <pre>
 &lt;interfaces
   xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"
@@ -4956,19 +4965,19 @@ module: ietf-detnet
           </figcaption></figure>
 </div>
 </section>
-<section id="section-b.3">
-        <h2 id="name-example-b-2-json-service-ag">
-<a href="#section-b.3" class="section-number selfRef">B.3. </a><a href="#name-example-b-2-json-service-ag" class="section-name selfRef">Example B-2 JSON Service Aggregation Configuration</a>
-        </h2>
-<p id="section-b.3-1">
+<section id="appendix-B.3">
+        <h3 id="name-example-b-2-json-service-ag">
+<a href="#appendix-B.3" class="section-number selfRef">B.3. </a><a href="#name-example-b-2-json-service-ag" class="section-name selfRef">Example B-2 JSON Service Aggregation Configuration</a>
+        </h3>
+<p id="appendix-B.3-1">
                 This illustrates the service sub-layers of DetNet. Flows 1
                 and 2 are aggregated into a service sub-layer of aggregated DetNet flow 1. 
                 A diagram illustrating this case is shown and then the 
-                corresponding JSON operational data follows.<a href="#section-b.3-1" class="pilcrow">¶</a></p>
+                corresponding JSON operational data follows.<a href="#appendix-B.3-1" class="pilcrow">¶</a></p>
 <span id="name-case-b-2-example-json-servi"></span><div id="case-b2">
 <figure id="figure-7">
-          <div id="section-b.3-2.1">
-            <div class="artwork art-svg alignLeft" id="section-b.3-2.1.2">
+          <div id="appendix-B.3-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-B.3-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 15 210 110" version="1.1">
                 <g>
                   <text font-size="2.74992px" x="12.808352" y="63.011162" transform="scale(0.92084851,1.0859549)">Source 1<tspan font-size="2.74992px" x="13.818254" y="65.761101">192.0.2.1</tspan>
@@ -5289,7 +5298,7 @@ module: ietf-detnet
                   <text font-size="2.74992px" x="42.024494" y="75.326057" transform="scale(0.92084851,1.0859549)">aggregation<tspan font-size="2.74992px" x="163.04509" y="75.326057">disaggregation</tspan>
                   </text>
                 </g>
-              </svg><a href="#section-b.3-2.1.2" class="pilcrow">¶</a>
+              </svg><a href="#appendix-B.3-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
@@ -5298,7 +5307,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-b-2-detnet-json-ser"></span><div id="example-detnet-json-service-aggregation-b-2">
 <figure id="figure-8">
-          <div class="artwork art-text alignLeft" id="section-b.3-3.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.3-3.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -5567,19 +5576,19 @@ module: ietf-detnet
           </figcaption></figure>
 </div>
 </section>
-<section id="section-b.4">
-        <h2 id="name-example-c-1-json-relay-aggr">
-<a href="#section-b.4" class="section-number selfRef">B.4. </a><a href="#name-example-c-1-json-relay-aggr" class="section-name selfRef">Example C-1 JSON Relay Aggregation/Disaggregation Configuration</a>
-        </h2>
-<p id="section-b.4-1">
+<section id="appendix-B.4">
+        <h3 id="name-example-c-1-json-relay-aggr">
+<a href="#appendix-B.4" class="section-number selfRef">B.4. </a><a href="#name-example-c-1-json-relay-aggr" class="section-name selfRef">Example C-1 JSON Relay Aggregation/Disaggregation Configuration</a>
+        </h3>
+<p id="appendix-B.4-1">
                 This illustrates the Relay node 1 aggregating the forwarding 
                 sub-layers of DetNet flows 1 and 2 into a forwarding sub-layer. 
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
-                corresponding JSON operational data follows.<a href="#section-b.4-1" class="pilcrow">¶</a></p>
+                corresponding JSON operational data follows.<a href="#appendix-B.4-1" class="pilcrow">¶</a></p>
 <span id="name-case-c-1-example-json-servi"></span><div id="case-c1">
 <figure id="figure-9">
-          <div id="section-b.4-2.1">
-            <div class="artwork art-svg alignLeft" id="section-b.4-2.1.2">
+          <div id="appendix-B.4-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-B.4-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 15 210 110" version="1.1">
                 <g>
                   <path d="m 75.42501,61.215386 c 0,-0.3576 -0.272888,-0.64749 -0.609509,-0.64749 h -6.518949 c -0.336625,0 -0.609513,0.28989 -0.609513,0.64749 v 5.66046 c 0,0.35759 0.272888,0.64749 0.609513,0.64749 h 6.518949 c 0.336621,0 0.609509,-0.2899 0.609509,-0.64749 z" stroke="#000000" stroke-width="0.286295" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
@@ -5937,7 +5946,7 @@ module: ietf-detnet
                   <text font-size="2.82205px" x="66.964508" y="77.169632" transform="scale(0.97023256,1.0306807)">aggregation<tspan font-size="2.82205px" x="128.42525" y="77.169632">disaggregation</tspan>
                   </text>
                 </g>
-              </svg><a href="#section-b.4-2.1.2" class="pilcrow">¶</a>
+              </svg><a href="#appendix-B.4-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
@@ -5946,7 +5955,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-c-1-detnet-json-rel"></span><div id="example-detnet-json-service-aggregation-c-1">
 <figure id="figure-10">
-          <div class="artwork art-text alignLeft" id="section-b.4-3.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.4-3.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -6353,7 +6362,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-c-1-detnet-json-rela"></span><div id="example-detnet-json-service-disaggregation-c-1">
 <figure id="figure-11">
-          <div class="artwork art-text alignLeft" id="section-b.4-4.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.4-4.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -6749,19 +6758,19 @@ module: ietf-detnet
           </figcaption></figure>
 </div>
 </section>
-<section id="section-b.5">
-        <h2 id="name-example-c-2-json-relay-aggr">
-<a href="#section-b.5" class="section-number selfRef">B.5. </a><a href="#name-example-c-2-json-relay-aggr" class="section-name selfRef">Example C-2 JSON Relay Aggregation Service Sub-Layer</a>
-        </h2>
-<p id="section-b.5-1">
+<section id="appendix-B.5">
+        <h3 id="name-example-c-2-json-relay-aggr">
+<a href="#appendix-B.5" class="section-number selfRef">B.5. </a><a href="#name-example-c-2-json-relay-aggr" class="section-name selfRef">Example C-2 JSON Relay Aggregation Service Sub-Layer</a>
+        </h3>
+<p id="appendix-B.5-1">
                 This illustrates the Relay node 1 aggregating the service sub-layers 
                 of DetNet flows 1 and 2 into a forwarding sub-layer
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
-                corresponding JSON operational data follows.<a href="#section-b.5-1" class="pilcrow">¶</a></p>
+                corresponding JSON operational data follows.<a href="#appendix-B.5-1" class="pilcrow">¶</a></p>
 <span id="name-case-c-2-example-json-servi"></span><div id="case-c2">
 <figure id="figure-12">
-          <div id="section-b.5-2.1">
-            <div class="artwork art-svg alignLeft" id="section-b.5-2.1.2">
+          <div id="appendix-B.5-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-B.5-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 15 210 110" version="1.1">
                 <g>
                   <path d="m 133.60458,66.251046 c 0,-0.453159 -0.25927,-0.820516 -0.57909,-0.820516 h -6.32985 c -0.31982,0 -0.5791,0.367357 -0.5791,0.820516 v 7.173219 c 0,0.453164 0.25928,0.820523 0.5791,0.820523 h 6.32985 c 0.31982,0 0.57909,-0.367359 0.57909,-0.820523 z" stroke="#000000" stroke-width="0.319963" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
@@ -7081,7 +7090,7 @@ module: ietf-detnet
                   <path d="m 74.161155,66.41428 c 0,-0.453162 -0.259271,-0.820524 -0.579099,-0.820524 h -6.445041 c -0.31983,0 -0.579101,0.367362 -0.579101,0.820524 v 7.173259 c 0,0.453165 0.259271,0.820529 0.579101,0.820529 h 6.445041 c 0.319828,0 0.579099,-0.367364 0.579099,-0.820529 z" stroke="#000000" stroke-width="0.319963" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
                   <path d="m 72.830016,66.246666 v 0.930586 H 71.29324 l -0.818488,2.08815 -0.835202,-2.08815 h -1.520071 v -0.930586 l -0.98554,1.180255 0.98554,1.18025 v -0.794397 h 1.085764 l 0.935428,2.292417 -0.935428,2.315114 h -1.085764 v -0.862493 l -0.98554,1.180263 0.98554,1.180263 v -0.885196 h 1.520071 l 0.835202,-2.133541 0.818488,2.133541 h 1.536776 v 0.839785 l 0.985538,-1.134852 -0.985538,-1.180263 v 0.862493 h -1.069063 l -0.95212,-2.315114 0.935417,-2.292417 h 1.085766 v 0.771713 l 0.985538,-1.157566 z" stroke="#000000" stroke-width="0.239973" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
                 </g>
-              </svg><a href="#section-b.5-2.1.2" class="pilcrow">¶</a>
+              </svg><a href="#appendix-B.5-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
@@ -7090,7 +7099,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-c-2-detnet-json-rel"></span><div id="example-detnet-json-service-aggregation-c-2">
 <figure id="figure-13">
-          <div class="artwork art-text alignLeft" id="section-b.5-3.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.5-3.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -7385,7 +7394,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-c-2-detnet-json-rela"></span><div id="example-detnet-json-service-disaggregation-c-2">
 <figure id="figure-14">
-          <div class="artwork art-text alignLeft" id="section-b.5-4.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.5-4.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -7677,21 +7686,21 @@ module: ietf-detnet
           </figcaption></figure>
 </div>
 </section>
-<section id="section-b.6">
-        <h2 id="name-example-c-3-json-relay-serv">
-<a href="#section-b.6" class="section-number selfRef">B.6. </a><a href="#name-example-c-3-json-relay-serv" class="section-name selfRef">Example C-3 JSON Relay Service Sub-Layer Aggregation/Disaggregation</a>
-        </h2>
-<p id="section-b.6-1">
+<section id="appendix-B.6">
+        <h3 id="name-example-c-3-json-relay-serv">
+<a href="#appendix-B.6" class="section-number selfRef">B.6. </a><a href="#name-example-c-3-json-relay-serv" class="section-name selfRef">Example C-3 JSON Relay Service Sub-Layer Aggregation/Disaggregation</a>
+        </h3>
+<p id="appendix-B.6-1">
                 This illustrates the Relay node 1 aggregating the 
                 service sub-layers of DetNet flows 1 and 2 into a service sub-layer of Aggregated DetNet flow 1.
                 It also illustrates the Relay node 2 disaggregating the aggregated 
                 DetNet flow 1 into the  DetNet flows 1 and 2 service sub-layers.
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
-                corresponding JSON operational data follows.<a href="#section-b.6-1" class="pilcrow">¶</a></p>
+                corresponding JSON operational data follows.<a href="#appendix-B.6-1" class="pilcrow">¶</a></p>
 <span id="name-case-c-3-example-json-servi"></span><div id="case-c3">
 <figure id="figure-15">
-          <div id="section-b.6-2.1">
-            <div class="artwork art-svg alignLeft" id="section-b.6-2.1.2">
+          <div id="appendix-B.6-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-B.6-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="120mm" viewBox="0 10 210 120" version="1.1">
                 <g>
                   <path d="m 129.44107,62.50501 c 0,-0.344621 -0.23934,-0.623988 -0.53456,-0.623988 h -5.94938 c -0.29523,0 -0.53457,0.279367 -0.53457,0.623988 v 5.455064 c 0,0.344611 0.23934,0.623977 0.53457,0.623977 h 5.94938 c 0.29522,0 0.53456,-0.279366 0.53456,-0.623977 z" stroke="#000000" stroke-width="0.26808" stroke-linejoin="round" stroke-miterlimit="10" fill="none" fill-rule="evenodd"></path>
@@ -8029,7 +8038,7 @@ module: ietf-detnet
                   <text font-size="2.64251px" x="70.38549" y="74.509369" transform="scale(0.92557641,1.0804078)">aggregation<tspan font-size="2.64251px" x="127.93602" y="74.394478">disaggregation</tspan>
                   </text>
                 </g>
-              </svg><a href="#section-b.6-2.1.2" class="pilcrow">¶</a>
+              </svg><a href="#appendix-B.6-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
@@ -8038,7 +8047,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-c-3-detnet-json-rel"></span><div id="example-detnet-json-service-aggregation-c-3">
 <figure id="figure-16">
-          <div class="artwork art-text alignLeft" id="section-b.6-3.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.6-3.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -8372,7 +8381,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-c-3-detnet-json-rela"></span><div id="example-detnet-json-service-disaggregation-c-3">
 <figure id="figure-17">
-          <div class="artwork art-text alignLeft" id="section-b.6-4.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.6-4.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -8706,21 +8715,21 @@ module: ietf-detnet
           </figcaption></figure>
 </div>
 </section>
-<section id="section-b.7">
-        <h2 id="name-example-c-4-json-relay-serv">
-<a href="#section-b.7" class="section-number selfRef">B.7. </a><a href="#name-example-c-4-json-relay-serv" class="section-name selfRef">Example C-4 JSON Relay Service Sub-Layer Aggregation/Disaggregation</a>
-        </h2>
-<p id="section-b.7-1">
+<section id="appendix-B.7">
+        <h3 id="name-example-c-4-json-relay-serv">
+<a href="#appendix-B.7" class="section-number selfRef">B.7. </a><a href="#name-example-c-4-json-relay-serv" class="section-name selfRef">Example C-4 JSON Relay Service Sub-Layer Aggregation/Disaggregation</a>
+        </h3>
+<p id="appendix-B.7-1">
                 This illustrates the Relay node 1 aggregating the 
                 forwarding sub-layers of DetNet flow 1 and 2 into a service sub-layer of Aggregated DetNet flow 1.
                 This also illustrates the Relay node 2 disaggregating the service sub-layer of 
                 Aggregated DetNet flow 1 to forwarding sub-layers of DetNet flow 1 and 2.
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
-                corresponding JSON operational data follows.<a href="#section-b.7-1" class="pilcrow">¶</a></p>
+                corresponding JSON operational data follows.<a href="#appendix-B.7-1" class="pilcrow">¶</a></p>
 <span id="name-case-c-4-example-json-servi"></span><div id="case-c4">
 <figure id="figure-18">
-          <div id="section-b.7-2.1">
-            <div class="artwork art-svg alignLeft" id="section-b.7-2.1.2">
+          <div id="appendix-B.7-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-B.7-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="155mm" viewBox="0 0 210 155" version="1.1">
                 <g>
                   <text font-size="3.49204px" x="234.2603" y="121.01194" transform="scale(0.85569064,1.1686467)">18<tspan font-size="2.86847px" x="10.878091" y="68.63131">Source 1</tspan>
@@ -9101,7 +9110,7 @@ module: ietf-detnet
                   <text font-size="2.86847px" x="73.046295" y="78.359138" transform="scale(0.85569064,1.1686467)">aggregation<tspan font-size="2.86847px" x="135.51781" y="78.359138">disaggregation</tspan>
                   </text>
                 </g>
-              </svg><a href="#section-b.7-2.1.2" class="pilcrow">¶</a>
+              </svg><a href="#appendix-B.7-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
@@ -9110,7 +9119,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-c-4-detnet-json-rel"></span><div id="example-detnet-json-forwarding-aggregation-c-4">
 <figure id="figure-19">
-          <div class="artwork art-text alignLeft" id="section-b.7-3.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.7-3.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -9510,7 +9519,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-c-4-detnet-json-rela"></span><div id="example-detnet-json-forwarding-disaggregation-c-4">
 <figure id="figure-20">
-          <div class="artwork art-text alignLeft" id="section-b.7-4.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.7-4.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -9896,19 +9905,19 @@ module: ietf-detnet
           </figcaption></figure>
 </div>
 </section>
-<section id="section-b.8">
-        <h2 id="name-example-d-1-json-transit-fo">
-<a href="#section-b.8" class="section-number selfRef">B.8. </a><a href="#name-example-d-1-json-transit-fo" class="section-name selfRef">Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/Disaggregation</a>
-        </h2>
-<p id="section-b.8-1">
+<section id="appendix-B.8">
+        <h3 id="name-example-d-1-json-transit-fo">
+<a href="#appendix-B.8" class="section-number selfRef">B.8. </a><a href="#name-example-d-1-json-transit-fo" class="section-name selfRef">Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/Disaggregation</a>
+        </h3>
+<p id="appendix-B.8-1">
                 This illustrates the Transit node 1 aggregating the forwarding 
                 sub-layers of DetNet flow 1 and 2 into a forwarding sub-layer.
                 This also illustrates a Transit node 4 disaggregating a forwarding sub-layer
-                into DetNet flow 1 and 2 forwarding sub-layers.<a href="#section-b.8-1" class="pilcrow">¶</a></p>
+                into DetNet flow 1 and 2 forwarding sub-layers.<a href="#appendix-B.8-1" class="pilcrow">¶</a></p>
 <span id="name-case-d-1-example-service-ag"></span><div id="case-d1">
 <figure id="figure-21">
-          <div id="section-b.8-2.1">
-            <div class="artwork art-svg alignLeft" id="section-b.8-2.1.2">
+          <div id="appendix-B.8-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-B.8-2.1.2">
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="210mm" height="130mm" viewBox="0 5 210 130" version="1.1" id="svg7">
                 <g id="layer1">
                   <text font-size="2.89029px" x="48.587341" y="60.347198" transform="scale(0.8869959,1.1274009)">Ingress 1<tspan font-size="2.89029px" x="49.777794" y="63.237488" id="tspan15">192.0.2.2</tspan>
@@ -10151,7 +10160,7 @@ module: ietf-detnet
                   <text font-size="2.89029px" x="79.049828" y="72.159683" transform="scale(0.8869959,1.1274009)">aggregation<tspan font-size="2.89029px" x="141.99666" y="72.159683" id="tspan563">disaggregation</tspan>
                   </text>
                 </g>
-              </svg><a href="#section-b.8-2.1.2" class="pilcrow">¶</a>
+              </svg><a href="#appendix-B.8-2.1.2" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
@@ -10160,7 +10169,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-d-1-detnet-json-rel"></span><div id="example-detnet-json-forwarding-aggregation-d-1">
 <figure id="figure-22">
-          <div class="artwork art-text alignLeft" id="section-b.8-3.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.8-3.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -10339,7 +10348,7 @@ module: ietf-detnet
 </div>
 <span id="name-example-d-1-detnet-json-rela"></span><div id="example-detnet-json-forwarding-disaggregation-d-1">
 <figure id="figure-23">
-          <div class="artwork art-text alignLeft" id="section-b.8-4.1">
+          <div class="alignLeft art-text artwork" id="appendix-B.8-4.1">
 <pre>
 {
   "ietf-detnet:detnet": {
@@ -10516,7 +10525,7 @@ module: ietf-detnet
 </section>
 </div>
 <div id="authors-addresses">
-<section id="section-appendix.c">
+<section id="appendix-C">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
