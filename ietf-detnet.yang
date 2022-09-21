@@ -84,7 +84,7 @@ module ietf-detnet {
      see the RFC itself for full legal notices.";
      
 
-  revision 2022-01-05 {
+  revision 2022-09-21 {
     description
       "Initial revision";
     reference
@@ -861,11 +861,18 @@ module ietf-detnet {
             "RFC 9016 Section 4.2";
         }
         leaf max-loss {
-          type uint32;
+          type decimal64 {
+            fraction-digits 10;
+            range "0 .. 100";
+          }
+          units "percent";
           description
-            "This defines the maximum Packet Loss Ratio (PLR)
-             parameter for the DetNet service between the Ingress and
-             Egress(es) of the DetNet domain.";
+            "This defines the maximum Packet Loss Rate (PLR)
+            parameter for the DetNet service between the Ingress and
+            Egress(es) of the DetNet domain. Packet loss rate is
+            calculated by the number of transmitted packets minus
+            the number of received packets divided by the number
+            transmitted packets expressed as a percent.";
           reference
             "RFC 9016 Section 4.2";
         }

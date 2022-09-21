@@ -7,7 +7,7 @@
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 200000000,
-          "max-loss": 2,
+          "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -22,7 +22,7 @@
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 200000000,
-          "max-loss": 2,
+          "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },

@@ -82,7 +82,7 @@
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
-      <max-loss>2</max-loss>
+      <max-loss>0.0000001</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
@@ -95,7 +95,7 @@
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
       <max-latency-variation>200000000</max-latency-variation>
-      <max-loss>2</max-loss>
+      <max-loss>0.000001</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>

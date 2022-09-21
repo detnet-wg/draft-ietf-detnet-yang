@@ -1,82 +1,5 @@
-<interfaces
-  xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"
-  xmlns:ia="urn:ietf:params:xml:ns:yang:iana-if-type">
-    <interface>
-      <name>eth0</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
-      <name>eth1</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
-      <name>eth2</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
-      <name>eth3</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
-      <name>eth4</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-  </interfaces>
-<detnet
-  xmlns="urn:ietf:params:xml:ns:yang:ietf-detnet">
-  <app-flows>
-    <app-flow>
-      <name>app-0</name>
-      <bidir-congruent>false</bidir-congruent>
-      <outgoing-service>ssl-1</outgoing-service>
-      <traffic-profile>pf-1</traffic-profile>
-      <ingress>
-        <app-flow-status>ready</app-flow-status>
-        <interface>eth0</interface>
-        <ip-app-flow>
-          <src-ip-prefix>2001:db8::1/128</src-ip-prefix>
-	  <dest-ip-prefix>2001:db8::8/128</dest-ip-prefix>
-          <dscp>6</dscp>
-        </ip-app-flow>
-      </ingress>
-    </app-flow>
-    <app-flow>
-      <name>app-1</name>
-      <bidir-congruent>false</bidir-congruent>
-      <outgoing-service>ssl-1</outgoing-service>
-      <traffic-profile>pf-1</traffic-profile>
-      <ingress>
-        <app-flow-status>ready</app-flow-status>
-        <interface>eth0</interface>
-        <ip-app-flow>
-          <src-ip-prefix>2001:db8::1/128</src-ip-prefix>
-	  <dest-ip-prefix>2001:db8::8/128</dest-ip-prefix>
-          <dscp>7</dscp>
-        </ip-app-flow>
-      </ingress>
-    </app-flow>
-  </app-flows>
-  <traffic-profile>  
+<detnet xmlns="urn:ietf:params:xml:ns:yang:ietf-detnet">
+  <traffic-profile>
     <name>pf-1</name>
     <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
@@ -95,10 +18,8 @@
     </traffic-spec>
     <member-app>app-0</member-app>
     <member-app>app-1</member-app>
-    <!--<member-groups></member-groups>-->
-    <!--<member-fwd-sublayer></member-fwd-sublayer>-->
   </traffic-profile>
-  <traffic-profile>  
+  <traffic-profile>
     <name>pf-2</name>
     <traffic-requirements>
       <min-bandwidth>200000000</min-bandwidth>
@@ -115,33 +36,59 @@
       <min-payload-size>100</min-payload-size>
       <min-pkts-per-interval>1</min-pkts-per-interval>
     </traffic-spec>
-    <!--<member-app></member-app>-->
     <member-service>ssl-1</member-service>
-    <!--<member-fwd-sublayer></member-fwd-sublayer>-->
-    <!--<member-groups></member-groups>-->
   </traffic-profile>
-  <traffic-profile>  
+  <traffic-profile>
     <name>pf-3</name>
     <traffic-spec>
       <interval>5</interval>
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
     </traffic-spec>
-    <!--<member-app></member-app>-->
-    <!--<member-service></member-service>-->
-    <!--<member-groups></member-groups>-->
     <member-fwd-sublayer>fsl-1</member-fwd-sublayer>
   </traffic-profile>
+  <app-flows>
+    <app-flow>
+      <name>app-0</name>
+      <bidir-congruent>false</bidir-congruent>
+      <outgoing-service>ssl-1</outgoing-service>
+      <traffic-profile>pf-1</traffic-profile>
+      <ingress>
+        <app-flow-status xmlns:dnet="urn:ietf:params:xml:ns:yang:ietf-detnet">dnet:ready</app-flow-status>
+        <interface>eth0</interface>
+        <ip-app-flow>
+          <src-ip-prefix>2001:db8::1/128</src-ip-prefix>
+          <dest-ip-prefix>2001:db8::8/128</dest-ip-prefix>
+          <dscp>6</dscp>
+        </ip-app-flow>
+      </ingress>
+    </app-flow>
+    <app-flow>
+      <name>app-1</name>
+      <bidir-congruent>false</bidir-congruent>
+      <outgoing-service>ssl-1</outgoing-service>
+      <traffic-profile>pf-1</traffic-profile>
+      <ingress>
+        <app-flow-status xmlns:dnet="urn:ietf:params:xml:ns:yang:ietf-detnet">dnet:ready</app-flow-status>
+        <interface>eth0</interface>
+        <ip-app-flow>
+          <src-ip-prefix>2001:db8::1/128</src-ip-prefix>
+          <dest-ip-prefix>2001:db8::8/128</dest-ip-prefix>
+          <dscp>7</dscp>
+        </ip-app-flow>
+      </ingress>
+    </app-flow>
+  </app-flows>
   <service>
     <sub-layer>
       <name>ssl-1</name>
       <service-rank>10</service-rank>
-        <traffic-profile>pf-2</traffic-profile>
-        <operation>initiation</operation>
+      <traffic-profile>pf-2</traffic-profile>
       <service-protection>
         <protection>none</protection>
         <sequence-number-length>long-sn</sequence-number-length>
       </service-protection>
+      <operation>initiation</operation>
       <incoming>
         <app-flow>
           <flow>app-0</flow>
@@ -160,7 +107,7 @@
             </mpls-label-stack>
             <sub-layer>fsl-1</sub-layer>
           </service-outgoing>
-         </forwarding-sub-layer>
+        </forwarding-sub-layer>
       </outgoing>
     </sub-layer>
   </service>
@@ -183,8 +130,50 @@
               <label>10000</label>
             </entry>
           </mpls-label-stack>
-         </interface>
+        </interface>
       </outgoing>
     </sub-layer>
   </forwarding>
 </detnet>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface>
+    <name>eth0</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2020-12-18T18:59:00-05:00</discontinuity-time>
+    </statistics>
+  </interface>
+  <interface>
+    <name>eth1</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2020-12-18T18:59:00-05:00</discontinuity-time>
+    </statistics>
+  </interface>
+  <interface>
+    <name>eth2</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2020-12-18T18:59:00-05:00</discontinuity-time>
+    </statistics>
+  </interface>
+  <interface>
+    <name>eth3</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2020-12-18T18:59:00-05:00</discontinuity-time>
+    </statistics>
+  </interface>
+  <interface>
+    <name>eth4</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2020-12-18T18:59:00-05:00</discontinuity-time>
+    </statistics>
+  </interface>
+</interfaces>
