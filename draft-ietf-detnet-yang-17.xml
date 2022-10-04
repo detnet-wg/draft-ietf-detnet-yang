@@ -13,9 +13,9 @@
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" docName="draft-ietf-detnet-yang-17" ipr="trust200902" submissionType="IETF" obsoletes="" updates="" xml:lang="en" tocInclude="true" tocDepth="3" symRefs="true" sortRefs="true" version="3">
   <!-- xml2rfc v2v3 conversion 3.7.0 -->
   <front>
-    <title abbrev="draft-ietf-detnet-yang-16">Deterministic Networking
+    <title abbrev="draft-ietf-detnet-yang-17">Deterministic Networking
     (DetNet) YANG Model</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-detnet-yang-16"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-detnet-yang-17"/>
     <author fullname="Xuesong Geng" initials="X." surname="Geng">
       <organization>Huawei Technologies</organization>
       <address>
@@ -519,9 +519,14 @@ module ietf-detnet {
 
      This version of this YANG module is part of RFC XXXX;
      see the RFC itself for full legal notices.";
-     
 
-  revision 2022-09-21 {
+     // RFC Ed.: replace XXXX with actual RFC number and remove
+     // this note
+
+     // replace '2022-10-04' with the module publication date
+     // the format is (year-month-day)    
+
+  revision 2022-10-04 {
     description
       "Initial revision";
     reference
