@@ -84,6 +84,12 @@ module ietf-detnet {
      see the RFC itself for full legal notices.";
      
 
+     // RFC Ed.: replace XXXX with actual RFC number and remove
+     // this note
+
+     // replace '2022-10-04' with the module publication date
+     // the format is (year-month-day)    
+
   revision 2022-09-21 {
     description
       "Initial revision";
@@ -119,7 +125,7 @@ module ietf-detnet {
   identity failed {
     base app-status;
     description
-      "Application ingres/egresss failed.";
+      "Application ingres/egress failed.";
     reference
       "RFC 9016 Section 5.8";
   }
@@ -225,7 +231,7 @@ module ietf-detnet {
     type enumeration {
       enum impose-and-forward {
         description
-          "This operation impose outgoing label(s) and forward to
+          "This operation imposes outgoing label(s) and forwards to
            next-hop.";
         reference
           " A YANG Data Model for MPLS Base RFC 8960.";
@@ -246,18 +252,18 @@ module ietf-detnet {
       }
       enum swap-and-forward {
         description
-          "This operation swaps incoming label, with an outgoing
+          "This operation swaps an incoming label, with an outgoing
            label and forwards to the next-hop.";
         reference
           " A YANG Data Model for MPLS Base RFC 8960.";
       }
       enum forward {
         description
-          "This operation forward to next-hop.";
+          "This operation forwards to next-hop.";
       }
       enum pop-and-lookup {
         description
-          "This operation pops incoming label and performs a
+          "This operation pops an incoming label and performs a
            lookup.";
       }
     }
@@ -278,7 +284,7 @@ module ietf-detnet {
           "A Packet Replication Function (PRF) replicates DetNet
            flow packets and forwards them to one or more next hops in
            the DetNet domain.  The number of packet copies sent to
-           each next hop is a DetNet flow specific parameter at the
+           each next hop is a DetNet flow-specific parameter at the
            node doing the replication.  PRF can be implemented by an
            edge node, a relay node, or an end system.";
       }
@@ -322,19 +328,26 @@ module ietf-detnet {
     type enumeration {
       enum copy-from-app-flow {
         description
-          "This enum value means copy the app-flow sequence number 
-           to the DetNet-flow.";
-      }
+          "Copy-from-app-flow is to extend and use the
+          sequence number used in App-flow. This function is
+          required when encapsulating App-flows that have been
+          replicated and received through multiple ingress nodes
+          into a member flow, and then eliminate it at the relay
+          node.";
+     }
       enum generate-by-detnet-flow {
         description
-          "This enum value means generate the sequence number by the
-           DetNet flow.";
+          "Generate-by-detnet-flow is used to create a new
+          sequence number for a DetNet flow at the ingress node.
+          Care must be taken when using this option to ensure
+          there is only one source for generating sequence
+          numbers.";
       }
     }
     description
-      "An enumeration for the sequence number behaviors supported.";
+      "This typedef defines how to generate sequence numbers to
+      be used in DetNet encapsulation."; 
   }
-
   typedef sequence-number-field {
     type enumeration {
       enum zero-sn {
@@ -452,7 +465,7 @@ module ietf-detnet {
 
   grouping destination-ip-port-id {
     description
-      "The TCP/UDP port(source/destination) identification
+      "The TCP/UDP port destination identification
        information.";
     container destination-port {
       uses packet-fields:port-range-or-operator;
@@ -463,7 +476,7 @@ module ietf-detnet {
 
   grouping source-ip-port-id {
     description
-      "The TCP/UDP port(source/destination) identification
+      "The TCP/UDP port source identification
        information.";
     container source-port {
       uses packet-fields:port-range-or-operator;
@@ -844,8 +857,7 @@ module ietf-detnet {
             "This is the maximum latency from Ingress to
              Egress(es) for a single packet of the DetNet flow.
              MaxLatency is specified as an integer number of
-             nanoseconds. Any value above the MAX 4,294,967,295
-             is displayed as MAX";
+             nanoseconds. The MAX value is 4,294,967,295 nanoseconds.";
           reference
             "RFC 9016 Section 4.2";
         }
