@@ -224,31 +224,7 @@
         }
       },
       {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T19:59:00-04:00"
-        }
-      },
-      {
         "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T19:59:00-04:00"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T19:59:00-04:00"
-        }
-      },
-      {
-        "name": "eth4",
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
