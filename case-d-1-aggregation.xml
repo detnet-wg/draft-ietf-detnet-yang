@@ -18,23 +18,7 @@
       </statistics>
     </interface>
     <interface>
-      <name>eth2</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
       <name>eth3</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
-      <name>eth4</name>
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>

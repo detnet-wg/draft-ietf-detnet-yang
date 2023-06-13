@@ -27,7 +27,7 @@ module: ietf-detnet
      |     +--rw traffic-profile?    traffic-profile-ref
      |     +--rw ingress
      |     |  +--ro app-flow-status?       identityref
-     |     |  +--rw interface              if:interface-ref
+     |     |  +--rw interface?             if:interface-ref
      |     |  +--rw (data-flow-type)?
      |     |     +--:(tsn-app-flow)
      |     |     |  +--rw tsn-app-flow
@@ -73,13 +73,57 @@ module: ietf-detnet
      |     |              +--:(platform-label-space)
      |     |                 +--rw label?              rt-types:mpls-label
      |     +--rw egress
+     |        +--rw (data-flow-type)?
+     |        |  +--:(tsn-app-flow)
+     |        |  |  +--rw tsn-app-flow
+     |        |  |     +--rw source-mac-address?        yang:mac-address
+     |        |  |     +--rw destination-mac-address?   yang:mac-address
+     |        |  |     +--rw ethertype?                 ethertypes:ethertype
+     |        |  |     +--rw vlan-id?                   dot1q-types:vlanid
+     |        |  |     +--rw pcp?                       dot1q-types:priority-type
+     |        |  +--:(ip-app-flow)
+     |        |  |  +--rw ip-app-flow
+     |        |  |     +--rw src-ip-prefix?          inet:ip-prefix
+     |        |  |     +--rw dest-ip-prefix?         inet:ip-prefix
+     |        |  |     +--rw protocol-next-header?   uint8
+     |        |  |     +--rw dscp?                   inet:dscp
+     |        |  |     +--rw flow-label?             inet:ipv6-flow-label
+     |        |  |     +--rw source-port
+     |        |  |     |  +--rw (port-range-or-operator)?
+     |        |  |     |     +--:(range)
+     |        |  |     |     |  +--rw lower-port    inet:port-number
+     |        |  |     |     |  +--rw upper-port    inet:port-number
+     |        |  |     |     +--:(operator)
+     |        |  |     |        +--rw operator?     operator
+     |        |  |     |        +--rw port          inet:port-number
+     |        |  |     +--rw destination-port
+     |        |  |     |  +--rw (port-range-or-operator)?
+     |        |  |     |     +--:(range)
+     |        |  |     |     |  +--rw lower-port    inet:port-number
+     |        |  |     |     |  +--rw upper-port    inet:port-number
+     |        |  |     |     +--:(operator)
+     |        |  |     |        +--rw operator?     operator
+     |        |  |     |        +--rw port          inet:port-number
+     |        |  |     +--rw ipsec-spi?              ipsec-spi
+     |        |  +--:(mpls-app-flow)
+     |        |     +--rw mpls-app-flow
+     |        |        +--rw (label-space)?
+     |        |           +--:(context-label-space)
+     |        |           |  +--rw mpls-label-stack
+     |        |           |     +--rw entry* [id]
+     |        |           |        +--rw id               uint8
+     |        |           |        +--rw label?           rt-types:mpls-label
+     |        |           |        +--rw ttl?             uint8
+     |        |           |        +--rw traffic-class?   uint8
+     |        |           +--:(platform-label-space)
+     |        |              +--rw label?              rt-types:mpls-label
      |        +--rw (application-type)?
      |           +--:(ethernet)
      |           |  +--rw ethernet
      |           |     +--rw interface?   if:interface-ref
      |           +--:(ip-mpls)
      |              +--rw ip-mpls
-     |                 +--rw (next-hop-options)
+     |                 +--rw (next-hop-options)?
      |                    +--:(simple-next-hop)
      |                    |  +--rw outgoing-interface?       if:interface-ref
      |                    |  +--rw (flow-type)?
@@ -116,7 +160,7 @@ module: ietf-detnet
      |     |  +--rw sequence-number-length?   sequence-number-field
      |     +--rw operation?            operation
      |     +--rw incoming
-     |     |  +--rw (incoming)
+     |     |  +--rw (incoming)?
      |     |     +--:(app-flow)
      |     |     |  +--rw app-flow
      |     |     |     +--rw flow*   app-flow-ref
@@ -164,7 +208,7 @@ module: ietf-detnet
      |     |                    +--:(platform-label-space)
      |     |                       +--rw label?              rt-types:mpls-label
      |     +--rw outgoing
-     |        +--rw (outgoing)
+     |        +--rw (outgoing)?
      |           +--:(forwarding-sub-layer)
      |           |  +--rw forwarding-sub-layer
      |           |     +--rw service-outgoing* [index]
@@ -211,7 +255,7 @@ module: ietf-detnet
            +--rw traffic-profile?   traffic-profile-ref
            +--rw operation?         forwarding-operations
            +--rw incoming
-           |  +--rw (incoming)
+           |  +--rw (incoming)?
            |     +--:(service-sub-layer)
            |     |  +--rw service-sub-layer
            |     |     +--rw sub-layer*   service-sub-layer-ref
@@ -257,10 +301,10 @@ module: ietf-detnet
            |                    +--:(platform-label-space)
            |                       +--rw label?              rt-types:mpls-label
            +--rw outgoing
-              +--rw (outgoing)
+              +--rw (outgoing)?
                  +--:(interface)
                  |  +--rw interface
-                 |     +--rw (next-hop-options)
+                 |     +--rw (next-hop-options)?
                  |        +--:(simple-next-hop)
                  |        |  +--rw outgoing-interface?                 if:interface-ref
                  |        |  +--rw (flow-type)?

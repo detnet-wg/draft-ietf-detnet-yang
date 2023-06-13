@@ -145,31 +145,7 @@
     </statistics>
   </interface>
   <interface>
-    <name>eth1</name>
-    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
-    <oper-status>up</oper-status>
-    <statistics>
-      <discontinuity-time>2020-12-18T18:59:00-05:00</discontinuity-time>
-    </statistics>
-  </interface>
-  <interface>
     <name>eth2</name>
-    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
-    <oper-status>up</oper-status>
-    <statistics>
-      <discontinuity-time>2020-12-18T18:59:00-05:00</discontinuity-time>
-    </statistics>
-  </interface>
-  <interface>
-    <name>eth3</name>
-    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
-    <oper-status>up</oper-status>
-    <statistics>
-      <discontinuity-time>2020-12-18T18:59:00-05:00</discontinuity-time>
-    </statistics>
-  </interface>
-  <interface>
-    <name>eth4</name>
     <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
     <oper-status>up</oper-status>
     <statistics>

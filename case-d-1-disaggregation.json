@@ -121,14 +121,6 @@
   "ietf-interfaces:interfaces": {
     "interface": [
       {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
         "name": "eth1",
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
@@ -146,14 +138,6 @@
       },
       {
         "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
-        "name": "eth4",
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
