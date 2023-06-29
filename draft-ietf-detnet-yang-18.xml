@@ -9246,6 +9246,9 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
             node illustrated in <xref target="case-b2"/>. 
             In this example, service sub-layer ssl-1 for DetNet flow DN1 
             and ssl-2 for flow DN2 aggregate at service sub-layer Detet flow asl-1. 
+            In this example an aggregation service sub-layer asl-1 is created 
+            to aggregated ssl-1 and ssl2 and that label is encapsulated in a 
+            separate forwarding sub-layer afl-1 with MPLS labels.  
        </t>
 
         <figure anchor="example-detnet-json-service-aggregation-b-2">
