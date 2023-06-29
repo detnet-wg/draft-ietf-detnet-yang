@@ -6,7 +6,7 @@
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 200000000,
+          "max-latency-variation": 20000000,
           "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -28,17 +28,10 @@
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
-          "max-latency-variation": 200000000,
+          "max-latency-variation": 20000000,
           "max-loss": "0.000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
-        },
-        "traffic-spec": {
-          "interval": 5,
-          "max-pkts-per-interval": 10,
-          "max-payload-size": 1500,
-          "min-payload-size": 100,
-          "min-pkts-per-interval": 1
         },
         "member-service": [
           "ssl-1"
@@ -48,7 +41,7 @@
         "name": "pf-3",
         "traffic-spec": {
           "interval": 5,
-          "max-pkts-per-interval": 10,
+          "max-pkts-per-interval": 20,
           "max-payload-size": 1500
         },
         "member-fwd-sublayer": [
