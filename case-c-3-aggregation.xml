@@ -33,14 +33,6 @@
          <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
-    <interface>
-      <name>eth4</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
   </interfaces>
 <detnet
   xmlns="urn:ietf:params:xml:ns:yang:ietf-detnet"
@@ -55,7 +47,7 @@
     <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
-      <max-latency-variation>100000000</max-latency-variation>
+      <max-latency-variation>10000000</max-latency-variation>
       <max-loss>0.0000001</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
@@ -68,7 +60,7 @@
     <traffic-requirements>
       <min-bandwidth>200000000</min-bandwidth>
       <max-latency>100000000</max-latency>
-      <max-latency-variation>100000000</max-latency-variation>
+      <max-latency-variation>10000000</max-latency-variation>
       <max-loss>0.0000001</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>

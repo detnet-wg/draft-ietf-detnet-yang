@@ -24,7 +24,7 @@
           <city/>
           <code/>
           <country/>
-        </postal>
+          </postal>
         <email>gengxuesong@huawei.com</email>
       </address>
     </author>
@@ -206,7 +206,7 @@
               relates to the disaggregating flows. 
       </t>
       <t>
-	      At the egress point, forwarding information is determined by the
+              At the egress point, forwarding information is determined by the
               App-flow type with all DetNet-related headers removed. The forwarding
               information can specify an output port, set a next-hop-address in case
               of IP, or set an MPLS label in case of MPLS.
@@ -533,7 +533,7 @@ module ietf-detnet {
      // replace '2022-10-04' with the module publication date
      // the format is (year-month-day)    
 
-  revision 2022-10-04 {
+  revision 2023-06-28 {
     description
       "Initial revision";
     reference
@@ -771,19 +771,26 @@ module ietf-detnet {
     type enumeration {
       enum copy-from-app-flow {
         description
-          "This enum value means copy the app-flow sequence number 
-           to the DetNet-flow.";
-      }
+          "Copy-from-app-flow is to extend and use the
+          sequence number used in App-flow. This function is
+          required when encapsulating App-flows that have been
+          replicated and received through multiple ingress nodes
+          into a member flow, and then eliminate it at the relay
+          node.";
+     }
       enum generate-by-detnet-flow {
         description
-          "This enum value means generate the sequence number by the
-           DetNet flow.";
+          "Generate-by-detnet-flow is used to create a new
+          sequence number for a DetNet flow at the ingress node.
+          Care must be taken when using this option to ensure
+          there is only one source for generating sequence
+          numbers.";
       }
     }
     description
-      "An enumeration for the sequence number behaviors supported.";
+      "This typedef defines how to generate sequence numbers to
+      be used in DetNet encapsulation."; 
   }
-
   typedef sequence-number-field {
     type enumeration {
       enum zero-sn {
@@ -1091,7 +1098,6 @@ module ietf-detnet {
       "Generic parameters of DetNet next hops. This follows the 
        principles for next hops in RFC 8349";
     choice next-hop-options {
-      mandatory true;
       description
         "Options for next hops.  It is expected that further cases
          will be added through
@@ -1169,7 +1175,6 @@ module ietf-detnet {
       "Generic parameters of DetNet next hops. This follows the 
        principles for next hops in RFC 8349";
     choice next-hop-options {
-      mandatory true;
       description
         "Options for next hops.
          It is expected that further cases will be added through
@@ -1502,7 +1507,6 @@ module ietf-detnet {
           }
           leaf interface {
             type if:interface-ref;
-            mandatory true;
             description
             "Interface is used for any service type when
              matching all flows to the interface.";
@@ -1512,6 +1516,7 @@ module ietf-detnet {
         container egress {
           description
             "Route's next-hop attribute.";
+          uses data-flow-spec;
           choice application-type {
             description
               "This is the application type choices.";
@@ -1593,7 +1598,6 @@ module ietf-detnet {
           description
             "The DetNet service sub-layer incoming configuration.";
           choice incoming {
-            mandatory true;
             description
               "A service sub-layer may have App flows or other
                service sub-layers.";
@@ -1634,7 +1638,6 @@ module ietf-detnet {
           description
             "The DetNet service sub-layer outgoing configuration.";
           choice outgoing {
-            mandatory true;
             description
               "The outgoing type may be a forwarding Sub-layer or a
                service sub-layer or aggregation type.";
@@ -1690,7 +1693,7 @@ module ietf-detnet {
                 description
                   "This is the MPLS service sub-layer label. This
                   is optional and only used when the service
-                  sublayer uses MPLS. It is an MPLS stack since 
+                  sub-layer uses MPLS. It is an MPLS stack since 
                   more than a single label may be used.";
                 uses rt-types:mpls-label-stack;
               }
@@ -1766,7 +1769,6 @@ module ietf-detnet {
             "The DetNet forwarding sub-layer incoming 
              configuration.";
           choice incoming {
-            mandatory true;
             description
               "Cases of incoming types.";
             container service-sub-layer {
@@ -1806,7 +1808,6 @@ module ietf-detnet {
             "The DetNet forwarding sub-layer outbound
              configuration.";
           choice outgoing {
-            mandatory true;
             description
               "This is when a service connected directly to an
               interface with no forwarding sub-layer."; 
@@ -2080,7 +2081,7 @@ module: ietf-detnet
      |     +--rw traffic-profile?    traffic-profile-ref
      |     +--rw ingress
      |     |  +--ro app-flow-status?       identityref
-     |     |  +--rw interface              if:interface-ref
+     |     |  +--rw interface?             if:interface-ref
      |     |  +--rw (data-flow-type)?
      |     |     +--:(tsn-app-flow)
      |     |     |  +--rw tsn-app-flow
@@ -2138,13 +2139,58 @@ module: ietf-detnet
      |     |                 +--rw label?
      |     |                         rt-types:mpls-label
      |     +--rw egress
+     |        +--rw (data-flow-type)?
+     |        |  +--:(tsn-app-flow)
+     |        |  |  +--rw tsn-app-flow
+     |        |  |     +--rw source-mac-address?    yang:mac-address
+     |        |  |     +--rw destination-mac-address? 
+     |        |  |     |                            yang:mac-address
+     |        |  |     +--rw ethertype?     ethertypes:ethertype
+     |        |  |     +--rw vlan-id?       dot1q-types:vlanid
+     |        |  |     +--rw pcp?          dot1q-types:priority-type
+     |        |  +--:(ip-app-flow)
+     |        |  |  +--rw ip-app-flow
+     |        |  |     +--rw src-ip-prefix?          inet:ip-prefix
+     |        |  |     +--rw dest-ip-prefix?         inet:ip-prefix
+     |        |  |     +--rw protocol-next-header?   uint8
+     |        |  |     +--rw dscp?             inet:dscp
+     |        |  |     +--rw flow-label?       inet:ipv6-flow-label
+     |        |  |     +--rw source-port
+     |        |  |     |  +--rw (port-range-or-operator)?
+     |        |  |     |     +--:(range)
+     |        |  |     |     |  +--rw lower-port    inet:port-number
+     |        |  |     |     |  +--rw upper-port    inet:port-number
+     |        |  |     |     +--:(operator)
+     |        |  |     |        +--rw operator?     operator
+     |        |  |     |        +--rw port          inet:port-number
+     |        |  |     +--rw destination-port
+     |        |  |     |  +--rw (port-range-or-operator)?
+     |        |  |     |     +--:(range)
+     |        |  |     |     |  +--rw lower-port    inet:port-number
+     |        |  |     |     |  +--rw upper-port    inet:port-number
+     |        |  |     |     +--:(operator)
+     |        |  |     |        +--rw operator?     operator
+     |        |  |     |        +--rw port          inet:port-number
+     |        |  |     +--rw ipsec-spi?              ipsec-spi
+     |        |  +--:(mpls-app-flow)
+     |        |     +--rw mpls-app-flow
+     |        |        +--rw (label-space)?
+     |        |           +--:(context-label-space)
+     |        |           |  +--rw mpls-label-stack
+     |        |           |     +--rw entry* [id]
+     |        |           |        +--rw id               uint8
+     |        |           |        +--rw label?   rt-types:mpls-label
+     |        |           |        +--rw ttl?             uint8
+     |        |           |        +--rw traffic-class?   uint8
+     |        |           +--:(platform-label-space)
+     |        |              +--rw label?         rt-types:mpls-label
      |        +--rw (application-type)?
      |           +--:(ethernet)
      |           |  +--rw ethernet
      |           |     +--rw interface?   if:interface-ref
      |           +--:(ip-mpls)
      |              +--rw ip-mpls
-     |                 +--rw (next-hop-options)
+     |                 +--rw (next-hop-options)?
      |                    +--:(simple-next-hop)
      |                    |  +--rw outgoing-interface?
      |                    |  |       if:interface-ref
@@ -2192,7 +2238,7 @@ module: ietf-detnet
      |     |  +--rw sequence-number-length?   sequence-number-field
      |     +--rw operation?            operation
      |     +--rw incoming
-     |     |  +--rw (incoming)
+     |     |  +--rw (incoming)?
      |     |     +--:(app-flow)
      |     |     |  +--rw app-flow
      |     |     |     +--rw flow*   app-flow-ref
@@ -2251,7 +2297,7 @@ module: ietf-detnet
      |     |                       +--rw label?
      |     |                               rt-types:mpls-label
      |     +--rw outgoing
-     |        +--rw (outgoing)
+     |        +--rw (outgoing)?
      |           +--:(forwarding-sub-layer)
      |           |  +--rw forwarding-sub-layer
      |           |     +--rw service-outgoing* [index]
@@ -2308,7 +2354,7 @@ module: ietf-detnet
            +--rw traffic-profile?   traffic-profile-ref
            +--rw operation?         forwarding-operations
            +--rw incoming
-           |  +--rw (incoming)
+           |  +--rw (incoming)?
            |     +--:(service-sub-layer)
            |     |  +--rw service-sub-layer
            |     |     +--rw sub-layer*   service-sub-layer-ref
@@ -2366,10 +2412,10 @@ module: ietf-detnet
            |                       +--rw label?
            |                               rt-types:mpls-label
            +--rw outgoing
-              +--rw (outgoing)
+              +--rw (outgoing)?
                  +--:(interface)
                  |  +--rw interface
-                 |     +--rw (next-hop-options)
+                 |     +--rw (next-hop-options)?
                  |        +--:(simple-next-hop)
                  |        |  +--rw outgoing-interface?
                  |        |  |       if:interface-ref
@@ -2512,7 +2558,9 @@ module: ietf-detnet
     <section numbered="true" toc="default">
         <name>Example A-1 JSON Configuration/Operational</name>
         <t>
-                This illustrates simple aggregation. Ingress node 1 
+                This illustrates that the multiple App flows with the same source,
+                 the same destination, and the same traffic specification are aggregated in
+                 a single DetNet flow service sub-layer. Ingress node 1 
                 aggregates App flows 0 and 1 into a service sub-layer of DetNet flow 1. 
                 Two ways of illustrating this follow, then the JSON operational data model
                 corresponding to the diagrams follows. This example uses IPv6 address format.
@@ -2532,7 +2580,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
    xmlns="http://www.w3.org/2000/svg"
    width="210mm"
    height="120mm"
-   viewBox="0 0 210 110"
+   viewBox="0 0 210 120"
    version="1.1"
    id="svg8">
    <g
@@ -4406,13 +4454,13 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
 </artwork>
 </artset>
 </figure>
-       <t> The follow figure contains the operational json configuration for the ingress aggregation 
+       <t> The following figure contains the operational JSON configuration for the ingress aggregation 
                node illustrated in <xref target="case-a1"/> and 
                <xref target="case-a1-pipe"/>. App-0 and app-1 
-               are aggregated into Service Sublayer ssl-1. 
+               are aggregated into Service Sub-layer ssl-1. 
        </t>
         <figure anchor="example-detnet-json-configuration-a-1">
-          <name>Example A-1 DetNet JSON configuration</name>
+          <name>Example A-1 DetNet configuration Application Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -4422,7 +4470,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 200000000,
+          "max-latency-variation": 20000000,
           "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -4444,17 +4492,10 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
-          "max-latency-variation": 200000000,
+          "max-latency-variation": 20000000,
           "max-loss": "0.000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
-        },
-        "traffic-spec": {
-          "interval": 5,
-          "max-pkts-per-interval": 10,
-          "max-payload-size": 1500,
-          "min-payload-size": 100,
-          "min-pkts-per-interval": 1
         },
         "member-service": [
           "ssl-1"
@@ -4464,7 +4505,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
         "name": "pf-3",
         "traffic-spec": {
           "interval": 5,
-          "max-pkts-per-interval": 10,
+          "max-pkts-per-interval": 20,
           "max-payload-size": 1500
         },
         "member-fwd-sublayer": [
@@ -4589,31 +4630,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
         }
       },
       {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
         "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
-        "name": "eth4",
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
@@ -4629,13 +4646,15 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
       <section numbered="true" toc="default">
         <name>Example B-1 XML Config: Aggregation using a Forwarding Sub-layer</name>
         <t>
-             This illustrates the service sub-layers of DetNet.  Flows 1 and 2 are
-             aggregated into a service sub-layer of aggregated DetNet flow 1.  A
-             diagram illustrating this case is shown and then the corresponding
-             JSON operational data for node Ingress 1 follows.
+             This illustrates that service sub-layers of DetNet flows 1 and 2 are
+             aggregated into a single forwarding sub-layer. 
+             For the same destination multiple DetNet flows use a single forwarding path and
+             service protection is performed by the corresponding service sub-layer
+              of each flow. A diagram illustrating this case is shown and then the corresponding
+             XML operational data for node Ingress 1 follows.
         </t>
         <figure anchor="case-b1">
-                <name>Case B-1 Example XML Config: Aggregation using a Forwarding Sub-layer</name>
+                <name>Case B-1 Example Config: Aggregation using a Forwarding Sub-layer</name>
           <artset>
             <artwork align="left" type="ascii-art" name="" alt=""><![CDATA[
         
@@ -6794,15 +6813,15 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
 </artwork>
 </artset>
         </figure>
-        <t> The follow <xref target="example-detnet-xml-fwd-aggregation-b-1"/>
-            contains the operational xml configuration for the ingress aggregation 
+        <t> The following <xref target="example-detnet-xml-fwd-aggregation-b-1"/>
+            contains the operational XML configuration for the ingress aggregation 
             node illustrated in <xref target="case-b1"/>.
-               In this example app-0 and app-1 are in separate service sublayers 
+               In this example app-0 and app-1 are in separate service sub-layers 
                with MPLS labels and the 
-               aggregation happens at the forwarding sublayer afl-1 using MPLS labels.  
+               aggregation happens at the forwarding sub-layer afl-1 using MPLS labels.  
        </t>
         <figure anchor="example-detnet-xml-fwd-aggregation-b-1">
-          <name>Example B-1 DetNet XML configuration</name>
+          <name>Example B-1 DetNet configuration Forwarding Layer Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 <interfaces
   xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"
@@ -6827,24 +6846,6 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
     </interface>
     <interface>
       <name>eth2</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-        <discontinuity-time
-          >2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
-      <name>eth3</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-        <discontinuity-time
-          >2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
-      <name>eth4</name>
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
@@ -6892,12 +6893,17 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
     <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
-      <max-latency-variation>200000000</max-latency-variation>
+      <max-latency-variation>20000000</max-latency-variation>
       <max-loss>0.0000001</max-loss>
       <max-consecutive-loss-tolerance
         >5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
+    <traffic-spec>
+      <interval>5</interval>
+      <max-pkts-per-interval>10</max-pkts-per-interval>
+      <max-payload-size>1500</max-payload-size>
+    </traffic-spec>
     <member-app>app-1</member-app>
     <member-app>app-2</member-app>
   </traffic-profile>
@@ -6906,7 +6912,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
     <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
-      <max-latency-variation>200000000</max-latency-variation>
+      <max-latency-variation>20000000</max-latency-variation>
       <max-loss>0.000001</max-loss>
       <max-consecutive-loss-tolerance
         >5</max-consecutive-loss-tolerance>
@@ -6919,7 +6925,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
     <name>3</name>
     <traffic-spec>
       <interval>5</interval>
-      <max-pkts-per-interval>10</max-pkts-per-interval>
+      <max-pkts-per-interval>20</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
     </traffic-spec>
     <member-fwd-sublayer>afl-1</member-fwd-sublayer>
@@ -7015,13 +7021,17 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
       <section numbered="true" toc="default">
         <name>Example B-2 JSON Service Aggregation Configuration</name>
         <t>
-                This illustrates the service sub-layers of DetNet. Flows 1
-                and 2 are aggregated into a service sub-layer of aggregated DetNet flow 1. 
-                A diagram illustrating this case is shown and then the 
-                corresponding JSON operational data for node Ingress 1 follows.
+                <xref target="case-b2"/> illustrates that DetNet flows 1 and 2 service sub-layers are  
+                aggregated into a service sub-layer of an aggregated flow. 
+                Multiple DetNet flows with the same requirements for the same 
+                destination are aggregated into a single aggregated DetNet flow, 
+                 and service protection and resource allocation are performed by 
+                 aggregated DetNet flow service sub-layer and forwarding  
+                 sub-layer.  A diagram illustrating this case is shown and then the  
+                 corresponding JSON operational data for node Ingress 1 follows.
         </t>
         <figure anchor="case-b2">
-                <name>Case B-2 Example JSON Service Aggregation</name>
+                <name>Case B-2 Example Service Aggregation</name>
           <artset>
             <artwork align="left" type="ascii-art" name="" alt=""><![CDATA[
         
@@ -9231,16 +9241,15 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
 </artwork>
 </artset>
         </figure>
-        <t> The follow <xref target="example-detnet-json-service-aggregation-b-2"/>
-            contains the operational json configuration for the ingress aggregation 
+        <t> The following <xref target="example-detnet-json-service-aggregation-b-2"/>
+            contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-b2"/>. 
-            In this example an aggregation service sublayer asl-1 is created 
-            to aggregated ssl-1 and ssl2 and that label is encapsulated in a 
-            separate forwarding sublayer afl-1 with MPLS labels.  
+            In this example, service sub-layer ssl-1 for DetNet flow DN1 
+            and ssl-2 for flow DN2 aggregate at service sub-layer Detet flow asl-1. 
        </t>
 
         <figure anchor="example-detnet-json-service-aggregation-b-2">
-          <name>Example B-2 DetNet JSON Service Aggregation</name>
+          <name>Example B-2 DetNet Service Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -9250,14 +9259,19 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 200000000,
+          "max-latency-variation": 20000000,
           "max-loss": 0.000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
-        },
-        "member-app": [
-          "app-1",
-          "app-2"
+         },
+         "traffic-spec": {	 		
+           "interval": 125,	 		
+           "max-pkts-per-interval": 10,	 		
+           "max-payload-size": 1500	 		
+         },
+         "member-app": [
+           "app-1",
+           "app-2"
         ]
       },
       {
@@ -9265,7 +9279,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 200000000,
+          "max-latency-variation": 20000000,
           "max-loss": 0.000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -9277,9 +9291,23 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
       },
       {
         "name": "3",
+        "traffic-requirements": {
+          "min-bandwidth": "200000000",
+          "max-latency": 100000000,
+          "max-latency-variation": 20000000,
+          "max-loss": 0.000001,
+          "max-consecutive-loss-tolerance": 5,
+          "max-misordering": 0
+        },
+        "member-service": [
+          "asl-1"
+        ]
+      },
+      {
+        "name": "4",
         "traffic-spec": {
-          "interval": 5,
-          "max-pkts-per-interval": 10,
+          "interval": 125,
+          "max-pkts-per-interval": 20,
           "max-payload-size": 1500
         },
         "member-fwd-sublayer": [
@@ -9390,7 +9418,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
         {
           "name": "asl-1",
           "service-rank": 10,
-          "traffic-profile": "2",
+          "traffic-profile": "3",
           "service-protection": {
             "protection": "none",
             "sequence-number-length": "long-sn"
@@ -9431,7 +9459,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
       "sub-layer": [
         {
           "name": "afl-1",
-          "traffic-profile": "3",
+          "traffic-profile": "4",
           "operation": "impose-and-forward",
           "incoming": {
             "service-sub-layer": {
@@ -9468,31 +9496,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
         }
       },
       {
-        "name": "eth1",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T19:59:00-04:00"
-        }
-      },
-      {
         "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T19:59:00-04:00"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-10-02T19:59:00-04:00"
-        }
-      },
-      {
-        "name": "eth4",
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
@@ -9508,13 +9512,16 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
       <section numbered="true" toc="default">
               <name>Example C-1 JSON Relay Aggregation/Disaggregation Configuration</name>
         <t>
-                This illustrates the Relay node 1 aggregating the forwarding 
-                sub-layers of DetNet flows 1 and 2 into a forwarding sub-layer. 
+                <xref target="case-c1"/> illustrates the relay node's forwarding sub-layer 
+                flows 1 and 2 are aggregated into a single forwarding sub-layer. 
+                Service protection and resource allocation are 
+                performed by the corresponding service sub-layer and forwarding 
+                sub-layer of each flow.
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
                 corresponding JSON operational data follows.
         </t>
         <figure anchor="case-c1">
-                <name>Case C-1 Example JSON Service Aggregation/Disaggregation</name>
+                <name>Case C-1 Example Service Aggregation/Disaggregation</name>
           <artset>
             <artwork align="left" type="ascii-art" name="" alt=""><![CDATA[
         
@@ -11972,18 +11979,20 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
 </artset>
         </figure>
         <t> The following <xref target="example-detnet-json-service-aggregation-c-1"/>
-            contains the operational json configuration for the ingress aggregation 
+            contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-c1"/>. 
-            In this example a relay performing aggregation at the forwarding sublayer is illustrated.  
-            Two forwarding sublayer labels 10000 and 10006 are aggregated and replicated 
-            at the forwarding sublayer on two different paths. This illustrates 
-            aggregation at the forwarding sublayer by another forwarding sublayer. 
+            In this example a relay performing aggregation at the forwarding sub-layer is illustrated.  
+            Two DetNet flows DN1 and DN2 are replicated at each service sub-layer. 
+            The two forwarding sub-layers for the upside path are aggregated
+            at the forwarding sub-layer with label 20000 and the two forwarding
+            sub-layers for the downside path are aggregated at the forwarding
+            sub-layer with label 20001.
             The <xref target="example-detnet-json-service-disaggregation-c-1"/> 
-            contains the operational json configuration for the egress disaggregation 
+            contains the operational JSON configuration for the egress disaggregation 
             node illustrated in <xref target="case-c1"/>. 
     </t>
         <figure anchor="example-detnet-json-service-aggregation-c-1">
-          <name>Example C-1 DetNet JSON Relay Service Aggregation</name>
+          <name>Example C-1 DetNet Relay Service Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -11993,7 +12002,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -12370,14 +12379,6 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
         "statistics": {
           "discontinuity-time": "2020-12-18T18:59:00-05:00"
         }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
       }
     ]
   }
@@ -12385,7 +12386,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
 ]]></artwork>
         </figure>
         <figure anchor="example-detnet-json-service-disaggregation-c-1">
-          <name>Example C-1 DetNet JSON Relay Service Disaggregation</name>
+          <name>Example C-1 DetNet Relay Service Disaggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -12395,7 +12396,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -12762,14 +12763,6 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
         "statistics": {
           "discontinuity-time": "2020-12-18T18:59:00-05:00"
         }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
       }
     ]
   }
@@ -12778,16 +12771,19 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
         </figure>
       </section>
       <section numbered="true" toc="default">
-        <name>Example C-2 JSON Relay Aggregation Service Sub-Layer</name>
+              <name>Example C-2 JSON Relay Aggregation/Disaggregation Service Sub-Layer</name>
         <t>
-                This illustrates the Relay node 1 aggregating the service sub-layers 
-            node illustrated in <xref target="case-c1"/>. 
-                of DetNet flows 1 and 2 into a forwarding sub-layer
-                A diagram illustrating both aggregation and disaggregation is shown and then the 
-                corresponding JSON operational data follows.
+                <xref target="case-c2"/>
+                This illustrates that at the relay node service sub-layers 
+                flows 1 and 2 are aggregated into a single forwarding sub-layer. 
+                Service protection is performed by the 
+                corresponding service sub-layer of each flow and resource allocation 
+                 is performed by aggregated forwarding sub-layer for all aggregated 
+                 flows. A diagram illustrating both aggregation and disaggregation is 
+                 shown and then the corresponding JSON operational data follows.
         </t>
         <figure anchor="case-c2">
-                <name>Case C-2 Example JSON Service Aggregation/Disaggregation</name>
+                <name>Case C-2 Example Service Aggregation/Disaggregation</name>
           <artset>
             <artwork align="left" type="ascii-art" name="" alt=""><![CDATA[
         
@@ -14998,18 +14994,21 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
 </artset>
         </figure>
         <t> The following <xref target="example-detnet-json-service-aggregation-c-2"/>
-            contains the operational json configuration for the ingress aggregation 
+            contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-c2"/>. 
-            In this example a relay performing aggregation at the forwarding sublayer is illustrated.  
-            Two forwarding sublayer labels 10000 and 10006 are aggregated and replicated 
-            at the forwarding sublayer on two different paths. Unlike the previous example
-            the only services are aggregated int the forwarding sublayer. 
-            The <xref target="example-detnet-json-service-disaggregation-c-2"/> 
-            contains the operational json configuration for the egress disaggregation 
+            In this example, a relay performing aggregation at the forwarding sub-layer is illustrated.  
+            Two DetNet flows DN1 and DN2 are replicated at each 
+            service sub-layer, and the replicated each service sub-layer for the
+            upside path is aggregated at the single forwarding sub-layer with 
+            MPLS label 20000, and the replicated each service sub-layer for the  
+            downside path is aggregated at the forwarding sub-layer with  
+            MPLS label 20001. 
+            <xref target="example-detnet-json-service-disaggregation-c-2"/> 
+            contains the operational JSON configuration for the egress disaggregation 
             node illustrated in <xref target="case-c2"/>. 
     </t>
         <figure anchor="example-detnet-json-service-aggregation-c-2">
-          <name>Example C-2 DetNet JSON Relay Aggregation Service Sub-Layer</name>
+          <name>Example C-2 DetNet Relay Aggregation Service Sub-Layer</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -15019,7 +15018,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -15284,14 +15283,6 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
         "statistics": {
           "discontinuity-time": "2020-12-18T18:59:00-05:00"
         }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
       }
     ]
   }
@@ -15299,7 +15290,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
 ]]></artwork>
         </figure>
         <figure anchor="example-detnet-json-service-disaggregation-c-2">
-          <name>Example C-2 DetNet JSON Relay Disaggregation Service Sub-Layer</name>
+          <name>Example C-2 DetNet Relay Disaggregation Service Sub-Layer</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -15309,7 +15300,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -15572,14 +15563,6 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
         "statistics": {
           "discontinuity-time": "2020-12-18T18:59:00-05:00"
         }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
       }
     ]
   }
@@ -15590,15 +15573,18 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
       <section numbered="true" toc="default">
               <name>Example C-3 JSON Relay Service Sub-Layer Aggregation/Disaggregation</name>
         <t>
-                This illustrates the Relay node 1 aggregating the 
-                service sub-layers of DetNet flows 1 and 2 into a service sub-layer of Aggregated DetNet flow 1.
-                It also illustrates the Relay node 2 disaggregating the aggregated 
-                DetNet flow 1 into the  DetNet flows 1 and 2 service sub-layers.
-                A diagram illustrating both aggregation and disaggregation is shown and then the 
-                corresponding JSON operational data follows.
+                <xref target="case-c3"/> illustrates that at the relay node service sub-layer
+                flows 1 and 2 are aggregated into a service sub-layer 
+                DetNet flow. Multiple DetNet flows with the same requirements 
+                which can use the same path are aggregated into a single 
+                aggregated DetNet flow, and service protection and resource allocation 
+                are performed by the service sub-layer and forwarding sub-layer of
+                aggregated DetNet flow. A diagram illustrating both aggregation and 
+                disaggregation is shown and then the corresponding JSON operational 
+                data follows.
         </t>
         <figure anchor="case-c3">
-                <name>Case C-3 Example JSON Service Aggregation/Disaggregation</name>
+                <name>Case C-3 Example Service Aggregation/Disaggregation</name>
           <artset>
             <artwork align="left" type="ascii-art" name="" alt=""><![CDATA[
         
@@ -17926,15 +17912,18 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
 </artset>
         </figure>
         <t> The following <xref target="example-detnet-json-service-aggregation-c-3"/>
-            contains the operational json configuration for the ingress aggregation 
+            contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-c3"/>. 
-            In this example a relay performing aggregation using an aggregation label is illustrated.  
+            In this example a relay performing aggregation at the service sub-layer is illustrated.  
+            Two DetNet flows DN1 and DN2 are relayed at each service 
+            sub-layer with MPLS labels 101 and 104 respectively, and each service sub-layer is
+            aggregated at a single service sub-layer flow and replicated.
             The <xref target="example-detnet-json-service-disaggregation-c-3"/> 
-            contains the operational json configuration for the egress disaggregation 
+            contains the operational JSON configuration for the egress disaggregation 
             node illustrated in <xref target="case-c3"/>. 
-    </t>
+        </t>
         <figure anchor="example-detnet-json-service-aggregation-c-3">
-          <name>Example C-3 DetNet JSON Relay Service Sub-Layer Aggregation</name>
+          <name>Example C-3 DetNet Relay Service Sub-Layer Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -17944,7 +17933,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -17959,7 +17948,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -18248,14 +18237,6 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
         "statistics": {
           "discontinuity-time": "2020-12-18T18:59:00-05:00"
         }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
       }
     ]
   }
@@ -18263,7 +18244,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
 ]]></artwork>
         </figure>
         <figure anchor="example-detnet-json-service-disaggregation-c-3">
-          <name>Example C-3 DetNet JSON Relay Service Sub-Layer Disaggregation</name>
+          <name>Example C-3 DetNet Relay Service Sub-Layer Disaggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -18273,7 +18254,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -18288,7 +18269,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -18596,15 +18577,19 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
       <section numbered="true" toc="default">
               <name>Example C-4 JSON Relay Service Sub-Layer Aggregation/Disaggregation</name>
         <t>
-                This illustrates the Relay node 1 aggregating the 
-                forwarding sub-layers of DetNet flow 1 and 2 into a service sub-layer of Aggregated DetNet flow 1.
-                This also illustrates the Relay node 2 disaggregating the service sub-layer of 
-                Aggregated DetNet flow 1 to forwarding sub-layers of DetNet flow 1 and 2.
+                <xref target="case-c4"/> 
+                illustrates the relay node forwarding sub-layers of DetNet
+                flows 1 and 2 are aggregated into a service sub-layer 
+                DetNet flow. Multiple DetNet flows with the same requirements
+                which can use the same path are aggregated into a single
+                aggregated DetNet flow. Service protection is performed by the
+                service sub-layer of the aggregated DetNet flow and resource allocation
+                is performed by the forwarding sub-layer of each aggregated DetNet flow.
                 A diagram illustrating both aggregation and disaggregation is shown and then the 
                 corresponding JSON operational data follows.
         </t>
         <figure anchor="case-c4">
-                <name>Case C-4 Example JSON Service Aggregation/Disaggregation</name>
+                <name>Case C-4 Example Service Aggregation/Disaggregation</name>
           <artset>
             <artwork align="left" type="ascii-art" name="" alt=""><![CDATA[
         
@@ -21209,16 +21194,19 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
 </artset>
         </figure>
         <t> The following <xref target="example-detnet-json-forwarding-aggregation-c-4"/>
-            contains the operational json configuration for the ingress aggregation 
+            contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-c4"/>. 
-            In this example a relay performing aggregation using an aggregation label 
-            on a forwarding label is illustrated.  
+            In this example, a relay performing aggregation at the service sub-layer is
+            illustrated. Two DetNet flows DN1 and DN2 are relayed at each service 
+            sub-layer. The two DetNet forwarding sub-layer flows with MPLS labels 
+            20004 and 20005 are aggregated at the single service sub-layer 
+            DetNet flow and then replicated.
             The <xref target="example-detnet-json-forwarding-disaggregation-c-4"/> 
-            contains the operational json configuration for the egress disaggregation 
+            contains the operational JSON configuration for the egress disaggregation 
             node illustrated in <xref target="case-c4"/>. 
     </t>
         <figure anchor="example-detnet-json-forwarding-aggregation-c-4">
-          <name>Example C-4 DetNet JSON Relay Service Sub-Layer Aggregation</name>
+          <name>Example C-4 DetNet Relay Service Sub-Layer Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -21228,7 +21216,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -21243,7 +21231,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -21598,14 +21586,6 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
         "statistics": {
           "discontinuity-time": "2020-12-18T18:59:00-05:00"
         }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
       }
     ]
   }
@@ -21613,7 +21593,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
 ]]></artwork>
         </figure>
         <figure anchor="example-detnet-json-forwarding-disaggregation-c-4">
-          <name>Example C-4 DetNet JSON Relay Service Sub-Layer Disaggregation</name>
+          <name>Example C-4 DetNet Relay Service Sub-Layer Disaggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -21623,7 +21603,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -21638,7 +21618,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -21980,14 +21960,6 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
         "statistics": {
           "discontinuity-time": "2020-12-18T18:59:00-05:00"
         }
-      },
-      {
-        "name": "eth4",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
       }
     ]
   }
@@ -21998,13 +21970,16 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
       <section numbered="true" toc="default">
         <name>Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/Disaggregation</name>
         <t>
-                This illustrates the Transit node 1 aggregating the forwarding 
-                sub-layers of DetNet flow 1 and 2 into a forwarding sub-layer.
-                This also illustrates a Transit node 4 disaggregating a forwarding sub-layer
-                into DetNet flow 1 and 2 forwarding sub-layers.
+                <xref target="case-d1"/> 
+                 illustrates at the transit node,  forwarding sub-layers 
+                 flows 1 and 2 are aggregated into a single forwarding sub-layer.
+                 Resource allocation is performed by the 
+                 corresponding forwarding sub-layer for all aggregated flows. 
+                 <xref target="case-d1"/> illustrating both aggregation and disaggregation is shown 
+                  and then the corresponding JSON operational data follows.
         </t>
         <figure anchor="case-d1">
-                <name>Case D-1 Example Service Aggregation/Disaggregation</name>
+                <name>Case D-1 Example Transit Node Forwarding Aggregation/Disaggregation</name>
           <artset>
             <artwork align="left" type="ascii-art" name="" alt=""><![CDATA[
         
@@ -23732,16 +23707,20 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
 </artset>
         </figure>
         <t> The following <xref target="example-detnet-json-forwarding-aggregation-d-1"/>
-            contains the operational json configuration for the ingress aggregation 
+            contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-d1"/>. 
-            In this example a transit node performing aggregation using an forwarding label 
-            on an inner forwarding label is illustrated.  
+            In this example, a transit node performing aggregation at the forwarding sub-layer 
+            is illustrated.
+            Two DetNet flows DN1 and DN2 are transmitted at each 
+            forwarding sub-layer. The DetNet forwarding sub-layer flows with
+            MPLS labels 10002 and 10006 are aggregated at the single forwarding 
+            sub-layer. The resulting aggregated DetNet flow has MPLS label 20000.
             The <xref target="example-detnet-json-forwarding-disaggregation-d-1"/> 
-            contains the operational json configuration for the egress disaggregation 
+            contains the operational JSON configuration for the egress disaggregation 
             transit node illustrated in <xref target="case-d1"/>. 
     </t>
         <figure anchor="example-detnet-json-forwarding-aggregation-d-1">
-          <name>Example D-1 DetNet JSON Relay Service Sub-Layer Aggregation</name>
+          <name>Example D-1 Transit Node Forwarding Aggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -23886,23 +23865,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
         }
       },
       {
-        "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
         "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
-        "name": "eth4",
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
@@ -23915,7 +23878,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
 ]]></artwork>
         </figure>
         <figure anchor="example-detnet-json-forwarding-disaggregation-d-1">
-          <name>Example D-1 DetNet JSON Relay Service Sub-Layer Disaggregation</name>
+          <name>Example D-1  Transit Node Forwarding Disaggregation</name>
           <artwork name="" type="" align="left" alt=""><![CDATA[
 {
   "ietf-detnet:detnet": {
@@ -23957,7 +23920,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "10002"
+                    "label": 10002
                   }
                 ]
               }
@@ -23970,7 +23933,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "10003"
+                    "label": 10003
                   }
                 ]
               }
@@ -23988,7 +23951,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "10006"
+                    "label": 10006
                   }
                 ]
               }
@@ -24001,7 +23964,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "10007"
+                    "label": 10007
                   }
                 ]
               }
@@ -24019,7 +23982,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "20001"
+                    "label": 20001
                   }
                 ]
               }
@@ -24040,14 +24003,6 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
   "ietf-interfaces:interfaces": {
     "interface": [
       {
-        "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
         "name": "eth1",
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
@@ -24065,14 +24020,6 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
       },
       {
         "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
-        "name": "eth4",
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {

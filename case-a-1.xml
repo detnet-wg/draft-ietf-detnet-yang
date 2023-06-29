@@ -10,31 +10,7 @@
       </statistics>
     </interface>
     <interface>
-      <name>eth1</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
       <name>eth2</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
-      <name>eth3</name>
-      <type>ia:ethernetCsmacd</type>
-      <oper-status>up</oper-status>
-      <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
-      </statistics>
-    </interface>
-    <interface>
-      <name>eth4</name>
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
@@ -81,7 +57,7 @@
     <traffic-requirements>
       <min-bandwidth>100000000</min-bandwidth>
       <max-latency>100000000</max-latency>
-      <max-latency-variation>200000000</max-latency-variation>
+      <max-latency-variation>20000000</max-latency-variation>
       <max-loss>0.0000001</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
@@ -103,14 +79,14 @@
     <traffic-requirements>
       <min-bandwidth>200000000</min-bandwidth>
       <max-latency>100000000</max-latency>
-      <max-latency-variation>200000000</max-latency-variation>
+      <max-latency-variation>20000000</max-latency-variation>
       <max-loss>0.000001</max-loss>
       <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
     <traffic-spec>
       <interval>5</interval>
-      <max-pkts-per-interval>10</max-pkts-per-interval>
+      <max-pkts-per-interval>20</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
       <min-payload-size>100</min-payload-size>
       <min-pkts-per-interval>1</min-pkts-per-interval>

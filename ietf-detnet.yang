@@ -82,7 +82,6 @@ module ietf-detnet {
 
      This version of this YANG module is part of RFC XXXX;
      see the RFC itself for full legal notices.";
-     
 
      // RFC Ed.: replace XXXX with actual RFC number and remove
      // this note
@@ -90,7 +89,7 @@ module ietf-detnet {
      // replace '2022-10-04' with the module publication date
      // the format is (year-month-day)    
 
-  revision 2022-09-21 {
+  revision 2023-06-28 {
     description
       "Initial revision";
     reference
@@ -655,7 +654,6 @@ module ietf-detnet {
       "Generic parameters of DetNet next hops. This follows the 
        principles for next hops in RFC 8349";
     choice next-hop-options {
-      mandatory true;
       description
         "Options for next hops.  It is expected that further cases
          will be added through
@@ -733,7 +731,6 @@ module ietf-detnet {
       "Generic parameters of DetNet next hops. This follows the 
        principles for next hops in RFC 8349";
     choice next-hop-options {
-      mandatory true;
       description
         "Options for next hops.
          It is expected that further cases will be added through
@@ -857,7 +854,8 @@ module ietf-detnet {
             "This is the maximum latency from Ingress to
              Egress(es) for a single packet of the DetNet flow.
              MaxLatency is specified as an integer number of
-             nanoseconds. The MAX value is 4,294,967,295 nanoseconds.";
+             nanoseconds. The MAX value is 4,294,967,295 
+             nanoseconds.";
           reference
             "RFC 9016 Section 4.2";
         }
@@ -1065,7 +1063,6 @@ module ietf-detnet {
           }
           leaf interface {
             type if:interface-ref;
-            mandatory true;
             description
             "Interface is used for any service type when
              matching all flows to the interface.";
@@ -1075,6 +1072,7 @@ module ietf-detnet {
         container egress {
           description
             "Route's next-hop attribute.";
+          uses data-flow-spec;
           choice application-type {
             description
               "This is the application type choices.";
@@ -1156,7 +1154,6 @@ module ietf-detnet {
           description
             "The DetNet service sub-layer incoming configuration.";
           choice incoming {
-            mandatory true;
             description
               "A service sub-layer may have App flows or other
                service sub-layers.";
@@ -1197,7 +1194,6 @@ module ietf-detnet {
           description
             "The DetNet service sub-layer outgoing configuration.";
           choice outgoing {
-            mandatory true;
             description
               "The outgoing type may be a forwarding Sub-layer or a
                service sub-layer or aggregation type.";
@@ -1253,7 +1249,7 @@ module ietf-detnet {
                 description
                   "This is the MPLS service sub-layer label. This
                   is optional and only used when the service
-                  sublayer uses MPLS. It is an MPLS stack since 
+                  sub-layer uses MPLS. It is an MPLS stack since 
                   more than a single label may be used.";
                 uses rt-types:mpls-label-stack;
               }
@@ -1329,7 +1325,6 @@ module ietf-detnet {
             "The DetNet forwarding sub-layer incoming 
              configuration.";
           choice incoming {
-            mandatory true;
             description
               "Cases of incoming types.";
             container service-sub-layer {
@@ -1369,7 +1364,6 @@ module ietf-detnet {
             "The DetNet forwarding sub-layer outbound
              configuration.";
           choice outgoing {
-            mandatory true;
             description
               "This is when a service connected directly to an
               interface with no forwarding sub-layer."; 

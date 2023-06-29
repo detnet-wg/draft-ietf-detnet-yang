@@ -6,7 +6,7 @@
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -21,7 +21,7 @@
         "traffic-requirements": {
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
-          "max-latency-variation": 100000000,
+          "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -306,14 +306,6 @@
       },
       {
         "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
-        "name": "eth4",
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {

@@ -6,10 +6,15 @@
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 200000000,
+          "max-latency-variation": 20000000,
           "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
+        },
+        "traffic-spec": {
+          "interval": 5,
+          "max-pkts-per-interval": 10,
+          "max-payload-size": 1500
         },
         "member-app": [
           "app-1",
@@ -21,7 +26,7 @@
         "traffic-requirements": {
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
-          "max-latency-variation": 200000000,
+          "max-latency-variation": 20000000,
           "max-loss": "0.000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -35,7 +40,7 @@
         "name": "3",
         "traffic-spec": {
           "interval": 5,
-          "max-pkts-per-interval": 10,
+          "max-pkts-per-interval": 20,
           "max-payload-size": 1500
         },
         "member-fwd-sublayer": [
@@ -206,22 +211,6 @@
       },
       {
         "name": "eth2",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
-        "name": "eth3",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
-        }
-      },
-      {
-        "name": "eth4",
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
