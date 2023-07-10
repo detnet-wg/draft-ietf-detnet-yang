@@ -89,7 +89,7 @@ module ietf-detnet {
      // replace '2022-10-04' with the module publication date
      // the format is (year-month-day)    
 
-  revision 2023-06-28 {
+  revision 2023-07-10 {
     description
       "Initial revision";
     reference
@@ -327,7 +327,7 @@ module ietf-detnet {
     type enumeration {
       enum copy-from-app-flow {
         description
-          "Copy-from-app-flow is to extend and use the
+          "Copy-from-app-flow is used to extend and use the
           sequence number used in App-flow. This function is
           required when encapsulating App-flows that have been
           replicated and received through multiple ingress nodes

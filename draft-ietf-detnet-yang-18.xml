@@ -208,7 +208,7 @@
       <t>
               At the egress point, forwarding information is determined by the
               App-flow type with all DetNet-related headers removed. The forwarding
-              information can specify an output port, set a next-hop-address in case
+              information can specify an output port, or set a next-hop-address in case
               of IP, or set an MPLS label in case of MPLS.
       </t>
       <section numbered="true" toc="default">
@@ -533,7 +533,7 @@ module ietf-detnet {
      // replace '2022-10-04' with the module publication date
      // the format is (year-month-day)    
 
-  revision 2023-06-28 {
+  revision 2023-07-10 {
     description
       "Initial revision";
     reference
@@ -771,7 +771,7 @@ module ietf-detnet {
     type enumeration {
       enum copy-from-app-flow {
         description
-          "Copy-from-app-flow is to extend and use the
+          "Copy-from-app-flow is used to extend and use the
           sequence number used in App-flow. This function is
           required when encapsulating App-flows that have been
           replicated and received through multiple ingress nodes
@@ -1996,32 +1996,32 @@ module ietf-detnet {
       <name>References</name>
       <references>
         <name>Normative References</name>
-        <?rfc include="reference.RFC.6991.xml"?>
-        <?rfc include="reference.RFC.6020.xml"?>
-        <?rfc include="reference.RFC.7950.xml"?>
-        <?rfc include="reference.RFC.8655.xml"?>
-        <?rfc include="reference.RFC.0791.xml"?>
-      <?rfc include="reference.RFC.4303.xml"?>
-      <?rfc include="reference.RFC.8200.xml"?>
-      <?rfc include="reference.RFC.8294.xml"?>
-      <?rfc include="reference.RFC.8343.xml"?>
-      <?rfc include="reference.RFC.8349.xml"?>
-      <?rfc include="reference.RFC.8446.xml"?>
-      <?rfc include="reference.RFC.8519.xml"?>
-      <?rfc include="reference.RFC.8938.xml"?>
-      <?rfc include="reference.RFC.8960.xml"?>
-      <?rfc include="reference.RFC.8964.xml"?>
-        <?rfc include="reference.RFC.9016.xml"?>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6991.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6020.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7950.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8655.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.0791.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.4303.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8200.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8294.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8343.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8349.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8446.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8519.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8938.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8960.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8964.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9016.xml"/>
       </references>
       <references>
         <name>Informative References</name>
-      <?rfc include="reference.RFC.3688.xml"?>
-      <?rfc include="reference.RFC.6241.xml"?>
-      <?rfc include="reference.RFC.6242.xml"?>
-      <?rfc include="reference.RFC.9055.xml"?>
-      <?rfc include="reference.RFC.8040.xml"?>
-      <?rfc include="reference.RFC.8341.xml"?>
-      <?rfc include="reference.RFC.8340.xml"?>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3688.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6241.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6242.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9055.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8040.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8341.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8340.xml"/>
       <reference anchor="IEEE8021Q" target="https://ieeexplore.ieee.org/document/8403927" quoteTitle="true" derivedAnchor="IEEE8021Q">
         <front>
           <title>IEEE Standard for Local and Metropolitan Area Networks--Bridges and Bridged Networks</title>
@@ -2558,7 +2558,7 @@ module: ietf-detnet
     <section numbered="true" toc="default">
         <name>Example A-1 JSON Configuration/Operational</name>
         <t>
-                This illustrates that the multiple App flows with the same source,
+                This illustrates that multiple App flows with the same source,
                  the same destination, and the same traffic specification are aggregated in
                  a single DetNet flow service sub-layer. Ingress node 1 
                 aggregates App flows 0 and 1 into a service sub-layer of DetNet flow 1. 
@@ -2578,7 +2578,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="210mm"
+   width="180mm"
    height="120mm"
    viewBox="0 0 210 120"
    version="1.1"
@@ -3958,7 +3958,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="210mm"
+   width="180mm"
    height="100mm"
    viewBox="0 0 210 110"
    version="1.1"
@@ -4454,7 +4454,7 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
 </artwork>
 </artset>
 </figure>
-       <t> The following figure contains the operational JSON configuration for the ingress aggregation 
+       <t> <xref target="example-detnet-json-configuration-a-1"/> contains the operational JSON configuration for the ingress aggregation 
                node illustrated in <xref target="case-a1"/> and 
                <xref target="case-a1-pipe"/>. App-0 and app-1 
                are aggregated into Service Sub-layer ssl-1. 
@@ -4645,12 +4645,11 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
       </section>
       <section numbered="true" toc="default">
         <name>Example B-1 XML Config: Aggregation using a Forwarding Sub-layer</name>
-        <t>
-             This illustrates that service sub-layers of DetNet flows 1 and 2 are
+	<t> <xref target="case-b1"/> illustrates the DetNet service sub-layer flows 1 and 2 are
              aggregated into a single forwarding sub-layer. 
              For the same destination multiple DetNet flows use a single forwarding path and
              service protection is performed by the corresponding service sub-layer
-              of each flow. A diagram illustrating this case is shown and then the corresponding
+             of each flow. A diagram illustrating this case is shown and then the corresponding
              XML operational data for node Ingress 1 follows.
         </t>
         <figure anchor="case-b1">
@@ -4666,9 +4665,9 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="210mm"
+   width="180mm"
    height="120mm"
-   viewBox="0 15 210 110"
+   viewBox="0 0 210 140"
    version="1.1"
    >
   <g
@@ -6813,7 +6812,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
 </artwork>
 </artset>
         </figure>
-        <t> The following <xref target="example-detnet-xml-fwd-aggregation-b-1"/>
+        <t> <xref target="example-detnet-xml-fwd-aggregation-b-1"/>
             contains the operational XML configuration for the ingress aggregation 
             node illustrated in <xref target="case-b1"/>.
                In this example app-0 and app-1 are in separate service sub-layers 
@@ -7021,12 +7020,12 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
       <section numbered="true" toc="default">
         <name>Example B-2 JSON Service Aggregation Configuration</name>
         <t>
-                <xref target="case-b2"/> illustrates that DetNet flows 1 and 2 service sub-layers are  
+                <xref target="case-b2"/> illustrates DetNet service sub-layer flows 1 and 2 are  
                 aggregated into a service sub-layer of an aggregated flow. 
                 Multiple DetNet flows with the same requirements for the same 
                 destination are aggregated into a single aggregated DetNet flow, 
                  and service protection and resource allocation are performed by 
-                 aggregated DetNet flow service sub-layer and forwarding  
+                 an aggregated DetNet flow service sub-layer and forwarding  
                  sub-layer.  A diagram illustrating this case is shown and then the  
                  corresponding JSON operational data for node Ingress 1 follows.
         </t>
@@ -7043,9 +7042,9 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="210mm"
+   width="180mm"
    height="120mm"
-   viewBox="0 15 210 110"
+   viewBox="0 0 210 140"
    version="1.1"
    >
   <g
@@ -9241,11 +9240,11 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
 </artwork>
 </artset>
         </figure>
-        <t> The following <xref target="example-detnet-json-service-aggregation-b-2"/>
+        <t> <xref target="example-detnet-json-service-aggregation-b-2"/>
             contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-b2"/>. 
             In this example, service sub-layer ssl-1 for DetNet flow DN1 
-            and ssl-2 for flow DN2 aggregate at service sub-layer Detet flow asl-1. 
+            and ssl-2 for flow DN2 aggregate at the service sub-layer, DetNet flow asl-1. 
        </t>
 
         <figure anchor="example-detnet-json-service-aggregation-b-2">
@@ -9513,7 +9512,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
               <name>Example C-1 JSON Relay Aggregation/Disaggregation Configuration</name>
         <t>
                 <xref target="case-c1"/> illustrates the relay node's forwarding sub-layer 
-                flows 1 and 2 are aggregated into a single forwarding sub-layer. 
+                flows 1 and 2 aggregated into a single forwarding sub-layer. 
                 Service protection and resource allocation are 
                 performed by the corresponding service sub-layer and forwarding 
                 sub-layer of each flow.
@@ -9533,9 +9532,9 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="210mm"
+   width="180mm"
    height="120mm"
-   viewBox="0 15 210 110"
+   viewBox="0 0 210 140"
    version="1.1"
    >
   <g
@@ -11978,16 +11977,16 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
 </artwork>
 </artset>
         </figure>
-        <t> The following <xref target="example-detnet-json-service-aggregation-c-1"/>
+        <t> <xref target="example-detnet-json-service-aggregation-c-1"/>
             contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-c1"/>. 
-            In this example a relay performing aggregation at the forwarding sub-layer is illustrated.  
+            In this example, a relay performing aggregation at the forwarding sub-layer is illustrated.  
             Two DetNet flows DN1 and DN2 are replicated at each service sub-layer. 
             The two forwarding sub-layers for the upside path are aggregated
             at the forwarding sub-layer with label 20000 and the two forwarding
             sub-layers for the downside path are aggregated at the forwarding
             sub-layer with label 20001.
-            The <xref target="example-detnet-json-service-disaggregation-c-1"/> 
+            <xref target="example-detnet-json-service-disaggregation-c-1"/> 
             contains the operational JSON configuration for the egress disaggregation 
             node illustrated in <xref target="case-c1"/>. 
     </t>
@@ -12773,12 +12772,11 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
       <section numbered="true" toc="default">
               <name>Example C-2 JSON Relay Aggregation/Disaggregation Service Sub-Layer</name>
         <t>
-                <xref target="case-c2"/>
-                This illustrates that at the relay node service sub-layers 
-                flows 1 and 2 are aggregated into a single forwarding sub-layer. 
+                <xref target="case-c2"/> illustrates the DetNet relay node service sub-layer 
+                flows 1 and 2 aggregated into a single forwarding sub-layer. 
                 Service protection is performed by the 
                 corresponding service sub-layer of each flow and resource allocation 
-                 is performed by aggregated forwarding sub-layer for all aggregated 
+                 is performed by an aggregated forwarding sub-layer for all aggregated 
                  flows. A diagram illustrating both aggregation and disaggregation is 
                  shown and then the corresponding JSON operational data follows.
         </t>
@@ -12795,9 +12793,9 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="210mm"
+   width="180mm"
    height="120mm"
-   viewBox="0 15 210 110"
+   viewBox="0 0 210 140"
    version="1.1"
    >
   <g
@@ -14993,7 +14991,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
 </artwork>
 </artset>
         </figure>
-        <t> The following <xref target="example-detnet-json-service-aggregation-c-2"/>
+        <t> <xref target="example-detnet-json-service-aggregation-c-2"/>
             contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-c2"/>. 
             In this example, a relay performing aggregation at the forwarding sub-layer is illustrated.  
@@ -15573,9 +15571,9 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
       <section numbered="true" toc="default">
               <name>Example C-3 JSON Relay Service Sub-Layer Aggregation/Disaggregation</name>
         <t>
-                <xref target="case-c3"/> illustrates that at the relay node service sub-layer
-                flows 1 and 2 are aggregated into a service sub-layer 
-                DetNet flow. Multiple DetNet flows with the same requirements 
+                <xref target="case-c3"/> illustrates the DetNet relay node service sub-layer
+                flows 1 and 2 aggregated into a service sub-layer 
+                flow. Multiple DetNet flows with the same requirements 
                 which can use the same path are aggregated into a single 
                 aggregated DetNet flow, and service protection and resource allocation 
                 are performed by the service sub-layer and forwarding sub-layer of
@@ -15596,9 +15594,9 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="210mm"
+   width="180mm"
    height="120mm"
-   viewBox="0 10 210 120"
+   viewBox="0 0 210 140"
    version="1.1"
    >
   <g
@@ -17911,14 +17909,14 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
 </artwork>
 </artset>
         </figure>
-        <t> The following <xref target="example-detnet-json-service-aggregation-c-3"/>
+        <t> <xref target="example-detnet-json-service-aggregation-c-3"/>
             contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-c3"/>. 
             In this example a relay performing aggregation at the service sub-layer is illustrated.  
             Two DetNet flows DN1 and DN2 are relayed at each service 
             sub-layer with MPLS labels 101 and 104 respectively, and each service sub-layer is
             aggregated at a single service sub-layer flow and replicated.
-            The <xref target="example-detnet-json-service-disaggregation-c-3"/> 
+            <xref target="example-detnet-json-service-disaggregation-c-3"/> 
             contains the operational JSON configuration for the egress disaggregation 
             node illustrated in <xref target="case-c3"/>. 
         </t>
@@ -18578,8 +18576,8 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
               <name>Example C-4 JSON Relay Service Sub-Layer Aggregation/Disaggregation</name>
         <t>
                 <xref target="case-c4"/> 
-                illustrates the relay node forwarding sub-layers of DetNet
-                flows 1 and 2 are aggregated into a service sub-layer 
+                illustrates the relay node DetNet forwarding sub-layer 
+                flows 1 and 2 aggregated into a service sub-layer 
                 DetNet flow. Multiple DetNet flows with the same requirements
                 which can use the same path are aggregated into a single
                 aggregated DetNet flow. Service protection is performed by the
@@ -18601,7 +18599,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="210mm"
+   width="180mm"
    height="155mm"
    viewBox="0 0 210 155"
    version="1.1"
@@ -21193,7 +21191,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
 </artwork>
 </artset>
         </figure>
-        <t> The following <xref target="example-detnet-json-forwarding-aggregation-c-4"/>
+        <t> <xref target="example-detnet-json-forwarding-aggregation-c-4"/>
             contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-c4"/>. 
             In this example, a relay performing aggregation at the service sub-layer is
@@ -21201,7 +21199,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
             sub-layer. The two DetNet forwarding sub-layer flows with MPLS labels 
             20004 and 20005 are aggregated at the single service sub-layer 
             DetNet flow and then replicated.
-            The <xref target="example-detnet-json-forwarding-disaggregation-c-4"/> 
+            <xref target="example-detnet-json-forwarding-disaggregation-c-4"/> 
             contains the operational JSON configuration for the egress disaggregation 
             node illustrated in <xref target="case-c4"/>. 
     </t>
@@ -21971,7 +21969,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
         <name>Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/Disaggregation</name>
         <t>
                 <xref target="case-d1"/> 
-                 illustrates at the transit node,  forwarding sub-layers 
+                 illustrates at the transit node,  forwarding sub-layer 
                  flows 1 and 2 are aggregated into a single forwarding sub-layer.
                  Resource allocation is performed by the 
                  corresponding forwarding sub-layer for all aggregated flows. 
@@ -21991,9 +21989,9 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="210mm"
+   width="180mm"
    height="130mm"
-   viewBox="0 5 210 130"
+   viewBox="0 0 210 140"
    version="1.1"
    id="svg7">
   <g
@@ -23706,7 +23704,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
 </artwork>
 </artset>
         </figure>
-        <t> The following <xref target="example-detnet-json-forwarding-aggregation-d-1"/>
+        <t> <xref target="example-detnet-json-forwarding-aggregation-d-1"/>
             contains the operational JSON configuration for the ingress aggregation 
             node illustrated in <xref target="case-d1"/>. 
             In this example, a transit node performing aggregation at the forwarding sub-layer 
@@ -23715,7 +23713,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
             forwarding sub-layer. The DetNet forwarding sub-layer flows with
             MPLS labels 10002 and 10006 are aggregated at the single forwarding 
             sub-layer. The resulting aggregated DetNet flow has MPLS label 20000.
-            The <xref target="example-detnet-json-forwarding-disaggregation-d-1"/> 
+            <xref target="example-detnet-json-forwarding-disaggregation-d-1"/> 
             contains the operational JSON configuration for the egress disaggregation 
             transit node illustrated in <xref target="case-d1"/>. 
     </t>
