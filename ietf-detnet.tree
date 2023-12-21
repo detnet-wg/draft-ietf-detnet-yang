@@ -253,7 +253,7 @@ module: ietf-detnet
         +--rw sub-layer* [name]
            +--rw name               string
            +--rw traffic-profile?   traffic-profile-ref
-           +--rw operation?         forwarding-operations
+           +--rw operation?         mpls-fwd-operation
            +--rw incoming
            |  +--rw (incoming)?
            |     +--:(service-sub-layer)
