@@ -89,7 +89,7 @@ module ietf-detnet {
      // replace '2022-10-04' with the module publication date
      // the format is (year-month-day)    
 
-  revision 2023-07-10 {
+  revision 2023-12-21 {
     description
       "Initial revision";
     reference
@@ -107,7 +107,7 @@ module ietf-detnet {
   identity none {
     base app-status;
     description
-      "This Application has no status. This identity is
+      "This application has no status. This identity is
        expected when the configuration is incomplete.";
     reference
       "RFC 9016 Section 5.8";
@@ -132,7 +132,7 @@ module ietf-detnet {
   identity out-of-service {
     base app-status;
     description
-      "Application Administratively blocked.";
+      "Application administratively blocked.";
     reference
       "RFC 9016 Section 5.8";
   }
@@ -140,7 +140,7 @@ module ietf-detnet {
   identity partial-failed {
     base app-status;
     description
-      "This is an Application with one or more Egress ready, and one
+      "This is an application with one or more Egress ready, and one
        or more Egress failed.  The DetNet flow can be used if the
        Ingress is Ready.";
     reference
@@ -155,7 +155,7 @@ module ietf-detnet {
          + "/dnet:name";
     }
     description
-      "This is an Application Reference.";
+      "This is an application Reference.";
   }
 
   typedef service-sub-layer-ref {
@@ -166,7 +166,7 @@ module ietf-detnet {
          + "/dnet:name";
     }
     description
-      "This is a Service sub-layer Reference.";
+      "This is a service sub-layer Reference.";
   }
 
   typedef forwarding-sub-layer-ref {
@@ -177,7 +177,7 @@ module ietf-detnet {
          + "/dnet:name";
     }
     description
-      "This is a Forwarding sub-layer Reference.";
+      "This is a forwarding sub-layer Reference.";
   }
 
   typedef traffic-profile-ref {
@@ -187,7 +187,7 @@ module ietf-detnet {
          + "/dnet:name";
     }
     description
-      "This is a Traffic Profile Reference.";
+      "This is a traffic Profile Reference.";
   }
 
   typedef ipsec-spi {
@@ -226,7 +226,7 @@ module ietf-detnet {
        but a service sub-layer may combine operation types.";
   }
 
-  typedef forwarding-operations {
+  typedef mpls-fwd-operation {
     type enumeration {
       enum impose-and-forward {
         description
@@ -587,7 +587,7 @@ module ietf-detnet {
       "detnet-flow identification.";
     choice detnet-flow-type {
       description
-        "The Detnet flow type choices.";
+        "The DetNet flow type choices.";
       case ip-detnet-flow {
         uses ip-flow-id;
       }
@@ -682,7 +682,7 @@ module ietf-detnet {
           case mpls {
             uses rt-types:mpls-label-stack;
             description
-              "The MPLS Label stack next hop case.";
+              "The MPLS label stack next hop case.";
           }
         }
       }
@@ -828,7 +828,8 @@ module ietf-detnet {
       leaf name {
         type string;
         description
-          "An Aggregation group ID.";
+          "The name of the traffic profile which is used as a 
+           reference to this profile.";
       }
       container traffic-requirements {
         description
@@ -1071,19 +1072,19 @@ module ietf-detnet {
         } //End of app-ingress
         container egress {
           description
-            "Route's next-hop attribute.";
+            "Egress DetNet application flows or a compound flow.";
           uses data-flow-spec;
           choice application-type {
             description
               "This is the application type choices.";
             container ethernet {
               description
-                "This is TSN unaware traffic that maps to an 
+                "This is Ethernet or TSN traffic that maps to an 
                 interface.";
               leaf interface {
                 type if:interface-ref;
                 description
-                  "This is an Ethernet or TSN interfaces.";
+                  "This is an Ethernet or TSN interface.";
               }
             }
             container ip-mpls {
@@ -1199,7 +1200,7 @@ module ietf-detnet {
                service sub-layer or aggregation type.";
             container forwarding-sub-layer {
               description
-                "This service sub-layer is sent to the forwarding
+                "This service sub-layer is sending to the forwarding
                  sub-layers of the lower layer for DetNet service
                  forwarding or service-to-forwarding aggregation at
                  the ingress node or relay node.  When the operation
@@ -1230,7 +1231,7 @@ module ietf-detnet {
             }
             container service-sub-layer {
               description
-                "This service sub-layer is sent to the service
+                "This service sub-layer is sending to the service
                  sub-layers of the lower layer for service-to-service
                  aggregation at the ingress node or relay node.  The
                  service sub-layer encapsulates the DetNet
@@ -1256,7 +1257,7 @@ module ietf-detnet {
             }
             container app-flow {
               description
-                "This service sub-layer is sent to the app-flow of
+                "This service sub-layer is sending to the app-flow of
                  the upper layer for egress proxy at the egress node,
                  and decapsulates the DetNet Control-Word and S-label
                  for individual DetNet service.  This outgoing type
@@ -1268,7 +1269,7 @@ module ietf-detnet {
             }
             container service-disaggregation {
               description
-                "This service sub-layer is sent to the service
+                "This service sub-layer is sending to the service
                  sub-layer of the upper layer for service-to-service
                  disaggregation at the relay node or egress node, and
                  decapsulates the DetNet Control-Word and A-label for
@@ -1281,7 +1282,7 @@ module ietf-detnet {
             }
             container forwarding-disaggregation {
               description
-                "This service sub-layer is sent to the forwarding
+                "This service sub-layer is sending to the forwarding
                  sub-layer of the upper layer for
                  forwarding-to-service disaggregation at the relay
                  node or egress node, and decapsulates the DetNet
@@ -1302,7 +1303,7 @@ module ietf-detnet {
       list sub-layer {
         key "name";
         description
-          "The List is one or more DetNet Traffic types.";
+          "The list is one or more DetNet service/forwarding types.";
         leaf name {
           type string;
           description
@@ -1314,7 +1315,7 @@ module ietf-detnet {
             "The Traffic Profile for this group.";
         }
         leaf operation {
-          type forwarding-operations;
+          type mpls-fwd-operation;
           description
             "This is the forwarding operation types 
              impose-and-forward, pop-and-forward, 
@@ -1370,14 +1371,14 @@ module ietf-detnet {
             container
               interface {
               description
-                "This forwarding sub-layer is sent to the interface
-                 for send to next-hop at the ingress node or relay
-                 node or transit node.";
+                "This forwarding sub-layer is sending to the 
+                 interface for send to next-hop at the ingress
+                 node or relay node or transit node.";
               uses detnet-forwarding-next-hop-content;
             }
             container service-aggregation {
               description
-                "This forwarding sub-layer is sent to the service
+                "This forwarding sub-layer is sending to the service
                  sub-layers of the lower layer for
                  forwarding-to-service aggregation at the ingress
                  node or relay node.";
@@ -1395,8 +1396,8 @@ module ietf-detnet {
             }
             container forwarding-sub-layer {
               description
-                "This forwarding sub-layer is sent to the forwarding
-                 sub-layers of the lower layer for
+                "This forwarding sub-layer is sending to the 
+                 forwarding sub-layers of the lower layer for
                  forwarding-to-forwarding aggregation at the ingress
                  node or relay node or transit node.";
               leaf aggregation-sub-layer {
@@ -1413,7 +1414,7 @@ module ietf-detnet {
             }
             container service-sub-layer {
               description
-                "This forwarding sub-layer is sent to the service
+                "This forwarding sub-layer is sending to the service
                  sub-layer of the upper layer and decapsulate the
                  F-label for DetNet service or service-to-forwarding
                  disaggregation at the relay node or egress node.
@@ -1425,12 +1426,12 @@ module ietf-detnet {
             }
             container forwarding-disaggregation {
               description
-                "This forwarding sub-layer is sent to the forwarding
-                 sub-layer of the upper layer and decapsulate the
-                 F-label for forwarding-to-forwarding disaggregation
-                 at the transit node or relay node or egress node.
-                 This outgoing type only can be chosen when the
-                 operation type is pop-and-lookup.";
+                "This forwarding sub-layer is sending to the
+                 forwarding sub-layer of the upper layer and
+                 decapsulate the F-label for forwarding-to-forwarding
+                 disaggregation at the transit node or relay node or
+                 egress node.  This outgoing type only can be chosen
+                 when the operation type is pop-and-lookup.";
               uses forwarding-sub-layer-group;
             }
           }
