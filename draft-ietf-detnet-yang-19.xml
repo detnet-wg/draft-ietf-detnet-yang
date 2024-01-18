@@ -118,7 +118,7 @@
       aggregation/disaggregation and data plane capabilities of the DetNet data
       planes defined in the DetNet Architecture
       <xref target="RFC8655" format="default"> </xref>
-      and Framework <xref target="RFC8938" format="default"> </xref>.
+      and DetNet Framework <xref target="RFC8938" format="default"> </xref>.
       DetNet operates at the IP layer and delivers service over lower-layer
       technologies such as MPLS and IEEE 802.1 Time-Sensitive Networking (TSN).
     </t>
@@ -522,7 +522,7 @@ module ietf-detnet {
      reporting. This YANG module conforms to the Network 
      Management Datastore Architecture (NMDA).
      
-     Copyright (c) 2022 IETF Trust and the persons identified as
+     Copyright (c) 2024 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -538,10 +538,10 @@ module ietf-detnet {
      // RFC Ed.: replace XXXX with actual RFC number and remove
      // this note
 
-     // replace '2022-10-04' with the module publication date
+     // replace '2024-01-16' with the module publication date
      // the format is (year-month-day)    
 
-  revision 2023-07-10 {
+  revision 2024-01-16 {
     description
       "Initial revision";
     reference
@@ -1202,22 +1202,18 @@ module ietf-detnet {
           description
             "These are the flow type next hop choices.";
           case ip {
-            choice operation-type {
+            description
+              "Use IP data plane for forwarding.";
+            leaf next-hop-address {
+              type inet:ip-address-no-zone;
               description
-                "This is the IP forwarding operation choices.";
-              case ip-forwarding {
-                leaf next-hop-address {
-                  type inet:ip-address-no-zone;
-                  description
-                    "This is an IP address as a next hop.";
-                }
-              }
-              case mpls-over-ip-encapsulation {
-                uses ip-header;
-              }
+                "This is an IP address as a next hop.";
             }
+            uses ip-header;
           }
           case mpls {
+            description
+              "Use MPLS data plane for forwarding.";
             uses rt-types:mpls-label-stack;
           }
         }
@@ -1244,22 +1240,18 @@ module ietf-detnet {
             description
               "These are the flow type next hop choices.";
             case ip {
-              choice operation-type {
+              description
+                "Use IP data plane for forwarding.";
+              leaf next-hop-address {
+                type inet:ip-address-no-zone;
                 description
-                  "These are the next hop choices.";
-                case ip-forwarding {
-                  leaf next-hop-address {
-                    type inet:ip-address-no-zone;
-                    description
-                      "This is an IP address as a next hop.";
-                  }
-                }
-                case mpls-over-ip-encapsulation {
-                  uses ip-header;
-                }
+                  "This is an IP address as a next hop.";
               }
+              uses ip-header;
             }
             case mpls {
+              description
+                "Use MPLS data plane for forwarding.";
               uses rt-types:mpls-label-stack;
             }
           }
@@ -1514,11 +1506,16 @@ module ietf-detnet {
               "RFC 9016 Sections
                4.1, 5.8";
           }
-          leaf interface {
+          leaf-list interface {
             type if:interface-ref;
             description
-            "Interface is used for any service type when
-             matching all flows to the interface.";
+            "Interface is optional for a service type. When
+             matching a flow to a single interface one
+             interface is specified. The list allows for
+             matching a subset of interfaces. When more
+             than one interfaces is specified, these
+             flows are simply aggregated and the service
+             sub-layer is unaware of the aggregation.";
           }
           uses data-flow-spec;
         } //End of app-ingress
@@ -1533,10 +1530,16 @@ module ietf-detnet {
               description
                 "This is Ethernet or TSN traffic that maps to an
                 interface.";
-              leaf interface {
+              leaf-list interface {
                 type if:interface-ref;
                 description
-                  "This is an Ethernet or TSN interface.";
+                  "This is one or more Ethernet or TSN interfaces.
+                   If multiple interfaces are specified, this 
+                   application flow is replicated to those 
+                   interfaces.  DetNet application Flow filtering
+                   applies to the whole list of interfaces.
+                   For fine grain flow filtering, use a single
+                   interface per application.";
               }
             }
             container ip-mpls {
@@ -1640,6 +1643,18 @@ module ietf-detnet {
                  DetNet service relay or termination at the relay
                  node or egress node.";
               uses detnet-flow-spec;
+            }
+            container forwarding-sub-layer {
+              description
+                "This entry specifies one or more forwarding
+                 sub-layers. No or minimal service sub-layer 
+                 encapsulation is allowed.";
+              leaf-list sub-layer {
+                type forwarding-sub-layer-ref;
+                config false;
+                description
+                  "List of outgoing forwarding sub-layers.";
+               }
             }
           }
         }
@@ -2092,7 +2107,7 @@ module: ietf-detnet
      |     +--rw traffic-profile?    traffic-profile-ref
      |     +--rw ingress
      |     |  +--ro app-flow-status?       identityref
-     |     |  +--rw interface?             if:interface-ref
+     |     |  +--rw interface*             if:interface-ref
      |     |  +--rw (data-flow-type)?
      |     |     +--:(tsn-app-flow)
      |     |     |  +--rw tsn-app-flow
@@ -2202,7 +2217,7 @@ module: ietf-detnet
      |        +--rw (application-type)?
      |           +--:(ethernet)
      |           |  +--rw ethernet
-     |           |     +--rw interface?   if:interface-ref
+     |           |     +--rw interface*   if:interface-ref
      |           +--:(ip-mpls)
      |              +--rw ip-mpls
      |                 +--rw (next-hop-options)?
@@ -2436,26 +2451,20 @@ module: ietf-detnet
                  |        |  |       if:interface-ref
                  |        |  +--rw (flow-type)?
                  |        |     +--:(ip)
-                 |        |     |  +--rw (operation-type)?
-                 |        |     |     +--:(ip-forwarding)
-                 |        |     |     |  +--rw next-hop-address?
-                 |        |     |     |      inet:ip-address-no-zone
-                 |        |     |     +--:(mpls-over-ip-
-                 |        |     |          encapsulation)
-                 |        |     |        +--rw src-ip-address?
-                 |        |     |        |   inet:ip-address-no-zone
-                 |        |     |        +--rw dest-ip-address?
-                 |        |     |        |   inet:ip-address-no-zone
-                 |        |     |        +--rw protocol-next-header?
-                 |        |     |        |       uint8
-                 |        |     |        +--rw dscp?
-                 |        |     |        |     inet:dscp
-                 |        |     |        +--rw flow-label?
-                 |        |     |        |     inet:ipv6-flow-label
-                 |        |     |        +--rw source-port?
-                 |        |     |        |     inet:port-number
-                 |        |     |        +--rw destination-port?
-                 |        |     |              inet:port-number
+                 |        |     |  +--rw next-hop-address?
+                 |        |     |  |       inet:ip-address-no-zone
+                 |        |     |  +--rw src-ip-address?
+                 |        |     |  |       inet:ip-address-no-zone
+                 |        |     |  +--rw dest-ip-address?
+                 |        |     |  |       inet:ip-address-no-zone
+                 |        |     |  +--rw protocol-next-header?  uint8
+                 |        |     |  +--rw dscp?  inet:dscp
+                 |        |     |  +--rw flow-label?
+                 |        |     |  |       inet:ipv6-flow-label
+                 |        |     |  +--rw source-port?
+                 |        |     |  |       inet:port-number
+                 |        |     |  +--rw destination-port?
+                 |        |     |          inet:port-number
                  |        |     +--:(mpls)
                  |        |        +--rw mpls-label-stack
                  |        |           +--rw entry* [id]
@@ -2472,31 +2481,21 @@ module: ietf-detnet
                  |              |       if:interface-ref
                  |              +--rw (flow-type)?
                  |                 +--:(ip)
-                 |                 |  +--rw (operation-type)?
-                 |                 |     +--:(ip-forwarding)
-                 |                 |     |  +--rw next-hop-address?
-                 |                 |     |     inet:ip-address-no-
-                 |                 |     |       zone
-                 |                 |     +--:(mpls-over-ip-
-                 |                 |          encapsulation)
-                 |                 |        +--rw src-ip-address?
-                 |                 |        |  inet:ip-address-no-
-                 |                 |        |    zone
-                 |                 |        +--rw dest-ip-address?
-                 |                 |        |  inet:ip-address-no-
-                 |                 |        |    zone
-                 |                 |        +--rw protocol-next-
-                 |                 |        |     header?
-                 |                 |        |     uint8
-                 |                 |        +--rw dscp?
-                 |                 |        |     inet:dscp
-                 |                 |        +--rw flow-label?
-                 |                 |        |     inet:ipv6-flow-
-                 |                 |        |       label
-                 |                 |        +--rw source-port?
-                 |                 |        |       inet:port-number
-                 |                 |        +--rw destination-port?
-                 |                 |              inet:port-number
+                 |                 |  +--rw next-hop-address?
+                 |                 |  |       inet:ip-address-no-zone
+                 |                 |  +--rw src-ip-address?
+                 |                 |  |       inet:ip-address-no-zone
+                 |                 |  +--rw dest-ip-address?
+                 |                 |  |       inet:ip-address-no-zone
+                 |                 |  +--rw protocol-next-header? 
+                 |                 |  |                         uint8
+                 |                 |  +--rw dscp?    inet:dscp
+                 |                 |  +--rw flow-label?
+                 |                 |  |       inet:ipv6-flow-label
+                 |                 |  +--rw source-port?
+                 |                 |  |       inet:port-number
+                 |                 |  +--rw destination-port? 
+                 |                 |         inet:port-number
                  |                 +--:(mpls)
                  |                    +--rw mpls-label-stack
                  |                       +--rw entry* [id]
@@ -4544,7 +4543,9 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
           "traffic-profile": "pf-1",
           "ingress": {
             "app-flow-status": "ietf-detnet:ready",
-            "interface": "eth0",
+            "interface": [
+              "eth0"
+            ],
             "ip-app-flow": {
               "src-ip-prefix": "2001:db8::1/128",
               "dest-ip-prefix": "2001:db8::8/128",
@@ -4559,7 +4560,9 @@ Please consult the PDF or HTML versions for the Case A-1 Diagram.
           "traffic-profile": "pf-1",
           "ingress": {
             "app-flow-status": "ietf-detnet:ready",
-            "interface": "eth0",
+            "interface": [
+              "eth0"
+            ],
             "ip-app-flow": {
               "src-ip-prefix": "2001:db8::1/128",
               "dest-ip-prefix": "2001:db8::8/128",
@@ -6852,8 +6855,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-        <discontinuity-time
-          >2020-12-18T23:59:00Z</discontinuity-time>
+        <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
     <interface>
@@ -6861,8 +6863,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-        <discontinuity-time
-          >2020-12-18T23:59:00Z</discontinuity-time>
+        <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
     <interface>
@@ -6870,8 +6871,7 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-        <discontinuity-time
-          >2020-12-18T23:59:00Z</discontinuity-time>
+        <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
   </interfaces>
@@ -6916,8 +6916,8 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
       <max-latency>100000000</max-latency>
       <max-latency-variation>20000000</max-latency-variation>
       <max-loss>0.0000001</max-loss>
-      <max-consecutive-loss-tolerance
-        >5</max-consecutive-loss-tolerance>
+      <max-consecutive-loss-tolerance>5
+        </max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
     <traffic-spec>
@@ -6935,8 +6935,8 @@ Please consult the PDF or HTML versions for the Case B-1 Diagram.
       <max-latency>100000000</max-latency>
       <max-latency-variation>20000000</max-latency-variation>
       <max-loss>0.000001</max-loss>
-      <max-consecutive-loss-tolerance
-        >5</max-consecutive-loss-tolerance>
+      <max-consecutive-loss-tolerance>5
+        </max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
     <member-service>ssl-1</member-service>
@@ -9284,18 +9284,18 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 20000000,
-          "max-loss": 0.000001,
+          "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
-         },
-         "traffic-spec": {
-           "interval": 125,
-           "max-pkts-per-interval": 10,
-           "max-payload-size": 1500
-         },
-         "member-app": [
-           "app-1",
-           "app-2"
+        },
+        "traffic-spec": {
+          "interval": 125,
+          "max-pkts-per-interval": 10,
+          "max-payload-size": 1500
+        },
+        "member-app": [
+          "app-1",
+          "app-2"
         ]
       },
       {
@@ -9304,7 +9304,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 20000000,
-          "max-loss": 0.000001,
+          "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -9319,7 +9319,7 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
           "max-latency-variation": 20000000,
-          "max-loss": 0.000001,
+          "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -9348,7 +9348,9 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
           "traffic-profile": "1",
           "ingress": {
             "app-flow-status": "ietf-detnet:ready",
-            "interface": "eth0",
+            "interface": [
+              "eth0"
+            ],
             "ip-app-flow": {
               "src-ip-prefix": "192.0.2.1/32",
               "dest-ip-prefix": "192.0.2.8/32",
@@ -9363,7 +9365,9 @@ Please consult the PDF or HTML versions for the Case B-2 Diagram.
           "traffic-profile": "1",
           "ingress": {
             "app-flow-status": "ietf-detnet:ready",
-            "interface": "eth0",
+            "interface": [
+              "eth0"
+            ],
             "ip-app-flow": {
               "src-ip-prefix": "192.0.2.2/32",
               "dest-ip-prefix": "192.0.2.9/32",
@@ -12027,7 +12031,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
-          "max-loss": 0.0000001,
+          "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -12421,7 +12425,7 @@ Please consult the PDF or HTML versions for the Case C-1 Diagram.
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
-          "max-loss": 0.0000001,
+          "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -15042,7 +15046,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
-          "max-loss": 0.0000001,
+          "max-loss": "0.0000001",
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -15324,6 +15328,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
+          "max-loss": "0.0000001",
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -15375,7 +15380,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": "101"
+                    "label": 101
                   }
                 ]
               }
@@ -15390,7 +15395,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": "102"
+                        "label": 102
                       }
                     ]
                   },
@@ -15417,7 +15422,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                 "entry": [
                   {
                     "id": 0,
-                    "label": "104"
+                    "label": 104
                   }
                 ]
               }
@@ -15432,7 +15437,7 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
                     "entry": [
                       {
                         "id": 0,
-                        "label": "105"
+                        "label": 105
                       }
                     ]
                   },
@@ -17957,6 +17962,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
+          "max-loss": "0.0000001",
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -17972,6 +17978,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
+          "max-loss": "0.0000001",
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -18278,6 +18285,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
+          "max-loss": "0.0000001",
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -18293,6 +18301,7 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
+          "max-loss": "0.0000001",
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -21240,6 +21249,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
+          "max-loss": "0.0000001",
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -21255,6 +21265,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
+          "max-loss": "0.0000001",
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -21627,6 +21638,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
           "min-bandwidth": "100000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
+          "max-loss": "0.0000001",
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -21642,6 +21654,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
           "min-bandwidth": "200000000",
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
+          "max-loss": "0.0000001",
           "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
@@ -21694,7 +21707,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "101"
+                    "label": 101
                   }
                 ]
               }
@@ -21709,7 +21722,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                     "entry": [
                       {
                         "id": 0,
-                        "label": "102"
+                        "label": 102
                       }
                     ]
                   },
@@ -21736,7 +21749,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "104"
+                    "label": 104
                   }
                 ]
               }
@@ -21751,7 +21764,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                     "entry": [
                       {
                         "id": 0,
-                        "label": "105"
+                        "label": 105
                       }
                     ]
                   },
@@ -21778,7 +21791,7 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "1000"
+                    "label": 1000
                   }
                 ]
               }
@@ -23785,7 +23798,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "10000"
+                    "label": 10000
                   }
                 ]
               }
@@ -23799,7 +23812,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                   "entry": [
                     {
                       "id": 0,
-                      "label": "10002"
+                      "label": 10002
                     }
                   ]
                 }
@@ -23818,7 +23831,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "10004"
+                    "label": 10004
                   }
                 ]
               }
@@ -23832,7 +23845,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                   "entry": [
                     {
                       "id": 0,
-                      "label": "10006"
+                      "label": 10006
                     }
                   ]
                 }
@@ -23859,7 +23872,7 @@ Please consult the PDF or HTML versions for the Case D-1 Diagram
                 "entry": [
                   {
                     "id": 0,
-                    "label": "20000"
+                    "label": 20000
                   }
                 ]
               }

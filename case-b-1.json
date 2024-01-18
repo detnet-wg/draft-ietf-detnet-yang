@@ -57,7 +57,9 @@
           "traffic-profile": "1",
           "ingress": {
             "app-flow-status": "ietf-detnet:ready",
-            "interface": "eth0",
+            "interface": [
+              "eth0"
+            ],
             "ip-app-flow": {
               "src-ip-prefix": "192.0.2.1/32",
               "dest-ip-prefix": "192.0.2.8/32",
@@ -72,7 +74,9 @@
           "traffic-profile": "1",
           "ingress": {
             "app-flow-status": "ietf-detnet:ready",
-            "interface": "eth1",
+            "interface": [
+              "eth1"
+            ],
             "ip-app-flow": {
               "src-ip-prefix": "192.0.2.2/32",
               "dest-ip-prefix": "192.0.2.9/32",
