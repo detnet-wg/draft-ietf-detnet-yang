@@ -65,7 +65,9 @@
           "traffic-profile": "pf-1",
           "ingress": {
             "app-flow-status": "ietf-detnet:ready",
-            "interface": "eth0",
+            "interface": [
+              "eth0"
+            ],
             "ip-app-flow": {
               "src-ip-prefix": "2001:db8::1/128",
               "dest-ip-prefix": "2001:db8::8/128",
@@ -80,7 +82,9 @@
           "traffic-profile": "pf-1",
           "ingress": {
             "app-flow-status": "ietf-detnet:ready",
-            "interface": "eth0",
+            "interface": [
+              "eth0"
+            ],
             "ip-app-flow": {
               "src-ip-prefix": "2001:db8::1/128",
               "dest-ip-prefix": "2001:db8::8/128",

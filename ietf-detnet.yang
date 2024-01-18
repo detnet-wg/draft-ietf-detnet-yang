@@ -70,7 +70,7 @@ module ietf-detnet {
      reporting. This YANG module conforms to the Network 
      Management Datastore Architecture (NMDA).
      
-     Copyright (c) 2022 IETF Trust and the persons identified as
+     Copyright (c) 2024 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -86,10 +86,10 @@ module ietf-detnet {
      // RFC Ed.: replace XXXX with actual RFC number and remove
      // this note
 
-     // replace '2022-10-04' with the module publication date
+     // replace '2024-01-16' with the module publication date
      // the format is (year-month-day)    
 
-  revision 2023-12-21 {
+  revision 2024-01-16 {
     description
       "Initial revision";
     reference
@@ -750,22 +750,18 @@ module ietf-detnet {
           description
             "These are the flow type next hop choices.";
           case ip {
-            choice operation-type {
+            description
+              "Use IP data plane for forwarding.";
+            leaf next-hop-address {
+              type inet:ip-address-no-zone;
               description
-                "This is the IP forwarding operation choices.";
-              case ip-forwarding {
-                leaf next-hop-address {
-                  type inet:ip-address-no-zone;
-                  description
-                    "This is an IP address as a next hop.";
-                }
-              }
-              case mpls-over-ip-encapsulation {
-                uses ip-header;
-              }
+                "This is an IP address as a next hop.";
             }
+            uses ip-header;
           }
           case mpls {
+            description
+              "Use MPLS data plane for forwarding.";
             uses rt-types:mpls-label-stack;
           }
         }
@@ -792,22 +788,18 @@ module ietf-detnet {
             description
               "These are the flow type next hop choices.";
             case ip {
-              choice operation-type {
+              description
+                "Use IP data plane for forwarding.";
+              leaf next-hop-address {
+                type inet:ip-address-no-zone;
                 description
-                  "These are the next hop choices.";
-                case ip-forwarding {
-                  leaf next-hop-address {
-                    type inet:ip-address-no-zone;
-                    description
-                      "This is an IP address as a next hop.";
-                  }
-                }
-                case mpls-over-ip-encapsulation {
-                  uses ip-header;
-                }
+                  "This is an IP address as a next hop.";
               }
+              uses ip-header;
             }
             case mpls {
+              description
+                "Use MPLS data plane for forwarding.";
               uses rt-types:mpls-label-stack;
             }
           }
@@ -828,7 +820,7 @@ module ietf-detnet {
       leaf name {
         type string;
         description
-          "The name of the traffic profile which is used as a 
+          "The name of the traffic profile which is used as a
            reference to this profile.";
       }
       container traffic-requirements {
@@ -1062,11 +1054,16 @@ module ietf-detnet {
               "RFC 9016 Sections
                4.1, 5.8";
           }
-          leaf interface {
+          leaf-list interface {
             type if:interface-ref;
             description
-            "Interface is used for any service type when
-             matching all flows to the interface.";
+            "Interface is optional for a service type. When
+             matching a flow to a single interface one
+             interface is specified. The list allows for
+             matching a subset of interfaces. When more
+             than one interfaces is specified, these
+             flows are simply aggregated and the service
+             sub-layer is unaware of the aggregation.";
           }
           uses data-flow-spec;
         } //End of app-ingress
@@ -1079,12 +1076,18 @@ module ietf-detnet {
               "This is the application type choices.";
             container ethernet {
               description
-                "This is Ethernet or TSN traffic that maps to an 
+                "This is Ethernet or TSN traffic that maps to an
                 interface.";
-              leaf interface {
+              leaf-list interface {
                 type if:interface-ref;
                 description
-                  "This is an Ethernet or TSN interface.";
+                  "This is one or more Ethernet or TSN interfaces.
+                   If multiple interfaces are specified, this 
+                   application flow is replicated to those 
+                   interfaces.  DetNet application Flow filtering
+                   applies to the whole list of interfaces.
+                   For fine grain flow filtering, use a single
+                   interface per application.";
               }
             }
             container ip-mpls {
@@ -1188,6 +1191,18 @@ module ietf-detnet {
                  DetNet service relay or termination at the relay
                  node or egress node.";
               uses detnet-flow-spec;
+            }
+            container forwarding-sub-layer {
+              description
+                "This entry specifies one or more forwarding
+                 sub-layers. No or minimal service sub-layer 
+                 encapsulation is allowed.";
+              leaf-list sub-layer {
+                type forwarding-sub-layer-ref;
+                config false;
+                description
+                  "List of outgoing forwarding sub-layers.";
+               }
             }
           }
         }
@@ -1371,7 +1386,7 @@ module ietf-detnet {
             container
               interface {
               description
-                "This forwarding sub-layer is sending to the 
+                "This forwarding sub-layer is sending to the
                  interface for send to next-hop at the ingress
                  node or relay node or transit node.";
               uses detnet-forwarding-next-hop-content;
@@ -1396,7 +1411,7 @@ module ietf-detnet {
             }
             container forwarding-sub-layer {
               description
-                "This forwarding sub-layer is sending to the 
+                "This forwarding sub-layer is sending to the
                  forwarding sub-layers of the lower layer for
                  forwarding-to-forwarding aggregation at the ingress
                  node or relay node or transit node.";
