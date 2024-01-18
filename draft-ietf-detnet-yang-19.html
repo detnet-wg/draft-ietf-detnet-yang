@@ -3512,7 +3512,7 @@ module: ietf-detnet
      |     +--rw traffic-profile?    traffic-profile-ref
      |     +--rw ingress
      |     |  +--ro app-flow-status?       identityref
-     |     |  +--rw interface?             if:interface-ref
+     |     |  +--rw interface*             if:interface-ref
      |     |  +--rw (data-flow-type)?
      |     |     +--:(tsn-app-flow)
      |     |     |  +--rw tsn-app-flow
@@ -7485,7 +7485,6 @@ module: ietf-detnet
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -8144,7 +8143,6 @@ module: ietf-detnet
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -8160,7 +8158,6 @@ module: ietf-detnet
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -8472,7 +8469,6 @@ module: ietf-detnet
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -8488,7 +8484,6 @@ module: ietf-detnet
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -9227,7 +9222,6 @@ module: ietf-detnet
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -9243,7 +9237,6 @@ module: ietf-detnet
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -9621,7 +9614,6 @@ module: ietf-detnet
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -9637,7 +9629,6 @@ module: ietf-detnet
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
