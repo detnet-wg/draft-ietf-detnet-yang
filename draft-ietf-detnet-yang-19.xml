@@ -2012,8 +2012,8 @@ module ietf-detnet {
     </section>
     <section anchor="Acknowledgments" numbered="true" toc="default">
       <name>Acknowledgments</name>
-      <t>  The editors of this document would like to thank Lou Berger, Tom Petch and 
-             Xufeng Lui for their detailed comments. 
+      <t>  The editors of this document would like to thank Lou Berger, Tom Petch 
+             Xufeng Lui, Julien Meuric, John Scudder` and Florian Kauer for their detailed comments. 
       </t>
     </section>
   </middle>

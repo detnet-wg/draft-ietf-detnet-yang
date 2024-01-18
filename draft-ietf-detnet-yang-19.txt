@@ -2312,7 +2312,8 @@ Internet-Draft          draft-ietf-detnet-yang-19           January 2024
 12.  Acknowledgments
 
    The editors of this document would like to thank Lou Berger, Tom
-   Petch and Xufeng Lui for their detailed comments.
+   Petch Xufeng Lui, Julien Meuric, John Scudder` and Florian Kauer for
+   their detailed comments.
 
 13.  References
 
@@ -2343,7 +2344,6 @@ Internet-Draft          draft-ietf-detnet-yang-19           January 2024
               (IPv6) Specification", STD 86, RFC 8200,
               DOI 10.17487/RFC8200, July 2017,
               <https://www.rfc-editor.org/info/rfc8200>.
-
 
 
 
