@@ -2012,8 +2012,8 @@ module ietf-detnet {
     </section>
     <section anchor="Acknowledgments" numbered="true" toc="default">
       <name>Acknowledgments</name>
-      <t>  The editors of this document would like to thank Lou Berger, Tom Petch and 
-             Xufeng Lui for their detailed comments. 
+      <t>  The editors of this document would like to thank Lou Berger, Tom Petch 
+             Xufeng Lui, Julien Meuric, John Scudder` and Florian Kauer for their detailed comments. 
       </t>
     </section>
   </middle>
@@ -15329,7 +15329,6 @@ Please consult the PDF or HTML versions for the Case C-2 Diagram.
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -17963,7 +17962,6 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -17979,7 +17977,6 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -18286,7 +18283,6 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -18302,7 +18298,6 @@ Please consult the PDF or HTML versions for the Case C-3 Diagram.
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -21250,7 +21245,6 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -21266,7 +21260,6 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -21639,7 +21632,6 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
@@ -21655,7 +21647,6 @@ Please consult the PDF or HTML versions for the Case C-4 Diagram
           "max-latency": 100000000,
           "max-latency-variation": 10000000,
           "max-loss": "0.0000001",
-          "max-loss": 0.0000001,
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
