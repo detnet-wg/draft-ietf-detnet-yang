@@ -38,9 +38,9 @@ module ietf-detnet {
   import ieee802-dot1q-types {
     prefix dot1q-types;
     reference
-      "IEEE 802.1Qcx-2020 - IEEE Standard for Local and Metropolitan
-       Area Networks--Bridges and Bridged Networks Amendment 33: YANG
-       Data Model for Connectivity Fault Management.";
+      "IEEE 802.1Q-2022 - IEEE Standard for Local and Metropolitan
+       Area Networks--Bridges and Bridged Networks Clause 48: YANG
+       Data Models.";
   }
 
   organization
@@ -86,10 +86,10 @@ module ietf-detnet {
      // RFC Ed.: replace XXXX with actual RFC number and remove
      // this note
 
-     // replace '2024-01-16' with the module publication date
+     // replace '2024-02-21' with the module publication date
      // the format is (year-month-day)    
 
-  revision 2024-01-16 {
+  revision 2024-02-21 {
     description
       "Initial revision";
     reference
@@ -196,7 +196,7 @@ module ietf-detnet {
     }
     description
       "IPsec Security Parameters Index. A 32 bit value
-       where 0 is reserved.";
+       where some values are reserved.";
     reference
       "IETF RFC 4303 Encapsulating Security Payload (ESP).";
   }
@@ -389,10 +389,10 @@ module ietf-detnet {
     leaf protocol-next-header {
       type uint8;
       description
-        "Internet Protocol number.  Refers to the protocol of the
+        "In IPv4 refers to the protocol of the
          payload.  In IPv6, this field is known as 'next-header',
-         and if extension headers are present, the protocol is
-         present in the 'upper-layer' header.";
+         and Identifies the type of header immediately following
+         the IPv6 header.";
       reference
         "RFC 791: Internet Protocol
          RFC 8200: Internet Protocol, Version 6 (IPv6)
@@ -451,14 +451,14 @@ module ietf-detnet {
       description
         "The VLAN value of the Ethernet header.";
       reference
-        "IEEE 802.1Qcx-2020.";
+        "IEEE 802.1Q-2022.";
     }
     leaf pcp {
       type dot1q-types:priority-type;
       description
         "The priority value of the Ethernet header.";
       reference
-        "IEEE 802.1Qcx-2020.";
+        "IEEE 802.1Q-2022.";
     }
   }
 
@@ -674,7 +674,7 @@ module ietf-detnet {
             "The flow type choices.";
           case ip {
             leaf next-hop-address {
-              type inet:ip-address-no-zone;
+              type inet:ip-address;
               description
                "The IP next hop case.";
             }
@@ -712,7 +712,7 @@ module ietf-detnet {
               "The flow types supported."; 
             case ip {
               leaf next-hop-address {
-                type inet:ip-address-no-zone;
+                type inet:ip-address;
                 description
                   "This is the IP flow type next hop.";
               }
@@ -753,7 +753,7 @@ module ietf-detnet {
             description
               "Use IP data plane for forwarding.";
             leaf next-hop-address {
-              type inet:ip-address-no-zone;
+              type inet:ip-address;
               description
                 "This is an IP address as a next hop.";
             }
@@ -791,7 +791,7 @@ module ietf-detnet {
               description
                 "Use IP data plane for forwarding.";
               leaf next-hop-address {
-                type inet:ip-address-no-zone;
+                type inet:ip-address;
                 description
                   "This is an IP address as a next hop.";
               }
@@ -829,7 +829,7 @@ module ietf-detnet {
            regarding bandwidth, latency, latency variation, loss, and
            misordering tolerance.";
         reference
-          "RFC 9016 Section 4.2";
+          "RFC 9016 Section 5.9";
         leaf min-bandwidth {
           type uint64;
           units 'octets per second';
@@ -838,7 +838,7 @@ module ietf-detnet {
              guaranteed for the DetNet service.  MinBandwidth is
              specified in octets per second.";
           reference
-            "RFC 9016 Section 4.2";
+            "RFC 9016 Section 5.9.1";
         }
         leaf max-latency {
           type uint32;
@@ -850,7 +850,7 @@ module ietf-detnet {
              nanoseconds. The MAX value is 4,294,967,295 
              nanoseconds.";
           reference
-            "RFC 9016 Section 4.2";
+            "RFC 9016 Section 5.9.2";
         }
         leaf max-latency-variation {
           type uint32;
@@ -861,7 +861,7 @@ module ietf-detnet {
              MaxLatencyVariation is specified as an integer number of
              nanoseconds.";
           reference
-            "RFC 9016 Section 4.2";
+            "RFC 9016 Section 5.9.3";
         }
         leaf max-loss {
           type decimal64 {
@@ -877,7 +877,7 @@ module ietf-detnet {
             the number of received packets divided by the number
             transmitted packets expressed as a percent.";
           reference
-            "RFC 9016 Section 4.2";
+            "RFC 9016 Section 5.9.4";
         }
         leaf max-consecutive-loss-tolerance {
           type uint32;
@@ -890,7 +890,7 @@ module ietf-detnet {
              maximum consecutive loss tolerance can be measured for
              example based on sequence number.";
           reference
-            "RFC 9016 Section 4.2";
+            "RFC 9016 Section 5.9.5";
         }
         leaf max-misordering {
           type uint32;
@@ -903,7 +903,7 @@ module ietf-detnet {
              maximum allowed misordering indicates that in order
              delivery is required, misordering cannot be tolerated.";
           reference
-            "RFC 9016 Section 4.2";
+            "RFC 9016 Section 5.9.6";
         }
       }
       container traffic-spec {
@@ -956,7 +956,7 @@ module ietf-detnet {
             "RFC 9016 Section 5.5, IEEE802.1Q";
         }
       }
-      leaf-list member-app {
+      leaf-list member-app-flow {
         type app-flow-ref;
         config false;
         description
@@ -967,7 +967,7 @@ module ietf-detnet {
           "RFC XXXX: Deterministic Networking (DetNet) YANG Model
           Section 5";
       }
-      leaf-list member-service {
+      leaf-list member-svc-sublayer {
         type service-sub-layer-ref;
         config false;
         description

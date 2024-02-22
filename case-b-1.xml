@@ -6,7 +6,7 @@
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
+        <discontinuity-time>2024-02-21T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
     <interface>
@@ -14,7 +14,7 @@
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
+        <discontinuity-time>2024-02-21T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
     <interface>
@@ -22,7 +22,7 @@
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
+        <discontinuity-time>2024-02-21T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
   </interfaces>
@@ -67,7 +67,8 @@
       <max-latency>100000000</max-latency>
       <max-latency-variation>20000000</max-latency-variation>
       <max-loss>0.0000001</max-loss>
-      <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
+      <max-consecutive-loss-tolerance>5
+        </max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
     <traffic-spec>
@@ -75,8 +76,8 @@
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
     </traffic-spec>
-    <member-app>app-1</member-app>
-    <member-app>app-2</member-app>
+    <member-app-flow>app-1</member-app-flow>
+    <member-app-flow>app-2</member-app-flow>
   </traffic-profile>
   <traffic-profile>  
     <name>2</name>
@@ -85,11 +86,12 @@
       <max-latency>100000000</max-latency>
       <max-latency-variation>20000000</max-latency-variation>
       <max-loss>0.000001</max-loss>
-      <max-consecutive-loss-tolerance>5</max-consecutive-loss-tolerance>
+      <max-consecutive-loss-tolerance>5
+        </max-consecutive-loss-tolerance>
       <max-misordering>0</max-misordering>
     </traffic-requirements>
-    <member-service>ssl-1</member-service>
-    <member-service>ssl-2</member-service>
+    <member-svc-sublayer>ssl-1</member-svc-sublayer>
+    <member-svc-sublayer>ssl-2</member-svc-sublayer>
   </traffic-profile>
   <traffic-profile>  
     <name>3</name>

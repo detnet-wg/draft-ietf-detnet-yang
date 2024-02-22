@@ -11,7 +11,7 @@
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
-        "member-service": [
+        "member-svc-sublayer": [
           "ssl-1",
           "ssl-2"
         ]
@@ -26,7 +26,7 @@
           "max-consecutive-loss-tolerance": 5,
           "max-misordering": 0
         },
-        "member-service": [
+        "member-svc-sublayer": [
           "asl-1"
         ]
       },
@@ -337,7 +337,7 @@
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+          "discontinuity-time": "2024-02-21T18:59:00-05:00"
         }
       },
       {
@@ -345,7 +345,7 @@
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+          "discontinuity-time": "2024-02-21T18:59:00-05:00"
         }
       },
       {
@@ -353,7 +353,7 @@
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+          "discontinuity-time": "2024-02-21T18:59:00-05:00"
         }
       },
       {
@@ -361,7 +361,7 @@
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+          "discontinuity-time": "2024-02-21T18:59:00-05:00"
         }
       }
     ]

@@ -18,7 +18,7 @@
           "min-payload-size": 100,
           "min-pkts-per-interval": 1
         },
-        "member-app": [
+        "member-app-flow": [
           "app-0",
           "app-1"
         ]
@@ -40,7 +40,7 @@
           "min-payload-size": 100,
           "min-pkts-per-interval": 1
         },
-        "member-service": [
+        "member-svc-sublayer": [
           "ssl-1"
         ]
       },
@@ -173,7 +173,7 @@
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+          "discontinuity-time": "2024-02-21T18:59:00-05:00"
         }
       },
       {
@@ -181,7 +181,7 @@
         "type": "iana-if-type:ethernetCsmacd",
         "oper-status": "up",
         "statistics": {
-          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+          "discontinuity-time": "2024-02-21T18:59:00-05:00"
         }
       }
     ]

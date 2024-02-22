@@ -15,8 +15,8 @@ module: ietf-detnet
      |  |  +--rw max-payload-size?        uint32
      |  |  +--rw min-payload-size?        uint32
      |  |  +--rw min-pkts-per-interval?   uint32
-     |  +--ro member-app*             app-flow-ref
-     |  +--ro member-service*         service-sub-layer-ref
+     |  +--ro member-app-flow*        app-flow-ref
+     |  +--ro member-svc-sublayer*    service-sub-layer-ref
      |  +--ro member-fwd-sublayer*    forwarding-sub-layer-ref
      +--rw app-flows
      |  +--rw app-flow* [name]
@@ -128,7 +128,7 @@ module: ietf-detnet
      |                    |  +--rw outgoing-interface?       if:interface-ref
      |                    |  +--rw (flow-type)?
      |                    |     +--:(ip)
-     |                    |     |  +--rw next-hop-address?   inet:ip-address-no-zone
+     |                    |     |  +--rw next-hop-address?   inet:ip-address
      |                    |     +--:(mpls)
      |                    |        +--rw mpls-label-stack
      |                    |           +--rw entry* [id]
@@ -142,7 +142,7 @@ module: ietf-detnet
      |                          +--rw outgoing-interface?       if:interface-ref
      |                          +--rw (flow-type)?
      |                             +--:(ip)
-     |                             |  +--rw next-hop-address?   inet:ip-address-no-zone
+     |                             |  +--rw next-hop-address?   inet:ip-address
      |                             +--:(mpls)
      |                                +--rw mpls-label-stack
      |                                   +--rw entry* [id]
@@ -312,7 +312,7 @@ module: ietf-detnet
                  |        |  +--rw outgoing-interface?           if:interface-ref
                  |        |  +--rw (flow-type)?
                  |        |     +--:(ip)
-                 |        |     |  +--rw next-hop-address?       inet:ip-address-no-zone
+                 |        |     |  +--rw next-hop-address?       inet:ip-address
                  |        |     |  +--rw src-ip-address?         inet:ip-address-no-zone
                  |        |     |  +--rw dest-ip-address?        inet:ip-address-no-zone
                  |        |     |  +--rw protocol-next-header?   uint8
@@ -333,7 +333,7 @@ module: ietf-detnet
                  |              +--rw outgoing-interface?           if:interface-ref
                  |              +--rw (flow-type)?
                  |                 +--:(ip)
-                 |                 |  +--rw next-hop-address?       inet:ip-address-no-zone
+                 |                 |  +--rw next-hop-address?       inet:ip-address
                  |                 |  +--rw src-ip-address?         inet:ip-address-no-zone
                  |                 |  +--rw dest-ip-address?        inet:ip-address-no-zone
                  |                 |  +--rw protocol-next-header?   uint8

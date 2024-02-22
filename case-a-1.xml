@@ -6,7 +6,7 @@
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
+         <discontinuity-time>2024-02-21T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
     <interface>
@@ -14,7 +14,7 @@
       <type>ia:ethernetCsmacd</type>
       <oper-status>up</oper-status>
       <statistics>
-         <discontinuity-time>2020-12-18T23:59:00Z</discontinuity-time>
+         <discontinuity-time>2024-02-21T23:59:00Z</discontinuity-time>
       </statistics>
     </interface>
   </interfaces>
@@ -69,8 +69,8 @@
       <min-payload-size>100</min-payload-size>
       <min-pkts-per-interval>1</min-pkts-per-interval>
     </traffic-spec>
-    <member-app>app-0</member-app>
-    <member-app>app-1</member-app>
+    <member-app-flow>app-0</member-app-flow>
+    <member-app-flow>app-1</member-app-flow>
     <!--<member-groups></member-groups>-->
     <!--<member-fwd-sublayer></member-fwd-sublayer>-->
   </traffic-profile>
@@ -91,8 +91,8 @@
       <min-payload-size>100</min-payload-size>
       <min-pkts-per-interval>1</min-pkts-per-interval>
     </traffic-spec>
-    <!--<member-app></member-app>-->
-    <member-service>ssl-1</member-service>
+    <!--<member-app-flow></member-app-flow>-->
+    <member-svc-sublayer>ssl-1</member-svc-sublayer>
     <!--<member-fwd-sublayer></member-fwd-sublayer>-->
     <!--<member-groups></member-groups>-->
   </traffic-profile>
@@ -103,8 +103,8 @@
       <max-pkts-per-interval>10</max-pkts-per-interval>
       <max-payload-size>1500</max-payload-size>
     </traffic-spec>
-    <!--<member-app></member-app>-->
-    <!--<member-service></member-service>-->
+    <!--<member-app-flow></member-app-flow>-->
+    <!--<member-svc-sublayer></member-svc-sublayer>-->
     <!--<member-groups></member-groups>-->
     <member-fwd-sublayer>fsl-1</member-fwd-sublayer>
   </traffic-profile>
