@@ -1970,7 +1970,7 @@ module ietf-detnet {
       module can break or incorrectly connect DetNet flows. Since DetNet is a
       configured Data Plane, any changes that are not coordinated with all devices
       along the path will create a denial of service.
-      Additional, arbitrary write operations could also enable an attacker to modify
+      In addition, arbitrary write operations could also enable an attacker to modify
       a network path to enable select traffic to avoid inspection or treatment by
       security controls, or route traffic in a way that it would be subject to
       inspect/modification by an adversary node.
@@ -1997,14 +1997,14 @@ module ietf-detnet {
       /detnet/service/sub-layer/outgoing/app-flow: This links applications to services.
       </t>
       <t>
-      These nodes can reveal the flows identifiable characteristics of application flows.
+      The above nodes can reveal identifiable characteristics of the application flows.
       </t>
       <t>/detnet/service/sub-layer: This defines the service and forwarding operations.
       </t>
       <t>/detnet/fowarding/sub-layer: This defines the forwarding operations.
       </t>
       <t>
-      These nodes can reveal some aspects of the network topology of there is unauthorized access to this configuration.
+      The above nodes can reveal some aspects of the network topology of there is unauthorized access to this configuration.
       </t>
       </section>
       <section anchor="Contributors" numbered="true" toc="default">
