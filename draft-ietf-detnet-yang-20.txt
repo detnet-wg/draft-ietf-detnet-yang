@@ -9,7 +9,7 @@ Expires: 25 August 2024                                             ETRI
                                                                 D. Fedyk
                                                  LabN Consulting, L.L.C.
                                                                R. Rahman
-                                                              Individual
+                                                                 Equinix
                                                                    Z. Li
                                                             China Mobile
                                                         22 February 2024
@@ -7600,7 +7600,7 @@ Authors' Addresses
 
 
    Reshad Rahman
-   Individual
+   Equinix
    Email: reshad@yahoo.com
 
 
