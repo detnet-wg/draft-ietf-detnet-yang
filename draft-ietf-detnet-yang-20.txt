@@ -514,7 +514,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
    [RFC0791], [RFC4303], [RFC8349], [RFC8938], [RFC8960], [RFC8964], and
    [RFC8200].
 
-   <CODE BEGINS> file "ietf-detnet@2022-02-05.yang"
+   <CODE BEGINS> file "ietf-detnet@2022-02-21.yang"
    module ietf-detnet {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-detnet";
