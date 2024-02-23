@@ -5,14 +5,14 @@
 Network Working Group                                            X. Geng
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                                 Y. Ryoo
-Expires: 25 August 2024                                             ETRI
+Expires: 26 August 2024                                             ETRI
                                                                 D. Fedyk
                                                  LabN Consulting, L.L.C.
                                                                R. Rahman
                                                                  Equinix
                                                                    Z. Li
                                                             China Mobile
-                                                        22 February 2024
+                                                        23 February 2024
 
 
               Deterministic Networking (DetNet) YANG Model
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 August 2024.
+   This Internet-Draft will expire on 26 August 2024.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Geng, et al.             Expires 25 August 2024                 [Page 1]
+Geng, et al.             Expires 26 August 2024                 [Page 1]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Geng, et al.             Expires 25 August 2024                 [Page 2]
+Geng, et al.             Expires 26 August 2024                 [Page 2]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -165,7 +165,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                 [Page 3]
+Geng, et al.             Expires 26 August 2024                 [Page 3]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -221,7 +221,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                 [Page 4]
+Geng, et al.             Expires 26 August 2024                 [Page 4]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -277,7 +277,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                 [Page 5]
+Geng, et al.             Expires 26 August 2024                 [Page 5]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -333,7 +333,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                 [Page 6]
+Geng, et al.             Expires 26 August 2024                 [Page 6]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -389,7 +389,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                 [Page 7]
+Geng, et al.             Expires 26 August 2024                 [Page 7]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -445,7 +445,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                 [Page 8]
+Geng, et al.             Expires 26 August 2024                 [Page 8]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -501,7 +501,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                 [Page 9]
+Geng, et al.             Expires 26 August 2024                 [Page 9]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -514,7 +514,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
    [RFC0791], [RFC4303], [RFC8349], [RFC8938], [RFC8960], [RFC8964], and
    [RFC8200].
 
-   <CODE BEGINS> file "ietf-detnet@2022-01-05.yang"
+   <CODE BEGINS> file "ietf-detnet@2022-02-05.yang"
    module ietf-detnet {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-detnet";
@@ -557,7 +557,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 10]
+Geng, et al.             Expires 26 August 2024                [Page 10]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -613,7 +613,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 11]
+Geng, et al.             Expires 26 August 2024                [Page 11]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -669,7 +669,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 12]
+Geng, et al.             Expires 26 August 2024                [Page 12]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -725,7 +725,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 13]
+Geng, et al.             Expires 26 August 2024                [Page 13]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -781,7 +781,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 14]
+Geng, et al.             Expires 26 August 2024                [Page 14]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -837,7 +837,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 15]
+Geng, et al.             Expires 26 August 2024                [Page 15]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -893,7 +893,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 16]
+Geng, et al.             Expires 26 August 2024                [Page 16]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -949,7 +949,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 17]
+Geng, et al.             Expires 26 August 2024                [Page 17]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -971,7 +971,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
          description
            "In IPv4 refers to the protocol of the
             payload.  In IPv6, this field is known as 'next-header',
-            and Identifies the type of header immediately following
+            and identifies the type of header immediately following
             the IPv6 header.";
          reference
            "RFC 791: Internet Protocol
@@ -1005,7 +1005,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 18]
+Geng, et al.             Expires 26 August 2024                [Page 18]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1061,7 +1061,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 19]
+Geng, et al.             Expires 26 August 2024                [Page 19]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1117,7 +1117,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 20]
+Geng, et al.             Expires 26 August 2024                [Page 20]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1173,7 +1173,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 21]
+Geng, et al.             Expires 26 August 2024                [Page 21]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1229,7 +1229,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 22]
+Geng, et al.             Expires 26 August 2024                [Page 22]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1285,7 +1285,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 23]
+Geng, et al.             Expires 26 August 2024                [Page 23]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1341,7 +1341,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 24]
+Geng, et al.             Expires 26 August 2024                [Page 24]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1397,7 +1397,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 25]
+Geng, et al.             Expires 26 August 2024                [Page 25]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1453,7 +1453,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 26]
+Geng, et al.             Expires 26 August 2024                [Page 26]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1509,7 +1509,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 27]
+Geng, et al.             Expires 26 August 2024                [Page 27]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1565,7 +1565,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 28]
+Geng, et al.             Expires 26 August 2024                [Page 28]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1621,7 +1621,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 29]
+Geng, et al.             Expires 26 August 2024                [Page 29]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1677,7 +1677,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 30]
+Geng, et al.             Expires 26 August 2024                [Page 30]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1733,7 +1733,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 31]
+Geng, et al.             Expires 26 August 2024                [Page 31]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1789,7 +1789,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 32]
+Geng, et al.             Expires 26 August 2024                [Page 32]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1845,7 +1845,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 33]
+Geng, et al.             Expires 26 August 2024                [Page 33]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1901,7 +1901,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 34]
+Geng, et al.             Expires 26 August 2024                [Page 34]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -1957,7 +1957,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 35]
+Geng, et al.             Expires 26 August 2024                [Page 35]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2013,7 +2013,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 36]
+Geng, et al.             Expires 26 August 2024                [Page 36]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2069,7 +2069,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 37]
+Geng, et al.             Expires 26 August 2024                [Page 37]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2125,7 +2125,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 38]
+Geng, et al.             Expires 26 August 2024                [Page 38]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2181,7 +2181,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 39]
+Geng, et al.             Expires 26 August 2024                [Page 39]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2237,7 +2237,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 40]
+Geng, et al.             Expires 26 August 2024                [Page 40]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2293,7 +2293,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 41]
+Geng, et al.             Expires 26 August 2024                [Page 41]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2349,7 +2349,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 42]
+Geng, et al.             Expires 26 August 2024                [Page 42]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2405,7 +2405,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 43]
+Geng, et al.             Expires 26 August 2024                [Page 43]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2461,7 +2461,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 44]
+Geng, et al.             Expires 26 August 2024                [Page 44]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2517,7 +2517,7 @@ Appendix A.  DetNet Configuration YANG Tree
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 45]
+Geng, et al.             Expires 26 August 2024                [Page 45]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2573,7 +2573,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 46]
+Geng, et al.             Expires 26 August 2024                [Page 46]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2629,7 +2629,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 47]
+Geng, et al.             Expires 26 August 2024                [Page 47]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2685,7 +2685,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 48]
+Geng, et al.             Expires 26 August 2024                [Page 48]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2741,7 +2741,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 49]
+Geng, et al.             Expires 26 August 2024                [Page 49]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2797,7 +2797,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 50]
+Geng, et al.             Expires 26 August 2024                [Page 50]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2853,7 +2853,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 51]
+Geng, et al.             Expires 26 August 2024                [Page 51]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2909,7 +2909,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 52]
+Geng, et al.             Expires 26 August 2024                [Page 52]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -2965,7 +2965,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 53]
+Geng, et al.             Expires 26 August 2024                [Page 53]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3021,7 +3021,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 54]
+Geng, et al.             Expires 26 August 2024                [Page 54]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3077,7 +3077,7 @@ B.1.  Example A-1 JSON Configuration/Operational
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 55]
+Geng, et al.             Expires 26 August 2024                [Page 55]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3133,7 +3133,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 56]
+Geng, et al.             Expires 26 August 2024                [Page 56]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3189,7 +3189,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 57]
+Geng, et al.             Expires 26 August 2024                [Page 57]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3245,7 +3245,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 58]
+Geng, et al.             Expires 26 August 2024                [Page 58]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3301,7 +3301,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 59]
+Geng, et al.             Expires 26 August 2024                [Page 59]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3357,7 +3357,7 @@ B.2.  Example B-1 XML Config: Aggregation using a Forwarding Sub-layer
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 60]
+Geng, et al.             Expires 26 August 2024                [Page 60]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3413,7 +3413,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 61]
+Geng, et al.             Expires 26 August 2024                [Page 61]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3469,7 +3469,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 62]
+Geng, et al.             Expires 26 August 2024                [Page 62]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3525,7 +3525,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 63]
+Geng, et al.             Expires 26 August 2024                [Page 63]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3581,7 +3581,7 @@ B.3.  Example B-2 JSON Service Aggregation Configuration
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 64]
+Geng, et al.             Expires 26 August 2024                [Page 64]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3637,7 +3637,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 65]
+Geng, et al.             Expires 26 August 2024                [Page 65]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3693,7 +3693,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 66]
+Geng, et al.             Expires 26 August 2024                [Page 66]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3749,7 +3749,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 67]
+Geng, et al.             Expires 26 August 2024                [Page 67]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3805,7 +3805,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 68]
+Geng, et al.             Expires 26 August 2024                [Page 68]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3861,7 +3861,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 69]
+Geng, et al.             Expires 26 August 2024                [Page 69]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3917,7 +3917,7 @@ B.4.  Example C-1 JSON Relay Aggregation/Disaggregation Configuration
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 70]
+Geng, et al.             Expires 26 August 2024                [Page 70]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -3973,7 +3973,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 71]
+Geng, et al.             Expires 26 August 2024                [Page 71]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4029,7 +4029,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 72]
+Geng, et al.             Expires 26 August 2024                [Page 72]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4085,7 +4085,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 73]
+Geng, et al.             Expires 26 August 2024                [Page 73]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4141,7 +4141,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 74]
+Geng, et al.             Expires 26 August 2024                [Page 74]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4197,7 +4197,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 75]
+Geng, et al.             Expires 26 August 2024                [Page 75]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4253,7 +4253,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 76]
+Geng, et al.             Expires 26 August 2024                [Page 76]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4309,7 +4309,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 77]
+Geng, et al.             Expires 26 August 2024                [Page 77]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4365,7 +4365,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 78]
+Geng, et al.             Expires 26 August 2024                [Page 78]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4421,7 +4421,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 79]
+Geng, et al.             Expires 26 August 2024                [Page 79]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4477,7 +4477,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 80]
+Geng, et al.             Expires 26 August 2024                [Page 80]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4533,7 +4533,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 81]
+Geng, et al.             Expires 26 August 2024                [Page 81]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4589,7 +4589,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 82]
+Geng, et al.             Expires 26 August 2024                [Page 82]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4645,7 +4645,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 83]
+Geng, et al.             Expires 26 August 2024                [Page 83]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4701,7 +4701,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 84]
+Geng, et al.             Expires 26 August 2024                [Page 84]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4757,7 +4757,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 85]
+Geng, et al.             Expires 26 August 2024                [Page 85]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4813,7 +4813,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 86]
+Geng, et al.             Expires 26 August 2024                [Page 86]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4869,7 +4869,7 @@ B.5.  Example C-2 JSON Relay Aggregation/Disaggregation Service Sub-
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 87]
+Geng, et al.             Expires 26 August 2024                [Page 87]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4925,7 +4925,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 88]
+Geng, et al.             Expires 26 August 2024                [Page 88]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -4981,7 +4981,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 89]
+Geng, et al.             Expires 26 August 2024                [Page 89]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5037,7 +5037,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 90]
+Geng, et al.             Expires 26 August 2024                [Page 90]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5093,7 +5093,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 91]
+Geng, et al.             Expires 26 August 2024                [Page 91]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5149,7 +5149,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 92]
+Geng, et al.             Expires 26 August 2024                [Page 92]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5205,7 +5205,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 93]
+Geng, et al.             Expires 26 August 2024                [Page 93]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5261,7 +5261,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 94]
+Geng, et al.             Expires 26 August 2024                [Page 94]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5317,7 +5317,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 95]
+Geng, et al.             Expires 26 August 2024                [Page 95]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5373,7 +5373,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 96]
+Geng, et al.             Expires 26 August 2024                [Page 96]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5429,7 +5429,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 97]
+Geng, et al.             Expires 26 August 2024                [Page 97]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5485,7 +5485,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 98]
+Geng, et al.             Expires 26 August 2024                [Page 98]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5541,7 +5541,7 @@ B.6.  Example C-3 JSON Relay Service Sub-Layer Aggregation/
 
 
 
-Geng, et al.             Expires 25 August 2024                [Page 99]
+Geng, et al.             Expires 26 August 2024                [Page 99]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5597,7 +5597,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 100]
+Geng, et al.             Expires 26 August 2024               [Page 100]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5653,7 +5653,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 101]
+Geng, et al.             Expires 26 August 2024               [Page 101]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5709,7 +5709,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 102]
+Geng, et al.             Expires 26 August 2024               [Page 102]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5765,7 +5765,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 103]
+Geng, et al.             Expires 26 August 2024               [Page 103]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5821,7 +5821,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 104]
+Geng, et al.             Expires 26 August 2024               [Page 104]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5877,7 +5877,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 105]
+Geng, et al.             Expires 26 August 2024               [Page 105]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5933,7 +5933,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 106]
+Geng, et al.             Expires 26 August 2024               [Page 106]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -5989,7 +5989,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 107]
+Geng, et al.             Expires 26 August 2024               [Page 107]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6045,7 +6045,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 108]
+Geng, et al.             Expires 26 August 2024               [Page 108]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6101,7 +6101,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 109]
+Geng, et al.             Expires 26 August 2024               [Page 109]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6157,7 +6157,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 110]
+Geng, et al.             Expires 26 August 2024               [Page 110]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6213,7 +6213,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 111]
+Geng, et al.             Expires 26 August 2024               [Page 111]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6269,7 +6269,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 112]
+Geng, et al.             Expires 26 August 2024               [Page 112]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6325,7 +6325,7 @@ B.7.  Example C-4 JSON Relay Service Sub-Layer Aggregation/
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 113]
+Geng, et al.             Expires 26 August 2024               [Page 113]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6381,7 +6381,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 114]
+Geng, et al.             Expires 26 August 2024               [Page 114]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6437,7 +6437,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 115]
+Geng, et al.             Expires 26 August 2024               [Page 115]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6493,7 +6493,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 116]
+Geng, et al.             Expires 26 August 2024               [Page 116]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6549,7 +6549,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 117]
+Geng, et al.             Expires 26 August 2024               [Page 117]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6605,7 +6605,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 118]
+Geng, et al.             Expires 26 August 2024               [Page 118]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6661,7 +6661,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 119]
+Geng, et al.             Expires 26 August 2024               [Page 119]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6717,7 +6717,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 120]
+Geng, et al.             Expires 26 August 2024               [Page 120]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6773,7 +6773,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 121]
+Geng, et al.             Expires 26 August 2024               [Page 121]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6829,7 +6829,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 122]
+Geng, et al.             Expires 26 August 2024               [Page 122]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6885,7 +6885,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 123]
+Geng, et al.             Expires 26 August 2024               [Page 123]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6941,7 +6941,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 124]
+Geng, et al.             Expires 26 August 2024               [Page 124]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -6997,7 +6997,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 125]
+Geng, et al.             Expires 26 August 2024               [Page 125]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7053,7 +7053,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 126]
+Geng, et al.             Expires 26 August 2024               [Page 126]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7109,7 +7109,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 127]
+Geng, et al.             Expires 26 August 2024               [Page 127]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7165,7 +7165,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 128]
+Geng, et al.             Expires 26 August 2024               [Page 128]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7221,7 +7221,7 @@ B.8.  Example D-1 JSON Transit Forwarding Sub-Layer Aggregation/
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 129]
+Geng, et al.             Expires 26 August 2024               [Page 129]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7277,7 +7277,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 130]
+Geng, et al.             Expires 26 August 2024               [Page 130]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7333,7 +7333,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 131]
+Geng, et al.             Expires 26 August 2024               [Page 131]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7389,7 +7389,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 132]
+Geng, et al.             Expires 26 August 2024               [Page 132]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7445,7 +7445,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 133]
+Geng, et al.             Expires 26 August 2024               [Page 133]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7501,7 +7501,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 134]
+Geng, et al.             Expires 26 August 2024               [Page 134]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7557,7 +7557,7 @@ Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 135]
+Geng, et al.             Expires 26 August 2024               [Page 135]
 
 Internet-Draft          draft-ietf-detnet-yang-20          February 2024
 
@@ -7613,4 +7613,4 @@ Authors' Addresses
 
 
 
-Geng, et al.             Expires 25 August 2024               [Page 136]
+Geng, et al.             Expires 26 August 2024               [Page 136]

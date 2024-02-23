@@ -451,7 +451,7 @@ module: ietf-detnet
                 <xref target="RFC8964"/>,
                 and <xref target="RFC8200"/>. 
             </t>
-            <sourcecode name="ietf-detnet@2022-01-05.yang" type="yang" markers="true"><![CDATA[
+            <sourcecode name="ietf-detnet@2022-02-05.yang" type="yang" markers="true"><![CDATA[
 module ietf-detnet {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-detnet";
@@ -845,7 +845,7 @@ module ietf-detnet {
       description
         "In IPv4 refers to the protocol of the
          payload.  In IPv6, this field is known as 'next-header',
-         and Identifies the type of header immediately following
+         and identifies the type of header immediately following
          the IPv6 header.";
       reference
         "RFC 791: Internet Protocol
